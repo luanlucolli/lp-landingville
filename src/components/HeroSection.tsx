@@ -86,14 +86,14 @@ const HeroSection = () => {
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                 <MessageCircle className="w-6 h-6 text-primary" />
               </div>
-              <span className="font-semibold text-foreground">Clique e fale no WhatsApp</span>
+              <span className="font-semibold text-foreground">Integração com WhatsApp</span>
             </div>
             
             <div className="flex items-center justify-center md:justify-start gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50">
               <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
                 <Navigation className="w-6 h-6 text-secondary" />
               </div>
-              <span className="font-semibold text-foreground">Como chegar no Google Maps</span>
+              <span className="font-semibold text-foreground">Integração com Google Maps</span>
             </div>
             
             <div className="flex items-center justify-center md:justify-start gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50">
