@@ -2,41 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Landingville Design System - Mobile-first, WhatsApp-focused
+All colors MUST be HSL. Semantic tokens for consistency.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Landingville Brand Colors */
+    --brand-blue: 208 58% 41%; /* #2B6FA5 */
+    --brand-green: 98 35% 55%; /* #85BA62 */
+    
+    /* Neutrals with high contrast for mobile */
+    --neutral-900: 215 28% 7%; /* #0E1116 */
+    --neutral-50: 216 33% 97%; /* #F7F9FC */
+    --neutral-800: 215 20% 15%;
+    --neutral-700: 215 15% 25%;
+    --neutral-600: 215 10% 40%;
+    --neutral-400: 215 8% 60%;
+    --neutral-200: 215 12% 85%;
+    --neutral-100: 215 20% 92%;
+    
+    /* Base semantic tokens */
+    --background: 216 33% 97%;
+    --foreground: 215 28% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 28% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 28% 7%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 208 58% 41%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 98 35% 55%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 20% 92%;
+    --muted-foreground: 215 15% 25%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 98 35% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 12% 85%;
+    --input: 215 12% 85%;
+    --ring: 208 58% 41%;
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(208 58% 41%), hsl(98 35% 55%));
+    --gradient-mesh: linear-gradient(135deg, hsl(208 58% 41% / 0.1), hsl(98 35% 55% / 0.1));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(208 58% 41% / 0.08);
+    --shadow-glow: 0 0 40px hsl(208 58% 41% / 0.15);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +126,84 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Mobile-optimized typography */
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl font-bold leading-tight;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl font-semibold leading-tight;
+  }
+  
+  /* Tap targets for mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@layer components {
+  /* Hero gradient background with animation */
+  .hero-gradient {
+    background: var(--gradient-hero);
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease-in-out infinite;
+  }
+  
+  .mesh-gradient {
+    background: var(--gradient-mesh);
+    background-size: 400% 400%;
+    animation: gradient-shift 12s ease-in-out infinite;
+  }
+  
+  /* WhatsApp button styling */
+  .whatsapp-button {
+    @apply bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold;
+    transition: var(--transition-smooth);
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+}
+
+@layer utilities {
+  /* Animation keyframes */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Focus states for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  /* Smooth parallax effect */
+  .parallax {
+    transform: translateZ(0);
+    will-change: transform;
   }
 }
