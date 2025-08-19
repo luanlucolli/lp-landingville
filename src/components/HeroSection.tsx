@@ -1,7 +1,37 @@
 import { MessageCircle, Navigation, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
 const HeroSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setIsReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsReducedMotion(e.matches);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    
+    // Parallax scroll handler
+    const handleScroll = () => {
+      if (!isReducedMotion) {
+        setScrollY(window.scrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isReducedMotion]);
+
   const handleWhatsAppClick = () => {
     const message = "Oi, sou [Nome] da [Loja]. Vi a Landingville. Quero uma página para [Segmento] e publicar até [Data].";
     const phone = "5547999999999"; // Placeholder
@@ -16,9 +46,28 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated mesh gradient background */}
-      <div className="absolute inset-0 mesh-gradient opacity-20" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+      {/* Parallax animated mesh gradient background */}
+      <div 
+        className="absolute inset-0 mesh-gradient-animated opacity-30"
+        style={{
+          transform: isReducedMotion ? 'none' : `translate3d(0, ${scrollY * 0.5}px, 0)`,
+          willChange: isReducedMotion ? 'auto' : 'transform'
+        }}
+      />
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-[hsl(208_58%_41%_/_0.1)] via-transparent to-[hsl(98_35%_55%_/_0.1)]"
+        style={{
+          transform: isReducedMotion ? 'none' : `translate3d(0, ${scrollY * 0.3}px, 0)`,
+          willChange: isReducedMotion ? 'auto' : 'transform'
+        }}
+      />
+      <div 
+        className="absolute inset-0 bg-gradient-to-tr from-transparent via-[hsl(208_58%_41%_/_0.05)] to-transparent"
+        style={{
+          transform: isReducedMotion ? 'none' : `translate3d(0, ${scrollY * 0.2}px, 0)`,
+          willChange: isReducedMotion ? 'auto' : 'transform'
+        }}
+      />
       
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
@@ -59,7 +108,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button 
               onClick={handleWhatsAppClick}
-              className="whatsapp-button focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto"
+              className="bg-[hsl(208_58%_41%)] hover:bg-[hsl(208_58%_35%)] text-white focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto transition-all duration-300"
               size="lg"
             >
               <MessageCircle className="w-6 h-6 mr-3" />
@@ -68,8 +117,7 @@ const HeroSection = () => {
             
             <Button 
               onClick={handlePlansClick}
-              variant="secondary"
-              className="focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto"
+              className="bg-[hsl(98_35%_55%)] hover:bg-[hsl(98_35%_50%)] text-white focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto transition-all duration-300"
               size="lg"
             >
               Ver planos
