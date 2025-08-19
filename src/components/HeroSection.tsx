@@ -16,10 +16,9 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Parallax animated background layers */}
-      <div className="absolute inset-0 parallax-bg-1 opacity-10" />
-      <div className="absolute inset-0 parallax-bg-2 opacity-15" />
-      <div className="absolute inset-0 parallax-bg-3 opacity-8" />
+      {/* Animated mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient opacity-20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
       
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
