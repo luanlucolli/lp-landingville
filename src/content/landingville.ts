@@ -11,12 +11,11 @@ export const copy = {
     sub: "Landing pages e sites feitos para o celular, fáceis de achar no Google e conectados aos seus canais.",
     bullets: ["Carrega rápido", "Encontra no Google", "Conecta a seus canais"],
     ctas: {
-      primary: "Calcular orçamento em 30s",   // rola para #calculator
-      secondary: "Ver exemplos"               // rola para #demos (tab dinâmica)
+      primary: "Calcular orçamento em 30s",   // scroll suave para #calculator
+      secondary: "Ver exemplos"               // scroll suave para #demos (tab dinâmica)
     },
     visual: {
-      // Permissão p/ ajustar contraste das cores e botões na hero
-      gradientNote: "Hero com gradiente animado leve (Steel→Moss) e blobs flutuantes; respeitar prefers-reduced-motion; contraste AA/AAA."
+      gradientNote: "Hero com gradiente animado leve (Steel→Moss) e blobs flutuantes; prefers-reduced-motion desativa; contraste AA/AAA."
     }
   },
 
@@ -25,6 +24,19 @@ export const copy = {
     id: "calculator",
     title: "Calculadora de Orçamento (30s)",
     subtitle: "Responda rápido e receba uma estimativa com recomendação do que é melhor hoje.",
+
+    // TELA 0 (INTRO) — NÃO começar no Passo 1
+    intro: {
+      title: "Descubra seu investimento em 30s",
+      bullets: ["Sem cadastro", "Até R$ 500", "Recomendação automática"],
+      meter: "0/5 etapas · ~30s",
+      cta: "Começar agora",
+      links: {
+        seeExamples: "Ver exemplos primeiro", // rola para #demos
+        helpMe: "Não sei por onde começar"    // entra direto no fallback do Passo 1
+      }
+    },
+
     steps: {
       // Passo 1 — Objetivo (multi). NÃO exigir saber 'landing' vs 'site'.
       s1: {
@@ -41,7 +53,6 @@ export const copy = {
           "Não sei, me ajude"
         ],
         fallback: {
-          // Se marcar "Não sei, me ajude", pergunte APENAS estas 2 (chips):
           q1: "Você quer algo pontual (campanha) ou presença contínua (site da loja)?",
           q1Options: ["Pontual (campanha)", "Presença contínua (site)"],
           q2: "Qual canal seu cliente mais usa?",
@@ -50,16 +61,17 @@ export const copy = {
       },
 
       // Passo 2 — Canais preferidos (multi). Não impacta preço; organiza CTAs.
+      // Como o modal de contato só tem Instagram e WhatsApp, aqui manter APENAS esses para coerência.
       s2: {
         title: "Por onde prefere atender?",
-        hint: "Usaremos isso para posicionar seus botões.",
-        options: ["WhatsApp", "Instagram", "Facebook", "Telefone", "E-mail", "Link de Delivery", "Google Maps"]
+        hint: "Posicionaremos seus botões principais nesses canais.",
+        options: ["Instagram", "WhatsApp"]
       },
 
-      // Passo 3 — Itens que você já tem (simplificado). Tirar texto genérico; manter só logo/fotos.
+      // Passo 3 — Itens que você já tem (ENXUTO) — incluir opção "Logo e Fotos"
       s3: {
         title: "Você já tem algum destes itens?",
-        options: ["Logo", "Fotos", "Nenhum dos dois"]
+        options: ["Logo", "Fotos", "Logo e Fotos", "Nenhum dos dois"]
       },
 
       // Passo 4 — Urgência (não altera preço; vira etiqueta no resumo)
@@ -79,18 +91,16 @@ export const copy = {
     result: {
       title: "Sua estimativa inicial",
       recommendation: {
-        // Renderizar: "Sugerimos: Landing de captação" OU "Sugerimos: Site simples (2–4 seções)"
         landingLabel: "Landing de captação",
         siteLabel: "Site simples (2–4 seções)",
-        hint: "Recomendamos com base no seu objetivo."
+        hint: "Sugerimos com base no seu objetivo."
       },
       price: {
-        // Sempre ≤ R$ 500; mostrar uma FAIXA arredondada para dezenas
         note: "Oferta de lançamento em Joinville: escopo enxuto e integrações leves (links/embeds). Ajustes leves em [Y] dias."
       },
       ctas: {
-        primary: "Quero minha proposta no meu canal",   // abre folha de canais
-        secondary: "Ver exemplo do meu caso"            // rola p/ #demos com tab correta
+        primary: "Falar com a Landingville",      // abre Contact Modal
+        secondary: "Ver exemplo do meu caso"      // rola p/ #demos com tab correta (landing/site)
       }
     },
 
@@ -111,7 +121,7 @@ export const copy = {
     }
   },
 
-  // "Serviços" já está perfeito. Garanta apenas que os textos venham desta copy, se aplicável.
+  // "Serviços" permanece como está no layout (3 cards). Caso necessário, consuma estes textos.
   services: {
     id: "services",
     title: "Nossos serviços",
@@ -146,17 +156,19 @@ export const copy = {
       {
         key: "landing",
         title: "Landing Page",
-        image: "/demo-landing-combo.png",   // placeholder — manter container para uma imagem
+        image: "/demo-landing-combo.png",
         bullets: ["Campanhas e ações pontuais", "CTA claro", "Medir resultado é simples"]
       },
       {
         key: "site",
         title: "Site",
-        image: "/demo-site-combo.png",       // placeholder — manter container para uma imagem
+        image: "/demo-site-combo.png",
         bullets: ["Presença contínua", "Navegação fácil", "Base para SEO local"]
       }
     ],
-    note: "Exemplos de demonstração."
+    note: "Exemplos de demonstração.",
+    // CTA da seção DEMOS deve ABRIR o modal de contato (NÃO voltar para calculadora)
+    cta: "Falar com a Landingville"
   },
 
   faq: {
@@ -164,16 +176,36 @@ export const copy = {
     title: "Perguntas rápidas",
     items: [
       { q: "Preciso decidir entre Landing ou Site agora?", a: "Não. A calculadora recomenda com base no seu objetivo e você pode ver exemplos antes de decidir." },
-      { q: "Quais canais posso usar?", a: "WhatsApp, Instagram, Facebook, telefone, e-mail, delivery e Google Maps — você escolhe." },
+      { q: "Quais canais posso usar para falar com vocês?", a: "Instagram ou WhatsApp. No seu projeto, podemos incluir links para outros canais conforme necessidade." },
       { q: "O que está incluso nesse preço de entrada?", a: "Estrutura enxuta, publicação, SEO local básico e integrações leves (links/embeds). Ajustes leves em [Y] dias." },
       { q: "Quem fornece textos e fotos?", a: "Se tiver logo/fotos, melhor. Se não, usamos provisórios e ajustamos depois." },
       { q: "Em quanto tempo vai ao ar?", a: "Dias, não semanas. Confirmamos após sua estimativa." }
     ],
     finalCTA: {
       title: "Vamos publicar algo bonito e que converte?",
-      primary: "Calcular orçamento",
-      secondary: "Falar com a Landingville"
+      primary: "Falar com a Landingville", // abre modal
+      secondary: "Calcular orçamento"      // rola p/ #calculator
     }
+  },
+
+  // Configuração do Modal de Contato (usar em todos os botões de contato)
+  contact: {
+    title: "Fale com a Landingville",
+    channels: [
+      {
+        key: "instagram",
+        label: "Instagram",
+        // Abrir DM direto de landing.ville
+        href: "https://ig.me/m/landing.ville"
+      },
+      {
+        key: "whatsapp",
+        label: "WhatsApp",
+        // Número: +55 47 98480-2779
+        href: "https://wa.me/5547984802779"
+      }
+    ],
+    note: "Abriremos seu app de mensagens padrão. Se preferir, copie o número ou procure por @landing.ville no Instagram."
   }
 };
 export default copy;

@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Instagram, Mail, Phone } from 'lucide-react';
+import { MessageCircle, Instagram } from 'lucide-react';
 import copy from '@/content/landingville';
 
 interface ChannelSheetProps {
@@ -12,63 +11,30 @@ interface ChannelSheetProps {
 }
 
 export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange }: ChannelSheetProps) => {
-  const [selectedChannel, setSelectedChannel] = useState<string | null>(null);
-
   const channels = [
-    {
-      id: 'whatsapp',
-      name: 'WhatsApp',
-      icon: MessageCircle,
-      color: 'bg-[#25D366] hover:bg-[#128C7E]',
-      action: () => {
-        const phone = "5547999999999"; // Replace with actual phone
-        const serviceType = recommendation === 'landing' ? 'Landing Page' : 'Site';
-        const price = priceRange ? `R$ ${priceRange[0]} - R$ ${priceRange[1]}` : '';
-        
-        const message = `Olá! Vi a calculadora da Landingville e tenho interesse em um ${serviceType}. A estimativa foi de ${price}. Gostaria de conversar sobre meu projeto.`;
-        
-        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}&utm_source=calculator&utm_medium=cta&utm_campaign=landingville`;
-        window.open(url, '_blank');
-        onOpenChange(false);
-      }
-    },
     {
       id: 'instagram',
       name: 'Instagram',
       icon: Instagram,
       color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600',
       action: () => {
-        // Replace with actual Instagram handle
-        const url = 'https://instagram.com/landingville.jlle?utm_source=calculator&utm_medium=cta&utm_campaign=landingville';
-        window.open(url, '_blank');
+        window.open(copy.contact.channels[0].href, '_blank');
         onOpenChange(false);
       }
     },
     {
-      id: 'email',
-      name: 'E-mail',
-      icon: Mail,
-      color: 'bg-blue-600 hover:bg-blue-700',
+      id: 'whatsapp',
+      name: 'WhatsApp',
+      icon: MessageCircle,
+      color: 'bg-[#25D366] hover:bg-[#128C7E]',
       action: () => {
         const serviceType = recommendation === 'landing' ? 'Landing Page' : 'Site';
         const price = priceRange ? `R$ ${priceRange[0]} - R$ ${priceRange[1]}` : '';
         
-        const subject = `Interesse em ${serviceType} - ${copy.brand.name}`;
-        const body = `Olá!\n\nVi a calculadora da Landingville e tenho interesse em um ${serviceType}.\n\nA estimativa foi de ${price}.\n\nGostaria de conversar sobre meu projeto.\n\nObrigado!`;
+        const message = `Olá! Vi a calculadora da Landingville e tenho interesse em um ${serviceType}. A estimativa foi de ${price}. Gostaria de conversar sobre meu projeto.`;
         
-        const url = `mailto:contato@landingville.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const url = `${copy.contact.channels[1].href}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
-        onOpenChange(false);
-      }
-    },
-    {
-      id: 'phone',
-      name: 'Telefone',
-      icon: Phone,
-      color: 'bg-green-600 hover:bg-green-700',
-      action: () => {
-        const phone = "tel:+5547999999999"; // Replace with actual phone
-        window.open(phone, '_blank');
         onOpenChange(false);
       }
     }
@@ -79,13 +45,13 @@ export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange }:
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center">
-            Escolha seu canal preferido
+            {copy.contact.title}
           </DialogTitle>
         </DialogHeader>
         
         <div className="space-y-4 py-4">
           <p className="text-center text-muted-foreground text-sm">
-            Vamos enviar sua proposta pelo canal que preferir
+            {copy.contact.note}
           </p>
           
           <div className="grid grid-cols-1 gap-3">

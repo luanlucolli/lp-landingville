@@ -3,9 +3,11 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Check } from 'lucide-react';
 import copy from '@/content/landingville';
+import { ChannelSheet } from './ChannelSheet';
 
 const DemosTabs = () => {
   const [activeTab, setActiveTab] = useState('landing');
+  const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
     // Listen for tab selection from calculator
@@ -155,17 +157,20 @@ const DemosTabs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => {
-                  document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+                onClick={() => setShowContactModal(true)}
                 className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold hover:from-primary/90 hover:to-secondary/90 transition-all"
               >
-                Calcular meu orçamento
+                {copy.demos.cta}
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      <ChannelSheet 
+        open={showContactModal}
+        onOpenChange={setShowContactModal}
+      />
     </section>
   );
 };

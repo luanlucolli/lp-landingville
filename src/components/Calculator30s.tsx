@@ -25,12 +25,13 @@ interface CalculatorState {
 
 const Calculator30s = () => {
   const [state, setState] = useState<CalculatorState>({
-    step: 1,
+    step: 0, // Start with intro screen
     answers: { s1: [], s2: [], s3: [], s4: [], s5: [] }
   });
   const [showResult, setShowResult] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
   const [showChannelSheet, setShowChannelSheet] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
 
   const steps = copy.calculator.steps;
   const maxSteps = 5;
@@ -229,6 +230,91 @@ const Calculator30s = () => {
     }
   };
 
+  const startCalculator = () => {
+    setState(prev => ({ ...prev, step: 1 }));
+    setShowIntro(false);
+  };
+
+  const startWithHelp = () => {
+    setState(prev => ({ ...prev, step: 1 }));
+    setShowIntro(false);
+    setShowFallback(true);
+  };
+
+  const goToDemos = () => {
+    const demosSection = document.getElementById('demos');
+    if (demosSection) {
+      demosSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Intro Screen (Tela 0)
+  if (showIntro && state.step === 0) {
+    return (
+      <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="calculator">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Calculator className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                {copy.calculator.intro.title}
+              </h2>
+              <p className="text-xl text-muted-foreground mb-6">
+                {copy.calculator.subtitle}
+              </p>
+              
+              <div className="flex justify-center mb-8">
+                <div className="bg-muted/30 rounded-full px-4 py-2 text-sm text-muted-foreground">
+                  {copy.calculator.intro.meter}
+                </div>
+              </div>
+            </div>
+
+            <Card className="p-8 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                {copy.calculator.intro.bullets.map((bullet, index) => (
+                  <div key={index} className="flex flex-col items-center">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                      <span className="text-2xl">
+                        {index === 0 ? '✓' : index === 1 ? '💰' : '🎯'}
+                      </span>
+                    </div>
+                    <p className="text-sm font-medium text-foreground">{bullet}</p>
+                  </div>
+                ))}
+              </div>
+
+              <Button
+                onClick={startCalculator}
+                className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold h-12 px-8 mb-6"
+              >
+                {copy.calculator.intro.cta}
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Button>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
+                <button
+                  onClick={goToDemos}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {copy.calculator.intro.links.seeExamples}
+                </button>
+                <button
+                  onClick={startWithHelp}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {copy.calculator.intro.links.helpMe}
+                </button>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (showResult && state.recommendation && state.priceRange) {
     const isLanding = state.recommendation === 'landing';
     const [min, max] = state.priceRange;
@@ -373,119 +459,123 @@ const Calculator30s = () => {
   }
 
   // Regular step flow
-  const currentStepKey = `s${state.step}` as keyof typeof steps;
-  const currentStep = steps[currentStepKey];
-  const isMultiSelect = state.step === 1 || state.step === 2 || state.step === 5;
+  if (state.step > 0) {
+    const currentStepKey = `s${state.step}` as keyof typeof steps;
+    const currentStep = steps[currentStepKey];
+    const isMultiSelect = state.step === 1 || state.step === 2 || state.step === 5;
 
-  return (
-    <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="calculator">
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Calculator className="w-8 h-8 text-primary" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {copy.calculator.title}
-            </h2>
-            <p className="text-xl text-muted-foreground mb-6">
-              {copy.calculator.subtitle}
-            </p>
-            
-            {/* Progress */}
-            <div className="flex justify-center mb-8">
-              <div className="flex gap-2">
-                {Array.from({ length: maxSteps }, (_, i) => (
-                  <div
-                    key={i}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      i + 1 <= state.step ? 'bg-primary' : 'bg-muted'
-                    }`}
-                  />
-                ))}
+    return (
+      <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="calculator">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Calculator className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                {copy.calculator.title}
+              </h2>
+              <p className="text-xl text-muted-foreground mb-6">
+                {copy.calculator.subtitle}
+              </p>
+              
+              {/* Progress */}
+              <div className="flex justify-center mb-8">
+                <div className="flex gap-2">
+                  {Array.from({ length: maxSteps }, (_, i) => (
+                    <div
+                      key={i}
+                      className={`w-3 h-3 rounded-full transition-colors ${
+                        i + 1 <= state.step ? 'bg-primary' : 'bg-muted'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Current Step */}
-          <Card className="p-8">
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                {currentStep.title}
-              </h3>
-              {('hint' in currentStep) && (
-                <p className="text-sm text-muted-foreground">
-                  {currentStep.hint}
-                </p>
-              )}
-            </div>
+            {/* Current Step */}
+            <Card className="p-8">
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-foreground mb-2">
+                  {currentStep.title}
+                </h3>
+                {('hint' in currentStep) && (
+                  <p className="text-sm text-muted-foreground">
+                    {currentStep.hint}
+                  </p>
+                )}
+              </div>
 
-            <div className="grid gap-3 mb-8">
-              {currentStep.options.map((option) => {
-                const stepKey = `s${state.step}` as keyof typeof state.answers;
-                const isSelected = state.answers[stepKey]?.includes(option);
-                
-                return (
-                  <Button
-                    key={option}
-                    variant={isSelected ? "default" : "outline"}
-                    onClick={() => handleStepAnswer(option, isMultiSelect)}
-                    className="h-auto p-4 text-left justify-start font-medium"
-                  >
-                    {option}
-                  </Button>
-                );
-              })}
-            </div>
-
-            {/* Navigation */}
-            <div className="flex justify-between">
-              <Button
-                variant="outline"
-                onClick={() => setState(prev => ({ ...prev, step: Math.max(1, prev.step - 1) }))}
-                disabled={state.step === 1}
-              >
-                Voltar
-              </Button>
-              
-              <Button
-                onClick={nextStep}
-                disabled={!canProceed()}
-                className="h-12 px-6 font-semibold"
-              >
-                {state.step === maxSteps ? 'Ver Estimativa' : 'Próximo'}
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Button>
-            </div>
-          </Card>
-
-          {/* Quick skip option */}
-          {state.step > 2 && (
-            <div className="text-center mt-6">
-              <Button 
-                variant="ghost" 
-                onClick={() => {
-                  const recommendation = calculateRecommendation(state.answers);
-                  const priceRange = calculatePrice(state.answers, recommendation);
+              <div className="grid gap-3 mb-8">
+                {currentStep.options.map((option) => {
+                  const stepKey = `s${state.step}` as keyof typeof state.answers;
+                  const isSelected = state.answers[stepKey]?.includes(option);
                   
-                  setState(prev => ({
-                    ...prev,
-                    recommendation,
-                    priceRange
-                  }));
-                  setShowResult(true);
-                }}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Pular para estimativa
-              </Button>
-            </div>
-          )}
+                  return (
+                    <Button
+                      key={option}
+                      variant={isSelected ? "default" : "outline"}
+                      onClick={() => handleStepAnswer(option, isMultiSelect)}
+                      className="h-auto p-4 text-left justify-start font-medium"
+                    >
+                      {option}
+                    </Button>
+                  );
+                })}
+              </div>
+
+              {/* Navigation */}
+              <div className="flex justify-between">
+                <Button
+                  variant="outline"
+                  onClick={() => setState(prev => ({ ...prev, step: Math.max(1, prev.step - 1) }))}
+                  disabled={state.step === 1}
+                >
+                  Voltar
+                </Button>
+                
+                <Button
+                  onClick={nextStep}
+                  disabled={!canProceed()}
+                  className="h-12 px-6 font-semibold"
+                >
+                  {state.step === maxSteps ? 'Ver Estimativa' : 'Próximo'}
+                  <ChevronRight className="w-5 h-5 ml-2" />
+                </Button>
+              </div>
+            </Card>
+
+            {/* Quick skip option */}
+            {state.step > 2 && (
+              <div className="text-center mt-6">
+                <Button 
+                  variant="ghost" 
+                  onClick={() => {
+                    const recommendation = calculateRecommendation(state.answers);
+                    const priceRange = calculatePrice(state.answers, recommendation);
+                    
+                    setState(prev => ({
+                      ...prev,
+                      recommendation,
+                      priceRange
+                    }));
+                    setShowResult(true);
+                  }}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Pular para estimativa
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
+
+  return null;
 };
 
 export default Calculator30s;
