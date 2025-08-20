@@ -1,17 +1,15 @@
 import { MessageCircle, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { copy } from '@/content/landingville';
+import copy from '@/content/landingville';
+import { scrollToSection } from '@/utils/nav';
 
 const HeroSection = () => {
-  const handleWhatsAppClick = () => {
-    const phone = "5547999999999"; // Placeholder
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(copy.hero.waMessage)}&utm_source=site&utm_medium=hero&utm_campaign=landingville`;
-    window.open(url, '_blank');
+  const handleCalculatorClick = () => {
+    scrollToSection('calculator');
   };
 
-  const handleCalculatorClick = () => {
-    const calculatorSection = document.getElementById('calculadora');
-    calculatorSection?.scrollIntoView({ behavior: 'smooth' });
+  const handleDemosClick = () => {
+    scrollToSection('demos');
   };
 
   return (
@@ -64,9 +62,14 @@ const HeroSection = () => {
             {copy.hero.sub}
           </p>
           
-          {/* Proof micro */}
-          <div className="text-sm mb-12 hero-proof">
-            {copy.hero.proofMicro}
+          {/* Proof bullets */}
+          <div className="flex flex-wrap justify-center gap-6 text-sm mb-12 hero-proof">
+            {copy.hero.bullets.map((bullet, index) => (
+              <span key={index} className="inline-flex items-center gap-2">
+                <div className="w-2 h-2 bg-white rounded-full" />
+                {bullet}
+              </span>
+            ))}
           </div>
           
           {/* CTAs */}
@@ -77,16 +80,16 @@ const HeroSection = () => {
               size="lg"
             >
               <Calculator className="w-6 h-6 mr-3" />
-              {copy.hero.ctas.primary}
+              {copy.hero.ctas.primary.label}
             </Button>
             
             <Button 
-              onClick={handleWhatsAppClick}
+              onClick={handleDemosClick}
               className="btn-secondary h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               size="lg"
             >
               <MessageCircle className="w-6 h-6 mr-3" />
-              {copy.hero.ctas.secondary}
+              {copy.hero.ctas.secondary.label}
             </Button>
           </div>
         </div>

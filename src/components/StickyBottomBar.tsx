@@ -1,38 +1,36 @@
-import { MessageCircle, CreditCard } from 'lucide-react';
+import { MessageCircle, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { copy } from '@/content/landingville';
+import copy from '@/content/landingville';
+import { scrollToSection, openChannelSheet } from '@/utils/nav';
 
 const StickyBottomBar = () => {
-  const handleWhatsAppClick = () => {
-    const phone = "5547999999999"; // Placeholder
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(copy.hero.waMessage)}&utm_source=site&utm_medium=cta&utm_campaign=landingville`;
-    window.open(url, '_blank');
+  const handleChannelClick = () => {
+    openChannelSheet();
   };
 
-  const handlePlansClick = () => {
-    const plansSection = document.getElementById('planos');
-    plansSection?.scrollIntoView({ behavior: 'smooth' });
+  const handleCalculatorClick = () => {
+    scrollToSection('calculator');
   };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border p-4 md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <div className="flex gap-3 max-w-md mx-auto">
         <Button 
-          onClick={handleWhatsAppClick}
+          onClick={handleChannelClick}
           className="flex-1 whatsapp-button focus-ring h-12 font-semibold"
           size="lg"
         >
           <MessageCircle className="w-5 h-5 mr-2" />
-          {copy.faq.finalCTA.primary}
+          {copy.faq.finalCTA.secondary.label}
         </Button>
         <Button 
-          onClick={handlePlansClick}
+          onClick={handleCalculatorClick}
           variant="secondary"
           className="focus-ring h-12 px-6 font-semibold"
           size="lg"
         >
-          <CreditCard className="w-5 h-5 mr-2" />
-          {copy.faq.finalCTA.secondary}
+          <Calculator className="w-5 h-5 mr-2" />
+          {copy.faq.finalCTA.primary.label}
         </Button>
       </div>
     </div>
