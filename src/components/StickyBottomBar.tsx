@@ -1,11 +1,12 @@
 import { MessageCircle, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { siteContent } from '@/content/siteContent';
 
 const StickyBottomBar = () => {
   const handleWhatsAppClick = () => {
-    const message = "Oi, sou [Nome] da [Loja]. Vi a Landingville. Quero uma página para [Segmento] e publicar até [Data].";
-    const phone = "5547999999999"; // Placeholder
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}&utm_source=site&utm_medium=cta&utm_campaign=landingville`;
+    const { phone, messageTemplate, utm } = siteContent.hero.whatsapp;
+    const message = messageTemplate;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}&utm_source=${utm.source}&utm_medium=sticky&utm_campaign=${utm.campaign}`;
     window.open(url, '_blank');
   };
 
