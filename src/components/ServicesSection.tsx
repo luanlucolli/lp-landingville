@@ -1,63 +1,104 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Monitor, Globe, Settings } from 'lucide-react';
+import { Globe, Zap, Shield, Check } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import copy from '@/content/landingville';
 
-const ServicesSection = () => {
-  const icons = {
-    landing: Monitor,
-    site: Globe,
-    care: Settings
+interface ServicesSectionProps {
+  onServiceSelect?: (serviceType: string) => void;
+}
+
+const ServicesSection = ({ onServiceSelect }: ServicesSectionProps) => {
+  const handleServiceClick = (serviceId: string) => {
+    if (onServiceSelect) {
+      onServiceSelect(serviceId);
+    }
+    
+    // Scroll to calculator
+    setTimeout(() => {
+      const calculatorSection = document.getElementById('calculadora');
+      calculatorSection?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
   };
 
-  return (
-    <section id="services" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {copy.services.title}
-          </h2>
-        </div>
+  const getServiceIcon = (serviceId: string) => {
+    switch (serviceId) {
+      case 'landing':
+        return <Zap className="w-8 h-8" />;
+      case 'site':
+        return <Globe className="w-8 h-8" />;
+      case 'maintenance':
+        return <Shield className="w-8 h-8" />;
+      default:
+        return <Globe className="w-8 h-8" />;
+    }
+  };
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {copy.services.items.map((service) => {
-            const Icon = icons[service.key as keyof typeof icons];
-            
-            return (
-              <Card 
-                key={service.key}
-                className="group relative overflow-hidden border-2 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                style={{
-                  background: 'linear-gradient(135deg, #0E1116 0%, rgba(43,111,165,0.15) 100%)',
-                  backdropFilter: 'blur(8px)',
-                  border: '1px solid rgba(255,255,255,0.06)'
-                }}
+  const maintenanceFeatures = [
+    "Atualizações rápidas de texto/preço",
+    "Monitoramento básico e correções críticas", 
+    "Backups periódicos",
+    "Orientações por mensagem/e-mail"
+  ];
+
+  return (
+    <section className="py-20 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {copy.services.title}
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              {copy.services.subtitle}
+            </p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {copy.services.items.map((service) => (
+              <div
+                key={service.id}
+                className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-background/80 to-primary/5 backdrop-blur-sm shadow-lg"
               >
-                <CardHeader className="text-center pb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-8 h-8 text-primary stroke-1" />
+                <div className="p-8">
+                  {/* Icon */}
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
+                    {getServiceIcon(service.id)}
                   </div>
-                  <CardTitle className="text-xl font-bold text-foreground">
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-foreground mb-4">
                     {service.name}
-                  </CardTitle>
-                </CardHeader>
-                
-                <CardContent className="text-center space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
                     {service.desc}
                   </p>
-                  
-                  <ul className="space-y-2 text-sm">
-                    {service.bullets.map((bullet, index) => (
-                      <li key={index} className="flex items-center justify-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                        <span className="text-muted-foreground">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            );
-          })}
+
+                  {/* Special treatment for maintenance service */}
+                  {service.id === 'maintenance' ? (
+                    <div className="space-y-3">
+                      {maintenanceFeatures.map((feature, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-muted-foreground">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : service.cta ? (
+                    <Button
+                      onClick={() => handleServiceClick(service.id)}
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-background font-semibold"
+                    >
+                      {service.cta}
+                    </Button>
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

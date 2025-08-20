@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
-import Calculator30s from '@/components/Calculator30s';
+import IntentHook from '@/components/IntentHook';
+import PainSolutionSection from '@/components/PainSolutionSection';
+import BudgetCalculatorV2 from '@/components/BudgetCalculatorV2';
 import ServicesSection from '@/components/ServicesSection';
-import DemosTabs from '@/components/DemosTabs';
+import PlansSection from '@/components/PlansSection';
 import FAQSection from '@/components/FAQSection';
 import StickyBottomBar from '@/components/StickyBottomBar';
-import ChannelSheet from '@/components/ChannelSheet';
 import SchemaMarkup from '@/components/SchemaMarkup';
 
 const Index = () => {
@@ -29,15 +30,24 @@ const Index = () => {
       {/* Main content */}
       <main>
         <HeroSection />
-        <Calculator30s />
-        <ServicesSection />
-        <DemosTabs />
+        <IntentHook onIntentSelect={(preset) => {
+          // Pass preset to calculator when implemented
+          console.log('Intent selected:', preset);
+        }} />
+        <PainSolutionSection />
+        <div id="calculadora">
+          <BudgetCalculatorV2 />
+        </div>
+        <ServicesSection onServiceSelect={(serviceType) => {
+          // Pass service type to calculator when implemented  
+          console.log('Service selected:', serviceType);
+        }} />
+        <PlansSection />
         <FAQSection />
       </main>
       
-      {/* Interactive components */}
+      {/* Sticky bottom navigation for mobile */}
       <StickyBottomBar />
-      <ChannelSheet />
       
       {/* Add padding bottom on mobile to prevent content being hidden by sticky bar */}
       <div className="h-20 md:h-0" />
