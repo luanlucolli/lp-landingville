@@ -1,23 +1,24 @@
 import { MessageCircle, MapPin, ShoppingBag } from 'lucide-react';
+import { copy } from '@/content/landingville';
 
 const PainSolutionSection = () => {
   const solutions = [
     {
       icon: MessageCircle,
-      title: "Contato em 1 toque",
-      description: "WhatsApp direto.",
+      title: copy.pains.bullets[0].title,
+      description: copy.pains.bullets[0].text,
       color: "text-primary"
     },
     {
       icon: MapPin,
-      title: "Como chegar fácil",
-      description: "Abre rota no Maps.",
+      title: copy.pains.bullets[1].title,
+      description: copy.pains.bullets[1].text,
       color: "text-secondary"
     },
     {
       icon: ShoppingBag,
-      title: "Vender sem complicar",
-      description: "Cardápio/catálogos + links prontos.",
+      title: copy.pains.bullets[2].title,
+      description: copy.pains.bullets[2].text,
       color: "text-accent"
     }
   ];
@@ -27,7 +28,7 @@ const PainSolutionSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            O que o comércio local precisa hoje
+            {copy.pains.title}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -53,7 +54,7 @@ const PainSolutionSection = () => {
           
           <div className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/20">
             <p className="text-lg font-semibold text-foreground">
-              Na Landingville, entregamos isso em poucos dias e já pronto para celular.
+              {copy.pains.foot}
             </p>
           </div>
         </div>

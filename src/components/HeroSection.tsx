@@ -1,83 +1,93 @@
-import { MessageCircle, Navigation, Smartphone } from 'lucide-react';
+import { MessageCircle, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { copy } from '@/content/landingville';
 
 const HeroSection = () => {
   const handleWhatsAppClick = () => {
-    const message = "Oi, sou [Nome] da [Loja]. Vi a Landingville. Quero uma página para [Segmento] e publicar até [Data].";
     const phone = "5547999999999"; // Placeholder
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}&utm_source=site&utm_medium=hero&utm_campaign=landingville`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(copy.hero.waMessage)}&utm_source=site&utm_medium=hero&utm_campaign=landingville`;
     window.open(url, '_blank');
   };
 
-  const handlePlansClick = () => {
-    const plansSection = document.getElementById('planos');
-    plansSection?.scrollIntoView({ behavior: 'smooth' });
+  const handleCalculatorClick = () => {
+    const calculatorSection = document.getElementById('calculadora');
+    calculatorSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated mesh gradient background */}
-      <div className="absolute inset-0 mesh-gradient opacity-20" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+    <section className="hero relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 hero-gradient" />
+      
+      {/* Floating blobs */}
+      <span 
+        className="blob absolute" 
+        style={{
+          left: '10%',
+          top: '20%',
+          width: '220px',
+          height: '220px',
+          background: copy.brand.secondaryHex,
+          '--dur': '26s'
+        } as React.CSSProperties}
+      />
+      <span 
+        className="blob absolute" 
+        style={{
+          right: '15%',
+          top: '60%',
+          width: '180px',
+          height: '180px',
+          background: copy.brand.primaryHex,
+          '--dur': '20s'
+        } as React.CSSProperties}
+      />
+      <span 
+        className="blob absolute" 
+        style={{
+          left: '60%',
+          top: '10%',
+          width: '160px',
+          height: '160px',
+          background: copy.brand.secondaryHex,
+          '--dur': '24s'
+        } as React.CSSProperties}
+      />
       
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-            Landing pages que viram{' '}
-            <span className="text-primary">mensagens no WhatsApp</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight hero-title">
+            {copy.hero.h1}
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Seu cliente encontra, clica e fala. A gente cuida do resto.
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed hero-subtitle">
+            {copy.hero.sub}
           </p>
           
-          {/* Proof points */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center md:justify-start gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <MessageCircle className="w-6 h-6 text-primary" />
-              </div>
-              <span className="font-semibold text-foreground">Clique e fale no WhatsApp</span>
-            </div>
-            
-            <div className="flex items-center justify-center md:justify-start gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50">
-              <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
-                <Navigation className="w-6 h-6 text-secondary" />
-              </div>
-              <span className="font-semibold text-foreground">Como chegar no Google Maps</span>
-            </div>
-            
-            <div className="flex items-center justify-center md:justify-start gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50">
-              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                <Smartphone className="w-6 h-6 text-accent" />
-              </div>
-              <span className="font-semibold text-foreground">Cardápio/Catálogos</span>
-            </div>
+          {/* Proof micro */}
+          <div className="text-sm mb-12 hero-proof">
+            {copy.hero.proofMicro}
           </div>
           
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button 
-              onClick={handleWhatsAppClick}
-              className="whatsapp-button focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto"
+              onClick={handleCalculatorClick}
+              className="btn-primary h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               size="lg"
             >
-              <MessageCircle className="w-6 h-6 mr-3" />
-              Falar no WhatsApp agora
+              <Calculator className="w-6 h-6 mr-3" />
+              {copy.hero.ctas.primary}
             </Button>
             
             <Button 
-              onClick={handlePlansClick}
-              variant="secondary"
-              className="focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto"
+              onClick={handleWhatsAppClick}
+              className="btn-secondary h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               size="lg"
             >
-              Ver planos
+              <MessageCircle className="w-6 h-6 mr-3" />
+              {copy.hero.ctas.secondary}
             </Button>
-          </div>
-          
-          <div className="text-sm text-muted-foreground">
-            🏪 Feito para comércios locais de Joinville
           </div>
         </div>
       </div>

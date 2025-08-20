@@ -152,17 +152,91 @@ All colors MUST be HSL. Semantic tokens for consistency.
 }
 
 @layer components {
-  /* Hero gradient background with animation */
-  .hero-gradient {
-    background: var(--gradient-hero);
-    background-size: 400% 400%;
-    animation: gradient-shift 8s ease-in-out infinite;
+  /* Hero styling */
+  .hero {
+    position: relative;
+    isolation: isolate;
+    color: #F7F9FC;
   }
-  
-  .mesh-gradient {
-    background: var(--gradient-mesh);
-    background-size: 400% 400%;
-    animation: gradient-shift 12s ease-in-out infinite;
+
+  .hero-gradient {
+    background-image: linear-gradient(135deg, hsl(205 65% 30%), hsl(95 35% 45%));
+    background-size: 200% 200%;
+    animation: heroGradient 18s ease-in-out infinite;
+  }
+
+  @keyframes heroGradient {
+    0% { background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+    100%{ background-position: 0% 50%; }
+  }
+
+  /* Blobs flutuantes */
+  .hero .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: .14;
+    mix-blend-mode: screen;
+    animation: floatY var(--dur, 22s) ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes floatY {
+    0% { transform: translateY(0) translateX(0) scale(1); }
+    100%{ transform: translateY(-24px) translateX(8px) scale(1.06); }
+  }
+
+  /* Hero text styling */
+  .hero-title {
+    color: #F7F9FC;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    color: #F7F9FC;
+    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+
+  .hero-proof {
+    color: #F7F9FC;
+    opacity: 0.9;
+    background: rgba(255,255,255,0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    display: inline-block;
+    backdrop-filter: blur(8px);
+  }
+
+  /* Botões da hero */
+  .hero .btn-primary {
+    background: #85BA62;
+    color: #0E1116;
+    border: none;
+  }
+
+  .hero .btn-primary:hover {
+    background: #7AA856;
+    color: #0E1116;
+  }
+
+  .hero .btn-secondary {
+    background: transparent;
+    color: #F7F9FC;
+    border: 1px solid rgba(255,255,255,.6);
+  }
+
+  .hero .btn-secondary:hover {
+    background: rgba(255,255,255,.1);
+    color: #F7F9FC;
+    border-color: rgba(255,255,255,.8);
+  }
+
+  /* Acessibilidade: reduzir movimento */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-gradient { animation: none; }
+    .hero .blob { animation: none; }
   }
   
   /* WhatsApp button styling */

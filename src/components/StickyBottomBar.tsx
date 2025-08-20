@@ -1,11 +1,11 @@
 import { MessageCircle, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { copy } from '@/content/landingville';
 
 const StickyBottomBar = () => {
   const handleWhatsAppClick = () => {
-    const message = "Oi, sou [Nome] da [Loja]. Vi a Landingville. Quero uma página para [Segmento] e publicar até [Data].";
     const phone = "5547999999999"; // Placeholder
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}&utm_source=site&utm_medium=cta&utm_campaign=landingville`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(copy.hero.waMessage)}&utm_source=site&utm_medium=cta&utm_campaign=landingville`;
     window.open(url, '_blank');
   };
 
@@ -15,7 +15,7 @@ const StickyBottomBar = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border p-4 md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border p-4 md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <div className="flex gap-3 max-w-md mx-auto">
         <Button 
           onClick={handleWhatsAppClick}
@@ -23,7 +23,7 @@ const StickyBottomBar = () => {
           size="lg"
         >
           <MessageCircle className="w-5 h-5 mr-2" />
-          Falar no WhatsApp
+          {copy.faq.finalCTA.primary}
         </Button>
         <Button 
           onClick={handlePlansClick}
@@ -32,7 +32,7 @@ const StickyBottomBar = () => {
           size="lg"
         >
           <CreditCard className="w-5 h-5 mr-2" />
-          Ver planos
+          {copy.faq.finalCTA.secondary}
         </Button>
       </div>
     </div>
