@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import PainSolutionSection from '@/components/PainSolutionSection';
+import BrandIdentitySection from '@/components/BrandIdentitySection';
 import CalculatorDemoSection from '@/components/CalculatorDemoSection';
 import PlansSection from '@/components/PlansSection';
 import FAQSection from '@/components/FAQSection';
@@ -21,7 +22,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background mobile-bottom-padding">
+    <div className="min-h-screen bg-background">
       {/* Schema.org structured data */}
       <SchemaMarkup />
       
@@ -29,6 +30,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <PainSolutionSection />
+        <BrandIdentitySection />
         <CalculatorDemoSection />
         <PlansSection />
         <FAQSection />
@@ -36,6 +38,9 @@ const Index = () => {
       
       {/* Sticky bottom navigation for mobile */}
       <StickyBottomBar />
+      
+      {/* Add padding bottom on mobile to prevent content being hidden by sticky bar */}
+      <div className="h-20 md:h-0" />
     </div>
   );
 };
