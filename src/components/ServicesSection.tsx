@@ -1,6 +1,6 @@
 import { Globe, Zap, Shield, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { copy } from '@/content/landingville';
+import copy from '@/content/landingville';
 
 interface ServicesSectionProps {
   onServiceSelect?: (serviceType: string) => void;

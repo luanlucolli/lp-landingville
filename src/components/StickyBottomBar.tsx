@@ -1,6 +1,6 @@
 import { MessageCircle, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { copy } from '@/content/landingville';
+import copy from '@/content/landingville';
 
 const StickyBottomBar = () => {
   const handleWhatsAppClick = () => {

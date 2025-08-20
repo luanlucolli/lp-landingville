@@ -1,5 +1,5 @@
 import { MessageCircle, MapPin, ShoppingBag } from 'lucide-react';
-import { copy } from '@/content/landingville';
+import copy from '@/content/landingville';
 
 const PainSolutionSection = () => {
   const solutions = [

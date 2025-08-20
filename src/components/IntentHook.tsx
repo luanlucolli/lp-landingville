@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Target, Zap } from 'lucide-react';
-import { copy } from '@/content/landingville';
+import copy from '@/content/landingville';
 
 interface IntentHookProps {
   onIntentSelect?: (preset: { type: string | null; opts: string[] }) => void;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Calculator, ArrowRight, ArrowLeft, CheckCircle, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { copy } from '@/content/landingville';
+import copy from '@/content/landingville';
 
 interface CalculatorState {
   stepA?: string;
