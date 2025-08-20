@@ -165,28 +165,6 @@ All colors MUST be HSL. Semantic tokens for consistency.
     animation: gradient-shift 12s ease-in-out infinite;
   }
   
-  .mesh-gradient-animated {
-    background: linear-gradient(135deg, 
-      hsl(208 58% 41% / 0.15) 0%, 
-      hsl(98 35% 55% / 0.15) 25%,
-      hsl(208 58% 41% / 0.1) 50%,
-      hsl(98 35% 55% / 0.1) 75%,
-      hsl(208 58% 41% / 0.15) 100%
-    );
-    background-size: 400% 400%;
-    animation: gradient-shift 8s ease-in-out infinite;
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    .mesh-gradient-animated {
-      animation: none;
-      background: linear-gradient(135deg, 
-        hsl(208 58% 41% / 0.1), 
-        hsl(98 35% 55% / 0.1)
-      );
-    }
-  }
-  
   /* WhatsApp button styling */
   .whatsapp-button {
     @apply bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold;
