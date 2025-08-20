@@ -61,11 +61,19 @@ export const copy = {
       },
 
       // Passo 2 — Canais preferidos (multi). Não impacta preço; organiza CTAs.
-      // Como o modal de contato só tem Instagram e WhatsApp, aqui manter APENAS esses para coerência.
       s2: {
         title: "Por onde prefere atender?",
         hint: "Posicionaremos seus botões principais nesses canais.",
-        options: ["Instagram", "WhatsApp"]
+        options: [
+          "Instagram",
+          "WhatsApp", 
+          "Facebook",
+          "Telefone",
+          "E-mail",
+          "Google Maps",
+          "Plataformas de Delivery (iFood/Rappi/99Food/Aiqfome…)",
+          "Outro"
+        ]
       },
 
       // Passo 3 — Itens que você já tem (ENXUTO) — incluir opção "Logo e Fotos"

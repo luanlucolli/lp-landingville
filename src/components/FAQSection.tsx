@@ -5,15 +5,11 @@ import { ChannelSheet } from './ChannelSheet';
 import copy from '@/content/landingville';
 
 const FAQSection = () => {
-  const [openItems, setOpenItems] = useState<number[]>([]);
+  const [openItem, setOpenItem] = useState<number | null>(null);
   const [showChannelSheet, setShowChannelSheet] = useState(false);
 
   const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
+    setOpenItem(prev => prev === index ? null : index);
   };
 
   const handleChannelsClick = () => {
@@ -30,35 +26,35 @@ const FAQSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* FAQ */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-12">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {copy.faq.title}
             </h2>
           </div>
 
-          <div className="space-y-4 mb-16">
+          <div className="space-y-2 mb-12">
             {copy.faq.items.map((faq, index) => (
               <div 
                 key={index}
-                className="border border-border rounded-xl overflow-hidden bg-card"
+                className="border border-border rounded-lg overflow-hidden bg-card"
               >
                 <button
                   onClick={() => toggleItem(index)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-muted/50 transition-colors focus-ring"
+                  className="w-full p-3 md:p-4 text-left flex items-center justify-between hover:bg-muted/50 transition-colors focus-ring min-h-[44px]"
                 >
-                  <h3 className="font-semibold text-foreground pr-4">
+                  <h3 className="text-base font-medium text-foreground pr-4">
                     {faq.q}
                   </h3>
                   <ChevronDown 
-                    className={`w-5 h-5 text-muted-foreground transition-transform ${
-                      openItems.includes(index) ? 'transform rotate-180' : ''
+                    className={`w-4 h-4 text-muted-foreground transition-transform ${
+                      openItem === index ? 'transform rotate-180' : ''
                     }`} 
                   />
                 </button>
                 
-                {openItems.includes(index) && (
-                  <div className="px-6 pb-6">
-                    <p className="text-muted-foreground leading-relaxed">
+                {openItem === index && (
+                  <div className="px-3 pb-3 md:px-4 md:pb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {faq.a}
                     </p>
                   </div>
@@ -75,21 +71,23 @@ const FAQSection = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
-                onClick={handleCalculatorClick}
-                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto"
+                onClick={handleChannelsClick}
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white focus-ring min-h-[44px] px-8 font-semibold w-full sm:w-auto"
                 size="lg"
+                aria-label="Falar com a Landingville"
               >
-                <Calculator className="w-6 h-6 mr-3" />
+                <MessageCircle className="w-5 h-5 mr-2" />
                 {copy.faq.finalCTA.primary}
               </Button>
               
               <Button 
-                onClick={handleChannelsClick}
+                onClick={handleCalculatorClick}
                 variant="outline"
-                className="focus-ring h-14 px-8 text-lg font-semibold w-full sm:w-auto"
+                className="focus-ring min-h-[44px] px-8 font-semibold w-full sm:w-auto"
                 size="lg"
+                aria-label="Calcular orçamento"
               >
-                <MessageCircle className="w-6 h-6 mr-3" />
+                <Calculator className="w-5 h-5 mr-2" />
                 {copy.faq.finalCTA.secondary}
               </Button>
             </div>
