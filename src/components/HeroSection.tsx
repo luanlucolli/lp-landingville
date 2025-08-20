@@ -1,11 +1,11 @@
 import { MessageCircle, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import copy from '@/content/landingville';
+import { copy } from '@/content/landingville';
 
 const HeroSection = () => {
   const handleWhatsAppClick = () => {
     const phone = "5547999999999"; // Placeholder
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent("Olá! Vi a Landingville e gostaria de saber mais sobre como ter um site que gera vendas.")}&utm_source=site&utm_medium=hero&utm_campaign=landingville`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(copy.hero.waMessage)}&utm_source=site&utm_medium=hero&utm_campaign=landingville`;
     window.open(url, '_blank');
   };
 
@@ -66,7 +66,7 @@ const HeroSection = () => {
           
           {/* Proof micro */}
           <div className="text-sm mb-12 hero-proof">
-            {copy.hero.micro}
+            {copy.hero.proofMicro}
           </div>
           
           {/* CTAs */}
@@ -77,7 +77,7 @@ const HeroSection = () => {
               size="lg"
             >
               <Calculator className="w-6 h-6 mr-3" />
-            {copy.hero.ctas.primary}
+              {copy.hero.ctas.primary}
             </Button>
             
             <Button 
@@ -86,7 +86,7 @@ const HeroSection = () => {
               size="lg"
             >
               <MessageCircle className="w-6 h-6 mr-3" />
-            {copy.hero.ctas.secondary}
+              {copy.hero.ctas.secondary}
             </Button>
           </div>
         </div>

@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
-import IntentHook from '@/components/IntentHook';
 import PainSolutionSection from '@/components/PainSolutionSection';
-import BudgetCalculatorV2 from '@/components/BudgetCalculatorV2';
-import ServicesSection from '@/components/ServicesSection';
+import CalculatorDemoSection from '@/components/CalculatorDemoSection';
 import PlansSection from '@/components/PlansSection';
 import FAQSection from '@/components/FAQSection';
 import StickyBottomBar from '@/components/StickyBottomBar';
@@ -30,18 +28,8 @@ const Index = () => {
       {/* Main content */}
       <main>
         <HeroSection />
-        <IntentHook onIntentSelect={(preset) => {
-          // Pass preset to calculator when implemented
-          console.log('Intent selected:', preset);
-        }} />
         <PainSolutionSection />
-        <div id="calculadora">
-          <BudgetCalculatorV2 />
-        </div>
-        <ServicesSection onServiceSelect={(serviceType) => {
-          // Pass service type to calculator when implemented  
-          console.log('Service selected:', serviceType);
-        }} />
+        <CalculatorDemoSection />
         <PlansSection />
         <FAQSection />
       </main>
