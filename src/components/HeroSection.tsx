@@ -10,8 +10,13 @@ const HeroSection = () => {
   };
 
   const handleCalculatorClick = () => {
-    const calculatorSection = document.getElementById('calculadora');
+    const calculatorSection = document.getElementById('calculator');
     calculatorSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleExamplesClick = () => {
+    const demosSection = document.getElementById('demos');
+    demosSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -64,9 +69,13 @@ const HeroSection = () => {
             {copy.hero.sub}
           </p>
           
-          {/* Proof micro */}
-          <div className="text-sm mb-12 hero-proof">
-            {copy.hero.micro}
+          {/* Micro bullets */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {copy.hero.bullets.map((bullet, index) => (
+              <div key={index} className="hero-proof text-sm">
+                {bullet}
+              </div>
+            ))}
           </div>
           
           {/* CTAs */}
@@ -81,12 +90,11 @@ const HeroSection = () => {
             </Button>
             
             <Button 
-              onClick={handleWhatsAppClick}
+              onClick={handleExamplesClick}
               className="btn-secondary h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               size="lg"
             >
-              <MessageCircle className="w-6 h-6 mr-3" />
-            {copy.hero.ctas.secondary}
+              {copy.hero.ctas.secondary}
             </Button>
           </div>
         </div>
