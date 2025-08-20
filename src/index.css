@@ -212,7 +212,7 @@ All colors MUST be HSL. Semantic tokens for consistency.
   /* Botões da hero */
   .hero .btn-primary {
     background: #85BA62;
-    color: #0E1116;
+    color: #F7F9FC;
     border: none;
   }
 
