@@ -280,4 +280,24 @@ All colors MUST be HSL. Semantic tokens for consistency.
     transform: translateZ(0);
     will-change: transform;
   }
+  
+  /* Float animation for calculator image */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-6px) rotate(1deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float {
+      animation: none;
+    }
+  }
 }

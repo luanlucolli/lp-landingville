@@ -250,7 +250,7 @@ const Calculator30s = () => {
   };
 
   const getCurrentStepTitle = () => {
-    if (state.step === 0) return "Introdução";
+    if (state.step === 0) return "Passo 0 de 5 · Introdução";
     if (showResult) return "Resultado · Estimativa inicial";
     return `Passo ${state.step} de ${maxSteps} · ${steps[`s${state.step}` as keyof typeof steps]?.title || ''}`;
   };
@@ -273,13 +273,16 @@ const Calculator30s = () => {
   // Stepper component
   const renderStepper = () => (
     <div className="flex items-center justify-center gap-2 mb-4">
-      {Array.from({ length: maxSteps }, (_, i) => (
+      {Array.from({ length: maxSteps + 1 }, (_, i) => (
         <div
           key={i}
           className={`h-2 rounded-full transition-all duration-300 ${
-            i + 1 <= state.step ? 'bg-primary w-8' : 'bg-muted w-4'
+            i <= state.step ? 'w-8' : 'bg-muted w-4'
           }`}
-          aria-current={i + 1 === state.step ? 'step' : undefined}
+          style={{
+            background: i <= state.step ? 'linear-gradient(135deg, #2B6FA5, #85BA62)' : undefined
+          }}
+          aria-current={i === state.step ? 'step' : undefined}
         />
       ))}
     </div>
@@ -291,10 +294,18 @@ const Calculator30s = () => {
         <div className="max-w-2xl mx-auto">
           {renderSectionHeader()}
           
-          <Card className="overflow-hidden">
+          <Card className="overflow-hidden bg-[#F7FAFD] border-transparent" style={{
+            backgroundImage: `
+              linear-gradient(#F7FAFD, #F7FAFD),
+              linear-gradient(135deg, #2B6FA5, #85BA62)
+            `,
+            backgroundOrigin: 'border-box',
+            backgroundClip: 'padding-box, border-box',
+            boxShadow: '0 8px 24px rgba(31,41,55,0.06)'
+          }}>
             {/* Card Header with Stepper */}
             <CardHeader className="pb-4">
-              {state.step > 0 && !showResult && renderStepper()}
+              {renderStepper()}
               <div className="text-center">
                 <h3 className="text-lg font-semibold text-foreground">
                   {getCurrentStepTitle()}
@@ -306,45 +317,47 @@ const Calculator30s = () => {
               {/* Intro Screen */}
               {state.step === 0 && (
                 <div className="text-center space-y-6">
-                  {/* Mini badges */}
-                  <div className="flex flex-wrap justify-center gap-2 mb-6">
-                    {copy.calculator.intro.badges.map((badge, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
-                        {badge}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Bullets */}
-                  <div className="grid grid-cols-1 gap-4 mb-8">
-                    {copy.calculator.intro.bullets.map((bullet, index) => (
-                      <div key={index} className="flex items-center gap-3 text-left">
-                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                          {index === 0 && <Clock className="w-4 h-4 text-primary" />}
-                          {index === 1 && <Target className="w-4 h-4 text-primary" />}
-                          {index === 2 && <Shield className="w-4 h-4 text-primary" />}
-                        </div>
-                        <p className="text-sm font-medium text-foreground">{bullet}</p>
+                  {/* Hero Image with Animation */}
+                  <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
+                    <div className="flex-1 order-2 md:order-1">
+                      {/* Mini badges */}
+                      <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+                        {copy.calculator.intro.bullets.map((bullet, index) => (
+                          <Badge key={index} variant="secondary" className="text-xs">
+                            {bullet}
+                          </Badge>
+                        ))}
                       </div>
-                    ))}
+
+                      {/* CTA */}
+                      <Button
+                        onClick={startCalculator}
+                        className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold mb-4"
+                      >
+                        {copy.calculator.intro.cta}
+                        <ChevronRight className="w-5 h-5 ml-2" />
+                      </Button>
+
+                      {/* Link */}
+                      <button
+                        onClick={goToDemos}
+                        className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                      >
+                        {copy.calculator.intro.links.seeExamples}
+                      </button>
+                    </div>
+
+                    <div className="flex-shrink-0 order-1 md:order-2">
+                      <img
+                        src="/lovable-uploads/5a727833-d262-47b7-8496-002dbd6525e7.png"
+                        alt="Ilustração: celular com estimativa, WhatsApp e mapa"
+                        className="w-56 md:w-80 h-auto animate-float"
+                        style={{
+                          animation: 'float 6s ease-in-out infinite'
+                        }}
+                      />
+                    </div>
                   </div>
-
-                  {/* CTA */}
-                  <Button
-                    onClick={startCalculator}
-                    className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold mb-4"
-                  >
-                    {copy.calculator.intro.cta}
-                    <ChevronRight className="w-5 h-5 ml-2" />
-                  </Button>
-
-                  {/* Link */}
-                  <button
-                    onClick={goToDemos}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
-                  >
-                    {copy.calculator.intro.links.seeExamples}
-                  </button>
                 </div>
               )}
 
@@ -433,10 +446,10 @@ const Calculator30s = () => {
                         <button
                           key={option}
                           onClick={() => handleStepAnswer(option, isMultiSelect)}
-                          className={`h-12 px-4 rounded-xl border-2 transition-all duration-200 text-sm font-medium text-left flex items-center justify-center ${
+                          className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border transition-all duration-200 text-sm font-medium ${
                             isSelected 
-                              ? 'bg-primary/10 border-primary text-primary' 
-                              : 'border-primary/40 text-foreground hover:border-primary/60 hover:bg-primary/5'
+                              ? 'bg-[rgba(43,111,165,0.90)] border-[#2B6FA5] text-white' 
+                              : 'border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)]'
                           }`}
                           aria-checked={isSelected}
                         >
@@ -502,7 +515,9 @@ const Calculator30s = () => {
 
             {/* Card Footer */}
             {state.step > 0 && !showResult && (
-              <CardFooter className="flex justify-between bg-muted/20 border-t pb-[calc(1rem+env(safe-area-inset-bottom))]">
+              <CardFooter className="flex justify-between bg-muted/20 border-t" style={{
+                paddingBottom: `calc(16px + env(safe-area-inset-bottom))`
+              }}>
                 <Button
                   variant="outline"
                   onClick={() => {

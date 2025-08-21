@@ -11,7 +11,7 @@ export const copy = {
     sub: "Landing pages e sites feitos para o celular, fáceis de achar no Google e conectados aos seus canais.",
     bullets: ["Carrega rápido", "Encontra no Google", "Conecta a seus canais"],
     ctas: {
-      primary: "Calcular orçamento em 30s",   // scroll suave para #calculator
+      primary: "Calcular orçamento",   // scroll suave para #calculator
       secondary: "Ver exemplos"               // scroll suave para #demos (tab dinâmica)
     },
     visual: {
@@ -22,14 +22,13 @@ export const copy = {
   // SUPERSEÇÃO: CALCULADORA (objetivo-first, ≤ R$ 500)
   calculator: {
     id: "calculator",
-    title: "Calculadora de Orçamento (30s)",
+    title: "Calculadora de Orçamento",
     subtitle: "Responda rápido e receba uma estimativa com recomendação do que é melhor hoje.",
 
     // TELA 0 (INTRO) — NÃO começar no Passo 1
     intro: {
-      title: "Descubra seu investimento em 30s",
-      badges: ["Sem cadastro", "~30s", "Recomendação automática"],
-      bullets: ["Até R$ 500 de entrada", "Captação ou site oficial", "WhatsApp 1 toque no final"],
+      title: "Descubra seu investimento",
+      bullets: ["Sem cadastro", "Recomendação automática"],
       cta: "Começar agora",
       links: {
         seeExamples: "Ver exemplos primeiro" // rola para #demos
