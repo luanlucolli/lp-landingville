@@ -28,12 +28,11 @@ export const copy = {
     // TELA 0 (INTRO) — NÃO começar no Passo 1
     intro: {
       title: "Descubra seu investimento em 30s",
-      bullets: ["Sem cadastro", "Até R$ 500", "Recomendação automática"],
-      meter: "0/5 etapas · ~30s",
+      badges: ["Sem cadastro", "~30s", "Recomendação automática"],
+      bullets: ["Até R$ 500 de entrada", "Captação ou site oficial", "WhatsApp 1 toque no final"],
       cta: "Começar agora",
       links: {
-        seeExamples: "Ver exemplos primeiro", // rola para #demos
-        helpMe: "Não sei por onde começar"    // entra direto no fallback do Passo 1
+        seeExamples: "Ver exemplos primeiro" // rola para #demos
       }
     },
 
@@ -50,7 +49,7 @@ export const copy = {
           "Coletar orçamentos/agendamentos",
           "Direcionar para delivery (iFood/etc.)",
           "Reabertura/inauguração",
-          "Não sei, me ajude"
+          "Estou em dúvida"
         ],
         fallback: {
           q1: "Você quer algo pontual (campanha) ou presença contínua (site da loja)?",
