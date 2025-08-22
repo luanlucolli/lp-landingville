@@ -515,9 +515,9 @@ const Calculator30s = () => {
 
             {/* Card Footer */}
             {state.step > 0 && !showResult && (
-              <CardFooter className="flex justify-between bg-muted/20 border-t" style={{
-                paddingBottom: `calc(16px + env(safe-area-inset-bottom))`
-              }}>
+            <CardFooter className="flex justify-between bg-muted/20 border-t p-0 py-4" style={{
+              paddingBottom: `calc(16px + env(safe-area-inset-bottom))`
+            }}>
                 <Button
                   variant="outline"
                   onClick={() => {
