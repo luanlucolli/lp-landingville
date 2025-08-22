@@ -22,8 +22,8 @@ export const copy = {
   // SUPERSEÇÃO: CALCULADORA (objetivo-first, ≤ R$ 500)
   calculator: {
     id: "calculator",
-    title: "Calculadora de Orçamento",
-    subtitle: "Responda rápido e receba uma estimativa com recomendação do que é melhor hoje.",
+    title: "Calcule seu orçamento",
+    subtitle: "Descubra o que é melhor para seu negócio com algumas perguntas rápidas.",
 
     // TELA 0 (INTRO) — NÃO começar no Passo 1
     intro: {
