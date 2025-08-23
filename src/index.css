@@ -295,8 +295,29 @@ All colors MUST be HSL. Semantic tokens for consistency.
     animation: float 6s ease-in-out infinite;
   }
 
+  /* Calculator result hero animation */
+  @keyframes floatResult {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(1.5deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+
+  .outcome-hero {
+    animation: floatResult 6.5s ease-in-out infinite;
+    transform-origin: 50% 80%;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-float {
+      animation: none;
+    }
+    .outcome-hero {
       animation: none;
     }
   }

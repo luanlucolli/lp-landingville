@@ -363,35 +363,69 @@ const Calculator30s = () => {
 
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
-                <div className="text-center space-y-6">
-                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
-                    <Lightbulb className="w-8 h-8 text-secondary" />
+                <div className="space-y-6" aria-live="polite">
+                  {/* Outcome Hero Image */}
+                  <div className="text-center">
+                    <img
+                      src={state.recommendation === 'landing' ? '/img/result-landing.png' : '/img/result-site.png'}
+                      alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
+                      className="w-56 md:w-80 h-auto mx-auto mb-4 outcome-hero"
+                      style={{
+                        animation: 'floatY 6.5s ease-in-out infinite',
+                        transformOrigin: '50% 80%'
+                      }}
+                    />
                   </div>
                   
                   {/* Recommendation */}
-                  <div className="bg-primary/10 rounded-2xl p-6">
-                    <p className="text-lg font-semibold text-foreground mb-2">
+                  <div className="text-center">
+                    <h4 className="text-lg font-semibold text-foreground mb-1">
                       Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
-                    </p>
-                    <p className="text-muted-foreground">
-                      {copy.calculator.result.recommendation.hint}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Com base no seu objetivo.
                     </p>
                   </div>
 
                   {/* Price Range */}
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-foreground mb-2">
+                    <div className="text-3xl font-extrabold text-foreground mb-3 tracking-tight" role="status">
                       R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                     </div>
                     <div className="flex gap-2 justify-center flex-wrap">
-                      <Badge variant="secondary">Urgência: {state.answers.s4[0] || 'Sem pressa'}</Badge>
-                      <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
+                      <Badge variant="secondary" className="inline-flex h-7 px-3 rounded-full text-sm">
+                        Urgência: {state.answers.s4[0] || 'Sem pressa'}
+                      </Badge>
+                      <Badge variant="outline" className="inline-flex h-7 px-3 rounded-full text-sm">
+                        {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
+                      </Badge>
                     </div>
                   </div>
 
-                  <p className="text-sm text-muted-foreground">
-                    {copy.calculator.result.price.note}
-                  </p>
+                  {/* Inclui neste escopo */}
+                  <div className="bg-muted/30 rounded-lg p-4">
+                    <h5 className="font-medium text-foreground mb-3 text-sm">Inclui neste escopo</h5>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-xs">✓</span>
+                        </div>
+                        Publicação e SEO local básico
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-xs">✓</span>
+                        </div>
+                        Integrações leves (links/embeds)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-xs">✓</span>
+                        </div>
+                        Ajustes por 7 dias
+                      </li>
+                    </ul>
+                  </div>
 
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4">
@@ -405,19 +439,21 @@ const Calculator30s = () => {
                     <Button 
                       onClick={handleViewExample}
                       variant="outline"
-                      className="flex-1 font-semibold h-12"
+                      className="flex-1 font-semibold h-12 border-primary text-primary hover:bg-primary/5"
                     >
                       {copy.calculator.result.ctas.secondary}
                     </Button>
                   </div>
 
                   {/* Reset */}
-                  <button
-                    onClick={resetCalculator}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
-                  >
-                    Refazer calculadora
-                  </button>
+                  <div className="text-center">
+                    <button
+                      onClick={resetCalculator}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                    >
+                      Refazer calculadora
+                    </button>
+                  </div>
                 </div>
               )}
 
