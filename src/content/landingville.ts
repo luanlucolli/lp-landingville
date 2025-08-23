@@ -137,13 +137,15 @@ export const copy = {
         key: "landing",
         name: "Landing Page",
         desc: "Página única focada em conversão para promoções, reaberturas e campanhas.",
-        bullets: ["Objetivo claro", "Seções essenciais", "CTA para seus canais"]
+        bullets: ["Objetivo claro", "Seções essenciais", "CTA para seus canais"],
+        ctaLabel: "Ver exemplo"
       },
       {
         key: "site",
         name: "Site",
         desc: "Presença contínua para apresentar o negócio com 2–4 seções e base para SEO local.",
-        bullets: ["Home, Sobre, Serviços/Produtos, Contato", "Navegação simples", "Links para seus canais"]
+        bullets: ["Home, Sobre, Serviços/Produtos, Contato", "Navegação simples", "Links para seus canais"],
+        ctaLabel: "Ver exemplo"
       },
       {
         key: "care",
