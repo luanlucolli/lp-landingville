@@ -250,9 +250,9 @@ const Calculator30s = () => {
   };
 
   const getCurrentStepTitle = () => {
-    if (state.step === 0) return "Passo 0 de 5 · Introdução";
+    if (state.step === 0) return "Introdução";
     if (showResult) return "Resultado · Estimativa inicial";
-    return `Passo ${state.step} de ${maxSteps} · ${steps[`s${state.step}` as keyof typeof steps]?.title || ''}`;
+    return `Passo ${state.step} de ${maxSteps}`;
   };
 
   // Section title and subtitle (always stable)
@@ -396,10 +396,7 @@ const Calculator30s = () => {
                       <img
                         src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
                         alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
-                        className="w-56 md:w-80 h-auto outcome-hero"
-                        style={{
-                          animation: 'floatY var(--float-dur, 6.5s) ease-in-out infinite'
-                        }}
+                        className="w-56 md:w-80 h-auto animate-float"
                       />
                     </div>
                   </div>
