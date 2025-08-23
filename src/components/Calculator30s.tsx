@@ -251,34 +251,8 @@ const Calculator30s = () => {
 
   const getCurrentStepTitle = () => {
     if (state.step === 0) return "Passo 0 de 5 · Introdução";
-    if (showResult) return "Estimativa pronta";
+    if (showResult) return "Resultado · Estimativa inicial";
     return `Passo ${state.step} de ${maxSteps} · ${steps[`s${state.step}` as keyof typeof steps]?.title || ''}`;
-  };
-
-  const getRecommendationReasons = () => {
-    const reasons = [];
-    const reasonsConfig = copy.calculator.result.reasons;
-    
-    // Map answers to reasons (max 3)
-    if (state.answers.s1.includes("Receber mais pedidos/contatos")) {
-      reasons.push(reasonsConfig.contacts);
-    }
-    if (state.answers.s2.includes("WhatsApp")) {
-      reasons.push(reasonsConfig.whatsapp);
-    }
-    if (state.answers.s4[0] && ["Hoje", "Em 3 dias", "Em 7 dias"].includes(state.answers.s4[0])) {
-      reasons.push(reasonsConfig.urgent);
-    }
-    if (state.answers.s1.includes("Ter um site oficial simples")) {
-      reasons.push(reasonsConfig.official);
-    }
-    if (state.answers.s1.includes("Exibir cardápio/catálogo")) {
-      reasons.push(reasonsConfig.catalog);
-    }
-
-    // Fill with defaults if needed, limit to 3
-    const combined = [...reasons, ...reasonsConfig.defaults].slice(0, 3);
-    return combined;
   };
 
   // Section title and subtitle (always stable)
@@ -333,21 +307,9 @@ const Calculator30s = () => {
             <CardHeader className="pb-4">
               {renderStepper()}
               <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  {showResult && (
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#85BA62' }}>
-                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  )}
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {getCurrentStepTitle()}
-                  </h3>
-                </div>
-                {showResult && (
-                  <p className="text-xs text-muted-foreground">Passo 5 de 5</p>
-                )}
+                <h3 className="text-lg font-semibold text-foreground">
+                  {getCurrentStepTitle()}
+                </h3>
               </div>
             </CardHeader>
 
@@ -401,118 +363,41 @@ const Calculator30s = () => {
 
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
-                <div 
-                  className="space-y-6 animate-in fade-in-0 slide-in-from-bottom-4 duration-200"
-                  style={{
-                    animation: 'fadeUp 180ms ease-out forwards'
-                  }}
-                  aria-live="polite"
-                >
-                  {/* Recommendation Banner */}
-                  <div 
-                    className="rounded-2xl p-6 text-left"
-                    style={{
-                      backgroundColor: '#EAF3FF'
-                    }}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#2B6FA5' }}>
-                        <Lightbulb className="w-5 h-5 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-bold text-foreground mb-3">
-                          Sugerimos: <span className="text-[#2B6FA5]">
-                            {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
-                          </span>
-                        </h4>
-                        
-                        {/* Reasons */}
-                        <div className="space-y-2 mb-4">
-                          {getRecommendationReasons().map((reason, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm text-foreground">
-                              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#2B6FA5' }} />
-                              {reason}
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Chips */}
-                        <div className="flex gap-2 flex-wrap">
-                          <span 
-                            className="inline-flex h-7 px-3 rounded-full text-[13px] items-center font-medium"
-                            style={{
-                              border: '1px solid rgba(43,111,165,.25)',
-                              backgroundColor: 'rgba(43,111,165,.08)',
-                              color: '#2B6FA5'
-                            }}
-                          >
-                            Urgência: {state.answers.s4[0] || 'Sem pressa'}
-                          </span>
-                          <span 
-                            className="inline-flex h-7 px-3 rounded-full text-[13px] items-center font-medium"
-                            style={{
-                              border: '1px solid rgba(43,111,165,.25)',
-                              backgroundColor: 'rgba(43,111,165,.08)',
-                              color: '#2B6FA5'
-                            }}
-                          >
-                            {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+                <div className="text-center space-y-6">
+                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
+                    <Lightbulb className="w-8 h-8 text-secondary" />
+                  </div>
+                  
+                  {/* Recommendation */}
+                  <div className="bg-primary/10 rounded-2xl p-6">
+                    <p className="text-lg font-semibold text-foreground mb-2">
+                      Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
+                    </p>
+                    <p className="text-muted-foreground">
+                      {copy.calculator.result.recommendation.hint}
+                    </p>
                   </div>
 
-                  {/* Price Range with Visual Bar */}
-                  <div className="text-center space-y-4">
-                    <div 
-                      className="text-[clamp(28px,6vw,40px)] font-extrabold tracking-tight text-foreground"
-                      style={{ fontFeatureSettings: '"tnum" 1' }}
-                      role="status"
-                      aria-label={`Estimativa de ${state.priceRange[0]} a ${state.priceRange[1]} reais`}
-                    >
+                  {/* Price Range */}
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-foreground mb-2">
                       R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                     </div>
-                    
-                    {/* Visual Price Bar */}
-                    <div className="max-w-xs mx-auto">
-                      <div 
-                        className="h-2 rounded-full relative"
-                        style={{ backgroundColor: '#E6EEF5' }}
-                      >
-                        <div 
-                          className="absolute inset-y-0 rounded-full"
-                          style={{
-                            left: `${(state.priceRange[0] / copy.calculator.pricing.cap) * 100}%`,
-                            right: `${100 - (state.priceRange[1] / copy.calculator.pricing.cap) * 100}%`,
-                            background: 'linear-gradient(90deg, #2B6FA5, #85BA62)'
-                          }}
-                        />
-                      </div>
-                      <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                        <span>R$ 0</span>
-                        <span>R$ {copy.calculator.pricing.cap}</span>
-                      </div>
+                    <div className="flex gap-2 justify-center flex-wrap">
+                      <Badge variant="secondary">Urgência: {state.answers.s4[0] || 'Sem pressa'}</Badge>
+                      <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
                     </div>
-
-                    <p className="text-sm text-muted-foreground">
-                      {copy.calculator.result.price.note}
-                    </p>
                   </div>
 
-                  {/* Next Steps */}
-                  <div className="text-center">
-                    <p className="text-sm text-muted-foreground">
-                      {copy.calculator.result.nextSteps}
-                    </p>
-                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {copy.calculator.result.price.note}
+                  </p>
 
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button 
                       onClick={() => setShowChannelSheet(true)}
-                      className="flex-1 font-semibold h-12 text-white"
-                      style={{ backgroundColor: '#2B6FA5' }}
+                      className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold h-12"
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>
@@ -521,24 +406,18 @@ const Calculator30s = () => {
                       onClick={handleViewExample}
                       variant="outline"
                       className="flex-1 font-semibold h-12"
-                      style={{ 
-                        borderColor: '#2B6FA5',
-                        color: '#2B6FA5'
-                      }}
                     >
                       {copy.calculator.result.ctas.secondary}
                     </Button>
                   </div>
 
                   {/* Reset */}
-                  <div className="text-center">
-                    <button
-                      onClick={resetCalculator}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
-                    >
-                      Refazer calculadora
-                    </button>
-                  </div>
+                  <button
+                    onClick={resetCalculator}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                  >
+                    Refazer calculadora
+                  </button>
                 </div>
               )}
 

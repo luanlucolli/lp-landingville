@@ -95,27 +95,18 @@ export const copy = {
 
     // Resultado com recomendação automática e DEEP-LINK para Demos
     result: {
-      title: "Estimativa pronta",
+      title: "Sua estimativa inicial",
       recommendation: {
         landingLabel: "Landing de captação",
         siteLabel: "Site simples (2–4 seções)",
         hint: "Sugerimos com base no seu objetivo."
       },
-      nextSteps: "1) Abrir contato · 2) Enviar logo/fotos · 3) Publicação em X–Y dias",
       price: {
         note: "Oferta de lançamento em Joinville: escopo enxuto e integrações leves (links/embeds). Ajustes leves em [Y] dias."
       },
       ctas: {
-        primary: "Entrar em contato",      // abre Contact Modal
+        primary: "Falar com a Landingville",      // abre Contact Modal
         secondary: "Ver exemplo do meu caso"      // rola p/ #demos com tab correta (landing/site)
-      },
-      reasons: {
-        contacts: "Foco em receber contatos",
-        whatsapp: "WhatsApp como canal principal", 
-        urgent: "Precisa ir ao ar rápido",
-        official: "Presença contínua e navegação básica",
-        catalog: "Cardápio/Catálogo em destaque",
-        defaults: ["Página otimizada para mobile", "Integração com seus canais", "SEO local incluído"]
       }
     },
 
