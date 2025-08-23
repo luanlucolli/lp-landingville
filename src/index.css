@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Services Section Styles */
+.services-bg {
+  --steel: 205 65% 30%;  /* #2B6FA5 */
+  --moss: 95 35% 45%;    /* #85BA62 */
+  background:
+    radial-gradient(80% 80% at 100% 0%,
+      hsla(var(--steel)/.12) 0%,
+      hsla(var(--moss)/.08) 35%,
+      transparent 60%)
+    ,linear-gradient(#FFFFFF,#FFFFFF);
+  animation: servicesGlow 18s ease-in-out infinite;
+  background-repeat: no-repeat;
+  background-size: 140% 140%, cover;
+  background-position: 100% 0%, center;
+}
+
+@keyframes servicesGlow {
+  0%, 100% { background-position: 100% 0%, center; }
+  50% { background-position: 95% 5%, center; }
+}
+
+.icon-gradient {
+  background: linear-gradient(135deg, #2B6FA5 0%, #85BA62 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  animation: iconSheen 12s linear infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes iconSheen {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-bg { animation: none; }
+  .icon-gradient { animation: none; }
+}
+
 
 /* Landingville Design System - Mobile-first, WhatsApp-focused
 All colors MUST be HSL. Semantic tokens for consistency.
