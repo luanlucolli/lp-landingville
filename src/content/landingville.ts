@@ -15,7 +15,7 @@ export const copy = {
       secondary: "Ver exemplos"               // scroll suave para #demos (tab dinâmica)
     },
     visual: {
-      gradientNote: "Hero com gradiente animado leve (Steel→Moss) e blobs flutuantes; prefers-reduced-motion desativa; contraste AA/AAA."
+      gradientNote: "Hero com gradiente animado top (Steel→Moss) e blobs flutuantes; prefers-reduced-motion desativa; contraste AA/AAA."
     }
   },
 
