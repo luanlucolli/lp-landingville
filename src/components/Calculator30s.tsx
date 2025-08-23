@@ -353,7 +353,7 @@ const Calculator30s = () => {
                         alt="Ilustração: celular com estimativa, WhatsApp e mapa"
                         className="w-56 md:w-80 h-auto animate-float"
                         style={{
-                          animation: 'float 6s ease-in-out infinite'
+                          animation: 'float 3.8s ease-in-out infinite'
                         }}
                       />
                     </div>
