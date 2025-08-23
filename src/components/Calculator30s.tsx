@@ -363,35 +363,65 @@ const Calculator30s = () => {
 
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
-                <div className="text-center space-y-6">
-                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
-                    <Lightbulb className="w-8 h-8 text-secondary" />
-                  </div>
-                  
-                  {/* Recommendation */}
-                  <div className="bg-primary/10 rounded-2xl p-6">
-                    <p className="text-lg font-semibold text-foreground mb-2">
-                      Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
-                    </p>
-                    <p className="text-muted-foreground">
-                      {copy.calculator.result.recommendation.hint}
-                    </p>
+                <div className="space-y-6" aria-live="polite">
+                  {/* Outcome Hero Image */}
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-1 order-2 md:order-1 space-y-4">
+                      {/* Recommendation */}
+                      <div className="text-center md:text-left">
+                        <h3 className="text-xl font-semibold text-foreground mb-1">
+                          Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
+                        </h3>
+                        <p className="text-muted-foreground">
+                          {copy.calculator.result.recommendation.hint}
+                        </p>
+                      </div>
+
+                      {/* Price Range */}
+                      <div className="text-center md:text-left">
+                        <div className="text-3xl font-bold text-foreground mb-3">
+                          R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
+                        </div>
+                        
+                        {/* Pills */}
+                        <div className="flex gap-2 justify-center md:justify-start flex-wrap mb-4">
+                          <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
+                          <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Hero Image */}
+                    <div className="flex-shrink-0 order-1 md:order-2">
+                      <img
+                        src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
+                        alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
+                        className="w-56 md:w-80 h-auto outcome-hero"
+                        style={{
+                          animation: 'floatY var(--float-dur, 6.5s) ease-in-out infinite'
+                        }}
+                      />
+                    </div>
                   </div>
 
-                  {/* Price Range */}
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-foreground mb-2">
-                      R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
-                    </div>
-                    <div className="flex gap-2 justify-center flex-wrap">
-                      <Badge variant="secondary">Urgência: {state.answers.s4[0] || 'Sem pressa'}</Badge>
-                      <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
+                  {/* Inclui neste escopo */}
+                  <div className="bg-muted/40 rounded-xl p-5">
+                    <h4 className="font-semibold text-foreground mb-3 text-center">Inclui neste escopo</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 text-sm">
+                        <span className="text-green-600 font-semibold">✅</span>
+                        <span>Publicação e SEO local básico</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <span className="text-green-600 font-semibold">✅</span>
+                        <span>Integrações leves (links/embeds)</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <span className="text-green-600 font-semibold">✅</span>
+                        <span>Ajustes por 7 dias</span>
+                      </div>
                     </div>
                   </div>
-
-                  <p className="text-sm text-muted-foreground">
-                    {copy.calculator.result.price.note}
-                  </p>
 
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4">
