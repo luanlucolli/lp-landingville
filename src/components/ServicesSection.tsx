@@ -18,16 +18,8 @@ const ServicesSection = () => {
   };
 
   const getServiceAccentVar = (serviceKey: string) => {
-    switch (serviceKey) {
-      case 'landing':
-        return { '--service-accent': 'hsl(205 65% 30%)' }; // #2B6FA5
-      case 'site':
-        return { '--service-accent': 'hsl(95 35% 45%)' }; // #85BA62
-      case 'care':
-        return { '--service-accent': 'hsla(205 65% 30% / 0.75)' }; // Mix of both
-      default:
-        return { '--service-accent': 'hsl(205 65% 30%)' };
-    }
+    // All icons use the same green color
+    return { '--service-accent': 'hsl(98 35% 55%)' }; // #85BA62 - Verde Musgo Claro
   };
 
   return (

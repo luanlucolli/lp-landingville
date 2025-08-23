@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Service Cards - Subtle gradient backgrounds */
+/* Service Cards - Vibrant gradient backgrounds */
 .service-card {
-  background: linear-gradient(135deg, #FFFFFF 70%, rgba(43,111,165,.08) 88%, rgba(133,186,98,.16) 100%);
+  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
 }
 
 .service-card[data-key="landing"] {
-  background: linear-gradient(135deg, #FFFFFF 72%, rgba(43,111,165,.12) 90%, rgba(43,111,165,.06) 100%);
+  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
 }
 
 .service-card[data-key="site"] {
-  background: linear-gradient(135deg, #FFFFFF 72%, rgba(133,186,98,.12) 90%, rgba(133,186,98,.06) 100%);
+  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
 }
 
 .service-card[data-key="care"] {
-  background: linear-gradient(135deg, #FFFFFF 74%, rgba(43,111,165,.08) 88%, rgba(133,186,98,.08) 100%);
+  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
 }
 
 /* Service Icons with accent colors */
