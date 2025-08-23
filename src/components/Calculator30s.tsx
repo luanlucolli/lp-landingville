@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ChevronRight, ChevronLeft, Calculator, Lightbulb, Clock, Shield, Target } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Calculator, Lightbulb, Clock, Shield, Target, MessageCircle, Globe, Grid3x3, MapPin, Image, Layers, Zap } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
 
@@ -156,10 +156,28 @@ const Calculator30s = () => {
       
       if (isMultiSelect) {
         const current = newAnswers[stepKey] || [];
-        if (current.includes(option)) {
-          newAnswers[stepKey] = current.filter(item => item !== option);
+        
+        // Step 5: Handle "Não" exclusivity
+        if (state.step === 5) {
+          if (option === "Não") {
+            newAnswers[stepKey] = current.includes("Não") ? [] : ["Não"];
+          } else {
+            if (current.includes("Não")) {
+              newAnswers[stepKey] = [option];
+            } else {
+              if (current.includes(option)) {
+                newAnswers[stepKey] = current.filter(item => item !== option);
+              } else {
+                newAnswers[stepKey] = [...current, option];
+              }
+            }
+          }
         } else {
-          newAnswers[stepKey] = [...current, option];
+          if (current.includes(option)) {
+            newAnswers[stepKey] = current.filter(item => item !== option);
+          } else {
+            newAnswers[stepKey] = [...current, option];
+          }
         }
       } else {
         newAnswers[stepKey] = [option];
@@ -173,7 +191,16 @@ const Calculator30s = () => {
 
     // Special handling for "Estou em dúvida"
     if (option === "Estou em dúvida" && state.step === 1) {
-      setShowFallback(true);
+      if (!state.answers.s1.includes("Estou em dúvida")) {
+        setShowFallback(true);
+      } else {
+        setShowFallback(false);
+        // Clear fallback answers when unmarking
+        setState(prev => ({
+          ...prev,
+          fallback: undefined
+        }));
+      }
       return;
     }
   };
@@ -186,6 +213,114 @@ const Calculator30s = () => {
         [questionKey]: answer
       }
     }));
+  };
+
+  const buildReasons = (state: CalculatorState): Array<{title: string, text: string, icon: string}> => {
+    const reasons = [];
+    const isLanding = state.recommendation === 'landing';
+    
+    if (isLanding) {
+      // Landing reasons
+      if (state.answers.s1.some(obj => ['Divulgar promoção/campanha', 'Reabertura/inauguração', 'Receber mais pedidos/contatos'].includes(obj))) {
+        reasons.push({
+          title: 'Ação imediata',
+          text: 'Uma página direta com botão de contato facilita receber pedidos.',
+          icon: 'Target'
+        });
+      }
+      
+      if (state.answers.s4?.[0] && ['Em 3 dias (noites)', 'Em 5 dias (úteis, à noite)'].includes(state.answers.s4[0])) {
+        reasons.push({
+          title: 'Vai ao ar rápido',
+          text: 'Publicamos rapidinho para você começar a receber mensagens.',
+          icon: 'Clock'
+        });
+      }
+      
+      if (state.answers.s2.some(canal => ['WhatsApp', 'Instagram'].includes(canal))) {
+        reasons.push({
+          title: 'Foco nos canais',
+          text: 'Destaque para falar com você em 1 toque.',
+          icon: 'MessageCircle'
+        });
+      }
+      
+      if (state.answers.s5.includes('Promo do dia')) {
+        reasons.push({
+          title: 'Promo do dia',
+          text: 'Dá para divulgar ofertas sem complicação.',
+          icon: 'Lightbulb'
+        });
+      }
+      
+      if (state.answers.s3.includes('Nenhum dos dois')) {
+        reasons.push({
+          title: 'Conteúdo enxuto',
+          text: 'Comece simples agora e troque as fotos depois.',
+          icon: 'Zap'
+        });
+      }
+    } else {
+      // Site reasons
+      if (state.answers.s1.includes('Ter um site oficial simples')) {
+        reasons.push({
+          title: 'Presença contínua',
+          text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.',
+          icon: 'Globe'
+        });
+      }
+      
+      if (state.answers.s1.some(obj => ['Exibir cardápio/catálogo'].includes(obj)) || state.answers.s5.some(extra => ['Galeria simples', 'Depoimentos simples'].includes(extra))) {
+        reasons.push({
+          title: 'Mais conteúdo',
+          text: 'Mostra melhor seus produtos e ajuda quem pesquisa.',
+          icon: 'Grid3x3'
+        });
+      }
+      
+      if (state.answers.s1.includes('Mostrar horário/endereço e rotas')) {
+        reasons.push({
+          title: 'Fácil de achar',
+          text: 'Informações fixas que ajudam a aparecer no Google.',
+          icon: 'MapPin'
+        });
+      }
+      
+      if (state.answers.s3.includes('Logo e Fotos') || state.answers.s3.includes('Logo') || state.answers.s3.includes('Fotos')) {
+        reasons.push({
+          title: 'Você já tem material',
+          text: 'Aproveitamos seus materiais para um site completo.',
+          icon: 'Image'
+        });
+      }
+      
+      if (state.answers.s2.length >= 3) {
+        reasons.push({
+          title: 'Vários canais',
+          text: 'Tudo num lugar só, com navegação simples.',
+          icon: 'Layers'
+        });
+      }
+    }
+    
+    // Fill with general reasons if we have less than 3
+    const generalReasons = isLanding ? [
+      { title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.', icon: 'Clock' },
+      { title: 'Foco nos canais', text: 'Destaque para falar com você em 1 toque.', icon: 'MessageCircle' },
+      { title: 'Ação imediata', text: 'Uma página direta com botão de contato facilita receber pedidos.', icon: 'Target' }
+    ] : [
+      { title: 'Presença contínua', text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.', icon: 'Globe' },
+      { title: 'Fácil de achar', text: 'Informações fixas que ajudam a aparecer no Google.', icon: 'MapPin' },
+      { title: 'Vários canais', text: 'Tudo num lugar só, com navegação simples.', icon: 'Layers' }
+    ];
+    
+    generalReasons.forEach(reason => {
+      if (reasons.length < 3 && !reasons.some(r => r.title === reason.title)) {
+        reasons.push(reason);
+      }
+    });
+    
+    return reasons.slice(0, 3);
   };
 
   const nextStep = () => {
@@ -401,22 +536,35 @@ const Calculator30s = () => {
                     </div>
                   </div>
 
-                  {/* Inclui neste escopo */}
+                  {/* Por que recomendamos */}
                   <div className="bg-muted/40 rounded-xl p-5">
-                    <h4 className="font-semibold text-foreground mb-3 text-center">Inclui neste escopo</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-3 text-sm">
-                        <span className="text-green-600 font-semibold">✅</span>
-                        <span>Publicação e SEO local básico</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm">
-                        <span className="text-green-600 font-semibold">✅</span>
-                        <span>Integrações leves (links/embeds)</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm">
-                        <span className="text-green-600 font-semibold">✅</span>
-                        <span>Ajustes por 7 dias</span>
-                      </div>
+                    <h4 className="font-semibold text-foreground mb-4 text-center">
+                      Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
+                    </h4>
+                    <div className="space-y-4">
+                      {buildReasons(state).map((reason, index) => {
+                        const iconMap = {
+                          Target, Clock, MessageCircle, Lightbulb, Zap,
+                          Globe, Grid3x3, MapPin, Image, Layers
+                        };
+                        const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
+                        
+                        return (
+                          <div key={index} className="flex items-start gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 mt-0.5">
+                              <IconComponent className="w-5 h-5 text-primary" />
+                            </div>
+                            <div>
+                              <div className="font-medium text-foreground text-sm mb-1">
+                                {reason.title}
+                              </div>
+                              <div className="text-sm text-muted-foreground leading-relaxed">
+                                {reason.text}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -574,28 +722,6 @@ const Calculator30s = () => {
             )}
           </Card>
 
-          {/* Quick skip option */}
-          {state.step > 2 && !showResult && (
-            <div className="text-center mt-6">
-              <Button 
-                variant="ghost" 
-                onClick={() => {
-                  const recommendation = calculateRecommendation(state.answers);
-                  const priceRange = calculatePrice(state.answers, recommendation);
-                  
-                  setState(prev => ({
-                    ...prev,
-                    recommendation,
-                    priceRange
-                  }));
-                  setShowResult(true);
-                }}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Pular para estimativa
-              </Button>
-            </div>
-          )}
         </div>
       </div>
 

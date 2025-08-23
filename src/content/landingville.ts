@@ -83,13 +83,13 @@ export const copy = {
       // Passo 4 — Urgência (não altera preço; vira etiqueta no resumo)
       s4: {
         title: "Qual a urgência?",
-        options: ["Hoje", "Em 3 dias", "Em 7 dias", "Sem pressa"]
+        options: ["Em 3 dias (noites)", "Em 5 dias (úteis, à noite)", "Em 7 dias", "Sem pressa"]
       },
 
       // Passo 5 — Extras leves (multi) com impacto pequeno
       s5: {
         title: "Quer adicionar algo leve?",
-        options: ["Promo do dia", "Depoimentos simples", "Galeria simples", "Formulário simples"]
+        options: ["Promo do dia", "Depoimentos simples", "Galeria simples", "Formulário simples", "Não"]
       }
     },
 
