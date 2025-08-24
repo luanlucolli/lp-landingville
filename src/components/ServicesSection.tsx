@@ -1,12 +1,8 @@
 import { Button } from '@/components/ui/button';
 import copy from '@/content/landingville';
 import { scrollToCalculatorWithObjective } from '@/lib/navigation';
-import { ChannelSheet } from './ChannelSheet';
-import { useState } from 'react';
 
 const ServicesSection = () => {
-  const [showContactModal, setShowContactModal] = useState(false);
-
   const handleServiceCTA = (serviceKey: string) => {
     if (serviceKey === 'landing' || serviceKey === 'site') {
       scrollToCalculatorWithObjective(serviceKey as 'landing' | 'site');
@@ -29,69 +25,59 @@ const ServicesSection = () => {
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {copy.services.items.map((service) => (
-              <div
-                key={service.key}
-                className="service-card relative overflow-hidden"
-              >
-                <div className="p-6 md:p-8">
-                  {/* Service Image/Icon */}
-                  <div className="mb-6 flex justify-center">
-                    <div className="service-hero">
-                      <img
-                        src={service.img}
-                        alt={service.alt}
-                        className="w-16 h-16 md:w-20 md:h-20 object-contain"
-                        loading="lazy"
-                      />
+            {copy.services.items.map((service) => {
+              const hasCTA = Boolean(service.cta);
+
+              return (
+                <div
+                  key={service.key}
+                  className="service-card relative overflow-hidden"
+                >
+                  <div className="p-6 md:p-8">
+                    {/* Service Image/Icon */}
+                    <div className="mb-6 flex justify-start">
+                      <div className="service-hero">
+                        <img
+                          src={service.img}
+                          alt={service.alt}
+                          className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Content */}
-                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 text-center">
-                    {service.name}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-6 leading-relaxed text-center text-sm md:text-base">
-                    {service.desc}
-                  </p>
+                    {/* Content */}
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 text-left">
+                      {service.name}
+                    </h3>
 
-                  {/* CTA Button or Contact Link */}
-                  <div className="flex justify-center">
-                    {service.cta ? (
-                      <Button
-                        onClick={() => handleServiceCTA(service.key)}
-                        className="service-cta-button h-12 px-6 rounded-xl font-semibold"
-                        aria-label={`${service.cta} - ${service.name}`}
-                      >
-                        {service.cta}
-                      </Button>
-                    ) : (
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Atualizações leves e suporte contínuo. Mensal opcional.
-                        </p>
-                        <button
-                          onClick={() => setShowContactModal(true)}
-                          className="text-primary hover:text-primary/80 transition-colors font-medium text-sm underline"
-                          aria-label="Falar com a Landingville sobre manutenção"
+                    <p
+                      className={`text-muted-foreground leading-relaxed text-sm md:text-base text-left ${
+                        hasCTA ? 'mb-4' : 'mb-0'
+                      }`}
+                    >
+                      {service.desc}
+                    </p>
+
+                    {/* CTA Button (left-aligned). No contact button/link. */}
+                    {hasCTA && (
+                      <div className="flex justify-start">
+                        <Button
+                          onClick={() => handleServiceCTA(service.key)}
+                          className="service-cta-button h-12 px-6 rounded-xl font-semibold mb-0"
+                          aria-label={`${service.cta} - ${service.name}`}
                         >
-                          Falar com a Landingville
-                        </button>
+                          {service.cta}
+                        </Button>
                       </div>
                     )}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
-
-      <ChannelSheet 
-        open={showContactModal}
-        onOpenChange={setShowContactModal}
-      />
     </section>
   );
 };

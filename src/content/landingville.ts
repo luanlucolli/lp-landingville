@@ -128,37 +128,38 @@ export const copy = {
   },
 
   // "Serviços" permanece como está no layout (3 cards). Caso necessário, consuma estes textos.
-  services: {
-    id: "services",
-    title: "Nossos serviços",
-    subtitle: "Prontos para o seu momento.",
-    items: [
-      {
-        key: "landing",
-        name: "Landing Page",
-        desc: "Uma página direta para ações e ofertas, com botão para falar com você.",
-        cta: "Quero uma Landing Page",
-        img: "/img/service-landing.png",
-        alt: "Ícone de Landing Page"
-      },
-      {
-        key: "site",
-        name: "Site",
-        desc: "Presença contínua com seções claras: Home, Sobre e Contato.",
-        cta: "Quero um Site",
-        img: "/img/service-site.png",
-        alt: "Ícone de Site"
-      },
-      {
-        key: "care",
-        name: "Manutenção",
-        desc: "Atualizações leves e suporte. Podemos combinar um plano mensal.",
-        cta: null,
-        img: "/img/service-maintenance.png",
-        alt: "Ícone de Manutenção"
-      }
-    ]
-  },
+services: {
+  id: "services",
+  title: "Nossos serviços",
+  subtitle: "Escolha o que combina com a sua necessidade agora.",
+  items: [
+    {
+      key: "landing",
+      name: "Landing Page",
+      desc: "Uma página única para um objetivo específico: divulgar promoção, reabertura ou captar pedidos. Ideal para ações rápidas.",
+      cta: "Quero uma Landing Page",
+      img: "/lovable-uploads/servicolanding.png",
+      alt: "Ícone de Landing Page"
+    },
+    {
+      key: "site",
+      name: "Site",
+      desc: "Presença completa e estável com seções principais (Início, Sobre, Serviços/Produtos e Contato). Bom para aparecer no Google e orientar quem pesquisa.",
+      cta: "Quero um Site",
+      img: "/lovable-uploads/servicosite.png",
+      alt: "Ícone de Site"
+    },
+    {
+      key: "care",
+      name: "Manutenção",
+      desc: "Atualizações de textos, preços e fotos, pequenos ajustes visuais e suporte contínuo. Podemos combinar um plano mensal.",
+      cta: null,
+      img: "/lovable-uploads/servicomanutencao.png",
+      alt: "Ícone de Manutenção"
+    }
+  ]
+},
+
 
   // DEMOS em tabs (Landing/Site). Reservar espaço para 1 imagem por tab (desktop+mobile combinados).
   demos: {
