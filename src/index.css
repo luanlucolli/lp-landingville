@@ -296,8 +296,62 @@ All colors MUST be HSL. Semantic tokens for consistency.
     animation: float 6s ease-in-out infinite;
   }
 
+  /* Service card styles matching calculator pattern */
+  .service-card {
+    background: #F7FAFD;
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(#F7FAFD, #F7FAFD),
+      linear-gradient(135deg, #2B6FA5, #85BA62);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 8px 24px rgba(31, 41, 55, 0.06);
+    border-radius: 16px;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+
+  .service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(31, 41, 55, 0.08);
+  }
+
+  /* Service hero image animation */
+  .service-hero {
+    animation: floatY 6.5s ease-in-out infinite;
+    transform-origin: 50% 80%;
+  }
+
+  @keyframes floatY {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  /* Service CTA button with gradient */
+  .service-cta-button {
+    background: linear-gradient(135deg, #2B6FA5 0%, #85BA62 100%);
+    color: white;
+    border: none;
+    transition: all 0.2s ease-out;
+  }
+
+  .service-cta-button:hover {
+    background: linear-gradient(135deg, #245a91 0%, #7ba558 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(43, 111, 165, 0.3);
+  }
+
+  .service-cta-button:focus-visible {
+    outline: 2px solid #2B6FA5;
+    outline-offset: 2px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .animate-float {
+    .animate-float,
+    .service-hero {
       animation: none;
     }
   }

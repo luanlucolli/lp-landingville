@@ -131,25 +131,31 @@ export const copy = {
   services: {
     id: "services",
     title: "Nossos serviços",
-    subtitle: "Prontos para seu momento atual.",
+    subtitle: "Prontos para o seu momento.",
     items: [
       {
         key: "landing",
         name: "Landing Page",
-        desc: "Página única focada em conversão para promoções, reaberturas e campanhas.",
-        bullets: ["Objetivo claro", "Seções essenciais", "CTA para seus canais"]
+        desc: "Uma página direta para ações e ofertas, com botão para falar com você.",
+        cta: "Quero uma Landing Page",
+        img: "/img/service-landing.png",
+        alt: "Ícone de Landing Page"
       },
       {
         key: "site",
         name: "Site",
-        desc: "Presença contínua para apresentar o negócio com 2–4 seções e base para SEO local.",
-        bullets: ["Home, Sobre, Serviços/Produtos, Contato", "Navegação simples", "Links para seus canais"]
+        desc: "Presença contínua com seções claras: Home, Sobre e Contato.",
+        cta: "Quero um Site",
+        img: "/img/service-site.png",
+        alt: "Ícone de Site"
       },
       {
         key: "care",
         name: "Manutenção",
-        desc: "Atualizações leves e suporte contínuo. Mensal opcional, cobrado à parte.",
-        bullets: ["Conteúdo e pequenos ajustes", "Monitoramento básico", "Sem dor de cabeça"]
+        desc: "Atualizações leves e suporte. Podemos combinar um plano mensal.",
+        cta: null,
+        img: "/img/service-maintenance.png",
+        alt: "Ícone de Manutenção"
       }
     ]
   },
