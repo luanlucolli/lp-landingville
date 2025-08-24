@@ -2,35 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Service Cards - Vibrant gradient backgrounds */
-.service-card {
-  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
-}
-
-.service-card[data-key="landing"] {
-  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
-}
-
-.service-card[data-key="site"] {
-  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
-}
-
-.service-card[data-key="care"] {
-  background: linear-gradient(135deg, #FFFFFF 45%, rgba(133,186,98,.25) 75%, rgba(133,186,98,.35) 100%);
-}
-
-/* Service Icons with accent colors */
-.service-icon {
-  color: var(--service-accent);
-  transition: color 0.2s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .service-icon {
-    transition: none;
-  }
-}
-
 
 /* Landingville Design System - Mobile-first, WhatsApp-focused
 All colors MUST be HSL. Semantic tokens for consistency.

@@ -10,32 +10,15 @@ const DemosTabs = () => {
   const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
-    // Listen for tab selection from calculator and navigation
+    // Listen for tab selection from calculator
     const handleTabSelect = (event: CustomEvent) => {
       setActiveTab(event.detail);
     };
 
-    // Handle hash-based navigation
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      const tabMatch = hash.match(/tab=([^&]+)/);
-      if (tabMatch) {
-        const tabKey = tabMatch[1];
-        if (tabKey === 'landing' || tabKey === 'site') {
-          setActiveTab(tabKey);
-        }
-      }
-    };
-
-    // Check hash on mount
-    handleHashChange();
-
     window.addEventListener('selectDemoTab', handleTabSelect as EventListener);
-    window.addEventListener('hashchange', handleHashChange);
     
     return () => {
       window.removeEventListener('selectDemoTab', handleTabSelect as EventListener);
-      window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
 

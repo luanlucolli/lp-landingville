@@ -1,25 +1,19 @@
-import { Globe, Zap, Shield, Check, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Globe, Zap, Shield, Check } from 'lucide-react';
 import copy from '@/content/landingville';
-import { navigateToDemosTab } from '@/lib/navigation';
 
 const ServicesSection = () => {
+
   const getServiceIcon = (serviceKey: string) => {
     switch (serviceKey) {
       case 'landing':
-        return <Zap className="w-8 h-8 service-icon" aria-hidden="true" />;
+        return <Zap className="w-8 h-8" />;
       case 'site':
-        return <Globe className="w-8 h-8 service-icon" aria-hidden="true" />;
+        return <Globe className="w-8 h-8" />;
       case 'care':
-        return <Shield className="w-8 h-8 service-icon" aria-hidden="true" />;
+        return <Shield className="w-8 h-8" />;
       default:
-        return <Globe className="w-8 h-8 service-icon" aria-hidden="true" />;
+        return <Globe className="w-8 h-8" />;
     }
-  };
-
-  const getServiceAccentVar = (serviceKey: string) => {
-    // All icons use the same green color
-    return { '--service-accent': 'hsl(98 35% 55%)' }; // #85BA62 - Verde Musgo Claro
   };
 
   return (
@@ -41,13 +35,11 @@ const ServicesSection = () => {
             {copy.services.items.map((service) => (
               <div
                 key={service.key}
-                className="service-card rounded-2xl border border-border shadow-lg overflow-hidden"
-                style={getServiceAccentVar(service.key) as React.CSSProperties}
-                data-key={service.key}
+                className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-background/80 to-primary/5 backdrop-blur-sm shadow-lg"
               >
-                <div className="p-6">
+                <div className="p-8">
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-background/50 flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
                     {getServiceIcon(service.key)}
                   </div>
 
@@ -61,7 +53,7 @@ const ServicesSection = () => {
                   </p>
 
                   {/* Bullets for all services */}
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-3">
                     {service.bullets.map((bullet, index) => (
                       <div key={index} className="flex items-start gap-3">
                         <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
@@ -71,20 +63,6 @@ const ServicesSection = () => {
                       </div>
                     ))}
                   </div>
-
-                  {/* Ver exemplo button for Landing and Site only */}
-                  {(service.key === 'landing' || service.key === 'site') && 'ctaLabel' in service && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => navigateToDemosTab(service.key as 'landing' | 'site')}
-                      className="w-full mt-4 gap-2"
-                      aria-label={`Ver exemplo de ${service.name}`}
-                    >
-                      {service.ctaLabel}
-                      <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  )}
                 </div>
               </div>
             ))}
