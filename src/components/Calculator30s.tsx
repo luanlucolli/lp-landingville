@@ -426,7 +426,7 @@ const Calculator30s = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="calculator">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {renderSectionHeader()}
           
           <Card className="overflow-hidden bg-[#F7FAFD] border-transparent" style={{
@@ -451,29 +451,49 @@ const Calculator30s = () => {
             <CardContent className="px-6 pb-6">
               {/* Intro Screen */}
               {state.step === 0 && (
-                <div className="text-center space-y-6">
-                  {/* Hero Image with Animation */}
-                  <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
-                    <div className="flex-1 order-2 md:order-1">
-                      {/* Mini badges */}
-                      <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
-                        {copy.calculator.intro.bullets.map((bullet, index) => (
-                          <Badge key={index} variant="secondary" className="text-xs">
-                            {bullet}
-                          </Badge>
-                        ))}
-                      </div>
+                <div className="md:grid md:grid-cols-12 md:gap-8 space-y-6 md:space-y-0">
+                  {/* Left Column - Text */}
+                  <div className="md:col-span-7 space-y-6">
+                    {/* Chips */}
+                    <div className="flex flex-wrap gap-2">
+                      {copy.calculator.intro.bullets.map((bullet, index) => (
+                        <Badge key={index} variant="secondary" className="text-xs">
+                          {bullet}
+                        </Badge>
+                      ))}
+                    </div>
 
-                      {/* CTA */}
-                      <Button
-                        onClick={startCalculator}
-                        className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold mb-4"
-                      >
-                        {copy.calculator.intro.cta}
-                        <ChevronRight className="w-5 h-5 ml-2" />
-                      </Button>
+                    {/* "Você vai ver" section */}
+                    <div className="text-left space-y-4">
+                      <h4 className="font-semibold text-foreground">Você vai ver:</h4>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span>O que faz mais sentido: Landing ou Site</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span>Faixa de valor para começar</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span>Próximo passo para publicar rápido</span>
+                        </li>
+                      </ul>
+                    </div>
 
-                      {/* Link */}
+                    {/* CTA */}
+                    <Button
+                      onClick={startCalculator}
+                      className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
+                      aria-label="Descobrir meu investimento agora"
+                    >
+                      {copy.calculator.intro.cta}
+                      <ChevronRight className="w-5 h-5 ml-2" />
+                    </Button>
+
+                    {/* Link */}
+                    <div className="text-center">
                       <button
                         onClick={goToDemos}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
@@ -481,17 +501,18 @@ const Calculator30s = () => {
                         {copy.calculator.intro.links.seeExamples}
                       </button>
                     </div>
+                  </div>
 
-                    <div className="flex-shrink-0 order-1 md:order-2">
-                      <img
-                        src="/lovable-uploads/5a727833-d262-47b7-8496-002dbd6525e7.png"
-                        alt="Ilustração: celular com estimativa, WhatsApp e mapa"
-                        className="w-56 md:w-80 h-auto animate-float"
-                        style={{
-                          animation: 'float 3.8s ease-in-out infinite'
-                        }}
-                      />
-                    </div>
+                  {/* Right Column - Image */}
+                  <div className="md:col-span-5 flex justify-center">
+                    <img
+                      src="/lovable-uploads/5a727833-d262-47b7-8496-002dbd6525e7.png"
+                      alt="Ilustração: celular com estimativa, WhatsApp e mapa"
+                      className="w-56 md:w-72 h-auto service-hero"
+                      style={{
+                        animation: 'floatY 6.5s ease-in-out infinite'
+                      }}
+                    />
                   </div>
                 </div>
               )}

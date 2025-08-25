@@ -22,14 +22,14 @@ export const copy = {
   // SUPERSEÇÃO: CALCULADORA (objetivo-first, ≤ R$ 500)
   calculator: {
     id: "calculator",
-    title: "Calcule seu orçamento",
-    subtitle: "Descubra o que é melhor para seu negócio com algumas perguntas rápidas.",
+    title: "Descubra seu investimento",
+    subtitle: "5 perguntas simples e mostramos o melhor caminho para o seu negócio.",
 
     // TELA 0 (INTRO) — NÃO começar no Passo 1
     intro: {
       title: "Descubra seu investimento",
-      bullets: ["Sem cadastro", "Recomendação automática"],
-      cta: "Começar agora",
+      bullets: ["Sem cadastro", "Recomendação automática", "Pode ajustar depois"],
+      cta: "Descobrir agora",
       links: {
         seeExamples: "Ver exemplos primeiro" // rola para #demos
       }
