@@ -451,9 +451,9 @@ const Calculator30s = () => {
             <CardContent className="px-6 pb-6">
               {/* Intro Screen */}
               {state.step === 0 && (
-                <div className="md:grid md:grid-cols-12 md:gap-8 space-y-6 md:space-y-0">
-                  {/* Left Column - Text */}
-                  <div className="md:col-span-7 space-y-6">
+                <div className="flex flex-col md:grid md:grid-cols-12 md:gap-8 space-y-6 md:space-y-0">
+                  {/* Text Column - Left on Desktop */}
+                  <div className="order-2 md:order-1 md:col-span-7 space-y-6">
                     {/* Chips */}
                     <div className="flex flex-wrap gap-2">
                       {copy.calculator.intro.bullets.map((bullet, index) => (
@@ -503,12 +503,12 @@ const Calculator30s = () => {
                     </div>
                   </div>
 
-                  {/* Right Column - Image */}
-                  <div className="md:col-span-5 flex justify-center">
+                  {/* Image Column - Right on Desktop */}
+                  <div className="order-1 md:order-2 md:col-span-5 flex-shrink-0 flex justify-center">
                     <img
                       src="/lovable-uploads/5a727833-d262-47b7-8496-002dbd6525e7.png"
                       alt="Ilustração: celular com estimativa, WhatsApp e mapa"
-                      className="w-56 md:w-72 h-auto service-hero"
+                      className="block w-56 md:w-80 h-auto object-contain"
                       style={{
                         animation: 'floatY 6.5s ease-in-out infinite'
                       }}
