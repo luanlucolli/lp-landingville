@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ChevronRight, ChevronLeft, Calculator, Lightbulb, Clock, Shield, Target, MessageCircle, Globe, Grid3x3, MapPin, Image, Layers, Zap } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
+import '@dotlottie/player-component/dist/dotlottie-player.mjs';
 
 interface CalculatorState {
   step: number;
@@ -41,17 +42,17 @@ const Calculator30s = () => {
 
     // S1 - Objetivos principais
     const objectives = answers.s1;
-    
+
     if (objectives.includes("Ter um site oficial simples")) {
       siteScore += 3;
     }
-    
+
     const landingObjectives = [
       "Receber mais pedidos/contatos",
-      "Divulgar promoção/campanha", 
+      "Divulgar promoção/campanha",
       "Reabertura/inauguração"
     ];
-    
+
     landingObjectives.forEach(obj => {
       if (objectives.includes(obj)) {
         landingScore += 3;
@@ -71,7 +72,7 @@ const Calculator30s = () => {
     if (answers.s5.includes("Promo do dia")) {
       landingScore += 2;
     }
-    
+
     if (answers.s5.includes("Depoimentos simples")) {
       siteScore += 1;
     }
@@ -92,7 +93,7 @@ const Calculator30s = () => {
 
     // Add increments based on selections
     const increments = pricing.increments;
-    
+
     if (answers.s1.includes("Mostrar horário/endereço e rotas")) {
       const [minInc, maxInc] = increments["Mapa/rotas"];
       min += minInc;
@@ -150,13 +151,13 @@ const Calculator30s = () => {
 
   const handleStepAnswer = (option: string, isMultiSelect: boolean = false) => {
     const stepKey = `s${state.step}` as keyof typeof state.answers;
-    
+
     setState(prev => {
       const newAnswers = { ...prev.answers };
-      
+
       if (isMultiSelect) {
         const current = newAnswers[stepKey] || [];
-        
+
         // Step 5: Handle "Não" exclusivity
         if (state.step === 5) {
           if (option === "Não") {
@@ -215,10 +216,10 @@ const Calculator30s = () => {
     }));
   };
 
-  const buildReasons = (state: CalculatorState): Array<{title: string, text: string, icon: string}> => {
+  const buildReasons = (state: CalculatorState): Array<{ title: string, text: string, icon: string }> => {
     const reasons = [];
     const isLanding = state.recommendation === 'landing';
-    
+
     if (isLanding) {
       // Landing reasons
       if (state.answers.s1.some(obj => ['Divulgar promoção/campanha', 'Reabertura/inauguração', 'Receber mais pedidos/contatos'].includes(obj))) {
@@ -228,7 +229,7 @@ const Calculator30s = () => {
           icon: 'Target'
         });
       }
-      
+
       if (state.answers.s4?.[0] && ['Em 3 dias (noites)', 'Em 5 dias (úteis, à noite)'].includes(state.answers.s4[0])) {
         reasons.push({
           title: 'Vai ao ar rápido',
@@ -236,7 +237,7 @@ const Calculator30s = () => {
           icon: 'Clock'
         });
       }
-      
+
       if (state.answers.s2.some(canal => ['WhatsApp', 'Instagram'].includes(canal))) {
         reasons.push({
           title: 'Foco nos canais',
@@ -244,7 +245,7 @@ const Calculator30s = () => {
           icon: 'MessageCircle'
         });
       }
-      
+
       if (state.answers.s5.includes('Promo do dia')) {
         reasons.push({
           title: 'Promo do dia',
@@ -252,7 +253,7 @@ const Calculator30s = () => {
           icon: 'Lightbulb'
         });
       }
-      
+
       if (state.answers.s3.includes('Nenhum dos dois')) {
         reasons.push({
           title: 'Conteúdo enxuto',
@@ -269,7 +270,7 @@ const Calculator30s = () => {
           icon: 'Globe'
         });
       }
-      
+
       if (state.answers.s1.some(obj => ['Exibir cardápio/catálogo'].includes(obj)) || state.answers.s5.some(extra => ['Galeria simples', 'Depoimentos simples'].includes(extra))) {
         reasons.push({
           title: 'Mais conteúdo',
@@ -277,7 +278,7 @@ const Calculator30s = () => {
           icon: 'Grid3x3'
         });
       }
-      
+
       if (state.answers.s1.includes('Mostrar horário/endereço e rotas')) {
         reasons.push({
           title: 'Fácil de achar',
@@ -285,7 +286,7 @@ const Calculator30s = () => {
           icon: 'MapPin'
         });
       }
-      
+
       if (state.answers.s3.includes('Logo e Fotos') || state.answers.s3.includes('Logo') || state.answers.s3.includes('Fotos')) {
         reasons.push({
           title: 'Você já tem material',
@@ -293,7 +294,7 @@ const Calculator30s = () => {
           icon: 'Image'
         });
       }
-      
+
       if (state.answers.s2.length >= 3) {
         reasons.push({
           title: 'Vários canais',
@@ -302,7 +303,7 @@ const Calculator30s = () => {
         });
       }
     }
-    
+
     // Fill with general reasons if we have less than 3
     const generalReasons = isLanding ? [
       { title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.', icon: 'Clock' },
@@ -313,13 +314,13 @@ const Calculator30s = () => {
       { title: 'Fácil de achar', text: 'Informações fixas que ajudam a aparecer no Google.', icon: 'MapPin' },
       { title: 'Vários canais', text: 'Tudo num lugar só, com navegação simples.', icon: 'Layers' }
     ];
-    
+
     generalReasons.forEach(reason => {
       if (reasons.length < 3 && !reasons.some(r => r.title === reason.title)) {
         reasons.push(reason);
       }
     });
-    
+
     return reasons.slice(0, 3);
   };
 
@@ -331,7 +332,7 @@ const Calculator30s = () => {
       // Calculate final result
       const recommendation = calculateRecommendation(state.answers);
       const priceRange = calculatePrice(state.answers, recommendation);
-      
+
       setState(prev => ({
         ...prev,
         recommendation,
@@ -344,17 +345,17 @@ const Calculator30s = () => {
   const canProceed = () => {
     const stepKey = `s${state.step}` as keyof typeof state.answers;
     const hasAnswers = state.answers[stepKey]?.length > 0;
-    
+
     if (showFallback) {
       return state.fallback?.q1 && state.fallback?.q2;
     }
-    
+
     return hasAnswers;
   };
 
   const handleViewExample = () => {
     const tabKey = state.recommendation === 'landing' ? 'landing' : 'site';
-    
+
     // Scroll to demos with tab selection
     const demosSection = document.getElementById('demos');
     if (demosSection) {
@@ -393,9 +394,7 @@ const Calculator30s = () => {
   // Section title and subtitle (always stable)
   const renderSectionHeader = () => (
     <div className="text-center mb-12">
-      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-        <Calculator className="w-8 h-8 text-primary" />
-      </div>
+  
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
         {copy.calculator.title}
       </h2>
@@ -411,9 +410,8 @@ const Calculator30s = () => {
       {Array.from({ length: maxSteps + 1 }, (_, i) => (
         <div
           key={i}
-          className={`h-2 rounded-full transition-all duration-300 ${
-            i <= state.step ? 'w-8' : 'bg-muted w-4'
-          }`}
+          className={`h-2 rounded-full transition-all duration-300 ${i <= state.step ? 'w-8' : 'bg-muted w-4'
+            }`}
           style={{
             background: i <= state.step ? 'linear-gradient(135deg, #2B6FA5, #85BA62)' : undefined
           }}
@@ -428,12 +426,12 @@ const Calculator30s = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {renderSectionHeader()}
-          
+
           <Card className="overflow-hidden bg-[#F7FAFD] border-transparent" style={{
             backgroundImage: `
-              linear-gradient(#F7FAFD, #F7FAFD),
-              linear-gradient(135deg, #2B6FA5, #85BA62)
-            `,
+            linear-gradient(#F7FAFD, #F7FAFD),
+            linear-gradient(135deg, #2B6FA5, #85BA62)
+          `,
             backgroundOrigin: 'border-box',
             backgroundClip: 'padding-box, border-box',
             boxShadow: '0 8px 24px rgba(31,41,55,0.06)'
@@ -503,16 +501,30 @@ const Calculator30s = () => {
                     </div>
                   </div>
 
-                  {/* Image Column - Right on Desktop */}
+                  {/* Image Column -> Lottie Column - Right on Desktop */}
                   <div className="order-1 md:order-2 md:col-span-5 flex-shrink-0 flex justify-center">
-                    <img
-                      src="/lovable-uploads/5a727833-d262-47b7-8496-002dbd6525e7.png"
-                      alt="Ilustração: celular com estimativa, WhatsApp e mapa"
-                      className="block w-56 md:w-80 h-auto object-contain"
-                      style={{
-                        animation: 'floatY 6.5s ease-in-out infinite'
-                      }}
-                    />
+                    {/* runtime do dotLottie (mantenha se não importar no main.tsx) */}
+                    <script
+                      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                      type="module"
+                    ></script>
+
+                    {/* wrapper com altura fixa; o player é escalado sem mudar o layout */}
+                    <div className="relative h-[15rem] w-full md:w-auto flex items-center justify-center pb-12 md:pb-0">
+                      <div className="origin-center pointer-events-none scale-[1.8] md:scale-[2.8]">
+                        <dotlottie-player
+                          src="/lovable-uploads/calculator-intro5.lottie"
+                          autoplay
+                          loop
+                          background="transparent"
+                          aria-hidden="true"
+                          className="block"
+                          style={{ width: '15rem', height: '15rem' }}
+                        />
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
               )}
@@ -538,7 +550,7 @@ const Calculator30s = () => {
                         <div className="text-3xl font-bold text-foreground mb-3">
                           R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                         </div>
-                        
+
                         {/* Pills */}
                         <div className="flex gap-2 justify-center md:justify-start flex-wrap mb-4">
                           <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
@@ -569,7 +581,7 @@ const Calculator30s = () => {
                           Globe, Grid3x3, MapPin, Image, Layers
                         };
                         const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
-                        
+
                         return (
                           <div key={index} className="flex items-start gap-3">
                             <div className="flex-shrink-0 w-5 h-5 mt-0.5">
@@ -591,14 +603,14 @@ const Calculator30s = () => {
 
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button 
+                    <Button
                       onClick={() => setShowChannelSheet(true)}
                       className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold h-12"
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={handleViewExample}
                       variant="outline"
                       className="flex-1 font-semibold h-12"
@@ -637,16 +649,15 @@ const Calculator30s = () => {
                       const stepKey = `s${state.step}` as keyof typeof state.answers;
                       const isSelected = state.answers[stepKey]?.includes(option);
                       const isMultiSelect = state.step === 1 || state.step === 2 || state.step === 5;
-                      
+
                       return (
                         <button
                           key={option}
                           onClick={() => handleStepAnswer(option, isMultiSelect)}
-                          className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border transition-all duration-200 text-sm font-medium ${
-                            isSelected 
-                              ? 'bg-[rgba(43,111,165,0.90)] border-[#2B6FA5] text-white' 
-                              : 'border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)]'
-                          }`}
+                          className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border transition-all duration-200 text-sm font-medium ${isSelected
+                            ? 'bg-[rgba(43,111,165,0.90)] border-[#2B6FA5] text-white'
+                            : 'border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)]'
+                            }`}
                           aria-checked={isSelected}
                         >
                           {option}
@@ -659,7 +670,7 @@ const Calculator30s = () => {
                   {showFallback && state.step === 1 && (
                     <div className="mt-6 p-4 bg-muted/20 rounded-lg border">
                       <h5 className="font-medium text-foreground mb-4">Vamos te ajudar:</h5>
-                      
+
                       {/* Q1 */}
                       <div className="mb-4">
                         <p className="text-sm font-medium text-foreground mb-2">
@@ -670,11 +681,10 @@ const Calculator30s = () => {
                             <button
                               key={option}
                               onClick={() => handleFallbackAnswer('q1', option)}
-                              className={`h-10 px-3 rounded-lg border text-xs transition-all ${
-                                state.fallback?.q1 === option 
-                                  ? 'bg-primary/10 border-primary text-primary' 
-                                  : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
-                              }`}
+                              className={`h-10 px-3 rounded-lg border text-xs transition-all ${state.fallback?.q1 === option
+                                ? 'bg-primary/10 border-primary text-primary'
+                                : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
+                                }`}
                             >
                               {option}
                             </button>
@@ -692,11 +702,10 @@ const Calculator30s = () => {
                             <button
                               key={option}
                               onClick={() => handleFallbackAnswer('q2', option)}
-                              className={`h-10 px-2 rounded-lg border text-xs transition-all ${
-                                state.fallback?.q2 === option 
-                                  ? 'bg-primary/10 border-primary text-primary' 
-                                  : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
-                              }`}
+                              className={`h-10 px-2 rounded-lg border text-xs transition-all ${state.fallback?.q2 === option
+                                ? 'bg-primary/10 border-primary text-primary'
+                                : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
+                                }`}
                             >
                               {option}
                             </button>
@@ -730,7 +739,7 @@ const Calculator30s = () => {
                   <ChevronLeft className="w-4 h-4 mr-2" />
                   Voltar
                 </Button>
-                
+
                 <Button
                   onClick={nextStep}
                   disabled={!canProceed()}
@@ -746,7 +755,7 @@ const Calculator30s = () => {
         </div>
       </div>
 
-      <ChannelSheet 
+      <ChannelSheet
         open={showChannelSheet}
         onOpenChange={setShowChannelSheet}
         recommendation={state.recommendation}
@@ -754,6 +763,7 @@ const Calculator30s = () => {
       />
     </section>
   );
+
 };
 
 export default Calculator30s;
