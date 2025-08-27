@@ -47,12 +47,12 @@ const ServicesSection = () => {
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 text-left">
+                    <h3 className="service-title text-lg md:text-xl text-foreground mb-2 text-left">
                       {service.name}
                     </h3>
 
                     <p
-                      className={`text-muted-foreground leading-relaxed text-sm md:text-base text-left ${
+                      className={`service-desc text-sm md:text-base text-muted-foreground text-left ${
                         hasCTA ? 'mb-4' : 'mb-0'
                       }`}
                     >

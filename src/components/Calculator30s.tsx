@@ -427,15 +427,7 @@ const Calculator30s = () => {
         <div className="max-w-6xl mx-auto">
           {renderSectionHeader()}
 
-          <Card className="overflow-hidden bg-[#F7FAFD] border-transparent" style={{
-            backgroundImage: `
-            linear-gradient(#F7FAFD, #F7FAFD),
-            linear-gradient(135deg, #2B6FA5, #85BA62)
-          `,
-            backgroundOrigin: 'border-box',
-            backgroundClip: 'padding-box, border-box',
-            boxShadow: '0 8px 24px rgba(31,41,55,0.06)'
-          }}>
+          <Card className="overflow-hidden card-elevated">
             {/* Card Header with Stepper */}
             <CardHeader className="pb-4">
               {renderStepper()}

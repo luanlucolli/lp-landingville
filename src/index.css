@@ -296,29 +296,48 @@ All colors MUST be HSL. Semantic tokens for consistency.
     animation: float 6s ease-in-out infinite;
   }
 
-  /* Service card styles matching calculator pattern */
+  /* Elevated card style for Calculator and Services */
+  .card-elevated {
+    background: #F7FAFD;
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+
+  .card-elevated:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(31, 41, 55, 0.12), 0 4px 12px rgba(31, 41, 55, 0.08);
+  }
+
+  /* Service card - using card-elevated pattern */
   .service-card {
     background: #F7FAFD;
-    border: 1px solid transparent;
-    background-image:
-      linear-gradient(#F7FAFD, #F7FAFD),
-      linear-gradient(135deg, #2B6FA5, #85BA62);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    box-shadow: 0 8px 24px rgba(31, 41, 55, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.04);
     border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
   }
 
   .service-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(31, 41, 55, 0.08);
+    box-shadow: 0 16px 40px rgba(31, 41, 55, 0.12), 0 4px 12px rgba(31, 41, 55, 0.08);
   }
 
-  /* Service hero image animation */
+  /* Service hero image - NO animation */
   .service-hero {
-    animation: floatY 6.5s ease-in-out infinite;
-    transform-origin: 50% 80%;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Service content hierarchy */
+  .service-title {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    line-height: 1.65;
   }
 
   @keyframes floatY {
@@ -350,8 +369,7 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .animate-float,
-    .service-hero {
+    .animate-float {
       animation: none;
     }
   }
