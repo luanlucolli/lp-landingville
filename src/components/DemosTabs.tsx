@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Check } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
 
 const DemosTabs = () => {
   const [activeTab, setActiveTab] = useState('landing');
   const [showContactModal, setShowContactModal] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  const startXRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Listen for tab selection from calculator
@@ -24,6 +27,112 @@ const DemosTabs = () => {
 
   const tabs = copy.demos.tabs;
   const currentTab = tabs.find(tab => tab.key === activeTab) || tabs[0];
+  const images = currentTab.images?.length ? currentTab.images : (currentTab.image ? [currentTab.image] : []);
+  const totalImages = images.length;
+
+  // Reset image index when tab changes
+  useEffect(() => {
+    setImageIndex(0);
+  }, [activeTab]);
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (totalImages <= 1) return;
+
+    const startAutoplay = () => {
+      autoplayRef.current = setInterval(() => {
+        setImageIndex(prev => (prev + 1) % totalImages);
+      }, 5000);
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+        autoplayRef.current = null;
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    };
+
+    startAutoplay();
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      stopAutoplay();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [totalImages]);
+
+  // Navigation handlers
+  const goToPrevious = () => {
+    setImageIndex(prev => (prev - 1 + totalImages) % totalImages);
+  };
+
+  const goToNext = () => {
+    setImageIndex(prev => (prev + 1) % totalImages);
+  };
+
+  const goToSlide = (index: number) => {
+    setImageIndex(index);
+  };
+
+  // Swipe handlers
+  const handlePointerDown = (e: React.PointerEvent) => {
+    startXRef.current = e.clientX;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    
+    // Pause autoplay on interaction
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (startXRef.current === null) return;
+    
+    const deltaX = e.clientX - startXRef.current;
+    if (Math.abs(deltaX) > 40) {
+      if (deltaX > 0) {
+        goToPrevious();
+      } else {
+        goToNext();
+      }
+    }
+    startXRef.current = null;
+  };
+
+  // Keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goToPrevious();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      goToNext();
+    }
+  };
+
+  const pauseAutoplay = () => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
+    }
+  };
+
+  const resumeAutoplay = () => {
+    if (totalImages > 1 && !autoplayRef.current) {
+      autoplayRef.current = setInterval(() => {
+        setImageIndex(prev => (prev + 1) % totalImages);
+      }, 5000);
+    }
+  };
 
   return (
     <section className="py-20 bg-muted/20" id="demos">
@@ -62,37 +171,77 @@ const DemosTabs = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Image Container */}
             <div className="order-2 lg:order-1">
-              <Card className="p-8 bg-gradient-to-br from-background to-primary/5 border-primary/20">
-                <div className="aspect-video bg-muted/50 rounded-xl flex items-center justify-center mb-6 relative overflow-hidden">
-                  {/* Placeholder for demo image */}
-                  <div className="text-center text-muted-foreground">
-                    <div className="w-20 h-20 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl">📱</span>
-                    </div>
-                    <p className="font-medium">
-                      {currentTab.title} Demo
-                    </p>
-                    <p className="text-sm mt-2 opacity-75">
-                      Desktop + Mobile Preview
-                    </p>
-                  </div>
-                  
-                  {/* Image will be loaded here when available */}
-                  <img
-                    src={currentTab.image}
-                    alt={`Exemplo de ${currentTab.title} - visual desktop e mobile lado a lado (demonstração).`}
-                    className="absolute inset-0 w-full h-full object-contain opacity-0"
-                    loading="lazy"
-                    onLoad={(e) => {
-                      e.currentTarget.style.opacity = '1';
-                    }}
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
+              <Card className="card-elevated p-6 md:p-8">
+                <div 
+                  className="relative aspect-video rounded-xl overflow-hidden bg-muted/30"
+                  aria-roledescription="carousel"
+                  aria-live="polite"
+                  tabIndex={0}
+                  onKeyDown={handleKeyDown}
+                  onPointerDown={handlePointerDown}
+                  onPointerUp={handlePointerUp}
+                  onMouseEnter={pauseAutoplay}
+                  onMouseLeave={resumeAutoplay}
+                  onFocus={pauseAutoplay}
+                  onBlur={resumeAutoplay}
+                >
+                  {/* Image Slides */}
+                  {images.map((src, index) => (
+                    <img
+                      key={`${src}-${index}`}
+                      src={src}
+                      alt={`Exemplo de ${currentTab.title} — ${index + 1} de ${totalImages}`}
+                      className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+                        index === imageIndex ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      loading="lazy"
+                      onLoad={(e) => {
+                        e.currentTarget.style.opacity = index === imageIndex ? '1' : '0';
+                      }}
+                    />
+                  ))}
+
+                  {/* Navigation Controls */}
+                  {totalImages > 1 && (
+                    <>
+                      <button
+                        onClick={goToPrevious}
+                        aria-label="Anterior"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-background/70 backdrop-blur p-2 shadow hover:bg-background transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
+                        style={{ opacity: 1 }}
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      
+                      <button
+                        onClick={goToNext}
+                        aria-label="Próximo"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-background/70 backdrop-blur p-2 shadow hover:bg-background transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
+                        style={{ opacity: 1 }}
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+
+                      {/* Dots Indicator */}
+                      <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                        {images.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => goToSlide(index)}
+                            aria-label={`Ir para imagem ${index + 1}`}
+                            className={`h-2.5 w-2.5 rounded-full transition-all ${
+                              index === imageIndex 
+                                ? 'bg-primary' 
+                                : 'bg-foreground/30 hover:bg-foreground/60'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
                 
-                <div className="text-center">
+                <div className="text-center mt-5">
                   <Badge variant="secondary" className="mb-2">
                     Exemplo de Demonstração
                   </Badge>
