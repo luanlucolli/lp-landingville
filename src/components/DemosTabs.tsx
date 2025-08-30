@@ -1,18 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Check } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
 
 const DemosTabs = () => {
   const [activeTab, setActiveTab] = useState('landing');
   const [showContactModal, setShowContactModal] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const startXRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Listen for tab selection from calculator
     const handleTabSelect = (event: CustomEvent) => {
       setActiveTab(event.detail);
+      setActiveIndex(0); // Reset carousel when tab changes
     };
 
     window.addEventListener('selectDemoTab', handleTabSelect as EventListener);
@@ -24,6 +29,88 @@ const DemosTabs = () => {
 
   const tabs = copy.demos.tabs;
   const currentTab = tabs.find(tab => tab.key === activeTab) || tabs[0];
+  const images = currentTab.images?.length ? currentTab.images : (currentTab.image ? [currentTab.image] : []);
+  const totalSlides = images.length;
+
+  // Autoplay logic
+  useEffect(() => {
+    if (totalSlides <= 1 || isPaused) return;
+    
+    const play = () => {
+      intervalRef.current = setInterval(() => {
+        setActiveIndex(prev => (prev + 1) % totalSlides);
+      }, 5000);
+    };
+
+    play();
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
+      } else if (!isPaused) {
+        play();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [totalSlides, isPaused, activeTab]);
+
+  // Reset carousel when tab changes
+  useEffect(() => {
+    setActiveIndex(0);
+    setIsPaused(false);
+  }, [activeTab]);
+
+  const goToPrev = () => {
+    setActiveIndex(prev => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const goToNext = () => {
+    setActiveIndex(prev => (prev + 1) % totalSlides);
+  };
+
+  const goToSlide = (index: number) => {
+    setActiveIndex(index);
+  };
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goToPrev();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      goToNext();
+    }
+  };
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    startXRef.current = e.clientX;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (startXRef.current === null) return;
+    const deltaX = e.clientX - startXRef.current;
+    if (Math.abs(deltaX) > 40) {
+      deltaX > 0 ? goToPrev() : goToNext();
+    }
+    startXRef.current = null;
+  };
+
 
   return (
     <section className="py-20 bg-muted/20" id="demos">
@@ -62,34 +149,69 @@ const DemosTabs = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Image Container */}
             <div className="order-2 lg:order-1">
-              <Card className="p-8 bg-gradient-to-br from-background to-primary/5 border-primary/20">
-                <div className="aspect-video bg-muted/50 rounded-xl flex items-center justify-center mb-6 relative overflow-hidden">
-                  {/* Placeholder for demo image */}
-                  <div className="text-center text-muted-foreground">
-                    <div className="w-20 h-20 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl">📱</span>
-                    </div>
-                    <p className="font-medium">
-                      {currentTab.title} Demo
-                    </p>
-                    <p className="text-sm mt-2 opacity-75">
-                      Desktop + Mobile Preview
-                    </p>
-                  </div>
-                  
-                  {/* Image will be loaded here when available */}
-                  <img
-                    src={currentTab.image}
-                    alt={`Exemplo de ${currentTab.title} - visual desktop e mobile lado a lado (demonstração).`}
-                    className="absolute inset-0 w-full h-full object-contain opacity-0"
-                    loading="lazy"
-                    onLoad={(e) => {
-                      e.currentTarget.style.opacity = '1';
-                    }}
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
+              <Card className="card-elevated p-6 md:p-8">
+                <div 
+                  className="relative aspect-video rounded-xl overflow-hidden bg-muted/30 mb-6"
+                  role="region"
+                  aria-roledescription="carousel"
+                  aria-live="polite"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onKeyDown={handleKeyDown}
+                  onPointerDown={handlePointerDown}
+                  onPointerUp={handlePointerUp}
+                  tabIndex={0}
+                >
+                  {/* Slides */}
+                  {images.map((src, index) => (
+                    <img
+                      key={`${src}-${index}`}
+                      src={src}
+                      alt={`Exemplo de ${currentTab.title} — visual desktop e mobile`}
+                      className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+                        index === activeIndex ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ))}
+
+                  {/* Navigation Arrows (Desktop) */}
+                  {totalSlides > 1 && (
+                    <>
+                      <button
+                        onClick={goToPrev}
+                        aria-label="Slide anterior"
+                        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={goToNext}
+                        aria-label="Próximo slide"
+                        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+
+                      {/* Dots Navigation */}
+                      <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                        {images.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => goToSlide(index)}
+                            aria-label={`Ir para slide ${index + 1}`}
+                            aria-current={index === activeIndex ? 'true' : 'false'}
+                            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                              index === activeIndex 
+                                ? 'bg-foreground/70' 
+                                : 'bg-foreground/25 hover:bg-foreground/50'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
                 
                 <div className="text-center">

@@ -170,12 +170,14 @@ services: {
         key: "landing",
         title: "Landing Page",
         image: "/demo-landing-combo.png",
+        images: ["/demo-landing-combo-1.webp", "/demo-landing-combo-2.webp"],
         bullets: ["Campanhas e ações pontuais", "CTA claro", "Medir resultado é simples"]
       },
       {
         key: "site",
         title: "Site",
         image: "/demo-site-combo.png",
+        images: ["/demo-site-combo-1.webp", "/demo-site-combo-2.webp"],
         bullets: ["Presença contínua", "Navegação fácil", "Base para SEO local"]
       }
     ],
