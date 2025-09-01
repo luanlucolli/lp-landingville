@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, Info } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
 
@@ -250,46 +250,98 @@ const DemosTabs = () => {
             {/* Content */}
             <div className="order-1 lg:order-2">
               <div className="space-y-6">
+                {/* Title and one-liner */}
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                     {currentTab.title}
                   </h3>
-
-                  <div className="space-y-4">
-                    {currentTab.bullets.map((bullet, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-4 h-4 text-secondary" />
-                        </div>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {bullet}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                  {currentTab.oneLiner && (
+                    <p className="text-sm text-muted-foreground mb-6">
+                      {currentTab.oneLiner}
+                    </p>
+                  )}
                 </div>
 
-                {/* Additional Context */}
-                <Card className="p-6 bg-secondary/5 border-secondary/20">
-                  <h4 className="font-semibold text-foreground mb-3">
-                    {currentTab.key === 'landing' ? 'Ideal para:' : 'Perfeito quando:'}
-                  </h4>
-                  <div className="text-sm text-muted-foreground space-y-1">
-                    {currentTab.key === 'landing' ? (
-                      <>
-                        <p>• Você tem uma promoção ou campanha específica</p>
-                        <p>• Quer captar contatos rapidamente</p>
-                        <p>• Precisa medir resultados de forma simples</p>
-                      </>
-                    ) : (
-                      <>
-                        <p>• Você quer uma presença digital completa</p>
-                        <p>• Clientes buscam informações sobre seu negócio</p>
-                        <p>• Quer aparecer melhor no Google</p>
-                      </>
-                    )}
+                {/* Thermometer - Conversion vs Information */}
+                {currentTab.thermo && (
+                  <div className="space-y-4">
+                    {/* Conversion meter */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium text-foreground">Conversão</span>
+                        <span className="text-xs text-muted-foreground">{Math.round(currentTab.thermo.conversion * 100)}%</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-primary to-primary/80 rounded-full transition-all duration-300 ease-out"
+                          style={{ width: `${currentTab.thermo.conversion * 100}%` }}
+                          role="meter"
+                          aria-valuenow={currentTab.thermo.conversion * 100}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                          aria-label="Conversão"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Information meter */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium text-foreground">Informação</span>
+                        <span className="text-xs text-muted-foreground">{Math.round(currentTab.thermo.information * 100)}%</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-secondary to-secondary/80 rounded-full transition-all duration-300 ease-out"
+                          style={{ width: `${currentTab.thermo.information * 100}%` }}
+                          role="meter"
+                          aria-valuenow={currentTab.thermo.information * 100}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                          aria-label="Informação"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </Card>
+                )}
+
+                {/* Chips - Features */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {currentTab.bullets?.map((bullet, index) => (
+                    <div key={index} className="flex items-center gap-2 bg-secondary/5 rounded-lg px-3 py-2 h-10">
+                      <Check className="w-4 h-4 text-secondary flex-shrink-0" />
+                      <span className="text-xs font-medium text-foreground truncate">
+                        {bullet}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Badges - Ideal for */}
+                {currentTab.helperTitle && currentTab.helperPoints && (
+                  <div className="space-y-3">
+                    <h4 className="text-sm font-semibold text-foreground">
+                      {currentTab.helperTitle}
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {currentTab.helperPoints.map((point, index) => (
+                        <Badge key={index} variant="secondary" className="text-xs px-2 py-1">
+                          {point}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Tip */}
+                {currentTab.tip && (
+                  <div className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
+                    <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      <span className="font-medium">Dica:</span> {currentTab.tip}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

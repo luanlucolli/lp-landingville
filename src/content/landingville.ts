@@ -170,39 +170,43 @@ export const copy = {
       {
         key: "landing",
         title: "Landing Page",
+        oneLiner: "Página única, feita para converter.",
+        thermo: { conversion: 0.85, information: 0.25 },
         // suas imagens atuais
         images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
         // bullets que aparecem ao lado (checklist curto e direto)
         bullets: [
-          "Foco em UMA oferta (promoção, lançamento, agendamento)",
-          "Sem menu/header — zero distração, CTA em destaque",
-          "Feita para tráfego pago: clique, lead e custo por resultado"
+          "Uma oferta, um objetivo",
+          "CTA em destaque",
+          "Mede resultado fácil"
         ],
-        // textos para a caixinha “contexto” (usado no passo 2)
-        helperTitle: "Escolha uma Landing Page se você quer:",
+        // textos para a caixinha "contexto" (usado no passo 2)
+        helperTitle: "Ideal para:",
         helperPoints: [
-          "Vender algo específico com urgência",
-          "Gerar leads agora (WhatsApp / formulário)",
-          "Colocar no ar rápido e testar criativos"
+          "Promoção rápida",
+          "Gerar leads",
+          "Validar ideia"
         ],
-        tip: "Use a Landing como “página de campanha”. Se precisar explicar muitos serviços, some um Site depois."
+        tip: "Página sem menu: zero distração."
       },
       {
         key: "site",
         title: "Site",
+        oneLiner: "Vitrine completa com navegação e SEO.",
+        thermo: { conversion: 0.45, information: 0.90 },
         images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
         bullets: [
-          "Vitrine completa com várias páginas (Home, Sobre, Serviços, Contato)",
-          "Navegação clara + base para SEO local e blog",
-          "Escalável: adiciona páginas, integrações e conteúdo"
+          "Várias páginas",
+          "Navegação clara",
+          "Base para SEO"
         ],
-        helperTitle: "Escolha um Site se você quer:",
+        helperTitle: "Ideal para:",
         helperPoints: [
-          "Ser encontrado no Google por mais termos",
-          "Explicar bem o que faz, com abas e detalhes",
-          "Construir presença sólida e crescer ao longo do tempo"
+          "Explicar serviços",
+          "Ser achado no Google",
+          "Escalar conteúdo"
         ],
-        tip: "Se for rodar uma campanha específica, some uma Landing à sua estrutura de Site."
+        tip: "Estrutura para longo prazo."
       }
     ],
     // CTA da seção DEMOS deve ABRIR o modal de contato (NÃO voltar para calculadora)
