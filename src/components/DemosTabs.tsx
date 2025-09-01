@@ -5,37 +5,41 @@ import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
 
+const SWIPE_THRESHOLD = 40;
+
 const DemosTabs = () => {
   const [activeTab, setActiveTab] = useState('landing');
   const [showContactModal, setShowContactModal] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // refs p/ swipe
   const startXRef = useRef<number | null>(null);
+  const startYRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Listen for tab selection from calculator
     const handleTabSelect = (event: CustomEvent) => {
       setActiveTab(event.detail);
-      setActiveIndex(0); // Reset carousel when tab changes
+      setActiveIndex(0); // Reset carousel quando troca a aba
     };
 
     window.addEventListener('selectDemoTab', handleTabSelect as EventListener);
-    
-    return () => {
-      window.removeEventListener('selectDemoTab', handleTabSelect as EventListener);
-    };
+    return () => window.removeEventListener('selectDemoTab', handleTabSelect as EventListener);
   }, []);
 
   const tabs = copy.demos.tabs;
   const currentTab = tabs.find(tab => tab.key === activeTab) || tabs[0];
-  const images = currentTab.images?.length ? currentTab.images : (currentTab.image ? [currentTab.image] : []);
+
+  // ❗️Sem fallback para `image` (não existe mais no conteúdo)
+  const images = Array.isArray(currentTab.images) && currentTab.images.length > 0 ? currentTab.images : [];
   const totalSlides = images.length;
 
-  // Autoplay logic
+  // Autoplay
   useEffect(() => {
     if (totalSlides <= 1 || isPaused) return;
-    
+
     const play = () => {
       intervalRef.current = setInterval(() => {
         setActiveIndex(prev => (prev + 1) % totalSlides);
@@ -56,7 +60,6 @@ const DemosTabs = () => {
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
-
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -66,23 +69,15 @@ const DemosTabs = () => {
     };
   }, [totalSlides, isPaused, activeTab]);
 
-  // Reset carousel when tab changes
+  // Reset ao trocar de aba
   useEffect(() => {
     setActiveIndex(0);
     setIsPaused(false);
   }, [activeTab]);
 
-  const goToPrev = () => {
-    setActiveIndex(prev => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  const goToNext = () => {
-    setActiveIndex(prev => (prev + 1) % totalSlides);
-  };
-
-  const goToSlide = (index: number) => {
-    setActiveIndex(index);
-  };
+  const goToPrev = () => setActiveIndex(prev => (prev - 1 + totalSlides) % totalSlides);
+  const goToNext = () => setActiveIndex(prev => (prev + 1) % totalSlides);
+  const goToSlide = (index: number) => setActiveIndex(index);
 
   const handleMouseEnter = () => setIsPaused(true);
   const handleMouseLeave = () => setIsPaused(false);
@@ -97,20 +92,42 @@ const DemosTabs = () => {
     }
   };
 
+  // Swipe: só em touch/caneta — não interfere no desktop
   const handlePointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') return;
     startXRef.current = e.clientX;
+    startYRef.current = e.clientY;
+    setIsPaused(true);
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
-  const handlePointerUp = (e: React.PointerEvent) => {
-    if (startXRef.current === null) return;
-    const deltaX = e.clientX - startXRef.current;
-    if (Math.abs(deltaX) > 40) {
-      deltaX > 0 ? goToPrev() : goToNext();
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') return;
+    if (startXRef.current === null || startYRef.current === null) return;
+
+    const dx = e.clientX - startXRef.current;
+    const dy = e.clientY - startYRef.current;
+
+    if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+      dx > 0 ? goToPrev() : goToNext();
+      // evita múltiplos disparos
+      startXRef.current = null;
+      startYRef.current = null;
     }
-    startXRef.current = null;
   };
 
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') return;
+    startXRef.current = null;
+    startYRef.current = null;
+    setIsPaused(false);
+  };
+
+  const handlePointerCancel = () => {
+    startXRef.current = null;
+    startYRef.current = null;
+    setIsPaused(false);
+  };
 
   return (
     <section className="py-20 bg-muted/20" id="demos">
@@ -133,11 +150,10 @@ const DemosTabs = () => {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all ${
-                    activeTab === tab.key
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all ${activeTab === tab.key
                       ? 'bg-primary text-white shadow-md'
                       : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                    }`}
                 >
                   {tab.title}
                 </button>
@@ -150,8 +166,8 @@ const DemosTabs = () => {
             {/* Image Container */}
             <div className="order-2 lg:order-1">
               <Card className="card-elevated p-6 md:p-8">
-                <div 
-                  className="relative aspect-video rounded-xl overflow-hidden bg-muted/30 mb-6"
+                <div
+                  className="relative aspect-video rounded-xl overflow-hidden bg-transparent mb-6 select-none touch-pan-y"
                   role="region"
                   aria-roledescription="carousel"
                   aria-live="polite"
@@ -159,7 +175,9 @@ const DemosTabs = () => {
                   onMouseLeave={handleMouseLeave}
                   onKeyDown={handleKeyDown}
                   onPointerDown={handlePointerDown}
+                  onPointerMove={handlePointerMove}
                   onPointerUp={handlePointerUp}
+                  onPointerCancel={handlePointerCancel}
                   tabIndex={0}
                 >
                   {/* Slides */}
@@ -168,9 +186,8 @@ const DemosTabs = () => {
                       key={`${src}-${index}`}
                       src={src}
                       alt={`Exemplo de ${currentTab.title} — visual desktop e mobile`}
-                      className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
-                        index === activeIndex ? 'opacity-100' : 'opacity-0'
-                      }`}
+                      className={`absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 ${index === activeIndex ? 'opacity-100' : 'opacity-0'
+                        }`}
                       loading="lazy"
                       decoding="async"
                     />
@@ -182,38 +199,43 @@ const DemosTabs = () => {
                       <button
                         onClick={goToPrev}
                         aria-label="Slide anterior"
-                        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors"
+                        data-carousel-control
+                        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors z-10"
                       >
                         <ChevronLeft className="w-5 h-5" />
                       </button>
                       <button
                         onClick={goToNext}
                         aria-label="Próximo slide"
-                        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors"
+                        data-carousel-control
+                        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors z-10"
                       >
                         <ChevronRight className="w-5 h-5" />
                       </button>
 
                       {/* Dots Navigation */}
-                      <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                      <div
+                        className="absolute bottom-1 left-0 right-0 flex justify-center gap-2 z-10"
+                        data-carousel-dots
+                      >
                         {images.map((_, index) => (
                           <button
                             key={index}
                             onClick={() => goToSlide(index)}
                             aria-label={`Ir para slide ${index + 1}`}
                             aria-current={index === activeIndex ? 'true' : 'false'}
-                            className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                              index === activeIndex 
-                                ? 'bg-foreground/70' 
+                            data-carousel-control
+                            className={`w-[6px] h-[6px] rounded-full p-0 leading-none !min-w-0 !min-h-0 transition-colors ${index === activeIndex
+                                ? 'bg-foreground/70'
                                 : 'bg-foreground/25 hover:bg-foreground/50'
-                            }`}
+                              }`}
                           />
                         ))}
                       </div>
                     </>
                   )}
                 </div>
-                
+
                 <div className="text-center">
                   <Badge variant="secondary" className="mb-2">
                     Exemplo de Demonstração
@@ -232,7 +254,7 @@ const DemosTabs = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                     {currentTab.title}
                   </h3>
-                  
+
                   <div className="space-y-4">
                     {currentTab.bullets.map((bullet, index) => (
                       <div key={index} className="flex items-start gap-3">
@@ -289,7 +311,7 @@ const DemosTabs = () => {
         </div>
       </div>
 
-      <ChannelSheet 
+      <ChannelSheet
         open={showContactModal}
         onOpenChange={setShowContactModal}
       />

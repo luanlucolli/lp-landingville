@@ -64,7 +64,7 @@ export const copy = {
         hint: "Posicionaremos seus botões principais nesses canais.",
         options: [
           "Instagram",
-          "WhatsApp", 
+          "WhatsApp",
           "Facebook",
           "Telefone",
           "E-mail",
@@ -128,63 +128,87 @@ export const copy = {
   },
 
   // "Serviços" permanece como está no layout (3 cards). Caso necessário, consuma estes textos.
-services: {
-  id: "services",
-  title: "Nossos serviços",
-  subtitle: "Escolha o que combina com a sua necessidade agora.",
-  items: [
-    {
-      key: "landing",
-      name: "Landing Page",
-      desc: "Uma página única para um objetivo específico: divulgar promoção, reabertura ou captar pedidos. Ideal para ações rápidas.",
-      cta: "Quero uma Landing Page",
-      img: "/lovable-uploads/servicolanding.png",
-      alt: "Ícone de Landing Page"
-    },
-    {
-      key: "site",
-      name: "Site",
-      desc: "Presença completa e estável com seções principais (Início, Sobre, Serviços/Produtos e Contato). Bom para aparecer no Google e orientar quem pesquisa.",
-      cta: "Quero um Site",
-      img: "/lovable-uploads/servicosite.png",
-      alt: "Ícone de Site"
-    },
-    {
-      key: "care",
-      name: "Manutenção",
-      desc: "Atualizações de textos, preços e fotos, pequenos ajustes visuais e suporte contínuo. Podemos combinar um plano mensal.",
-      cta: null,
-      img: "/lovable-uploads/servicomanutencao.png",
-      alt: "Ícone de Manutenção"
-    }
-  ]
-},
+  services: {
+    id: "services",
+    title: "Nossos serviços",
+    subtitle: "Escolha o que combina com a sua necessidade agora.",
+    items: [
+      {
+        key: "landing",
+        name: "Landing Page",
+        desc: "Uma página única para um objetivo específico: divulgar promoção, reabertura ou captar pedidos. Ideal para ações rápidas.",
+        cta: "Quero uma Landing Page",
+        img: "/lovable-uploads/servicolanding.png",
+        alt: "Ícone de Landing Page"
+      },
+      {
+        key: "site",
+        name: "Site",
+        desc: "Presença completa e estável com seções principais (Início, Sobre, Serviços/Produtos e Contato). Bom para aparecer no Google e orientar quem pesquisa.",
+        cta: "Quero um Site",
+        img: "/lovable-uploads/servicosite.png",
+        alt: "Ícone de Site"
+      },
+      {
+        key: "care",
+        name: "Manutenção",
+        desc: "Atualizações de textos, preços e fotos, pequenos ajustes visuais e suporte contínuo. Podemos combinar um plano mensal.",
+        cta: null,
+        img: "/lovable-uploads/servicomanutencao.png",
+        alt: "Ícone de Manutenção"
+      }
+    ]
+  },
 
 
   // DEMOS em tabs (Landing/Site). Reservar espaço para 1 imagem por tab (desktop+mobile combinados).
   demos: {
     id: "demos",
-    title: "Veja na prática",
+    title: "Landing Page x Site: qual faz mais sentido para você?",
+    note: "Compare os exemplos: a Landing é uma página única focada em conversão; o Site tem abas e navegação para apresentar seu negócio por completo.",
     tabs: [
       {
         key: "landing",
         title: "Landing Page",
-        image: "/demo-landing-combo.png",
-        images: ["/demo-landing-combo-1.webp", "/demo-landing-combo-2.webp"],
-        bullets: ["Campanhas e ações pontuais", "CTA claro", "Medir resultado é simples"]
+        // suas imagens atuais
+        images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
+        // bullets que aparecem ao lado (checklist curto e direto)
+        bullets: [
+          "Foco em UMA oferta (promoção, lançamento, agendamento)",
+          "Sem menu/header — zero distração, CTA em destaque",
+          "Feita para tráfego pago: clique, lead e custo por resultado"
+        ],
+        // textos para a caixinha “contexto” (usado no passo 2)
+        helperTitle: "Escolha uma Landing Page se você quer:",
+        helperPoints: [
+          "Vender algo específico com urgência",
+          "Gerar leads agora (WhatsApp / formulário)",
+          "Colocar no ar rápido e testar criativos"
+        ],
+        tip: "Use a Landing como “página de campanha”. Se precisar explicar muitos serviços, some um Site depois."
       },
       {
         key: "site",
         title: "Site",
-        image: "/demo-site-combo.png",
-        images: ["/demo-site-combo-1.webp", "/demo-site-combo-2.webp"],
-        bullets: ["Presença contínua", "Navegação fácil", "Base para SEO local"]
+        images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
+        bullets: [
+          "Vitrine completa com várias páginas (Home, Sobre, Serviços, Contato)",
+          "Navegação clara + base para SEO local e blog",
+          "Escalável: adiciona páginas, integrações e conteúdo"
+        ],
+        helperTitle: "Escolha um Site se você quer:",
+        helperPoints: [
+          "Ser encontrado no Google por mais termos",
+          "Explicar bem o que faz, com abas e detalhes",
+          "Construir presença sólida e crescer ao longo do tempo"
+        ],
+        tip: "Se for rodar uma campanha específica, some uma Landing à sua estrutura de Site."
       }
     ],
-    note: "Exemplos de demonstração.",
     // CTA da seção DEMOS deve ABRIR o modal de contato (NÃO voltar para calculadora)
     cta: "Falar com a Landingville"
   },
+
 
   faq: {
     id: "faq",
