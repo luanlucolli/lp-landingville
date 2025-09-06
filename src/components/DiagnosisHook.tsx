@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import '@dotlottie/player-component/dist/dotlottie-player.mjs';
 
 const DiagnosisHook = () => {
   return (
@@ -52,10 +53,26 @@ const DiagnosisHook = () => {
 
             {/* Right Column - Visual Container */}
             <div className="order-1 lg:order-2 flex items-center justify-center">
-              <div className="w-full max-w-md aspect-square bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl border border-border/30 flex items-center justify-center">
-                {/* Container ready for Lottie animation */}
-                <div className="text-muted-foreground/40 text-sm text-center">
-                  Container para animação Lottie
+              <div className="w-full max-w-md aspect-square bg-gradient border-none from-primary/5 to-secondary/5 rounded-2xl border border-border/30 flex items-center justify-center">
+                {/* runtime do dotLottie (mantenha se não importar globalmente) */}
+                <script
+                  src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                  type="module"
+                ></script>
+
+                {/* Lottie (mesma abordagem do outro arquivo) */}
+                <div className="relative h-[15rem] w-full md:w-auto flex items-center justify-center">
+                  <div className="origin-center pointer-events-none scale-[1.8] md:scale-[2.2]">
+                    <dotlottie-player
+                      src="/lovable-uploads/diagnosticohook.lottie"
+                      autoplay
+                      loop
+                      background="transparent"
+                      aria-hidden="true"
+                      className="block"
+                      style={{ width: '15rem', height: '15rem' }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
