@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
-import DiagnosticHookSection from '@/components/DiagnosticHookSection';
+import Calculator30s from '@/components/Calculator30s';
 import ServicesSection from '@/components/ServicesSection';
 import DemosTabs from '@/components/DemosTabs';
 import FAQSection from '@/components/FAQSection';
@@ -28,7 +28,7 @@ const Index = () => {
       {/* Main content */}
       <main>
         <HeroSection />
-        <DiagnosticHookSection />
+        <Calculator30s />
         <div id="services">
           <ServicesSection />
         </div>
