@@ -438,12 +438,34 @@ All colors MUST be HSL. Semantic tokens for consistency.
     box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
   }
 
+  /* Benefits strip marquee animation */
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+  
+  .benefits-strip:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-float {
       animation: none;
     }
     .slide-fade {
       transition: none !important;
+    }
+    .animate-marquee {
+      animation: none !important;
+      justify-content: center;
     }
   }
 }

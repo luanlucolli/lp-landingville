@@ -1,6 +1,7 @@
 import { Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import copy from '@/content/landingville';
+import HeroBadge from './HeroBadge';
 
 const HeroSection = () => {
   const handleCalculatorClick = () => {
@@ -31,7 +32,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
               <Button 
                 onClick={handleCalculatorClick}
-                className="btn-accent-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2B6FA5] focus:ring-offset-2"
+                className="btn-accent-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl"
               >
                 <Calculator className="w-5 h-5 mr-2" />
                 {copy.hero.ctas.primary}
@@ -39,7 +40,7 @@ const HeroSection = () => {
               
               <Button 
                 onClick={handleExamplesClick}
-                className="btn-outline-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold"
+                className="btn-outline-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold text-[#0E1116]"
               >
                 {copy.hero.ctas.secondary}
               </Button>
@@ -47,14 +48,12 @@ const HeroSection = () => {
 
             {/* Badge */}
             <div className="pt-2">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#85BA62]/10 text-[#85BA62] border border-[#85BA62]/20">
-                {copy.hero.badge}
-              </span>
+              <HeroBadge />
             </div>
           </div>
 
-          {/* Right - Photo */}
-          <div className="order-1 md:order-2">
+          {/* Right - Photo - Hidden on mobile */}
+          <div className="order-1 md:order-2 hidden md:block">
             <div className="card-elevated p-4 md:p-6 aspect-[4/5] md:aspect-video overflow-hidden">
               <img 
                 src="/lovable-uploads/hero-photo-placeholder.png" 

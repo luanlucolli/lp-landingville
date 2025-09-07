@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
+import BenefitsStrip from '@/components/BenefitsStrip';
 import DiagnosisHook from '@/components/DiagnosisHook';
 import ServicesSection from '@/components/ServicesSection';
 import DemosTabs from '@/components/DemosTabs';
@@ -32,6 +33,7 @@ const Index = () => {
       {/* Main content */}
       <main>
         <HeroSection />
+        <BenefitsStrip />
         <DiagnosisHook />
         <div id="services">
           <ServicesSection />
