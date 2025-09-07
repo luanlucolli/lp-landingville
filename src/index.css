@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* Landingville Design System - Mobile-first, WhatsApp-focused
 All colors MUST be HSL. Semantic tokens for consistency.
 */
@@ -10,20 +9,30 @@ All colors MUST be HSL. Semantic tokens for consistency.
 @layer base {
   :root {
     /* Landingville Design System v1.0 - Semantic Tokens */
-    --primary-green: 98 33% 47%; /* #609f50 */
-    --primary-blue: 208 58% 41%; /* #2b6fa5 */
-    --neutral-100: 0 0% 100%; /* #FFFFFF */
-    --neutral-200: 210 20% 98%; /* #F8F9FA */
-    --neutral-400: 210 16% 82%; /* #CED4DA */
-    --neutral-600: 210 9% 47%; /* #6C757D */
-    --neutral-800: 210 11% 24%; /* #343A40 */
-    --neutral-900: 210 17% 15%; /* #212529 */
-    
+    --primary-green: 98 33% 47%;
+    /* #609f50 */
+    --primary-blue: 208 58% 41%;
+    /* #2b6fa5 */
+    --neutral-100: 0 0% 100%;
+    /* #FFFFFF */
+    --neutral-200: 210 20% 98%;
+    /* #F8F9FA */
+    --neutral-400: 210 16% 82%;
+    /* #CED4DA */
+    --neutral-600: 210 9% 47%;
+    /* #6C757D */
+    --neutral-800: 210 11% 24%;
+    /* #343A40 */
+    --neutral-900: 210 17% 15%;
+    /* #212529 */
+
     /* Legacy tokens for compatibility */
-    --brand-blue: 208 58% 41%; /* #2B6FA5 */
-    --brand-green: 98 33% 47%; /* #609f50 */
+    --brand-blue: 208 58% 41%;
+    /* #2B6FA5 */
+    --brand-green: 98 33% 47%;
+    /* #609f50 */
     --neutral-50: 210 20% 98%;
-    
+
     /* Base semantic tokens */
     --background: 216 33% 97%;
     --foreground: 215 28% 7%;
@@ -56,30 +65,23 @@ All colors MUST be HSL. Semantic tokens for consistency.
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(208 58% 41%), hsl(98 35% 55%));
     --gradient-mesh: linear-gradient(135deg, hsl(208 58% 41% / 0.1), hsl(98 35% 55% / 0.1));
-    
+
     /* Shadows */
     --shadow-soft: 0 4px 20px hsl(208 58% 41% / 0.08);
     --shadow-glow: 0 0 40px hsl(208 58% 41% / 0.15);
-    
+
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
+
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -134,36 +136,39 @@ All colors MUST be HSL. Semantic tokens for consistency.
     font-size: 16px;
     line-height: 1.6;
   }
-  
+
   /* Mobile-optimized typography */
-  h1, h2 {
+  h1,
+  h2 {
     color: hsl(var(--neutral-900));
   }
-  
+
   h1 {
     @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
   }
-  
+
   h2 {
     @apply text-2xl md:text-3xl font-bold leading-tight;
   }
-  
+
   a {
     color: hsl(var(--primary-blue));
   }
-  
+
   h3 {
     @apply text-xl md:text-2xl font-semibold leading-tight;
   }
-  
+
   /* Tap targets for mobile */
-  button, a {
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
   }
 }
 
 @layer components {
+
   /* Hero styling */
   .hero {
     position: relative;
@@ -178,9 +183,17 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   @keyframes heroGradient {
-    0% { background-position: 0% 50%; }
-    50%{ background-position: 100% 50%; }
-    100%{ background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   /* Blobs flutuantes */
@@ -195,26 +208,31 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   @keyframes floatY {
-    0% { transform: translateY(0) translateX(0) scale(1); }
-    100%{ transform: translateY(-24px) translateX(8px) scale(1.06); }
+    0% {
+      transform: translateY(0) translateX(0) scale(1);
+    }
+
+    100% {
+      transform: translateY(-24px) translateX(8px) scale(1.06);
+    }
   }
 
   /* Hero text styling */
   .hero-title {
     color: #F7F9FC;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .hero-subtitle {
     color: #F7F9FC;
     opacity: 0.95;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .hero-proof {
     color: #F7F9FC;
     opacity: 0.9;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     display: inline-block;
@@ -236,35 +254,40 @@ All colors MUST be HSL. Semantic tokens for consistency.
   .hero .btn-secondary {
     background: transparent;
     color: #F7F9FC;
-    border: 1px solid rgba(255,255,255,.6);
+    border: 1px solid rgba(255, 255, 255, .6);
   }
 
   .hero .btn-secondary:hover {
-    background: rgba(255,255,255,.1);
+    background: rgba(255, 255, 255, .1);
     color: #F7F9FC;
-    border-color: rgba(255,255,255,.8);
+    border-color: rgba(255, 255, 255, .8);
   }
 
-  /* Acessibilidade: reduzir movimento */
+  /* Acessibilidade: reduzir movimento (mantemos flutuação off, mas não o marquee) */
   @media (prefers-reduced-motion: reduce) {
-    .hero-gradient { animation: none; }
-    .hero .blob { animation: none; }
+    .hero-gradient {
+      animation: none;
+    }
+
+    .hero .blob {
+      animation: none;
+    }
   }
-  
+
   /* =============================
      HERO HIGHLIGHT & BUTTON STYLES
      ============================= */
-  
+
   /* Highlight gradient (marca-texto) */
   .hi-grad {
-    background-image: linear-gradient(90deg, #2B6FA5, #85BA62);
+    background-image: linear-gradient(90deg, #85BA62);
     background-repeat: no-repeat;
-    background-size: 100% 45%;
-    background-position: 0 88%;
+    background-size: 100% 38%;
+    background-position: 0 90%;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
-  
+
   /* Gradient button (primary CTA) */
   .btn-accent-gradient {
     background: hsl(var(--primary-green));
@@ -272,12 +295,12 @@ All colors MUST be HSL. Semantic tokens for consistency.
     border: none;
     transition: filter 0.2s ease;
   }
-  
+
   .btn-accent-gradient:hover {
     filter: brightness(0.95);
     color: hsl(var(--neutral-100));
   }
-  
+
   /* Outline button with gradient border */
   .btn-outline-gradient {
     position: relative;
@@ -292,14 +315,14 @@ All colors MUST be HSL. Semantic tokens for consistency.
     background-clip: padding-box, border-box;
     transition: all 0.2s ease;
   }
-  
+
   .btn-outline-gradient:hover {
     background-image:
       linear-gradient(hsl(var(--neutral-100)), hsl(var(--neutral-100))),
       linear-gradient(90deg, hsl(var(--primary-blue) / 0.8), hsl(var(--primary-green) / 0.8));
     color: hsl(var(--neutral-900));
   }
-  
+
   /* Card elevated - consistent with other cards */
   .card-elevated {
     background: hsl(var(--neutral-100));
@@ -308,7 +331,7 @@ All colors MUST be HSL. Semantic tokens for consistency.
     box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
     transition: all 0.2s ease;
   }
-  
+
   .card-elevated:hover {
     box-shadow: 0 16px 40px rgba(31, 41, 55, 0.12), 0 4px 12px rgba(31, 41, 55, 0.08);
   }
@@ -318,48 +341,55 @@ All colors MUST be HSL. Semantic tokens for consistency.
     @apply bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold;
     transition: var(--transition-smooth);
   }
-  
+
   /* Custom scrollbar */
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar-track {
     @apply bg-muted;
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     @apply bg-primary rounded-full;
   }
 }
 
 @layer utilities {
+
   /* Animation keyframes */
   @keyframes gradient-shift {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
   }
-  
+
   /* Focus states for accessibility */
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
-  
+
   /* Smooth parallax effect */
   .parallax {
     transform: translateZ(0);
     will-change: transform;
   }
-  
+
   /* Float animation for calculator image */
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px) rotate(0deg);
     }
+
     50% {
       transform: translateY(-6px) rotate(1deg);
     }
@@ -414,9 +444,12 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   @keyframes floatY {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-6px);
     }
@@ -449,30 +482,28 @@ All colors MUST be HSL. Semantic tokens for consistency.
     box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
   }
 
-  /* Benefits strip marquee animation - always animated */
+  /* ===== Marquee contínuo (sem corte) ===== */
   .animate-marquee {
-    animation: marquee 40s linear infinite;
+    /* duração e distância podem ser definidas inline via style */
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+    will-change: transform;
   }
-  
+
   @keyframes marquee {
-    0% {
-      transform: translateX(0%);
+    from {
+      transform: translateX(0);
     }
-    100% {
-      transform: translateX(-50%);
+
+    to {
+      transform: translateX(calc(-1 * var(--marquee-distance, 50%)));
     }
   }
 
+  /* (opcional) força animar mesmo com reduced-motion, como você pediu */
   @media (prefers-reduced-motion: reduce) {
-    .animate-float {
-      animation: none;
-    }
-    .slide-fade {
-      transition: none !important;
-    }
     .animate-marquee {
-      animation: none !important;
-      justify-content: center;
+      animation: marquee var(--marquee-duration, 40s) linear infinite !important;
     }
   }
+
 }

@@ -4,7 +4,11 @@ import '@dotlottie/player-component/dist/dotlottie-player.mjs';
 
 const DiagnosisHook = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="diagnosis">
+    <section
+      id="diagnosis"
+      className="py-20"
+      style={{ background: 'hsl(var(--neutral-200))' }} // mesmo fundo da Hero
+    >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -26,7 +30,10 @@ const DiagnosisHook = () => {
               <div className="space-y-6">
                 
                 {/* Testimonial */}
-                <div className="border border-border/50 rounded-xl p-6 relative" style={{ background: 'hsl(var(--neutral-200) / 0.5)' }}>
+                <div
+                  className="border border-border/50 rounded-xl p-6 relative"
+                  style={{ background: 'hsl(var(--neutral-200) / 0.5)' }}
+                >
                   <div className="absolute -top-2 -left-2 text-4xl text-muted-foreground/30 font-serif">
                     "
                   </div>
@@ -51,16 +58,16 @@ const DiagnosisHook = () => {
               </div>
             </div>
 
-            {/* Right Column - Visual Container */}
+            {/* Right Column - Visual Container (sem sombra/gradiente/borda) */}
             <div className="order-1 lg:order-2 flex items-center justify-center">
-              <div className="w-full max-w-md aspect-square bg-gradient border-none from-primary/5 to-secondary/5 rounded-2xl border border-border/30 flex items-center justify-center">
+              <div className="w-full max-w-md aspect-square flex items-center justify-center">
                 {/* runtime do dotLottie (mantenha se não importar globalmente) */}
                 <script
                   src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
                   type="module"
                 ></script>
 
-                {/* Lottie (mesma abordagem do outro arquivo) */}
+                {/* Lottie */}
                 <div className="relative h-[15rem] w-full md:w-auto flex items-center justify-center">
                   <div className="origin-center pointer-events-none scale-[1.8] md:scale-[2.2]">
                     <dotlottie-player

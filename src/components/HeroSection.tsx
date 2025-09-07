@@ -1,4 +1,3 @@
-import { Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import copy from '@/content/landingville';
 
@@ -33,13 +32,12 @@ const HeroSection = () => {
                 onClick={handleCalculatorClick}
                 className="btn-accent-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl"
               >
-                <Calculator className="w-5 h-5 mr-2" />
                 {copy.hero.ctas.primary}
               </Button>
               
               <Button 
                 onClick={handleExamplesClick}
-                className="btn-outline-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold"
+                className="btn-accent-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl"
               >
                 {copy.hero.ctas.secondary}
               </Button>
@@ -54,13 +52,10 @@ const HeroSection = () => {
                 alt="Foto destaque (placeholder)" 
                 className="w-full h-full object-cover rounded-lg"
                 onError={(e) => {
-                  // Fallback to a gradient placeholder
+                  // Fallback básico
                   const target = e.target as HTMLImageElement;
                   target.style.background = 'linear-gradient(135deg, #f3f4f6, #e5e7eb)';
-                  target.style.display = 'flex';
-                  target.style.alignItems = 'center';
-                  target.style.justifyContent = 'center';
-                  target.innerHTML = '<span style="color: #6b7280; font-weight: 500;">Imagem em breve</span>';
+                  target.style.display = 'block';
                 }}
               />
             </div>
