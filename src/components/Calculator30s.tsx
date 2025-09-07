@@ -422,7 +422,7 @@ const Calculator30s = () => {
   );
 
   return (
-    <section className="py-20 bg-muted/20" id="calculator">
+    <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="calculator">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {renderSectionHeader()}
@@ -475,8 +475,7 @@ const Calculator30s = () => {
                     {/* CTA */}
                     <Button
                       onClick={startCalculator}
-                      variant="primary"
-                      className="w-full h-12 font-semibold"
+                      className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
                       aria-label="Descobrir meu investimento agora"
                     >
                       {copy.calculator.intro.cta}
@@ -598,8 +597,7 @@ const Calculator30s = () => {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button
                       onClick={() => setShowChannelSheet(true)}
-                      variant="primary"
-                      className="flex-1 font-semibold h-12"
+                      className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold h-12"
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>

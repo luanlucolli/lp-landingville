@@ -10,10 +10,8 @@ All colors MUST be HSL. Semantic tokens for consistency.
 @layer base {
   :root {
     /* Landingville Brand Colors */
-    --brand-primary: 208 58% 41%; /* #2B6FA5 aço-azul */
-    --brand-accent: 98 35% 55%; /* #85BA62 musgo */
-    --danger: 0 74% 42%; /* #DC2626 */
-    --warning: 45 93% 47%; /* #F59E0B */
+    --brand-blue: 208 58% 41%; /* #2B6FA5 */
+    --brand-green: 98 35% 55%; /* #85BA62 */
     
     /* Neutrals with high contrast for mobile */
     --neutral-900: 215 28% 7%; /* #0E1116 */
@@ -25,12 +23,6 @@ All colors MUST be HSL. Semantic tokens for consistency.
     --neutral-200: 215 12% 85%;
     --neutral-100: 215 20% 92%;
     
-    /* Glass Pro variables */
-    --glass-bg: 255 255 255 / 0.60;
-    --glass-border: 255 255 255 / 0.40;
-    --glass-shadow: 0 12px 40px hsl(215 28% 7% / 0.10);
-    --glass-blur: 12px;
-    
     /* Base semantic tokens */
     --background: 216 33% 97%;
     --foreground: 215 28% 7%;
@@ -41,10 +33,10 @@ All colors MUST be HSL. Semantic tokens for consistency.
     --popover: 0 0% 100%;
     --popover-foreground: 215 28% 7%;
 
-    --primary: var(--brand-primary);
+    --primary: 208 58% 41%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: var(--brand-accent);
+    --secondary: 98 35% 55%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 215 20% 92%;
@@ -91,11 +83,6 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   .dark {
-    /* Glass Pro dark mode */
-    --glass-bg: 15 23 42 / 0.50;
-    --glass-border: 255 255 255 / 0.12;
-    --glass-shadow: 0 20px 60px hsl(0 0% 0% / 0.35);
-    
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -362,14 +349,23 @@ All colors MUST be HSL. Semantic tokens for consistency.
     }
   }
 
-  /* Glass Pro utility class */
-  .glass {
-    background: hsl(var(--glass-bg));
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid hsl(var(--glass-border));
-    box-shadow: var(--glass-shadow);
-    border-radius: 14px;
+  /* Service CTA button with gradient */
+  .service-cta-button {
+    background: linear-gradient(135deg, #2B6FA5 0%, #85BA62 100%);
+    color: white;
+    border: none;
+    transition: all 0.2s ease-out;
+  }
+
+  .service-cta-button:hover {
+    background: linear-gradient(135deg, #245a91 0%, #7ba558 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(43, 111, 165, 0.3);
+  }
+
+  .service-cta-button:focus-visible {
+    outline: 2px solid #2B6FA5;
+    outline-offset: 2px;
   }
 
   /* Card with elevated shadow for consistent depth */

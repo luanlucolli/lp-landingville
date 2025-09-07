@@ -140,7 +140,7 @@ Faixa estimada: R$ ${result?.min} - R$ ${result?.max}`;
 
   if (result) {
     return (
-      <Card className="p-8 text-center glass">
+      <Card className="p-8 text-center bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
         <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-8 h-8 text-primary" />
         </div>

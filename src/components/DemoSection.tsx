@@ -102,7 +102,7 @@ const DemoSection = () => {
           
           <Card className="p-0 overflow-hidden border-2 border-primary/20">
             {/* Header */}
-            <div className="bg-[hsl(var(--brand-primary))] text-white p-4">
+            <div className="bg-gradient-to-r from-primary to-secondary text-white p-4">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl">{currentDemo.emoji}</span>
                 <div>

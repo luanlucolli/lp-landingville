@@ -64,7 +64,7 @@ const FAQSection = () => {
           </div>
 
           {/* Final CTA */}
-          <div className="text-center p-8 glass">
+          <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20">
             <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               {copy.faq.finalCTA.title}
             </h3>
@@ -72,8 +72,7 @@ const FAQSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 onClick={handleChannelsClick}
-                variant="primary"
-                className="focus-ring min-h-[44px] px-8 font-semibold w-full sm:w-auto"
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white focus-ring min-h-[44px] px-8 font-semibold w-full sm:w-auto"
                 size="lg"
                 aria-label="Falar com a Landingville"
               >
