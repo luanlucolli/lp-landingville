@@ -4,7 +4,7 @@ import '@dotlottie/player-component/dist/dotlottie-player.mjs';
 
 const DiagnosisHook = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="diagnosis">
+    <section className="py-20 bg-muted/20" id="diagnosis">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -41,7 +41,8 @@ const DiagnosisHook = () => {
                 {/* CTA Button */}
                 <Button
                   asChild
-                  className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold text-lg"
+                  variant="primary"
+                  className="w-full h-12 font-semibold text-lg"
                 >
                   <Link to="/diagnostico">
                     Iniciar Diagnóstico Gratuito
@@ -53,7 +54,7 @@ const DiagnosisHook = () => {
 
             {/* Right Column - Visual Container */}
             <div className="order-1 lg:order-2 flex items-center justify-center">
-              <div className="w-full max-w-md aspect-square bg-gradient border-none from-primary/5 to-secondary/5 rounded-2xl border border-border/30 flex items-center justify-center">
+              <div className="w-full max-w-md aspect-square glass flex items-center justify-center">
                 {/* runtime do dotLottie (mantenha se não importar globalmente) */}
                 <script
                   src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"

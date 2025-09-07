@@ -17,11 +17,12 @@ const StickyBottomBar = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border p-4 md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+    <div className="fixed bottom-0 left-0 right-0 z-50 glass border-t p-4 md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <div className="flex gap-3 max-w-lg mx-auto">
         <Button 
           onClick={handleChannelsClick}
-          className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white focus-ring min-h-[52px] font-semibold"
+          variant="primary"
+          className="flex-1 focus-ring min-h-[52px] font-semibold"
           size="lg"
           aria-label="Falar com a Landingville"
         >

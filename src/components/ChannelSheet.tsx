@@ -16,7 +16,7 @@ export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange }:
       id: 'instagram',
       name: 'Instagram',
       icon: Instagram,
-      color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600',
+      color: 'bg-purple-500 hover:bg-purple-600 text-white',
       action: () => {
         window.open(copy.contact.channels[0].href, '_blank');
         onOpenChange(false);

@@ -354,7 +354,7 @@ const DemosTabs = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setShowContactModal(true)}
-                className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold hover:from-primary/90 hover:to-secondary/90 transition-all"
+                className="px-6 py-3 bg-[hsl(var(--brand-primary))] text-white rounded-xl font-semibold hover:brightness-110 transition-all"
               >
                 {copy.demos.cta}
               </button>
