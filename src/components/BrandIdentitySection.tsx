@@ -17,7 +17,7 @@ const BrandIdentitySection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background" id="identidade">
+    <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="identidade">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-6">

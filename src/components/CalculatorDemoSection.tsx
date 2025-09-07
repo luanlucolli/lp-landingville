@@ -4,7 +4,7 @@ import DemoSection from './DemoSection';
 
 const CalculatorDemoSection = () => {
   return (
-    <section className="py-20 bg-background" id="calculadora">
+    <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="calculadora">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}

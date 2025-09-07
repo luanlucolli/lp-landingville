@@ -9,19 +9,20 @@ All colors MUST be HSL. Semantic tokens for consistency.
 
 @layer base {
   :root {
-    /* Landingville Brand Colors */
-    --brand-blue: 208 58% 41%; /* #2B6FA5 */
-    --brand-green: 98 35% 55%; /* #85BA62 */
+    /* Landingville Design System v1.0 - Semantic Tokens */
+    --primary-green: 98 33% 47%; /* #609f50 */
+    --primary-blue: 208 58% 41%; /* #2b6fa5 */
+    --neutral-100: 0 0% 100%; /* #FFFFFF */
+    --neutral-200: 210 20% 98%; /* #F8F9FA */
+    --neutral-400: 210 16% 82%; /* #CED4DA */
+    --neutral-600: 210 9% 47%; /* #6C757D */
+    --neutral-800: 210 11% 24%; /* #343A40 */
+    --neutral-900: 210 17% 15%; /* #212529 */
     
-    /* Neutrals with high contrast for mobile */
-    --neutral-900: 215 28% 7%; /* #0E1116 */
-    --neutral-50: 216 33% 97%; /* #F7F9FC */
-    --neutral-800: 215 20% 15%;
-    --neutral-700: 215 15% 25%;
-    --neutral-600: 215 10% 40%;
-    --neutral-400: 215 8% 60%;
-    --neutral-200: 215 12% 85%;
-    --neutral-100: 215 20% 92%;
+    /* Legacy tokens for compatibility */
+    --brand-blue: 208 58% 41%; /* #2B6FA5 */
+    --brand-green: 98 33% 47%; /* #609f50 */
+    --neutral-50: 210 20% 98%;
     
     /* Base semantic tokens */
     --background: 216 33% 97%;
@@ -127,18 +128,28 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    background: hsl(var(--neutral-200));
+    color: hsl(var(--neutral-800));
+    @apply font-sans antialiased;
     font-size: 16px;
     line-height: 1.6;
   }
   
   /* Mobile-optimized typography */
+  h1, h2 {
+    color: hsl(var(--neutral-900));
+  }
+  
   h1 {
     @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
   }
   
   h2 {
     @apply text-2xl md:text-3xl font-bold leading-tight;
+  }
+  
+  a {
+    color: hsl(var(--primary-blue));
   }
   
   h3 {
@@ -256,27 +267,27 @@ All colors MUST be HSL. Semantic tokens for consistency.
   
   /* Gradient button (primary CTA) */
   .btn-accent-gradient {
-    background-image: linear-gradient(90deg, #2B6FA5, #85BA62);
-    color: #fff;
+    background: hsl(var(--primary-green));
+    color: hsl(var(--neutral-100));
     border: none;
     transition: filter 0.2s ease;
   }
   
   .btn-accent-gradient:hover {
     filter: brightness(0.95);
-    color: #fff;
+    color: hsl(var(--neutral-100));
   }
   
   /* Outline button with gradient border */
   .btn-outline-gradient {
     position: relative;
-    background: #fff;
-    color: #0E1116;
+    background: hsl(var(--neutral-100));
+    color: hsl(var(--neutral-900));
     border-radius: 12px;
     border: 2px solid transparent;
     background-image:
-      linear-gradient(#fff, #fff),
-      linear-gradient(90deg, #2B6FA5, #85BA62);
+      linear-gradient(hsl(var(--neutral-100)), hsl(var(--neutral-100))),
+      linear-gradient(90deg, hsl(var(--primary-blue)), hsl(var(--primary-green)));
     background-origin: border-box;
     background-clip: padding-box, border-box;
     transition: all 0.2s ease;
@@ -284,14 +295,14 @@ All colors MUST be HSL. Semantic tokens for consistency.
   
   .btn-outline-gradient:hover {
     background-image:
-      linear-gradient(#fff, #fff),
-      linear-gradient(90deg, #2B6FA5cc, #85BA62cc);
-    color: #0E1116;
+      linear-gradient(hsl(var(--neutral-100)), hsl(var(--neutral-100))),
+      linear-gradient(90deg, hsl(var(--primary-blue) / 0.8), hsl(var(--primary-green) / 0.8));
+    color: hsl(var(--neutral-900));
   }
   
   /* Card elevated - consistent with other cards */
   .card-elevated {
-    background: #FFF;
+    background: hsl(var(--neutral-100));
     border: 1px solid rgba(15, 23, 42, 0.06);
     border-radius: 16px;
     box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
@@ -438,13 +449,9 @@ All colors MUST be HSL. Semantic tokens for consistency.
     box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
   }
 
-  /* Benefits strip marquee animation */
+  /* Benefits strip marquee animation - always animated */
   .animate-marquee {
     animation: marquee 40s linear infinite;
-  }
-  
-  .benefits-strip:hover .animate-marquee {
-    animation-play-state: paused;
   }
   
   @keyframes marquee {

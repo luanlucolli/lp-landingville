@@ -131,7 +131,7 @@ const DemosTabs = () => {
   };
 
   return (
-    <section className="py-20 bg-muted/20" id="demos">
+    <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="demos">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -146,7 +146,7 @@ const DemosTabs = () => {
 
           {/* Tab Navigation */}
           <div className="flex justify-center mb-8">
-            <div className="bg-background rounded-2xl p-2 shadow-lg">
+            <div className="rounded-2xl p-2 shadow-lg" style={{ background: 'hsl(var(--neutral-100))' }}>
               {tabs.map((tab) => (
                 <button
                   key={tab.key}

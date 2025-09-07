@@ -1,7 +1,6 @@
 import { Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import copy from '@/content/landingville';
-import HeroBadge from './HeroBadge';
 
 const HeroSection = () => {
   const handleCalculatorClick = () => {
@@ -15,16 +14,16 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-white pt-16 md:pt-20 pb-16 md:pb-24" id="top">
+    <section style={{ background: 'hsl(var(--neutral-200))' }} className="pt-16 md:pt-20 pb-16 md:pb-24" id="top">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[80vh] md:min-h-[60vh]">
           {/* Left - Text Content */}
           <div className="space-y-6 text-center md:text-left order-2 md:order-1">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0E1116] leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Tenha um site bonito, rápido e que gera <span className="hi-grad">vendas</span>.
             </h1>
             
-            <p className="text-lg md:text-xl text-[#334155] leading-relaxed">
+            <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'hsl(var(--neutral-800))' }}>
               {copy.hero.sub}
             </p>
             
@@ -40,15 +39,10 @@ const HeroSection = () => {
               
               <Button 
                 onClick={handleExamplesClick}
-                className="btn-outline-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold text-[#0E1116]"
+                className="btn-outline-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold"
               >
                 {copy.hero.ctas.secondary}
               </Button>
-            </div>
-
-            {/* Badge */}
-            <div className="pt-2">
-              <HeroBadge />
             </div>
           </div>
 

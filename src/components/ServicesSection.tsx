@@ -10,7 +10,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

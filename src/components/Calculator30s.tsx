@@ -422,7 +422,7 @@ const Calculator30s = () => {
   );
 
   return (
-    <section className="py-20 bg-gradient-to-br from-muted/30 to-background" id="calculator">
+    <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="calculator">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {renderSectionHeader()}

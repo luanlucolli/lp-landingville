@@ -5,16 +5,16 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus:outline-none",
   {
     variants: {
       variant: {
-        // Ação principal padrão (sólido azul)
-        primary: "bg-[#2B6FA5] text-white hover:bg-[#2B6FA5]/90",
+        // Ação principal padrão (sólido verde)
+        primary: "bg-[hsl(var(--primary-green))] text-white hover:brightness-95",
         // Reservado para pouquíssimos CTAs de alta intenção
-        "accent-gradient": "bg-gradient-to-r from-[#2B6FA5] to-[#85BA62] text-white hover:from-[#2B6FA5]/90 hover:to-[#85BA62]/90",
+        "accent-gradient": "bg-[hsl(var(--primary-green))] text-white hover:brightness-95",
         // Alternativa positiva, menos ênfase que primary
-        secondary: "bg-[#85BA62] text-white hover:bg-[#85BA62]/90",
+        secondary: "bg-[hsl(var(--primary-green))] text-white hover:brightness-95",
         // Ação secundária
         outline: "border border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)]",
         // Ação leve/inline

@@ -26,7 +26,7 @@ const DiagnosisHook = () => {
               <div className="space-y-6">
                 
                 {/* Testimonial */}
-                <div className="bg-background/50 border border-border/50 rounded-xl p-6 relative">
+                <div className="border border-border/50 rounded-xl p-6 relative" style={{ background: 'hsl(var(--neutral-200) / 0.5)' }}>
                   <div className="absolute -top-2 -left-2 text-4xl text-muted-foreground/30 font-serif">
                     "
                   </div>
