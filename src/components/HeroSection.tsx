@@ -20,18 +20,18 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="hero relative h-[75vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="hero relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 hero-gradient" />
       
-      {/* Floating blobs - repositioned for smaller height */}
+      {/* Floating blobs */}
       <span 
         className="blob absolute" 
         style={{
-          left: '8%',
-          top: '15%',
-          width: '180px',
-          height: '180px',
+          left: '10%',
+          top: '20%',
+          width: '220px',
+          height: '220px',
           background: copy.brand.secondaryHex,
           '--dur': '26s'
         } as React.CSSProperties}
@@ -39,10 +39,10 @@ const HeroSection = () => {
       <span 
         className="blob absolute" 
         style={{
-          right: '12%',
-          top: '55%',
-          width: '150px',
-          height: '150px',
+          right: '15%',
+          top: '60%',
+          width: '180px',
+          height: '180px',
           background: copy.brand.primaryHex,
           '--dur': '20s'
         } as React.CSSProperties}
@@ -50,23 +50,16 @@ const HeroSection = () => {
       <span 
         className="blob absolute" 
         style={{
-          left: '65%',
-          top: '8%',
-          width: '140px',
-          height: '140px',
+          left: '60%',
+          top: '10%',
+          width: '160px',
+          height: '160px',
           background: copy.brand.secondaryHex,
           '--dur': '24s'
         } as React.CSSProperties}
       />
       
-      {/* Wave divider at bottom */}
-      <div className="hero-wave-divider">
-        <svg className="w-full h-16 md:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,60 C200,100 400,20 600,60 C800,100 1000,20 1200,60 L1200,120 L0,120 Z" fill="hsl(var(--background))" />
-        </svg>
-      </div>
-      
-      <div className="relative z-10 container mx-auto px-4 py-16 text-center">
+      <div className="relative z-10 container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight hero-title">
             {copy.hero.h1}
