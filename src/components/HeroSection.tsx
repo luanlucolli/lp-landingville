@@ -13,7 +13,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section style={{ background: 'hsl(var(--neutral-200))' }} className="pt-16 md:pt-20 pb-16 md:pb-24" id="top">
+    <section style={{ background: 'hsl(var(--neutral-200))' }} className="pt-16 md:pt-20 pb-16 md:pb-24 rounded-t-[24px] md:rounded-t-[28px] lg:rounded-t-[32px] overflow-hidden" id="top">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[80vh] md:min-h-[60vh]">
           {/* Left - Text Content */}

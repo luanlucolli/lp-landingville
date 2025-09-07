@@ -130,7 +130,7 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   body {
-    background: hsl(var(--neutral-200));
+    background: hsl(var(--neutral-900));
     color: hsl(var(--neutral-800));
     @apply font-sans antialiased;
     font-size: 16px;
