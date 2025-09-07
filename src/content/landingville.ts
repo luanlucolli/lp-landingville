@@ -10,6 +10,7 @@ export const copy = {
     h1: "Tenha um site bonito, rápido e que gera vendas.",
     sub: "Landing pages e sites feitos para o celular, fáceis de achar no Google e conectados aos seus canais.",
     bullets: ["Carrega rápido", "Encontra no Google", "Conecta a seus canais"],
+    badge: "Publicado em dias, não semanas",
     ctas: {
       primary: "Calcular orçamento",   // scroll suave para #calculator
       secondary: "Ver exemplos"               // scroll suave para #demos (tab dinâmica)

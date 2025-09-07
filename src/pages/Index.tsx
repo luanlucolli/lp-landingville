@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import DiagnosisHook from '@/components/DiagnosisHook';
 import ServicesSection from '@/components/ServicesSection';
@@ -24,6 +25,9 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Schema.org structured data */}
       <SchemaMarkup />
+      
+      {/* Header */}
+      <Header />
       
       {/* Main content */}
       <main>

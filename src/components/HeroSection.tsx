@@ -1,14 +1,8 @@
-import { MessageCircle, Calculator } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import copy from '@/content/landingville';
 
 const HeroSection = () => {
-  const handleWhatsAppClick = () => {
-    const phone = "5547999999999"; // Placeholder
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent("Olá! Vi a Landingville e gostaria de saber mais sobre como ter um site que gera vendas.")}&utm_source=site&utm_medium=hero&utm_campaign=landingville`;
-    window.open(url, '_blank');
-  };
-
   const handleCalculatorClick = () => {
     const calculatorSection = document.getElementById('calculator');
     calculatorSection?.scrollIntoView({ behavior: 'smooth' });
@@ -20,84 +14,63 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="hero relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 hero-gradient" />
-      
-      {/* Floating blobs */}
-      <span 
-        className="blob absolute" 
-        style={{
-          left: '10%',
-          top: '20%',
-          width: '220px',
-          height: '220px',
-          background: copy.brand.secondaryHex,
-          '--dur': '26s'
-        } as React.CSSProperties}
-      />
-      <span 
-        className="blob absolute" 
-        style={{
-          right: '15%',
-          top: '60%',
-          width: '180px',
-          height: '180px',
-          background: copy.brand.primaryHex,
-          '--dur': '20s'
-        } as React.CSSProperties}
-      />
-      <span 
-        className="blob absolute" 
-        style={{
-          left: '60%',
-          top: '10%',
-          width: '160px',
-          height: '160px',
-          background: copy.brand.secondaryHex,
-          '--dur': '24s'
-        } as React.CSSProperties}
-      />
-      
-      <div className="relative z-10 container mx-auto px-4 py-20 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight hero-title">
-            {copy.hero.h1}
-          </h1>
-          
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed hero-subtitle">
-            {copy.hero.sub}
-          </p>
-          
-          {/* Micro bullets */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {copy.hero.bullets.map((bullet, index) => (
-              <div key={index} className="hero-proof text-sm">
-                {bullet}
-              </div>
-            ))}
-          </div>
-          
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button 
-              onClick={handleCalculatorClick}
-              variant="accent-gradient"
-              className="h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-              size="lg"
-            >
-              <Calculator className="w-6 h-6 mr-3" />
-            {copy.hero.ctas.primary}
-            </Button>
+    <section className="bg-white pt-16 md:pt-20 pb-16 md:pb-24" id="top">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[80vh] md:min-h-[60vh]">
+          {/* Left - Text Content */}
+          <div className="space-y-6 text-center md:text-left order-2 md:order-1">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0E1116] leading-tight">
+              Tenha um site bonito, rápido e que gera <span className="hi-grad">vendas</span>.
+            </h1>
             
-            <Button 
-              onClick={handleExamplesClick}
-              variant="outline"
-              className="h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-              size="lg"
-            >
-              {copy.hero.ctas.secondary}
-            </Button>
+            <p className="text-lg md:text-xl text-[#334155] leading-relaxed">
+              {copy.hero.sub}
+            </p>
+            
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+              <Button 
+                onClick={handleCalculatorClick}
+                className="btn-accent-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2B6FA5] focus:ring-offset-2"
+              >
+                <Calculator className="w-5 h-5 mr-2" />
+                {copy.hero.ctas.primary}
+              </Button>
+              
+              <Button 
+                onClick={handleExamplesClick}
+                className="btn-outline-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold"
+              >
+                {copy.hero.ctas.secondary}
+              </Button>
+            </div>
+
+            {/* Badge */}
+            <div className="pt-2">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#85BA62]/10 text-[#85BA62] border border-[#85BA62]/20">
+                {copy.hero.badge}
+              </span>
+            </div>
+          </div>
+
+          {/* Right - Photo */}
+          <div className="order-1 md:order-2">
+            <div className="card-elevated p-4 md:p-6 aspect-[4/5] md:aspect-video overflow-hidden">
+              <img 
+                src="/lovable-uploads/hero-photo-placeholder.png" 
+                alt="Foto destaque (placeholder)" 
+                className="w-full h-full object-cover rounded-lg"
+                onError={(e) => {
+                  // Fallback to a gradient placeholder
+                  const target = e.target as HTMLImageElement;
+                  target.style.background = 'linear-gradient(135deg, #f3f4f6, #e5e7eb)';
+                  target.style.display = 'flex';
+                  target.style.alignItems = 'center';
+                  target.style.justifyContent = 'center';
+                  target.innerHTML = '<span style="color: #6b7280; font-weight: 500;">Imagem em breve</span>';
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

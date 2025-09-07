@@ -240,6 +240,68 @@ All colors MUST be HSL. Semantic tokens for consistency.
     .hero .blob { animation: none; }
   }
   
+  /* =============================
+     HERO HIGHLIGHT & BUTTON STYLES
+     ============================= */
+  
+  /* Highlight gradient (marca-texto) */
+  .hi-grad {
+    background-image: linear-gradient(90deg, #2B6FA5, #85BA62);
+    background-repeat: no-repeat;
+    background-size: 100% 45%;
+    background-position: 0 88%;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  
+  /* Gradient button (primary CTA) */
+  .btn-accent-gradient {
+    background-image: linear-gradient(90deg, #2B6FA5, #85BA62);
+    color: #fff;
+    border: none;
+    transition: filter 0.2s ease;
+  }
+  
+  .btn-accent-gradient:hover {
+    filter: brightness(0.95);
+    color: #fff;
+  }
+  
+  /* Outline button with gradient border */
+  .btn-outline-gradient {
+    position: relative;
+    background: #fff;
+    color: #0E1116;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background-image:
+      linear-gradient(#fff, #fff),
+      linear-gradient(90deg, #2B6FA5, #85BA62);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-outline-gradient:hover {
+    background-image:
+      linear-gradient(#fff, #fff),
+      linear-gradient(90deg, #2B6FA5cc, #85BA62cc);
+    color: #0E1116;
+  }
+  
+  /* Card elevated - consistent with other cards */
+  .card-elevated {
+    background: #FFF;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(31, 41, 55, 0.10), 0 2px 8px rgba(31, 41, 55, 0.06);
+    transition: all 0.2s ease;
+  }
+  
+  .card-elevated:hover {
+    box-shadow: 0 16px 40px rgba(31, 41, 55, 0.12), 0 4px 12px rgba(31, 41, 55, 0.08);
+  }
+
   /* WhatsApp button styling */
   .whatsapp-button {
     @apply bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold;
