@@ -82,7 +82,8 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button 
               onClick={handleCalculatorClick}
-              className="btn-primary h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              variant="accent-gradient"
+              className="h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               size="lg"
             >
               <Calculator className="w-6 h-6 mr-3" />
@@ -91,7 +92,8 @@ const HeroSection = () => {
             
             <Button 
               onClick={handleExamplesClick}
-              className="btn-secondary h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              variant="outline"
+              className="h-14 px-8 text-lg font-semibold w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               size="lg"
             >
               {copy.hero.ctas.secondary}

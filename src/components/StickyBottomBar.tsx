@@ -21,7 +21,8 @@ const StickyBottomBar = () => {
       <div className="flex gap-3 max-w-lg mx-auto">
         <Button 
           onClick={handleChannelsClick}
-          className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white focus-ring min-h-[52px] font-semibold"
+          variant="accent-gradient"
+          className="flex-1 min-h-[52px] font-semibold"
           size="lg"
           aria-label="Falar com a Landingville"
         >

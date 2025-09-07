@@ -64,7 +64,8 @@ const ServicesSection = () => {
                       <div className="flex justify-start">
                         <Button
                           onClick={() => handleServiceCTA(service.key)}
-                          className="service-cta-button h-12 px-6 rounded-xl font-semibold mb-0"
+                          variant="primary"
+                          className="h-12 px-6 rounded-xl font-semibold mb-0"
                           aria-label={`${service.cta} - ${service.name}`}
                         >
                           {service.cta}

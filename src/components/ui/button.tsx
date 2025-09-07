@@ -5,29 +5,35 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        // Ação principal padrão (sólido azul)
+        primary: "bg-[#2B6FA5] text-white hover:bg-[#2B6FA5]/90 focus:ring-2 focus:ring-[#2B6FA5] focus:ring-offset-2",
+        // Reservado para pouquíssimos CTAs de alta intenção
+        "accent-gradient": "bg-gradient-to-r from-[#2B6FA5] to-[#85BA62] text-white hover:from-[#2B6FA5]/90 hover:to-[#85BA62]/90 focus:ring-2 focus:ring-[#2B6FA5] focus:ring-offset-2",
+        // Alternativa positiva, menos ênfase que primary
+        secondary: "bg-[#85BA62] text-white hover:bg-[#85BA62]/90 focus:ring-2 focus:ring-[#85BA62] focus:ring-offset-2",
+        // Ação secundária
+        outline: "border border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)] focus:ring-2 focus:ring-[#2B6FA5]",
+        // Ação leve/inline
+        ghost: "text-muted-foreground hover:text-foreground hover:bg-muted/50 focus:ring-2 focus:ring-[#2B6FA5]",
+        // Link style
+        link: "text-muted-foreground hover:text-foreground underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-[#2B6FA5]",
+        // Compatibilidade com sistema antigo
+        default: "bg-[#2B6FA5] text-white hover:bg-[#2B6FA5]/90 focus:ring-2 focus:ring-[#2B6FA5] focus:ring-offset-2",
+        destructive: "bg-[#DC2626] text-white hover:bg-[#DC2626]/90 focus:ring-2 focus:ring-[#DC2626] focus:ring-offset-2",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        default: "h-12 px-6",
+        sm: "h-9 rounded-lg px-3",
+        lg: "h-14 rounded-lg px-8",
+        icon: "h-9 w-9 rounded-xl",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
   }

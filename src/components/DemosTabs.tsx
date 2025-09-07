@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Check, ChevronLeft, ChevronRight, Info } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
@@ -352,12 +353,13 @@ const DemosTabs = () => {
               Gostou do que viu? Vamos criar algo assim para você.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
+              <Button
                 onClick={() => setShowContactModal(true)}
-                className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold hover:from-primary/90 hover:to-secondary/90 transition-all"
+                variant="accent-gradient"
+                className="px-6 py-3 rounded-xl font-semibold"
               >
                 {copy.demos.cta}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

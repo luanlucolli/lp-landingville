@@ -24,7 +24,7 @@ const FAQSection = () => {
   return (
     <section className="py-20 bg-background" id="faq">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* FAQ */}
           <div className="text-center mb-12">
             <h2 className="text-xl font-semibold text-foreground mb-2">
@@ -72,8 +72,9 @@ const FAQSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 onClick={handleChannelsClick}
-                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white focus-ring min-h-[44px] px-8 font-semibold w-full sm:w-auto"
+                variant="accent-gradient"
                 size="lg"
+                className="font-semibold w-full sm:w-auto"
                 aria-label="Falar com a Landingville"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />

@@ -475,7 +475,8 @@ const Calculator30s = () => {
                     {/* CTA */}
                     <Button
                       onClick={startCalculator}
-                      className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
+                      variant="primary"
+                      className="w-full font-semibold"
                       aria-label="Descobrir meu investimento agora"
                     >
                       {copy.calculator.intro.cta}
@@ -484,12 +485,14 @@ const Calculator30s = () => {
 
                     {/* Link */}
                     <div className="text-center">
-                      <button
+                      <Button
                         onClick={goToDemos}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                        variant="link"
+                        size="sm"
+                        className="text-sm"
                       >
                         {copy.calculator.intro.links.seeExamples}
-                      </button>
+                      </Button>
                     </div>
                   </div>
 
@@ -597,7 +600,8 @@ const Calculator30s = () => {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button
                       onClick={() => setShowChannelSheet(true)}
-                      className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold h-12"
+                      variant="accent-gradient"
+                      className="flex-1 font-semibold h-12"
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>
@@ -612,12 +616,14 @@ const Calculator30s = () => {
                   </div>
 
                   {/* Reset */}
-                  <button
+                  <Button
                     onClick={resetCalculator}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                    variant="link"
+                    size="sm"
+                    className="text-sm"
                   >
                     Refazer calculadora
-                  </button>
+                  </Button>
                 </div>
               )}
 
@@ -735,6 +741,7 @@ const Calculator30s = () => {
                 <Button
                   onClick={nextStep}
                   disabled={!canProceed()}
+                  variant="primary"
                   className="h-12 px-6 font-semibold"
                 >
                   {state.step === maxSteps ? 'Ver Estimativa' : 'Avançar'}
