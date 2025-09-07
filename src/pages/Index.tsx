@@ -26,12 +26,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Schema.org structured data */}
       <SchemaMarkup />
-      
+
       {/* Header */}
       <Header />
-      
-      {/* Main content */}
-      <main>
+
+      {/* Main content (fundo escuro) */}
+      <main style={{ background: 'hsl(var(--neutral-900))' }}>
         <HeroSection />
         <BenefitsStrip />
         <DiagnosisHook />
@@ -41,10 +41,10 @@ const Index = () => {
         <DemosTabs />
         <FAQSection />
       </main>
-      
+
       {/* Sticky bottom navigation for mobile */}
       <StickyBottomBar />
-      
+
       {/* Add padding bottom on mobile to prevent content being hidden by sticky bar */}
       <div className="h-20 md:h-0" />
     </div>
