@@ -7,6 +7,24 @@ All colors MUST be HSL. Semantic tokens for consistency.
 */
 
 @layer base {
+  /* Global overflow prevention for mobile */
+  html {
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    background: hsl(var(--background));
+  }
+
+  body {
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    background: hsl(var(--background));
+  }
+
+  #root {
+    overflow-x: clip;
+    background: hsl(var(--background));
+  }
+
   :root {
     /* Landingville Design System v1.0 - Semantic Tokens */
     --primary-green: 98 33% 47%;
@@ -130,11 +148,14 @@ All colors MUST be HSL. Semantic tokens for consistency.
   }
 
   body {
-    background: hsl(var(--neutral-900));
+    background: hsl(var(--background));
     color: hsl(var(--neutral-800));
     @apply font-sans antialiased;
     font-size: 16px;
     line-height: 1.6;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
   }
 
   /* Mobile-optimized typography */
@@ -485,6 +506,7 @@ All colors MUST be HSL. Semantic tokens for consistency.
     /* duração e distância podem ser definidas inline via style */
     animation: marquee var(--marquee-duration, 40s) linear infinite;
     will-change: transform;
+    max-width: 100%;
   }
 
   @keyframes marquee {

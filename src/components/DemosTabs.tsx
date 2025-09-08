@@ -167,8 +167,8 @@ const DemosTabs = () => {
             {/* Image Container */}
             <div className="order-2 lg:order-1">
               <Card className="card-elevated p-6 md:p-8">
-                <div
-                  className="relative aspect-video rounded-xl overflow-hidden bg-transparent mb-6 select-none touch-pan-y"
+                 <div
+                   className="relative aspect-video rounded-xl overflow-hidden bg-transparent mb-6 select-none touch-pan-y max-w-full"
                   role="region"
                   aria-roledescription="carousel"
                   aria-live="polite"
@@ -187,8 +187,8 @@ const DemosTabs = () => {
                       key={`${src}-${index}`}
                       src={src}
                       alt={`Exemplo de ${currentTab.title} — visual desktop e mobile`}
-                      className={`absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 ${index === activeIndex ? 'opacity-100' : 'opacity-0'
-                        }`}
+                       className={`absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 max-w-full ${index === activeIndex ? 'opacity-100' : 'opacity-0'
+                         }`}
                       loading="lazy"
                       decoding="async"
                     />
