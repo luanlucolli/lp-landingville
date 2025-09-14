@@ -55,13 +55,24 @@ const DiagnosisHook = () => {
                   </footer>
                 </div>
 
-                {/* CTA Button — VERDE (Design System) */}
+                {/* CTA Button — Verde especial (gradiente + glow + intensificação) */}
                 <Button
                   asChild
-                  className="w-full h-12 font-semibold text-lg"
+                  className="
+                    w-full h-12 font-semibold text-lg rounded-xl
+                    transition-all duration-200
+                    hover:brightness-110 hover:saturate-125 hover:contrast-105
+                    active:brightness-125 active:saturate-150 active:contrast-110 active:scale-[0.99]
+                    focus:outline-none
+                    [box-shadow:0_8px_24px_rgba(109,159,80,0.28)]
+                    hover:[box-shadow:0_12px_36px_rgba(109,159,80,0.42)]
+                    active:[box-shadow:0_6px_18px_rgba(109,159,80,0.36)]
+                    border border-white/15
+                  "
                   style={{
-                    background: 'hsl(var(--primary-green))',
-                    color: 'hsl(var(--neutral-100))'
+                    // Gradiente com foco no #6d9f50
+                    background: 'linear-gradient(135deg, #6d9f50 0%, #7fbf63 40%, #93d277 100%)',
+                    color: '#FFFFFF'
                   }}
                 >
                   <Link to="/diagnostico">

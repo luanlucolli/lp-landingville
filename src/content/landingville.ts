@@ -163,58 +163,56 @@ export const copy = {
 
 
   // DEMOS em tabs (Landing/Site). Reservar espaço para 1 imagem por tab (desktop+mobile combinados).
-  demos: {
-    id: "demos",
-    title: "Landing Page x Site: qual faz mais sentido para você?",
-    note: "Entenda a diferença e escolha a ferramenta certa para seu objetivo.",
-    tabs: [
-      {
-        key: "landing",
-        title: "Landing Page",
-        oneLiner: "Página única, feita para converter.",
-        focusTitle: "Foco Total em Conversão",
-        focusIcon: "/lovable-uploads/speakerphone (2).svg", // Ícone adicionado
-        // suas imagens atuais
-        images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
-        // bullets que aparecem ao lado (checklist curto e direto)
-        bullets: [
-          "Uma oferta, um objetivo",
-          "CTA em destaque",
-          "Mede resultado fácil"
-        ],
-        // textos para a caixinha "contexto" (usado no passo 2)
-        helperTitle: "Ideal para:",
-        helperPoints: [
-          "Promoção rápida",
-          "Gerar leads",
-          "Validar ideia"
-        ],
-        tip: "Página sem menu: zero distração."
-      },
-      {
-        key: "site",
-        title: "Site",
-        oneLiner: "Vitrine completa com navegação e SEO.",
-        focusTitle: "Foco em Navegação e Conteúdo",
-        focusIcon: "/lovable-uploads/sitemap.svg", // Ícone adicionado
-        images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
-        bullets: [
-          "Várias páginas",
-          "Navegação clara",
-          "Base para SEO"
-        ],
-        helperTitle: "Ideal para:",
-        helperPoints: [
-          "Explicar serviços",
-          "Ser achado no Google",
-          "Escalar conteúdo"
-        ],
-        tip: "Estrutura para longo prazo."
-      }
-    ],
-    // CTA da seção DEMOS deve ABRIR o modal de contato (NÃO voltar para calculadora)
-    cta: "Falar com a Landingville"
-  },
+demos: {
+  id: "demos",
+  title: "Landing Page ou Site: qual é melhor para você?",
+  note: "Veja a diferença e escolha a melhor opção.",
+  tabs: [
+    {
+      key: "landing",
+      title: "Landing Page",
+      oneLiner: "Uma página, um objetivo.",
+      focusTitle: "Foco em ação",
+      focusIcon: "/lovable-uploads/speakerphone (2).svg",
+      images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
+      bullets: [
+        "Um objetivo",
+        "Botão em destaque",
+        "Resultados fáceis"
+      ],
+      helperTitle: "Bom para:",
+      helperPoints: [
+        "Promoção",
+        "Gerar contatos",
+        "Testar ideia"
+      ],
+      tip: "Sem menu: menos distração."
+    },
+    {
+      key: "site",
+      title: "Site",
+      oneLiner: "Vitrine completa.",
+      focusTitle: "Navegação e informações",
+      focusIcon: "/lovable-uploads/sitemap.svg",
+      images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
+      bullets: [
+        "Várias páginas",
+        "Navegação fácil",
+        "Ajuda no Google"
+      ],
+      helperTitle: "Bom para:",
+      helperPoints: [
+        "Explicar serviços",
+        "Ser encontrado no Google",
+        "Adicionar conteúdo"
+      ],
+      tip: "Pronto para crescer."
+    }
+  ],
+  // Botão abre o modal de contato
+  cta: "Falar com a Landingville"
+},
+
   faq: {
     id: "faq",
     title: "Perguntas rápidas",
@@ -245,7 +243,7 @@ export const copy = {
       },
       {
         q: "Posso editar o conteúdo depois?",
-        a: "Sim. Incluímos ajustes leves por [Y] dias. Para mudanças frequentes, indicamos o plano de manutenção."
+        a: "Sim. Incluímos ajustes leves por 30 dias. Para mudanças frequentes, indicamos o plano de manutenção."
       },
       {
         q: "Vou aparecer no Google?",
