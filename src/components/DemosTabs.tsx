@@ -263,46 +263,13 @@ const DemosTabs = () => {
                   )}
                 </div>
 
-                {/* Thermometer - Conversion vs Information */}
-                {currentTab.thermo && (
-                  <div className="space-y-4">
-                    {/* Conversion meter */}
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">Conversão</span>
-                        <span className="text-xs text-muted-foreground">{Math.round(currentTab.thermo.conversion * 100)}%</span>
-                      </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-primary to-primary/80 rounded-full transition-all duration-300 ease-out"
-                          style={{ width: `${currentTab.thermo.conversion * 100}%` }}
-                          role="meter"
-                          aria-valuenow={currentTab.thermo.conversion * 100}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          aria-label="Conversão"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Information meter */}
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">Informação</span>
-                        <span className="text-xs text-muted-foreground">{Math.round(currentTab.thermo.information * 100)}%</span>
-                      </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-secondary to-secondary/80 rounded-full transition-all duration-300 ease-out"
-                          style={{ width: `${currentTab.thermo.information * 100}%` }}
-                          role="meter"
-                          aria-valuenow={currentTab.thermo.information * 100}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          aria-label="Informação"
-                        />
-                      </div>
-                    </div>
+                {/* Focus Section */}
+                {currentTab.focusTitle && (
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-muted rounded-lg flex-shrink-0"></div>
+                    <h4 className="text-xl font-semibold text-foreground">
+                      {currentTab.focusTitle}
+                    </h4>
                   </div>
                 )}
 
@@ -311,7 +278,7 @@ const DemosTabs = () => {
                   {currentTab.bullets?.map((bullet, index) => (
                     <div key={index} className="flex items-center gap-2 bg-secondary/5 rounded-lg px-3 py-2 h-10">
                       <Check className="w-4 h-4 text-secondary flex-shrink-0" />
-                      <span className="text-xs font-medium text-foreground truncate">
+                      <span className="text-sm font-medium text-foreground truncate">
                         {bullet}
                       </span>
                     </div>
@@ -320,7 +287,7 @@ const DemosTabs = () => {
 
                 {/* Badges - Ideal for */}
                 {currentTab.helperTitle && currentTab.helperPoints && (
-                  <div className="space-y-3">
+                  <div className="space-y-3 mt-6">
                     <h4 className="text-sm font-semibold text-foreground">
                       {currentTab.helperTitle}
                     </h4>
