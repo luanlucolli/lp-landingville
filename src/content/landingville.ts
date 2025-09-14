@@ -166,15 +166,13 @@ export const copy = {
   demos: {
     id: "demos",
     title: "Landing Page x Site: qual faz mais sentido para você?",
-    note: "Entenda a diferença e escolha a ferramenta certa para o seu objetivo.",
+    note: "Compare os exemplos: a Landing é uma página única focada em conversão; o Site tem abas e navegação para apresentar seu negócio por completo.",
     tabs: [
       {
         key: "landing",
         title: "Landing Page",
         oneLiner: "Página única, feita para converter.",
-        focus: {
-          title: "Foco Total em Conversão"
-        },
+        thermo: { conversion: 0.85, information: 0.25 },
         // suas imagens atuais
         images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
         // bullets que aparecem ao lado (checklist curto e direto)
@@ -196,9 +194,7 @@ export const copy = {
         key: "site",
         title: "Site",
         oneLiner: "Vitrine completa com navegação e SEO.",
-        focus: {
-          title: "Foco em Navegação e Conteúdo"
-        },
+        thermo: { conversion: 0.45, information: 0.90 },
         images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
         bullets: [
           "Várias páginas",
