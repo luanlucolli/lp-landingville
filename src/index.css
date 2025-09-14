@@ -18,11 +18,23 @@ All colors MUST be HSL. Semantic tokens for consistency.
     overflow-x: clip;
     overscroll-behavior-x: none;
     background: hsl(var(--background));
+    @apply font-sans;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   #root {
     overflow-x: clip;
     background: hsl(var(--background));
+  }
+
+  /* Títulos em Plus Jakarta Sans 700 */
+  h1, h2, h3, .font-heading {
+    font-family: theme('fontFamily.heading');
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   :root {
