@@ -44,20 +44,19 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right - Photo - Hidden on mobile */}
+          {/* Right - Visual (Hidden on mobile) */}
           <div className="order-1 md:order-2 hidden md:block">
-            <div className="card-elevated p-4 md:p-6 aspect-[4/5] md:aspect-video overflow-hidden">
-              <img 
-                src="/lovable-uploads/hero-photo-placeholder.png" 
-                alt="Foto destaque (placeholder)" 
-                className="w-full h-full object-cover rounded-lg"
-                onError={(e) => {
-                  // Fallback básico
-                  const target = e.target as HTMLImageElement;
-                  target.style.background = 'linear-gradient(135deg, #f3f4f6, #e5e7eb)';
-                  target.style.display = 'block';
-                }}
-              />
+            <div className="relative p-0 aspect-[4/5] md:aspect-video overflow-hidden rounded-lg">
+              {/* Placeholder transparente para Lottie */}
+              <dotlottie-player
+                src="/lovable-uploads/hero-placeholder.lottie"
+                autoplay
+                loop
+                background="transparent"
+                aria-hidden="true"
+                className="block w-full h-full"
+                style={{ width: '100%', height: '100%' }}
+              ></dotlottie-player>
             </div>
           </div>
         </div>
