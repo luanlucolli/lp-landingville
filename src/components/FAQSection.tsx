@@ -24,7 +24,7 @@ const FAQSection = () => {
   return (
     <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="faq">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* FAQ */}
           <div className="text-center mb-12">
             <h2 className="text-xl font-semibold text-foreground mb-2">

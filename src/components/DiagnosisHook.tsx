@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import '@dotlottie/player-component/dist/dotlottie-player.mjs';
 
 const DiagnosisHook = () => {
   return (
@@ -10,20 +9,31 @@ const DiagnosisHook = () => {
       style={{ background: 'hsl(var(--neutral-200))' }} // mesmo fundo da Hero
     >
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Left Column - Content */}
-            <div className="order-2 lg:order-1 space-y-8">
+            <div className="space-y-8">
               
               {/* Upper Block - The Promise */}
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                  Qual a vitrine digital ideal para o seu negócio?
+                  Qual a solução ideal para o seu negócio?
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Não tem certeza por onde começar? Nosso diagnóstico rápido e gratuito analisa seus objetivos e, em 1 minuto, recomenda a solução ideal com uma estimativa de valor clara. Tenha confiança para dar o próximo passo.
                 </p>
+              </div>
+
+              {/* Mobile/Tablet: SVG abaixo do título */}
+              <div className="block lg:hidden">
+                <div className="w-full max-w-md mx-auto aspect-square flex items-center justify-center">
+                  <img
+                    src="/lovable-uploads/quiz.svg"
+                    alt="Diagnóstico — visual ilustrativo (SVG)"
+                    className="block w-full h-full object-contain"
+                  />
+                </div>
               </div>
 
               {/* Lower Block - Social Proof */}
@@ -38,17 +48,21 @@ const DiagnosisHook = () => {
                     "
                   </div>
                   <blockquote className="italic text-foreground leading-relaxed pl-4">
-                    O diagnóstico da Landingville foi um divisor de águas. Me deu a clareza que eu precisava para investir com segurança.
+                    O diagnóstico da Landingville foi muito decisivo. Me deu a clareza que eu precisava para investir na divulgação do meu negócio com segurança.
                   </blockquote>
                   <footer className="mt-4 text-sm text-muted-foreground">
                     <strong className="text-foreground">Diana Anacleto</strong>, Contadora
                   </footer>
                 </div>
 
-                {/* CTA Button */}
+                {/* CTA Button — VERDE (Design System) */}
                 <Button
                   asChild
-                  className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold text-lg"
+                  className="w-full h-12 font-semibold text-lg"
+                  style={{
+                    background: 'hsl(var(--primary-green))',
+                    color: 'hsl(var(--neutral-100))'
+                  }}
                 >
                   <Link to="/diagnostico">
                     Iniciar Diagnóstico Gratuito
@@ -58,29 +72,14 @@ const DiagnosisHook = () => {
               </div>
             </div>
 
-            {/* Right Column - Visual Container (sem sombra/gradiente/borda) */}
-            <div className="order-1 lg:order-2 flex items-center justify-center">
+            {/* Desktop: coluna do SVG à direita (invariável) */}
+            <div className="hidden lg:flex items-center justify-center">
               <div className="w-full max-w-md aspect-square flex items-center justify-center">
-                {/* runtime do dotLottie (mantenha se não importar globalmente) */}
-                <script
-                  src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-                  type="module"
-                ></script>
-
-                {/* Lottie */}
-                <div className="relative h-[15rem] w-full md:w-auto flex items-center justify-center">
-                  <div className="origin-center pointer-events-none scale-[1.8] md:scale-[2.2]">
-                    <dotlottie-player
-                      src="/lovable-uploads/diagnosticohook.lottie"
-                      autoplay
-                      loop
-                      background="transparent"
-                      aria-hidden="true"
-                      className="block"
-                      style={{ width: '15rem', height: '15rem' }}
-                    />
-                  </div>
-                </div>
+                <img
+                  src="/lovable-uploads/quiz.svg"
+                  alt="Diagnóstico — visual ilustrativo (SVG)"
+                  className="block w-full h-full object-contain"
+                />
               </div>
             </div>
 

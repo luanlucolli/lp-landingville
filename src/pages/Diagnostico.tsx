@@ -10,7 +10,7 @@ const Diagnostico = () => {
       {/* Simple centered layout for the calculator */}
       <main className="py-8">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <Calculator30s />
           </div>
         </div>

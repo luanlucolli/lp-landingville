@@ -139,7 +139,7 @@ export const copy = {
         name: "Landing Page",
         desc: "Uma página única para um objetivo específico: divulgar promoção, reabertura ou captar pedidos. Ideal para ações rápidas.",
         cta: "Quero uma Landing Page",
-        img: "/lovable-uploads/landing.svg",
+        img: "/lovable-uploads/landing5.svg",
         alt: "Ícone de Landing Page"
       },
       {
@@ -155,7 +155,7 @@ export const copy = {
         name: "Manutenção",
         desc: "Atualizações de textos, preços e fotos, pequenos ajustes visuais e suporte contínuo. Podemos combinar um plano mensal.",
         cta: null,
-        img: "/lovable-uploads/maintenance.svg",
+        img: "/lovable-uploads/maintenance2.svg",
         alt: "Ícone de Manutenção"
       }
     ]

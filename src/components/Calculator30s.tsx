@@ -424,7 +424,7 @@ const Calculator30s = () => {
   return (
     <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="calculator">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {renderSectionHeader()}
 
           <Card className="overflow-hidden card-elevated">
