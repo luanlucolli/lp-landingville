@@ -47,16 +47,13 @@ const HeroSection = () => {
           {/* Right - Visual (Hidden on mobile) */}
           <div className="order-1 md:order-2 hidden md:block">
             <div className="relative p-0 aspect-[4/5] md:aspect-video overflow-hidden rounded-lg">
-              {/* Placeholder transparente para Lottie */}
-              <dotlottie-player
-                src="/lovable-uploads/hero-placeholder.lottie"
-                autoplay
-                loop
-                background="transparent"
-                aria-hidden="true"
+              {/* Placeholder/visual em SVG com fundo transparente, ocupando todo o espaço */}
+              <img
+                src="/lovable-uploads/hero.svg"
+                alt="Visual da hero (SVG)"
                 className="block w-full h-full"
                 style={{ width: '100%', height: '100%' }}
-              ></dotlottie-player>
+              />
             </div>
           </div>
         </div>

@@ -139,7 +139,7 @@ export const copy = {
         name: "Landing Page",
         desc: "Uma página única para um objetivo específico: divulgar promoção, reabertura ou captar pedidos. Ideal para ações rápidas.",
         cta: "Quero uma Landing Page",
-        img: "/lovable-uploads/servicolanding.png",
+        img: "/lovable-uploads/landing.svg",
         alt: "Ícone de Landing Page"
       },
       {
@@ -147,7 +147,7 @@ export const copy = {
         name: "Site",
         desc: "Presença completa e estável com seções principais (Início, Sobre, Serviços/Produtos e Contato). Bom para aparecer no Google e orientar quem pesquisa.",
         cta: "Quero um Site",
-        img: "/lovable-uploads/servicosite.png",
+        img: "/lovable-uploads/tabs.svg",
         alt: "Ícone de Site"
       },
       {
@@ -155,7 +155,7 @@ export const copy = {
         name: "Manutenção",
         desc: "Atualizações de textos, preços e fotos, pequenos ajustes visuais e suporte contínuo. Podemos combinar um plano mensal.",
         cta: null,
-        img: "/lovable-uploads/servicomanutencao.png",
+        img: "/lovable-uploads/maintenance.svg",
         alt: "Ícone de Manutenção"
       }
     ]

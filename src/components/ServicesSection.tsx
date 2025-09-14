@@ -34,38 +34,41 @@ const ServicesSection = () => {
                   className="service-card relative overflow-hidden"
                 >
                   <div className="p-6 md:p-8">
-                    {/* Service Image/Icon */}
-                    <div className="mb-6 flex justify-start">
+                    {/* Service Image/Icon (SVG maior e centralizado) */}
+                    <div className="mb-6 flex justify-center">
                       <div className="service-hero">
                         <img
                           src={service.img}
                           alt={service.alt}
-                          className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                          className="w-24 h-24 md:w-32 md:h-32 object-contain mx-auto"
                           loading="lazy"
                         />
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <h3 className="service-title text-lg md:text-xl text-foreground mb-2 text-left">
+                    {/* Content centralizado */}
+                    <h3 className="service-title text-lg md:text-xl text-foreground mb-2 text-center">
                       {service.name}
                     </h3>
 
                     <p
-                      className={`service-desc text-sm md:text-base text-muted-foreground text-left ${
+                      className={`service-desc text-sm md:text-base text-muted-foreground text-center ${
                         hasCTA ? 'mb-4' : 'mb-0'
                       }`}
                     >
                       {service.desc}
                     </p>
 
-                    {/* CTA Button (left-aligned). No contact button/link. */}
+                    {/* CTA Button centralizado e VERDE do DS */}
                     {hasCTA && (
-                      <div className="flex justify-start">
+                      <div className="flex justify-center">
                         <Button
                           onClick={() => handleServiceCTA(service.key)}
-                          variant="primary"
                           className="h-12 px-6 rounded-xl font-semibold mb-0"
+                          style={{
+                            background: 'hsl(var(--primary-green))',
+                            color: 'hsl(var(--neutral-100))'
+                          }}
                           aria-label={`${service.cta} - ${service.name}`}
                         >
                           {service.cta}
