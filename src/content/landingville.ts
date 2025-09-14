@@ -173,6 +173,7 @@ export const copy = {
         title: "Landing Page",
         oneLiner: "Página única, feita para converter.",
         focusTitle: "Foco Total em Conversão",
+        focusIcon: "/lovable-uploads/speakerphone (2).svg", // Ícone adicionado
         // suas imagens atuais
         images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
         // bullets que aparecem ao lado (checklist curto e direto)
@@ -195,6 +196,7 @@ export const copy = {
         title: "Site",
         oneLiner: "Vitrine completa com navegação e SEO.",
         focusTitle: "Foco em Navegação e Conteúdo",
+        focusIcon: "/lovable-uploads/sitemap.svg", // Ícone adicionado
         images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
         bullets: [
           "Várias páginas",
@@ -213,17 +215,58 @@ export const copy = {
     // CTA da seção DEMOS deve ABRIR o modal de contato (NÃO voltar para calculadora)
     cta: "Falar com a Landingville"
   },
-
-
   faq: {
     id: "faq",
     title: "Perguntas rápidas",
     items: [
-      { q: "Preciso decidir entre Landing ou Site agora?", a: "Não. A calculadora recomenda com base no seu objetivo e você pode ver exemplos antes de decidir." },
-      { q: "Quais canais posso usar para falar com vocês?", a: "Instagram ou WhatsApp. No seu projeto, podemos incluir links para outros canais conforme necessidade." },
-      { q: "O que está incluso nesse preço de entrada?", a: "Estrutura enxuta, publicação, SEO local básico e integrações leves (links/embeds). Ajustes leves em [Y] dias." },
-      { q: "Quem fornece textos e fotos?", a: "Se tiver logo/fotos, melhor. Se não, usamos provisórios e ajustamos depois." },
-      { q: "Em quanto tempo vai ao ar?", a: "Dias, não semanas. Confirmamos após sua estimativa." }
+      {
+        q: "Landing Page ou Site: qual a diferença prática?",
+        a: "Landing é uma página única para uma ação imediata (promoção, reabertura, captação). Site é presença contínua com 2–4 seções. Se tiver dúvida, nosso diagnóstico sugere."
+      },
+      {
+        q: "Quanto vou investir?",
+        a: "O valor depende do objetivo e dos extras. Nosso plano inicial tem teto de R$ 500. Use o diagnóstico para ver sua faixa estimada agora."
+      },
+      {
+        q: "Em quanto tempo fica pronto?",
+        a: "Dias, não semanas. Confirmamos o prazo após o diagnóstico. Temos opções pensadas para quem só consegue aprovar à noite."
+      },
+      {
+        q: "O que eu preciso enviar para começar?",
+        a: "Nome do negócio, endereço/horários, canais de contato e, se tiver, logo e fotos. Sem isso, usamos provisórios e ajustamos depois."
+      },
+      {
+        q: "Já tenho domínio. Posso usar?",
+        a: "Sim. Conectamos seu domínio atual ou ajudamos a registrar um novo."
+      },
+      {
+        q: "Quem hospeda e mantém?",
+        a: "Publicamos e hospedamos no plano inicial. Manutenção contínua é opcional (plano Care) para ajustes e atualizações recorrentes."
+      },
+      {
+        q: "Posso editar o conteúdo depois?",
+        a: "Sim. Incluímos ajustes leves por [Y] dias. Para mudanças frequentes, indicamos o plano de manutenção."
+      },
+      {
+        q: "Vou aparecer no Google?",
+        a: "Aplicamos SEO local básico e boas práticas de performance. Conteúdo atualizado e Perfil da Empresa no Google ajudam a melhorar o resultado."
+      },
+      {
+        q: "Integra com meus canais de atendimento?",
+        a: "Sim. Botões e links para WhatsApp, Instagram, telefone, mapas, delivery e outros conforme sua preferência."
+      },
+      {
+        q: "E se eu não curtir o primeiro rascunho?",
+        a: "Publicamos rápido e ajustamos no período incluído até ficar do seu jeito (escopo enxuto)."
+      },
+      {
+        q: "Segurança e privacidade (LGPD)?",
+        a: "Seguimos boas práticas de performance, acessibilidade e privacidade. O site é leve, estável e respeita a LGPD."
+      },
+      {
+        q: "Como falo com a Landingville?",
+        a: "Pelos botões desta página: WhatsApp ou Instagram. Respondemos rápido."
+      }
     ],
     finalCTA: {
       title: "Vamos publicar algo bonito e que converte?",
@@ -231,6 +274,7 @@ export const copy = {
       secondary: "Calcular orçamento"      // rola p/ #calculator
     }
   },
+
 
   // Configuração do Modal de Contato (usar em todos os botões de contato)
   contact: {

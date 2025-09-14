@@ -5,7 +5,7 @@ const DiagnosisHook = () => {
   return (
     <section
       id="diagnosis"
-      className="py-20"
+      className="pt-24 pb-24 md:pt-28 md:pb-28"
       style={{ background: 'hsl(var(--neutral-200))' }} // mesmo fundo da Hero
     >
       <div className="container mx-auto px-4">

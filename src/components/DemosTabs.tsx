@@ -33,7 +33,6 @@ const DemosTabs = () => {
   const tabs = copy.demos.tabs;
   const currentTab = tabs.find(tab => tab.key === activeTab) || tabs[0];
 
-  // ❗️Sem fallback para `image` (não existe mais no conteúdo)
   const images = Array.isArray(currentTab.images) && currentTab.images.length > 0 ? currentTab.images : [];
   const totalSlides = images.length;
 
@@ -167,8 +166,8 @@ const DemosTabs = () => {
             {/* Image Container */}
             <div className="order-2 lg:order-1">
               <Card className="card-elevated p-6 md:p-8">
-                 <div
-                   className="relative aspect-video rounded-xl overflow-hidden bg-transparent mb-6 select-none touch-pan-y max-w-full"
+                <div
+                  className="relative aspect-video rounded-xl overflow-hidden bg-transparent mb-6 select-none touch-pan-y max-w-full"
                   role="region"
                   aria-roledescription="carousel"
                   aria-live="polite"
@@ -187,8 +186,8 @@ const DemosTabs = () => {
                       key={`${src}-${index}`}
                       src={src}
                       alt={`Exemplo de ${currentTab.title} — visual desktop e mobile`}
-                       className={`absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 max-w-full ${index === activeIndex ? 'opacity-100' : 'opacity-0'
-                         }`}
+                      className={`absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 max-w-full ${index === activeIndex ? 'opacity-100' : 'opacity-0'
+                        }`}
                       loading="lazy"
                       decoding="async"
                     />
@@ -263,15 +262,22 @@ const DemosTabs = () => {
                   )}
                 </div>
 
+                {/* ======================= ALTERAÇÃO AQUI ======================= */}
                 {/* Focus Section */}
-                {currentTab.focusTitle && (
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-muted rounded-lg flex-shrink-0"></div>
+                {currentTab.focusTitle && currentTab.focusIcon && (
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src={currentTab.focusIcon} 
+                      alt={`Ícone de ${currentTab.title}`}
+                      className="w-12 h-12 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <h4 className="text-xl font-semibold text-foreground">
                       {currentTab.focusTitle}
                     </h4>
                   </div>
                 )}
+                {/* ============================================================= */}
 
                 {/* Chips - Features */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
