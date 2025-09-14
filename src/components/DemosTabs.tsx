@@ -144,29 +144,31 @@ const DemosTabs = () => {
             </p>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="flex justify-center mb-8">
-            <div className="rounded-2xl p-2 shadow-lg" style={{ background: 'hsl(var(--neutral-100))' }}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all ${activeTab === tab.key
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                >
-                  {tab.title}
-                </button>
-              ))}
+          {/* Unified Comparison Card */}
+          <Card className="card-elevated p-6 md:p-8">
+            {/* Tab Navigation */}
+            <div className="flex justify-center mb-8">
+              <div className="rounded-2xl p-2 shadow-lg" style={{ background: 'hsl(var(--neutral-100))' }}>
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all ${activeTab === tab.key
+                        ? 'bg-primary text-white shadow-md'
+                        : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                  >
+                    {tab.title}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Tab Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Image Container */}
-            <div className="order-2 lg:order-1">
-              <Card className="card-elevated p-6 md:p-8">
+            {/* Tab Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Image Container */}
+              <div className="order-2 lg:order-1">
+                <div className="p-6 md:p-8">
                  <div
                    className="relative aspect-video rounded-xl overflow-hidden bg-transparent mb-6 select-none touch-pan-y max-w-full"
                   role="region"
@@ -237,115 +239,83 @@ const DemosTabs = () => {
                   )}
                 </div>
 
-                <div className="text-center">
-                  <Badge variant="secondary" className="mb-2">
-                    Exemplo de Demonstração
-                  </Badge>
-                  <p className="text-sm text-muted-foreground">
-                    Proporção ideal para visualização em todos os dispositivos
-                  </p>
-                </div>
-              </Card>
-            </div>
-
-            {/* Content */}
-            <div className="order-1 lg:order-2">
-              <div className="space-y-6">
-                {/* Title and one-liner */}
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                    {currentTab.title}
-                  </h3>
-                  {currentTab.oneLiner && (
-                    <p className="text-sm text-muted-foreground mb-6">
-                      {currentTab.oneLiner}
+                  <div className="text-center">
+                    <Badge variant="secondary" className="mb-2">
+                      Exemplo de Demonstração
+                    </Badge>
+                    <p className="text-sm text-muted-foreground">
+                      Proporção ideal para visualização em todos os dispositivos
                     </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="order-1 lg:order-2">
+                <div className="space-y-6">
+                  {/* Title and one-liner */}
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                      {currentTab.title}
+                    </h3>
+                    {currentTab.oneLiner && (
+                      <p className="text-sm text-muted-foreground mb-6">
+                        {currentTab.oneLiner}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Focus Section with Icon Placeholder */}
+                  {currentTab.focus && (
+                    <div className="space-y-3">
+                      <div className="w-12 h-12 bg-muted rounded-lg mb-3"></div>
+                      <h4 className="text-lg font-bold text-foreground">
+                        {currentTab.focus.title}
+                      </h4>
+                    </div>
+                  )}
+
+                  {/* Chips - Features */}
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {currentTab.bullets?.map((bullet, index) => (
+                      <div key={index} className="flex items-center gap-2 bg-secondary/5 rounded-lg px-3 py-2 h-10">
+                        <Check className="w-4 h-4 text-secondary flex-shrink-0" />
+                        <span className="text-sm font-medium text-foreground truncate">
+                          {bullet}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Badges - Ideal for */}
+                  {currentTab.helperTitle && currentTab.helperPoints && (
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold text-foreground">
+                        {currentTab.helperTitle}
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {currentTab.helperPoints.map((point, index) => (
+                          <Badge key={index} variant="secondary" className="text-xs px-2 py-1">
+                            {point}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Tip */}
+                  {currentTab.tip && (
+                    <div className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
+                      <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        <span className="font-medium">Dica:</span> {currentTab.tip}
+                      </p>
+                    </div>
                   )}
                 </div>
-
-                {/* Thermometer - Conversion vs Information */}
-                {currentTab.thermo && (
-                  <div className="space-y-4">
-                    {/* Conversion meter */}
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">Conversão</span>
-                        <span className="text-xs text-muted-foreground">{Math.round(currentTab.thermo.conversion * 100)}%</span>
-                      </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-primary to-primary/80 rounded-full transition-all duration-300 ease-out"
-                          style={{ width: `${currentTab.thermo.conversion * 100}%` }}
-                          role="meter"
-                          aria-valuenow={currentTab.thermo.conversion * 100}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          aria-label="Conversão"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Information meter */}
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">Informação</span>
-                        <span className="text-xs text-muted-foreground">{Math.round(currentTab.thermo.information * 100)}%</span>
-                      </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-secondary to-secondary/80 rounded-full transition-all duration-300 ease-out"
-                          style={{ width: `${currentTab.thermo.information * 100}%` }}
-                          role="meter"
-                          aria-valuenow={currentTab.thermo.information * 100}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          aria-label="Informação"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Chips - Features */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {currentTab.bullets?.map((bullet, index) => (
-                    <div key={index} className="flex items-center gap-2 bg-secondary/5 rounded-lg px-3 py-2 h-10">
-                      <Check className="w-4 h-4 text-secondary flex-shrink-0" />
-                      <span className="text-xs font-medium text-foreground truncate">
-                        {bullet}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Badges - Ideal for */}
-                {currentTab.helperTitle && currentTab.helperPoints && (
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-foreground">
-                      {currentTab.helperTitle}
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {currentTab.helperPoints.map((point, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs px-2 py-1">
-                          {point}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Tip */}
-                {currentTab.tip && (
-                  <div className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
-                    <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      <span className="font-medium">Dica:</span> {currentTab.tip}
-                    </p>
-                  </div>
-                )}
               </div>
             </div>
-          </div>
+          </Card>
 
           {/* CTA */}
           <div className="text-center mt-12">
