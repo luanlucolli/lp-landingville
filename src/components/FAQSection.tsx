@@ -15,8 +15,12 @@ const FAQSection = () => {
   const handleChannelsClick = () => setShowChannelSheet(true);
 
   const handleCalculatorClick = () => {
-    const calculatorSection = document.getElementById('calculator');
-    calculatorSection?.scrollIntoView({ behavior: 'smooth' });
+    const diagnosisSection = document.getElementById('diagnosis');
+    if (diagnosisSection) {
+      diagnosisSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.assign('/#diagnosis');
+    }
   };
 
   return (

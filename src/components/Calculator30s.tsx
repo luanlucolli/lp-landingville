@@ -26,7 +26,7 @@ interface CalculatorState {
 
 const Calculator30s = () => {
   const [state, setState] = useState<CalculatorState>({
-    step: 0, // Start with intro screen
+    step: 1, // Start directly at first question
     answers: { s1: [], s2: [], s3: [], s4: [], s5: [] }
   });
   const [showResult, setShowResult] = useState(false);
@@ -378,7 +378,7 @@ const Calculator30s = () => {
 
   const resetCalculator = () => {
     setState({
-      step: 0,
+      step: 1,
       answers: { s1: [], s2: [], s3: [], s4: [], s5: [] }
     });
     setShowResult(false);
@@ -386,7 +386,6 @@ const Calculator30s = () => {
   };
 
   const getCurrentStepTitle = () => {
-    if (state.step === 0) return "Introdução";
     if (showResult) return "Resultado · Estimativa inicial";
     return `Passo ${state.step} de ${maxSteps}`;
   };
@@ -407,15 +406,15 @@ const Calculator30s = () => {
   // Stepper component
   const renderStepper = () => (
     <div className="flex items-center justify-center gap-2 mb-4">
-      {Array.from({ length: maxSteps + 1 }, (_, i) => (
+      {Array.from({ length: maxSteps }, (_, i) => (
         <div
           key={i}
-          className={`h-2 rounded-full transition-all duration-300 ${i <= state.step ? 'w-8' : 'bg-muted w-4'
+          className={`h-2 rounded-full transition-all duration-300 ${i < state.step ? 'w-8' : 'bg-muted w-4'
             }`}
           style={{
-            background: i <= state.step ? 'linear-gradient(135deg, #2B6FA5, #85BA62)' : undefined
+            background: i < state.step ? 'linear-gradient(135deg, #2B6FA5, #85BA62)' : undefined
           }}
-          aria-current={i === state.step ? 'step' : undefined}
+          aria-current={i + 1 === state.step ? 'step' : undefined}
         />
       ))}
     </div>
@@ -439,90 +438,6 @@ const Calculator30s = () => {
             </CardHeader>
 
             <CardContent className="px-6 pb-6">
-              {/* Intro Screen */}
-              {state.step === 0 && (
-                <div className="flex flex-col md:grid md:grid-cols-12 md:gap-8 space-y-6 md:space-y-0">
-                  {/* Text Column - Left on Desktop */}
-                  <div className="order-2 md:order-1 md:col-span-7 space-y-6">
-                    {/* Chips */}
-                    <div className="flex flex-wrap gap-2">
-                      {copy.calculator.intro.bullets.map((bullet, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {bullet}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* "Você vai ver" section */}
-                    <div className="text-left space-y-4">
-                      <h4 className="font-semibold text-foreground">Você vai ver:</h4>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span>O que faz mais sentido: Landing ou Site</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span>Faixa de valor para começar</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span>Próximo passo para publicar rápido</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* CTA */}
-                    <Button
-                      onClick={startCalculator}
-                      variant="primary"
-                      className="w-full font-semibold"
-                      aria-label="Descobrir meu investimento agora"
-                    >
-                      {copy.calculator.intro.cta}
-                      <ChevronRight className="w-5 h-5 ml-2" />
-                    </Button>
-
-                    {/* Link */}
-                    <div className="text-center">
-                      <Button
-                        onClick={goToDemos}
-                        variant="link"
-                        size="sm"
-                        className="text-sm"
-                      >
-                        {copy.calculator.intro.links.seeExamples}
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Image Column -> Lottie Column - Right on Desktop */}
-                  <div className="order-1 md:order-2 md:col-span-5 flex-shrink-0 flex justify-center">
-                    {/* runtime do dotLottie (mantenha se não importar no main.tsx) */}
-                    <script
-                      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-                      type="module"
-                    ></script>
-
-                    {/* wrapper com altura fixa; o player é escalado sem mudar o layout */}
-                    <div className="relative h-[15rem] w-full md:w-auto flex items-center justify-center pb-12 md:pb-0">
-                      <div className="origin-center pointer-events-none scale-[1.8] md:scale-[2.8]">
-                        <dotlottie-player
-                          src="/lovable-uploads/calculator-intro5.lottie"
-                          autoplay
-                          loop
-                          background="transparent"
-                          aria-hidden="true"
-                          className="block"
-                          style={{ width: '15rem', height: '15rem' }}
-                        />
-                      </div>
-                    </div>
-
-
-                  </div>
-                </div>
-              )}
 
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
