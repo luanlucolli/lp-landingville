@@ -2,8 +2,23 @@ import Calculator30s from '@/components/Calculator30s';
 import SchemaMarkup from '@/components/SchemaMarkup';
 import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useState, useEffect } from 'react';
 
 const Diagnostico = () => {
+  const [showResult, setShowResult] = useState(false);
+
+  // Listen for result visibility changes
+  useEffect(() => {
+    const handleResultVisibility = (event: CustomEvent) => {
+      setShowResult(event.detail.visible);
+    };
+
+    window.addEventListener('calculatorResultVisible', handleResultVisibility as EventListener);
+    return () => {
+      window.removeEventListener('calculatorResultVisible', handleResultVisibility as EventListener);
+    };
+  }, []);
+
   const handleBack = () => {
     window.location.assign('/');
   };
@@ -34,13 +49,15 @@ const Diagnostico = () => {
             
             <h1 className="text-lg font-semibold">Diagnóstico</h1>
             
-            <a 
-              href="/#demos" 
-              onClick={handleViewExamples}
-              className="text-sm font-medium hover:opacity-80 transition-opacity"
-            >
-              Ver exemplos
-            </a>
+            {!showResult && (
+              <a 
+                href="/#demos" 
+                onClick={handleViewExamples}
+                className="text-sm font-medium hover:opacity-80 transition-opacity"
+              >
+                Ver exemplos
+              </a>
+            )}
           </div>
         </div>
       </header>

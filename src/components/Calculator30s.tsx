@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ChevronRight, ChevronLeft, Calculator, Lightbulb, Clock, Shield, Target, MessageCircle, Globe, Grid3x3, MapPin, Image, Layers, Zap } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Calculator, Lightbulb, Clock, Shield, Target, MessageCircle, Globe, Grid3x3, MapPin, Image, Layers, Zap, RotateCcw } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
 import '@dotlottie/player-component/dist/dotlottie-player.mjs';
@@ -339,6 +339,9 @@ const Calculator30s = () => {
         priceRange
       }));
       setShowResult(true);
+      
+      // Notify parent component about result visibility
+      window.dispatchEvent(new CustomEvent('calculatorResultVisible', { detail: { visible: true } }));
     }
   };
 
@@ -383,6 +386,9 @@ const Calculator30s = () => {
     });
     setShowResult(false);
     setShowFallback(false);
+    
+    // Notify parent component about result visibility
+    window.dispatchEvent(new CustomEvent('calculatorResultVisible', { detail: { visible: false } }));
   };
 
   const getCurrentStepTitle = () => {
@@ -441,47 +447,42 @@ const Calculator30s = () => {
 
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
-                <div className="space-y-6" aria-live="polite">
-                  {/* Outcome Hero Image */}
-                  <div className="flex flex-col md:flex-row items-center gap-6">
-                    <div className="flex-1 order-2 md:order-1 space-y-4">
-                      {/* Recommendation */}
-                      <div className="text-center md:text-left">
-                        <h3 className="text-xl font-semibold text-foreground mb-1">
-                          Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
-                        </h3>
-                        <p className="text-muted-foreground">
-                          {copy.calculator.result.recommendation.hint}
-                        </p>
-                      </div>
+                <div className="space-y-6 text-center" aria-live="polite">
+                  {/* Recommendation */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                      Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {copy.calculator.result.recommendation.hint}
+                    </p>
+                  </div>
 
-                      {/* Price Range */}
-                      <div className="text-center md:text-left">
-                        <div className="text-3xl font-bold text-foreground mb-3">
-                          R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
-                        </div>
+                  {/* Hero Image */}
+                  <div className="flex justify-center py-4">
+                    <img
+                      src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
+                      alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
+                      className="w-64 h-auto animate-float"
+                    />
+                  </div>
 
-                        {/* Pills */}
-                        <div className="flex gap-2 justify-center md:justify-start flex-wrap mb-4">
-                          <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
-                          <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
-                        </div>
-                      </div>
+                  {/* Price Range */}
+                  <div>
+                    <div className="text-4xl font-bold text-foreground mb-4">
+                      R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                     </div>
 
-                    {/* Hero Image */}
-                    <div className="flex-shrink-0 order-1 md:order-2">
-                      <img
-                        src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
-                        alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
-                        className="w-56 md:w-80 h-auto animate-float"
-                      />
+                    {/* Pills */}
+                    <div className="flex gap-2 justify-center flex-wrap mb-6">
+                      <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
+                      <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
                     </div>
                   </div>
 
                   {/* Por que recomendamos */}
-                  <div className="bg-muted/40 rounded-xl p-5">
-                    <h4 className="font-semibold text-foreground mb-4 text-center">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-foreground">
                       Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
                     </h4>
                     <div className="space-y-4">
@@ -493,7 +494,7 @@ const Calculator30s = () => {
                         const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
 
                         return (
-                          <div key={index} className="flex items-start gap-3">
+                          <div key={index} className="flex items-start gap-3 text-left max-w-md mx-auto">
                             <div className="flex-shrink-0 w-5 h-5 mt-0.5">
                               <IconComponent className="w-5 h-5 text-primary" />
                             </div>
@@ -512,7 +513,16 @@ const Calculator30s = () => {
                   </div>
 
                   {/* CTAs */}
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="flex-1 font-semibold h-12 flex items-center justify-center gap-2"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      Refazer calculadora
+                    </Button>
+
                     <Button
                       onClick={() => setShowChannelSheet(true)}
                       variant="accent-gradient"
@@ -520,25 +530,7 @@ const Calculator30s = () => {
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>
-
-                    <Button
-                      onClick={handleViewExample}
-                      variant="outline"
-                      className="flex-1 font-semibold h-12"
-                    >
-                      {copy.calculator.result.ctas.secondary}
-                    </Button>
                   </div>
-
-                  {/* Reset */}
-                  <Button
-                    onClick={resetCalculator}
-                    variant="link"
-                    size="sm"
-                    className="text-sm"
-                  >
-                    Refazer calculadora
-                  </Button>
                 </div>
               )}
 
