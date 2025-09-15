@@ -442,63 +442,46 @@ const Calculator30s = () => {
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
                 <div className="space-y-6" aria-live="polite">
-                  {/* Main result card with absolute positioned illustration */}
-                  <div className="relative">
-                    {/* Illustration positioned absolutely in top right */}
-                    <div className="absolute top-0 right-0 z-10 hidden md:block">
-                      <img
-                        src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
-                        alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
-                        className="w-40 h-auto animate-float opacity-80"
-                      />
-                    </div>
-                    
-                    {/* Main content */}
-                    <div className="space-y-6 pr-0 md:pr-44">
-                      {/* Title */}
-                      <div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                          {copy.calculator.result.title}
-                        </h3>
-                      </div>
-
+                  {/* Outcome Hero Image */}
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-1 order-2 md:order-1 space-y-4">
                       {/* Recommendation */}
-                      <div>
-                        <h4 className="text-xl font-semibold text-foreground mb-1">
+                      <div className="text-center md:text-left">
+                        <h3 className="text-xl font-semibold text-foreground mb-1">
                           Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
-                        </h4>
+                        </h3>
                         <p className="text-muted-foreground">
                           {copy.calculator.result.recommendation.hint}
                         </p>
                       </div>
 
-                      {/* Price Range - Main focal point */}
-                      <div>
-                        <div className="text-4xl md:text-5xl font-bold text-foreground mb-3">
+                      {/* Price Range */}
+                      <div className="text-center md:text-left">
+                        <div className="text-3xl font-bold text-foreground mb-3">
                           R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                         </div>
 
                         {/* Pills */}
-                        <div className="flex gap-2 flex-wrap mb-4">
+                        <div className="flex gap-2 justify-center md:justify-start flex-wrap mb-4">
                           <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
                           <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
                         </div>
                       </div>
+                    </div>
 
-                      {/* Mobile illustration */}
-                      <div className="md:hidden flex justify-center">
-                        <img
-                          src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
-                          alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
-                          className="w-56 h-auto animate-float"
-                        />
-                      </div>
+                    {/* Hero Image */}
+                    <div className="flex-shrink-0 order-1 md:order-2">
+                      <img
+                        src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
+                        alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
+                        className="w-56 md:w-80 h-auto animate-float"
+                      />
                     </div>
                   </div>
 
-                  {/* Por que recomendamos - integrated without background */}
-                  <div className="mt-8">
-                    <h4 className="text-lg font-semibold text-foreground mb-6">
+                  {/* Por que recomendamos */}
+                  <div className="bg-muted/40 rounded-xl p-5">
+                    <h4 className="font-semibold text-foreground mb-4 text-center">
                       Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
                     </h4>
                     <div className="space-y-4">
@@ -528,17 +511,8 @@ const Calculator30s = () => {
                     </div>
                   </div>
 
-                  {/* CTAs - Reorganized: Reset on left, Contact on right */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                    <Button
-                      onClick={resetCalculator}
-                      variant="outline"
-                      className="flex-1 font-semibold h-12"
-                    >
-                      <Calculator className="w-4 h-4 mr-2" />
-                      Refazer calculadora
-                    </Button>
-
+                  {/* CTAs */}
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <Button
                       onClick={() => setShowChannelSheet(true)}
                       variant="accent-gradient"
@@ -546,7 +520,25 @@ const Calculator30s = () => {
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>
+
+                    <Button
+                      onClick={handleViewExample}
+                      variant="outline"
+                      className="flex-1 font-semibold h-12"
+                    >
+                      {copy.calculator.result.ctas.secondary}
+                    </Button>
                   </div>
+
+                  {/* Reset */}
+                  <Button
+                    onClick={resetCalculator}
+                    variant="link"
+                    size="sm"
+                    className="text-sm"
+                  >
+                    Refazer calculadora
+                  </Button>
                 </div>
               )}
 

@@ -34,8 +34,13 @@ const Diagnostico = () => {
             
             <h1 className="text-lg font-semibold">Diagnóstico</h1>
             
-            {/* Hide "Ver exemplos" when on result screen - will be handled by result state */}
-            <div className="w-20"></div>
+            <a 
+              href="/#demos" 
+              onClick={handleViewExamples}
+              className="text-sm font-medium hover:opacity-80 transition-opacity"
+            >
+              Ver exemplos
+            </a>
           </div>
         </div>
       </header>
