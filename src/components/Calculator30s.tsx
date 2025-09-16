@@ -675,16 +675,18 @@ const Calculator30s = () => {
         </div>
       </div>
 
-      <ChannelSheet
-        open={showChannelSheet}
-        onOpenChange={setShowChannelSheet}
-        recommendation={state.recommendation}
-        priceRange={state.priceRange}
-        context={{
-          source: 'calculator_final',
-          intent: state.recommendation === 'landing' ? 'landing' : 'site'
-        }}
-      />
+                     <ChannelSheet
+                       open={showChannelSheet}
+                       onOpenChange={setShowChannelSheet}
+                       recommendation={state.recommendation}
+                       priceRange={state.priceRange}
+                       answers={state.answers}
+                       fallback={state.fallback}
+                       context={{
+                         source: 'calculator_final',
+                         intent: state.recommendation === 'landing' ? 'landing' : 'site'
+                       }}
+                     />
     </section>
   );
 

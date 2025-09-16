@@ -8,28 +8,93 @@ interface ChannelSheetProps {
   onOpenChange: (open: boolean) => void;
   recommendation?: 'landing' | 'site';
   priceRange?: [number, number];
+  answers?: { s1: string[]; s2: string[]; s3: string[]; s4: string[]; s5: string[]; };
+  fallback?: { q1?: string; q2?: string; };
   context?: {
-    source: 'services' | 'calculator_final';
-    intent: 'landing' | 'site';
+    source: 'services' | 'calculator_final' | 'generic';
+    intent?: 'landing' | 'site';
   };
 }
 
-const buildWhatsAppHref = (intent: 'site' | 'landing', context: { source: 'services' | 'calculator_final' }, priceRange?: [number, number]) => {
+function buildDiagnosisSummary(args: {
+  stepsCopy: typeof copy.calculator.steps;
+  answers?: ChannelSheetProps['answers'];
+  fallback?: ChannelSheetProps['fallback'];
+  recommendation?: 'landing' | 'site';
+  priceRange?: [number, number];
+}): string {
+  const { stepsCopy, answers, fallback, recommendation, priceRange } = args;
+  let summary = '';
+
+  // Recomendação e estimativa
+  if (recommendation && priceRange) {
+    summary += `Tipo sugerido: ${recommendation === 'landing' ? 'Landing Page' : 'Site'}\n`;
+    summary += `Estimativa: R$ ${priceRange[0]} – R$ ${priceRange[1]}\n\n`;
+  }
+
+  summary += 'Respostas do diagnóstico:\n';
+
+  // Processar cada step
+  if (answers) {
+    Object.entries(answers).forEach(([stepKey, selections]) => {
+      if (selections && selections.length > 0) {
+        const stepTitle = stepsCopy[stepKey as keyof typeof stepsCopy]?.title;
+        if (stepTitle) {
+          summary += `• ${stepTitle}: ${selections.join('; ')}\n`;
+        }
+      }
+    });
+  }
+
+  // Adicionar fallback se existir
+  if (fallback?.q1) {
+    summary += `• Preferência geral: ${fallback.q1}\n`;
+  }
+  if (fallback?.q2) {
+    summary += `• Preferência de orçamento: ${fallback.q2}\n`;
+  }
+
+  return summary;
+}
+
+const buildWhatsAppHref = (
+  intent: 'site' | 'landing', 
+  context: { source: 'services' | 'calculator_final' | 'generic' }, 
+  priceRange?: [number, number],
+  answers?: ChannelSheetProps['answers'],
+  fallback?: ChannelSheetProps['fallback'],
+  recommendation?: 'landing' | 'site'
+) => {
   const base = 'https://wa.me/5547984802779';
-  const intro = context.source === 'calculator_final' && priceRange
-    ? `Olá! Fiz o diagnóstico no site e minha estimativa foi de R$ ${priceRange[0]}–${priceRange[1]}. `
-    : `Olá! `;
-  const pedido = intent === 'site'
-    ? 'Quero um Site para o meu negócio. '
-    : 'Quero uma Landing Page para o meu negócio. ';
-  const origem = context.source === 'services'
-    ? 'Vim da seção de Serviços do site. '
-    : 'Vim do resultado do diagnóstico. ';
-  const texto = encodeURIComponent(`${intro}${pedido}${origem}Podemos conversar?`);
-  return `${base}?text=${texto}`;
+  let texto = '';
+
+  if (context.source === 'calculator_final') {
+    const intro = 'Olá! Fiz o diagnóstico no site.';
+    const resumo = buildDiagnosisSummary({ 
+      stepsCopy: copy.calculator.steps, 
+      answers, 
+      fallback, 
+      recommendation: intent === 'landing' ? 'landing' : 'site', 
+      priceRange 
+    });
+    const origem = 'Vim do resultado do diagnóstico.';
+    texto = `${intro}\n${resumo}\n${origem}\nPodemos conversar?`;
+  } else if (context.source === 'services') {
+    const intro = 'Olá! ';
+    const pedido = intent === 'site'
+      ? 'Quero um Site para o meu negócio. '
+      : 'Quero uma Landing Page para o meu negócio. ';
+    const origem = 'Vim da seção de Serviços do site. ';
+    texto = `${intro}${pedido}${origem}Podemos conversar?`;
+  } else {
+    // Generic message for any other source
+    texto = `Olá! Quero conversar sobre um projeto web (${intent === 'site' ? 'site' : 'landing'}). Podemos falar?`;
+  }
+
+  return `${base}?text=${encodeURIComponent(texto)}`;
 };
 
-export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange, context }: ChannelSheetProps) => {
+export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange, answers, fallback, context }: ChannelSheetProps) => {
   const channels = [
     {
       id: 'instagram',
@@ -48,8 +113,8 @@ export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange, c
       color: 'bg-[#25D366] hover:bg-[#128C7E]',
       action: () => {
         const intent = context?.intent || (recommendation === 'landing' ? 'landing' : 'site');
-        const contextData = context || { source: 'calculator_final' };
-        const url = buildWhatsAppHref(intent, contextData, priceRange);
+        const contextData = context || { source: 'generic' };
+        const url = buildWhatsAppHref(intent, contextData, priceRange, answers, fallback, recommendation);
         window.open(url, '_blank');
         onOpenChange(false);
       }
