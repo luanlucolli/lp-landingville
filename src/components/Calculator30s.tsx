@@ -627,22 +627,20 @@ const Calculator30s = () => {
               <CardFooter className="flex justify-between bg-muted/20 border-t py-4" style={{
                 paddingBottom: `calc(16px + env(safe-area-inset-bottom))`
               }}>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    if (state.step === 1) {
-                      setState(prev => ({ ...prev, step: 0 }));
-                      setShowFallback(false);
-                    } else {
+                {/* Botão Voltar - ocultar na etapa 1 */}
+                {state.step > 1 && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
                       setState(prev => ({ ...prev, step: Math.max(1, prev.step - 1) }));
                       setShowFallback(false);
-                    }
-                  }}
-                  className="h-12 px-6"
-                >
-                  <ChevronLeft className="w-4 h-4 mr-2" />
-                  Voltar
-                </Button>
+                    }}
+                    className="h-12 px-6"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Voltar
+                  </Button>
+                )}
 
                 <Button
                   onClick={nextStep}
