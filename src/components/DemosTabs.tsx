@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, ChevronLeft, ChevronRight, Info } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, Info, Megaphone, Network } from 'lucide-react';
 import copy from '@/content/landingville';
 import { ChannelSheet } from './ChannelSheet';
 
@@ -151,8 +151,8 @@ const DemosTabs = () => {
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all ${activeTab === tab.key
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-primary text-white shadow-md'
+                    : 'text-muted-foreground hover:text-foreground'
                     }`}
                 >
                   {tab.title}
@@ -226,8 +226,8 @@ const DemosTabs = () => {
                             aria-current={index === activeIndex ? 'true' : 'false'}
                             data-carousel-control
                             className={`w-[6px] h-[6px] rounded-full p-0 leading-none !min-w-0 !min-h-0 transition-colors ${index === activeIndex
-                                ? 'bg-foreground/70'
-                                : 'bg-foreground/25 hover:bg-foreground/50'
+                              ? 'bg-foreground/70'
+                              : 'bg-foreground/25 hover:bg-foreground/50'
                               }`}
                           />
                         ))}
@@ -264,14 +264,13 @@ const DemosTabs = () => {
 
                 {/* ======================= ALTERAÇÃO AQUI ======================= */}
                 {/* Focus Section */}
-                {currentTab.focusTitle && currentTab.focusIcon && (
+                {currentTab.focusTitle && (
                   <div className="flex items-center gap-4">
-                    <img 
-                      src={currentTab.focusIcon} 
-                      alt={`Ícone de ${currentTab.title}`}
-                      className="w-12 h-12 flex-shrink-0"
-                      aria-hidden="true"
-                    />
+                    {currentTab.key === 'landing' ? (
+                      <Megaphone className="w-12 h-12 flex-shrink-0 text-primary" aria-hidden="true" />
+                    ) : (
+                      <Network className="w-12 h-12 flex-shrink-0 text-primary" aria-hidden="true" />
+                    )}
                     <h4 className="text-xl font-semibold text-foreground">
                       {currentTab.focusTitle}
                     </h4>
