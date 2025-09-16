@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Clock, Target, DollarSign } from 'lucide-react';
 
 const DiagnosisHook = () => {
   return (
@@ -16,13 +17,55 @@ const DiagnosisHook = () => {
             <div className="space-y-8">
               
               {/* Upper Block - The Promise */}
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
                   Qual a solução ideal para o seu negócio?
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Não tem certeza por onde começar? Nosso diagnóstico rápido e gratuito analisa seus objetivos e, em 1 minuto, recomenda a solução ideal com uma estimativa de valor clara. Tenha confiança para dar o próximo passo.
-                </p>
+                
+                {/* Lista de Benefícios */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 mt-0.5">
+                      <Clock className="w-6 h-6 text-primary-green" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-foreground text-base mb-1">
+                        Rápido e sem cadastro
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Leve menos de 1 minuto para ter sua resposta, sem pedir seus dados.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 mt-0.5">
+                      <Target className="w-6 h-6 text-primary-green" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-foreground text-base mb-1">
+                        Recomendação Instantânea
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Descubra na hora se uma Landing Page ou um Site é o ideal para seu objetivo.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 mt-0.5">
+                      <DollarSign className="w-6 h-6 text-primary-green" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-foreground text-base mb-1">
+                        Estimativa de Valor Clara
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Tenha uma faixa de preço transparente para planejar seu investimento.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Mobile/Tablet: SVG abaixo do título */}
@@ -36,25 +79,8 @@ const DiagnosisHook = () => {
                 </div>
               </div>
 
-              {/* Lower Block - Social Proof */}
-              <div className="space-y-6">
-                
-                {/* Testimonial */}
-                <div
-                  className="border border-border/50 rounded-xl p-6 relative"
-                  style={{ background: 'hsl(var(--neutral-200) / 0.5)' }}
-                >
-                  <div className="absolute -top-2 -left-2 text-4xl text-muted-foreground/30 font-serif">
-                    "
-                  </div>
-                  <blockquote className="italic text-foreground leading-relaxed pl-4">
-                    O diagnóstico da Landingville foi muito decisivo. Me deu a clareza que eu precisava para investir na divulgação do meu negócio com segurança.
-                  </blockquote>
-                  <footer className="mt-4 text-sm text-muted-foreground">
-                    <strong className="text-foreground">Diana Anacleto</strong>, Contadora
-                  </footer>
-                </div>
-
+              {/* CTA Block */}
+              <div className="space-y-4">
                 {/* CTA Button — Verde especial (gradiente + glow + intensificação) */}
                 <Button
                   asChild
@@ -79,7 +105,11 @@ const DiagnosisHook = () => {
                     Iniciar Diagnóstico Gratuito
                   </Link>
                 </Button>
-
+                
+                {/* Depoimento Sutil */}
+                <p className="text-sm italic text-muted-foreground text-center">
+                  "O diagnóstico foi muito decisivo para mim. Me deu a clareza que eu precisava." - Diana Anacleto, Contadora
+                </p>
               </div>
             </div>
 
