@@ -8,9 +8,28 @@ interface ChannelSheetProps {
   onOpenChange: (open: boolean) => void;
   recommendation?: 'landing' | 'site';
   priceRange?: [number, number];
+  context?: {
+    source: 'services' | 'calculator_final';
+    intent: 'landing' | 'site';
+  };
 }
 
-export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange }: ChannelSheetProps) => {
+const buildWhatsAppHref = (intent: 'site' | 'landing', context: { source: 'services' | 'calculator_final' }, priceRange?: [number, number]) => {
+  const base = 'https://wa.me/5547984802779';
+  const intro = context.source === 'calculator_final' && priceRange
+    ? `Olá! Fiz o diagnóstico no site e minha estimativa foi de R$ ${priceRange[0]}–${priceRange[1]}. `
+    : `Olá! `;
+  const pedido = intent === 'site'
+    ? 'Quero um Site para o meu negócio. '
+    : 'Quero uma Landing Page para o meu negócio. ';
+  const origem = context.source === 'services'
+    ? 'Vim da seção de Serviços do site. '
+    : 'Vim do resultado do diagnóstico. ';
+  const texto = encodeURIComponent(`${intro}${pedido}${origem}Podemos conversar?`);
+  return `${base}?text=${texto}`;
+};
+
+export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange, context }: ChannelSheetProps) => {
   const channels = [
     {
       id: 'instagram',
@@ -28,12 +47,9 @@ export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange }:
       icon: MessageCircle,
       color: 'bg-[#25D366] hover:bg-[#128C7E]',
       action: () => {
-        const serviceType = recommendation === 'landing' ? 'Landing Page' : 'Site';
-        const price = priceRange ? `R$ ${priceRange[0]} - R$ ${priceRange[1]}` : '';
-        
-        const message = `Olá! Vi a calculadora da Landingville e tenho interesse em um ${serviceType}. A estimativa foi de ${price}. Gostaria de conversar sobre meu projeto.`;
-        
-        const url = `${copy.contact.channels[1].href}?text=${encodeURIComponent(message)}`;
+        const intent = context?.intent || (recommendation === 'landing' ? 'landing' : 'site');
+        const contextData = context || { source: 'calculator_final' };
+        const url = buildWhatsAppHref(intent, contextData, priceRange);
         window.open(url, '_blank');
         onOpenChange(false);
       }

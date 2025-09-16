@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import copy from '@/content/landingville';
-import { scrollToCalculatorWithObjective } from '@/lib/navigation';
+import { ChannelSheet } from './ChannelSheet';
 
 const ServicesSection = () => {
+  const [showChannelSheet, setShowChannelSheet] = useState(false);
+  const [selectedService, setSelectedService] = useState<'landing' | 'site' | null>(null);
+
   const handleServiceCTA = (serviceKey: string) => {
     if (serviceKey === 'landing' || serviceKey === 'site') {
-      scrollToCalculatorWithObjective(serviceKey as 'landing' | 'site');
+      setSelectedService(serviceKey as 'landing' | 'site');
+      setShowChannelSheet(true);
     }
   };
 
@@ -82,6 +87,15 @@ const ServicesSection = () => {
           </div>
         </div>
       </div>
+
+      <ChannelSheet
+        open={showChannelSheet}
+        onOpenChange={setShowChannelSheet}
+        context={{
+          source: 'services',
+          intent: selectedService || 'landing'
+        }}
+      />
     </section>
   );
 };

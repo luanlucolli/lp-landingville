@@ -514,31 +514,22 @@ const Calculator30s = () => {
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="flex-1 font-semibold h-12 gap-2"
+                    >
+                      <Calculator className="w-4 h-4" />
+                      Calcular novamente
+                    </Button>
+
+                    <Button
                       onClick={() => setShowChannelSheet(true)}
                       variant="accent-gradient"
                       className="flex-1 font-semibold h-12"
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>
-
-                    <Button
-                      onClick={handleViewExample}
-                      variant="outline"
-                      className="flex-1 font-semibold h-12"
-                    >
-                      {copy.calculator.result.ctas.secondary}
-                    </Button>
                   </div>
-
-                  {/* Reset */}
-                  <Button
-                    onClick={resetCalculator}
-                    variant="link"
-                    size="sm"
-                    className="text-sm"
-                  >
-                    Refazer calculadora
-                  </Button>
                 </div>
               )}
 
@@ -674,6 +665,10 @@ const Calculator30s = () => {
         onOpenChange={setShowChannelSheet}
         recommendation={state.recommendation}
         priceRange={state.priceRange}
+        context={{
+          source: 'calculator_final',
+          intent: state.recommendation === 'landing' ? 'landing' : 'site'
+        }}
       />
     </section>
   );
