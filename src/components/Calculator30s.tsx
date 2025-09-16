@@ -393,7 +393,7 @@ const Calculator30s = () => {
   // Section title and subtitle (always stable)
   const renderSectionHeader = () => (
     <div className="text-center mb-12">
-  
+
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
         {copy.calculator.title}
       </h2>
@@ -624,9 +624,10 @@ const Calculator30s = () => {
 
             {/* Card Footer */}
             {state.step > 0 && !showResult && (
-              <CardFooter className="flex justify-between bg-muted/20 border-t py-4" style={{
-                paddingBottom: `calc(16px + env(safe-area-inset-bottom))`
-              }}>
+              <CardFooter
+                className={`flex ${state.step > 1 ? 'justify-between' : 'justify-end'} bg-muted/20 border-t py-4`}
+                style={{ paddingBottom: `calc(16px + env(safe-area-inset-bottom))` }}
+              >
                 {/* Botão Voltar - ocultar na etapa 1 */}
                 {state.step > 1 && (
                   <Button
