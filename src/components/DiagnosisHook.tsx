@@ -12,16 +12,27 @@ const DiagnosisHook = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
+
             {/* Left Column - Content */}
             <div className="space-y-8">
-              
+
               {/* Upper Block - The Promise */}
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
                   Qual a solução ideal para o seu negócio?
                 </h2>
-                
+
+                {/* Mobile/Tablet: SVG imediatamente abaixo do título */}
+                <div className="block lg:hidden">
+                  <div className="w-full max-w-md mx-auto aspect-square flex items-center justify-center">
+                    <img
+                      src="/lovable-uploads/quiz.svg"
+                      alt="Diagnóstico — visual ilustrativo (SVG)"
+                      className="block w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+
                 {/* Lista de Benefícios */}
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
@@ -37,7 +48,7 @@ const DiagnosisHook = () => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
                       <Target className="w-6 h-6 text-primary-green" />
@@ -51,7 +62,7 @@ const DiagnosisHook = () => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
                       <DollarSign className="w-6 h-6 text-primary-green" />
@@ -65,17 +76,6 @@ const DiagnosisHook = () => {
                       </p>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Mobile/Tablet: SVG abaixo do título */}
-              <div className="block lg:hidden">
-                <div className="w-full max-w-md mx-auto aspect-square flex items-center justify-center">
-                  <img
-                    src="/lovable-uploads/quiz.svg"
-                    alt="Diagnóstico — visual ilustrativo (SVG)"
-                    className="block w-full h-full object-contain"
-                  />
                 </div>
               </div>
 
@@ -105,7 +105,7 @@ const DiagnosisHook = () => {
                     Iniciar Diagnóstico Gratuito
                   </Link>
                 </Button>
-                
+
                 {/* Depoimento Sutil */}
                 <p className="text-sm italic text-muted-foreground text-center">
                   "O diagnóstico foi muito decisivo para mim. Me deu a clareza que eu precisava." - Diana Anacleto, Contadora
