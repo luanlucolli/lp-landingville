@@ -420,275 +420,276 @@ const Calculator30s = () => {
     </div>
   );
 
-  return (
-    <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="calculator">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Section header and button - only show on introduction screen */}
-          {state.step === 0 && (
-            <>
-              {renderSectionHeader()}
-              <div className="text-center mb-12">
-                <Button
-                  onClick={startCalculator}
-                  variant="accent-gradient"
-                  size="lg"
-                  className="h-14 px-12 text-lg font-semibold"
-                >
-                  Começar Diagnóstico
-                </Button>
+return (
+  <section className="py-12 md:py-16" style={{ background: 'hsl(var(--neutral-200))' }} id="calculator">
+    <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Section header and button - only show on introduction screen */}
+        {state.step === 0 && (
+          <>
+            {renderSectionHeader()}
+            <div className="text-center mb-8">
+              <Button
+                onClick={startCalculator}
+                variant="accent-gradient"
+                size="lg"
+                className="h-14 px-12 text-lg font-semibold"
+              >
+                Começar Diagnóstico
+              </Button>
+            </div>
+          </>
+        )}
+
+        {/* Quiz Card - only show for steps 1-5 and results */}
+        {state.step > 0 && (
+          <Card className="overflow-hidden w-full" style={{ background: 'hsl(var(--neutral-200))' }}>
+            {/* Card Header with Stepper */}
+            <CardHeader className="pb-4">
+              {renderStepper()}
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-foreground">
+                  {getCurrentStepTitle()}
+                </h3>
               </div>
-            </>
-          )}
+            </CardHeader>
 
-          {/* Quiz Card - only show for steps 1-5 and results */}
-          {state.step > 0 && (
-            <Card className="overflow-hidden w-full" style={{ background: 'hsl(var(--neutral-100))' }}>
-              {/* Card Header with Stepper */}
-              <CardHeader className="pb-4">
-                {renderStepper()}
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {getCurrentStepTitle()}
-                  </h3>
-                </div>
-              </CardHeader>
-
-              <CardContent className="px-6 pb-6">
-                {/* Result Screen */}
-                {showResult && state.recommendation && state.priceRange && (
-                  <div className="space-y-6" aria-live="polite">
-                    {/* Outcome Hero Image */}
-                    <div className="flex flex-col md:flex-row items-center gap-6">
-                      <div className="flex-1 order-2 md:order-1 space-y-4">
-                        {/* Recommendation */}
-                        <div className="text-center md:text-left">
-                          <h3 className="text-xl font-semibold text-foreground mb-1">
-                            Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
-                          </h3>
-                          <p className="text-muted-foreground">
-                            {copy.calculator.result.recommendation.hint}
-                          </p>
-                        </div>
-
-                        {/* Price Range */}
-                        <div className="text-center md:text-left">
-                          <div className="text-3xl font-bold text-foreground mb-3">
-                            R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
-                          </div>
-
-                          {/* Pills */}
-                          <div className="flex gap-2 justify-center md:justify-start flex-wrap mb-4">
-                            <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
-                            <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
-                          </div>
-                        </div>
+            <CardContent className="px-6 pb-4">
+              {/* Result Screen */}
+              {showResult && state.recommendation && state.priceRange && (
+                <div className="space-y-5" aria-live="polite">
+                  {/* Outcome Hero Image */}
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-1 order-2 md:order-1 space-y-4">
+                      {/* Recommendation */}
+                      <div className="text-center md:text-left">
+                        <h3 className="text-xl font-semibold text-foreground mb-1">
+                          Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
+                        </h3>
+                        <p className="text-muted-foreground">
+                          {copy.calculator.result.recommendation.hint}
+                        </p>
                       </div>
 
-                      {/* Hero Image */}
-                      <div className="flex-shrink-0 order-1 md:order-2">
-                        <img
-                          src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
-                          alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
-                          className="w-56 md:w-80 h-auto animate-float"
-                        />
+                      {/* Price Range */}
+                      <div className="text-center md:text-left">
+                        <div className="text-3xl font-bold text-foreground mb-3">
+                          R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
+                        </div>
+
+                        {/* Pills */}
+                        <div className="flex gap-2 justify-center md:justify-start flex-wrap mb-4">
+                          <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
+                          <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Por que recomendamos */}
-                    <div className="bg-muted/40 rounded-xl p-5">
-                      <h4 className="font-semibold text-foreground mb-4 text-center">
-                        Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
-                      </h4>
-                      <div className="space-y-4">
-                        {buildReasons(state).map((reason, index) => {
-                          const iconMap = {
-                            Target, Clock, MessageCircle, Lightbulb, Zap,
-                            Globe, Grid3x3, MapPin, Image, Layers
-                          };
-                          const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
-
-                          return (
-                            <div key={index} className="flex items-start gap-3">
-                              <div className="flex-shrink-0 w-5 h-5 mt-0.5">
-                                <IconComponent className="w-5 h-5 text-primary" />
-                              </div>
-                              <div>
-                                <div className="font-medium text-foreground text-sm mb-1">
-                                  {reason.title}
-                                </div>
-                                <div className="text-sm text-muted-foreground leading-relaxed">
-                                  {reason.text}
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* CTAs */}
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <Button
-                        onClick={resetCalculator}
-                        variant="outline"
-                        className="flex-1 font-semibold h-12 gap-2"
-                      >
-                        <Calculator className="w-4 h-4" />
-                        Calcular novamente
-                      </Button>
-
-                      <Button
-                        onClick={() => setShowChannelSheet(true)}
-                        variant="accent-gradient"
-                        className="flex-1 font-semibold h-12"
-                      >
-                        {copy.calculator.result.ctas.primary}
-                      </Button>
+                    {/* Hero Image */}
+                    <div className="flex-shrink-0 order-1 md:order-2">
+                      <img
+                        src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
+                        alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
+                        className="w-48 md:w-72 h-auto animate-float"
+                      />
                     </div>
                   </div>
-                )}
 
-                {/* Regular Steps */}
-                {state.step > 0 && !showResult && (
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-xl font-semibold text-foreground mb-2">
-                        {steps[`s${state.step}` as keyof typeof steps]?.title}
-                      </h4>
-                      {('hint' in steps[`s${state.step}` as keyof typeof steps]) && (
-                        <p className="text-sm text-muted-foreground">
-                          {(steps[`s${state.step}` as keyof typeof steps] as any).hint}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Options */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {steps[`s${state.step}` as keyof typeof steps]?.options.map((option) => {
-                        const stepKey = `s${state.step}` as keyof typeof state.answers;
-                        const isSelected = state.answers[stepKey]?.includes(option);
-                        const isMultiSelect = state.step === 1 || state.step === 2 || state.step === 5;
+                  {/* Por que recomendamos */}
+                  <div className="bg-muted/40 rounded-xl p-5">
+                    <h4 className="font-semibold text-foreground mb-4 text-center">
+                      Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
+                    </h4>
+                    <div className="space-y-4">
+                      {buildReasons(state).map((reason, index) => {
+                        const iconMap = {
+                          Target, Clock, MessageCircle, Lightbulb, Zap,
+                          Globe, Grid3x3, MapPin, Image, Layers
+                        };
+                        const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
 
                         return (
-                          <button
-                            key={option}
-                            onClick={() => handleStepAnswer(option, isMultiSelect)}
-                            className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border transition-all duration-200 text-sm font-medium ${isSelected
-                              ? 'bg-[rgba(43,111,165,0.90)] border-[#2B6FA5] text-white'
-                              : 'border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)]'
-                              }`}
-                            aria-checked={isSelected}
-                          >
-                            {option}
-                          </button>
+                          <div key={index} className="flex items-start gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 mt-0.5">
+                              <IconComponent className="w-5 h-5 text-primary" />
+                            </div>
+                            <div>
+                              <div className="font-medium text-foreground text-sm mb-1">
+                                {reason.title}
+                              </div>
+                              <div className="text-sm text-muted-foreground leading-relaxed">
+                                {reason.text}
+                              </div>
+                            </div>
+                          </div>
                         );
                       })}
                     </div>
+                  </div>
 
-                    {/* Fallback Accordion */}
-                    {showFallback && state.step === 1 && (
-                      <div className="mt-6 p-4 bg-muted/20 rounded-lg border">
-                        <h5 className="font-medium text-foreground mb-4">Vamos te ajudar:</h5>
+                  {/* CTAs */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="flex-1 font-semibold h-12 gap-2"
+                    >
+                      <Calculator className="w-4 h-4" />
+                      Calcular novamente
+                    </Button>
 
-                        {/* Q1 */}
-                        <div className="mb-4">
-                          <p className="text-sm font-medium text-foreground mb-2">
-                            {steps.s1.fallback.q1}
-                          </p>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            {steps.s1.fallback.q1Options.map((option) => (
-                              <button
-                                key={option}
-                                onClick={() => handleFallbackAnswer('q1', option)}
-                                className={`h-10 px-3 rounded-lg border text-xs transition-all ${state.fallback?.q1 === option
-                                  ? 'bg-primary/10 border-primary text-primary'
-                                  : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
-                                  }`}
-                              >
-                                {option}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
+                    <Button
+                      onClick={() => setShowChannelSheet(true)}
+                      variant="accent-gradient"
+                      className="flex-1 font-semibold h-12"
+                    >
+                      {copy.calculator.result.ctas.primary}
+                    </Button>
+                  </div>
+                </div>
+              )}
 
-                        {/* Q2 */}
-                        <div>
-                          <p className="text-sm font-medium text-foreground mb-2">
-                            {steps.s1.fallback.q2}
-                          </p>
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                            {steps.s1.fallback.q2Options.map((option) => (
-                              <button
-                                key={option}
-                                onClick={() => handleFallbackAnswer('q2', option)}
-                                className={`h-10 px-2 rounded-lg border text-xs transition-all ${state.fallback?.q2 === option
-                                  ? 'bg-primary/10 border-primary text-primary'
-                                  : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
-                                  }`}
-                              >
-                                {option}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
+              {/* Regular Steps */}
+              {state.step > 0 && !showResult && (
+                <div className="space-y-5">
+                  <div>
+                    <h4 className="text-xl font-semibold text-foreground mb-2">
+                      {steps[`s${state.step}` as keyof typeof steps]?.title}
+                    </h4>
+                    {('hint' in steps[`s${state.step}` as keyof typeof steps]) && (
+                      <p className="text-sm text-muted-foreground">
+                        {(steps[`s${state.step}` as keyof typeof steps] as any).hint}
+                      </p>
                     )}
                   </div>
-                )}
-              </CardContent>
 
-              {/* Card Footer */}
-              {state.step > 0 && !showResult && (
-                <CardFooter
-                  className={`flex ${state.step > 1 ? 'justify-between' : 'justify-end'} bg-muted/20 border-t py-4`}
-                  style={{ paddingBottom: `calc(16px + env(safe-area-inset-bottom))` }}
-                >
-                  {/* Botão Voltar - ocultar na etapa 1 */}
-                  {state.step > 1 && (
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setState(prev => ({ ...prev, step: Math.max(1, prev.step - 1) }));
-                        setShowFallback(false);
-                      }}
-                      className="h-12 px-6"
-                    >
-                      <ChevronLeft className="w-4 h-4 mr-2" />
-                      Voltar
-                    </Button>
+                  {/* Options */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {steps[`s${state.step}` as keyof typeof steps]?.options.map((option) => {
+                      const stepKey = `s${state.step}` as keyof typeof state.answers;
+                      const isSelected = state.answers[stepKey]?.includes(option);
+                      const isMultiSelect = state.step === 1 || state.step === 2 || state.step === 5;
+
+                      return (
+                        <button
+                          key={option}
+                          onClick={() => handleStepAnswer(option, isMultiSelect)}
+                          className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border transition-all duration-200 text-sm font-medium ${isSelected
+                            ? 'bg-[rgba(43,111,165,0.90)] border-[#2B6FA5] text-white'
+                            : 'border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)]'
+                            }`}
+                          aria-checked={isSelected}
+                        >
+                          {option}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Fallback Accordion */}
+                  {showFallback && state.step === 1 && (
+                    <div className="mt-4 p-4 bg-muted/20 rounded-lg border">
+                      <h5 className="font-medium text-foreground mb-4">Vamos te ajudar:</h5>
+
+                      {/* Q1 */}
+                      <div className="mb-4">
+                        <p className="text-sm font-medium text-foreground mb-2">
+                          {steps.s1.fallback.q1}
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {steps.s1.fallback.q1Options.map((option) => (
+                            <button
+                              key={option}
+                              onClick={() => handleFallbackAnswer('q1', option)}
+                              className={`h-10 px-3 rounded-lg border text-xs transition-all ${state.fallback?.q1 === option
+                                ? 'bg-primary/10 border-primary text-primary'
+                                : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
+                                }`}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Q2 */}
+                      <div>
+                        <p className="text-sm font-medium text-foreground mb-2">
+                          {steps.s1.fallback.q2}
+                        </p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                          {steps.s1.fallback.q2Options.map((option) => (
+                            <button
+                              key={option}
+                              onClick={() => handleFallbackAnswer('q2', option)}
+                              className={`h-10 px-2 rounded-lg border text-xs transition-all ${state.fallback?.q2 === option
+                                ? 'bg-primary/10 border-primary text-primary'
+                                : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
+                                }`}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   )}
-
-                  <Button
-                    onClick={nextStep}
-                    disabled={!canProceed()}
-                    variant="primary"
-                    className="h-12 px-6 font-semibold"
-                  >
-                    {state.step === maxSteps ? 'Ver Estimativa' : 'Avançar'}
-                    <ChevronRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </CardFooter>
+                </div>
               )}
-            </Card>
-          )}
-        </div>
-      </div>
+            </CardContent>
 
-                     <ChannelSheet
-                       open={showChannelSheet}
-                       onOpenChange={setShowChannelSheet}
-                       recommendation={state.recommendation}
-                       priceRange={state.priceRange}
-                       answers={state.answers}
-                       fallback={state.fallback}
-                       context={{
-                         source: 'calculator_final',
-                         intent: state.recommendation === 'landing' ? 'landing' : 'site'
-                       }}
-                     />
-    </section>
-  );
+            {/* Card Footer */}
+            {state.step > 0 && !showResult && (
+              <CardFooter
+                className={`flex ${state.step > 1 ? 'justify-between' : 'justify-end'} bg-muted/20 border-t py-3`}
+                style={{ paddingBottom: `calc(12px + env(safe-area-inset-bottom))` }}
+              >
+                {/* Botão Voltar - ocultar na etapa 1 */}
+                {state.step > 1 && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setState(prev => ({ ...prev, step: Math.max(1, prev.step - 1) }));
+                      setShowFallback(false);
+                    }}
+                    className="h-12 px-6"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Voltar
+                  </Button>
+                )}
+
+                <Button
+                  onClick={nextStep}
+                  disabled={!canProceed()}
+                  variant="primary"
+                  className="h-12 px-6 font-semibold"
+                >
+                  {state.step === maxSteps ? 'Ver Estimativa' : 'Avançar'}
+                  <ChevronRight className="w-4 h-4 ml-2" />
+                </Button>
+              </CardFooter>
+            )}
+          </Card>
+        )}
+      </div>
+    </div>
+
+    <ChannelSheet
+      open={showChannelSheet}
+      onOpenChange={setShowChannelSheet}
+      recommendation={state.recommendation}
+      priceRange={state.priceRange}
+      answers={state.answers}
+      fallback={state.fallback}
+      context={{
+        source: 'calculator_final',
+        intent: state.recommendation === 'landing' ? 'landing' : 'site'
+      }}
+    />
+  </section>
+);
+
 
 };
 
