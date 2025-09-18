@@ -421,7 +421,7 @@ const Calculator30s = () => {
   );
 
 return (
-  <section className="py-12 md:py-16" style={{ background: 'hsl(var(--neutral-200))' }} id="calculator">
+  <section id="calculator" className="py-10 md:py-12">
     <div className="container mx-auto px-4">
       <div className="max-w-7xl mx-auto">
         {/* Section header and button - only show on introduction screen */}
@@ -431,9 +431,11 @@ return (
             <div className="text-center mb-8">
               <Button
                 onClick={startCalculator}
-                variant="accent-gradient"
                 size="lg"
-                className="h-14 px-12 text-lg font-semibold"
+                className="h-14 px-12 text-lg font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+                           border border-white/10
+                           bg-[linear-gradient(135deg,hsl(215_85%_60%)_0%,hsl(145_60%_45%)_100%)]
+                           text-white hover:brightness-110"
               >
                 Começar Diagnóstico
               </Button>
@@ -443,44 +445,53 @@ return (
 
         {/* Quiz Card - only show for steps 1-5 and results */}
         {state.step > 0 && (
-          <Card className="overflow-hidden w-full" style={{ background: 'hsl(var(--neutral-200))' }}>
+          <Card className="overflow-hidden w-full border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
             {/* Card Header with Stepper */}
-            <CardHeader className="pb-4">
-              {renderStepper()}
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-foreground">
+            <CardHeader className="pt-4 pb-0">
+              <div className="flex flex-col items-center text-center gap-2.5 md:gap-3">
+                {renderStepper()}
+                {/* Etapa (overline) */}
+                <p className="text-[11px] md:text-xs uppercase tracking-[0.14em] text-white/65 font-medium">
                   {getCurrentStepTitle()}
-                </h3>
+                </p>
               </div>
             </CardHeader>
 
-            <CardContent className="px-6 pb-4">
+            <CardContent className="px-5 pt-5 md:pt-6 pb-4">
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
                 <div className="space-y-5" aria-live="polite">
                   {/* Outcome Hero Image */}
                   <div className="flex flex-col md:flex-row items-center gap-6">
-                    <div className="flex-1 order-2 md:order-1 space-y-4">
+                    <div className="flex-1 order-2 md:order-1 space-y-3">
                       {/* Recommendation */}
                       <div className="text-center md:text-left">
-                        <h3 className="text-xl font-semibold text-foreground mb-1">
-                          Sugerimos: {state.recommendation === 'landing' ? copy.calculator.result.recommendation.landingLabel : copy.calculator.result.recommendation.siteLabel}
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-1.5 leading-snug">
+                          Sugerimos:{' '}
+                          {state.recommendation === 'landing'
+                            ? copy.calculator.result.recommendation.landingLabel
+                            : copy.calculator.result.recommendation.siteLabel}
                         </h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-white/70">
                           {copy.calculator.result.recommendation.hint}
                         </p>
                       </div>
 
                       {/* Price Range */}
                       <div className="text-center md:text-left">
-                        <div className="text-3xl font-bold text-foreground mb-3">
+                        <div className="text-3xl font-bold text-white mb-3">
                           R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                         </div>
 
-                        {/* Pills */}
-                        <div className="flex gap-2 justify-center md:justify-start flex-wrap mb-4">
-                          <Badge variant="secondary">Urgência: {state.answers.s4?.[0] || 'Sem pressa'}</Badge>
-                          <Badge variant="outline">{state.recommendation === 'landing' ? 'Landing Page' : 'Site'}</Badge>
+                        {/* Pill — apenas urgência (centralizado) */}
+                        <div className="flex justify-center">
+                          <Badge className="px-3 py-1.5 rounded-full
+                                            bg-[hsl(98_35%_55%/.16)]
+                                            text-[hsl(98_40%_65%)]
+                                            border border-[hsl(98_35%_55%/.38)]
+                                            shadow-[0_0_0_1px_hsl(98_35%_55%/.12)_inset]">
+                            Urgência: {state.answers.s4?.[0] || 'Sem pressa'}
+                          </Badge>
                         </div>
                       </div>
                     </div>
@@ -488,38 +499,48 @@ return (
                     {/* Hero Image */}
                     <div className="flex-shrink-0 order-1 md:order-2">
                       <img
-                        src={state.recommendation === 'landing' ? '/lovable-uploads/landingpage.png' : '/lovable-uploads/site.png'}
-                        alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
+                        src={
+                          state.recommendation === 'landing'
+                            ? '/lovable-uploads/landingpage.png'
+                            : '/lovable-uploads/site.png'
+                        }
+                        alt={`Ilustração do tipo recomendado: ${
+                          state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'
+                        }`}
                         className="w-48 md:w-72 h-auto animate-float"
                       />
                     </div>
                   </div>
 
                   {/* Por que recomendamos */}
-                  <div className="bg-muted/40 rounded-xl p-5">
-                    <h4 className="font-semibold text-foreground mb-4 text-center">
+                  <div className="rounded-xl p-5 bg-white/5 ring-1 ring-white/10">
+                    <h4 className="font-semibold text-white mb-3 text-center">
                       Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
                     </h4>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {buildReasons(state).map((reason, index) => {
                         const iconMap = {
-                          Target, Clock, MessageCircle, Lightbulb, Zap,
-                          Globe, Grid3x3, MapPin, Image, Layers
+                          Target,
+                          Clock,
+                          MessageCircle,
+                          Lightbulb,
+                          Zap,
+                          Globe,
+                          Grid3x3,
+                          MapPin,
+                          Image,
+                          Layers,
                         };
                         const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
 
                         return (
                           <div key={index} className="flex items-start gap-3">
                             <div className="flex-shrink-0 w-5 h-5 mt-0.5">
-                              <IconComponent className="w-5 h-5 text-primary" />
+                              <IconComponent className="w-5 h-5 text-[hsl(98_40%_60%)] drop-shadow-[0_0_8px_hsla(98,35%,55%,0.25)]" />
                             </div>
                             <div>
-                              <div className="font-medium text-foreground text-sm mb-1">
-                                {reason.title}
-                              </div>
-                              <div className="text-sm text-muted-foreground leading-relaxed">
-                                {reason.text}
-                              </div>
+                              <div className="font-medium text-white text-sm mb-0.5">{reason.title}</div>
+                              <div className="text-sm text-white/70 leading-relaxed">{reason.text}</div>
                             </div>
                           </div>
                         );
@@ -528,11 +549,11 @@ return (
                   </div>
 
                   {/* CTAs */}
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="flex-1 font-semibold h-12 gap-2"
+                      className="flex-1 font-semibold h-12 gap-2 border-white/30 text-white hover:bg-white/10"
                     >
                       <Calculator className="w-4 h-4" />
                       Calcular novamente
@@ -540,8 +561,10 @@ return (
 
                     <Button
                       onClick={() => setShowChannelSheet(true)}
-                      variant="accent-gradient"
-                      className="flex-1 font-semibold h-12"
+                      className="flex-1 font-semibold h-12
+                                 bg-[linear-gradient(135deg,hsl(215_85%_60%)_0%,hsl(145_60%_45%)_100%)]
+                                 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.12)_inset,0_10px_30px_rgba(0,0,0,0.35)]
+                                 hover:brightness-110"
                     >
                       {copy.calculator.result.ctas.primary}
                     </Button>
@@ -551,13 +574,14 @@ return (
 
               {/* Regular Steps */}
               {state.step > 0 && !showResult && (
-                <div className="space-y-5">
-                  <div>
-                    <h4 className="text-xl font-semibold text-foreground mb-2">
+                <div className="space-y-5 md:space-y-6">
+                  {/* Pergunta */}
+                  <div className="mb-2 md:mb-3">
+                    <h4 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                       {steps[`s${state.step}` as keyof typeof steps]?.title}
                     </h4>
                     {('hint' in steps[`s${state.step}` as keyof typeof steps]) && (
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm md:text-base text-white/70 mt-2">
                         {(steps[`s${state.step}` as keyof typeof steps] as any).hint}
                       </p>
                     )}
@@ -574,10 +598,13 @@ return (
                         <button
                           key={option}
                           onClick={() => handleStepAnswer(option, isMultiSelect)}
-                          className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border transition-all duration-200 text-sm font-medium ${isSelected
-                            ? 'bg-[rgba(43,111,165,0.90)] border-[#2B6FA5] text-white'
-                            : 'border-[rgba(43,111,165,0.40)] text-[#0E1116] hover:border-[rgba(43,111,165,0.60)] hover:bg-[rgba(43,111,165,0.05)]'
-                            }`}
+                          className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border text-sm font-medium
+                                      transition-[background,border-color,box-shadow,transform,color] duration-300 ease-out will-change-transform
+                                      ${
+                                        isSelected
+                                          ? 'bg-[linear-gradient(135deg,hsl(145_60%_45%),hsl(98_40%_50%))] text-white border-[hsl(98_35%_55%/0.35)] ring-2 ring-[hsl(98_35%_55%/0.45)] shadow-[0_10px_30px_hsla(98,35%,55%,0.25)] scale-[1.015]'
+                                          : 'border-[hsl(98_35%_55%/0.40)] text-white/90 hover:text-white hover:bg-[hsl(98_35%_55%/0.10)] hover:border-[hsl(98_35%_55%/0.65)]'
+                                      }`}
                           aria-checked={isSelected}
                         >
                           {option}
@@ -588,22 +615,22 @@ return (
 
                   {/* Fallback Accordion */}
                   {showFallback && state.step === 1 && (
-                    <div className="mt-4 p-4 bg-muted/20 rounded-lg border">
-                      <h5 className="font-medium text-foreground mb-4">Vamos te ajudar:</h5>
+                    <div className="mt-2.5 p-4 rounded-lg border border-white/10 bg-white/5">
+                      <h5 className="font-medium text-white mb-3">Vamos te ajudar:</h5>
 
                       {/* Q1 */}
                       <div className="mb-4">
-                        <p className="text-sm font-medium text-foreground mb-2">
-                          {steps.s1.fallback.q1}
-                        </p>
+                        <p className="text-sm font-medium text-white mb-2">{steps.s1.fallback.q1}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {steps.s1.fallback.q1Options.map((option) => (
                             <button
                               key={option}
                               onClick={() => handleFallbackAnswer('q1', option)}
-                              className={`h-10 px-3 rounded-lg border text-xs transition-all ${state.fallback?.q1 === option
-                                ? 'bg-primary/10 border-primary text-primary'
-                                : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
+                              className={`h-10 px-3 rounded-lg border text-xs transition-all duration-300 ease-out
+                                ${
+                                  state.fallback?.q1 === option
+                                    ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
+                                    : 'border-white/20 text-white hover:border-[hsl(98_35%_55%/0.55)] hover:bg-[hsl(98_35%_55%/0.12)]'
                                 }`}
                             >
                               {option}
@@ -614,17 +641,17 @@ return (
 
                       {/* Q2 */}
                       <div>
-                        <p className="text-sm font-medium text-foreground mb-2">
-                          {steps.s1.fallback.q2}
-                        </p>
+                        <p className="text-sm font-medium text-white mb-2">{steps.s1.fallback.q2}</p>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {steps.s1.fallback.q2Options.map((option) => (
                             <button
                               key={option}
                               onClick={() => handleFallbackAnswer('q2', option)}
-                              className={`h-10 px-2 rounded-lg border text-xs transition-all ${state.fallback?.q2 === option
-                                ? 'bg-primary/10 border-primary text-primary'
-                                : 'border-muted-foreground/20 text-foreground hover:border-primary/40'
+                              className={`h-10 px-2 rounded-lg border text-xs transition-all duration-300 ease-out
+                                ${
+                                  state.fallback?.q2 === option
+                                    ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
+                                    : 'border-white/20 text-white hover:border-[hsl(98_35%_55%/0.55)] hover:bg-[hsl(98_35%_55%/0.12)]'
                                 }`}
                             >
                               {option}
@@ -641,7 +668,7 @@ return (
             {/* Card Footer */}
             {state.step > 0 && !showResult && (
               <CardFooter
-                className={`flex ${state.step > 1 ? 'justify-between' : 'justify-end'} bg-muted/20 border-t py-3`}
+                className={`flex ${state.step > 1 ? 'justify-between' : 'justify-end'} bg-white/5 border-t border-white/10 py-3 backdrop-blur-md`}
                 style={{ paddingBottom: `calc(12px + env(safe-area-inset-bottom))` }}
               >
                 {/* Botão Voltar - ocultar na etapa 1 */}
@@ -649,10 +676,10 @@ return (
                   <Button
                     variant="outline"
                     onClick={() => {
-                      setState(prev => ({ ...prev, step: Math.max(1, prev.step - 1) }));
+                      setState((prev) => ({ ...prev, step: Math.max(1, prev.step - 1) }));
                       setShowFallback(false);
                     }}
-                    className="h-12 px-6"
+                    className="h-12 px-6 border-white/30 text-white hover:bg-white/10"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
                     Voltar
@@ -662,8 +689,9 @@ return (
                 <Button
                   onClick={nextStep}
                   disabled={!canProceed()}
-                  variant="primary"
-                  className="h-12 px-6 font-semibold"
+                  className="h-12 px-6 font-semibold
+                             bg-[linear-gradient(135deg,hsl(208_58%_41%),hsl(98_35%_55%))]
+                             text-white border-0 hover:brightness-110"
                 >
                   {state.step === maxSteps ? 'Ver Estimativa' : 'Avançar'}
                   <ChevronRight className="w-4 h-4 ml-2" />
@@ -689,6 +717,8 @@ return (
     />
   </section>
 );
+
+
 
 
 };
