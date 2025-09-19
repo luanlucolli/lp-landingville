@@ -461,7 +461,7 @@ return (
               {/* Result Screen */}
               {showResult && state.recommendation && state.priceRange && (
                 <div className="space-y-5" aria-live="polite">
-                  {/* Outcome Hero Image */}
+                  {/* Result layout */}
                   <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="flex-1 order-2 md:order-1 space-y-3">
                       {/* Recommendation */}
@@ -472,19 +472,36 @@ return (
                             ? copy.calculator.result.recommendation.landingLabel
                             : copy.calculator.result.recommendation.siteLabel}
                         </h3>
+
+                        {/* Mobile image between title and hint */}
+                        <div className="block md:hidden my-3">
+                          <img
+                            src={
+                              state.recommendation === 'landing'
+                                ? '/lovable-uploads/landingpage.png'
+                                : '/lovable-uploads/site.png'
+                            }
+                            alt={`Ilustração do tipo recomendado: ${
+                              state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'
+                            }`}
+                            className="w-48 h-auto mx-auto animate-float"
+                          />
+                        </div>
+
+                        {/* Hint */}
                         <p className="text-white/70">
                           {copy.calculator.result.recommendation.hint}
                         </p>
                       </div>
 
-                      {/* Price Range */}
+                      {/* Price Range + Urgency */}
                       <div className="text-center md:text-left">
                         <div className="text-3xl font-bold text-white mb-3">
                           R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                         </div>
 
-                        {/* Pill — apenas urgência (centralizado) */}
-                        <div className="flex justify-center">
+                        {/* Pill — urgência (center on mobile, left on desktop) */}
+                        <div className="flex justify-center md:justify-start">
                           <Badge className="px-3 py-1.5 rounded-full
                                             bg-[hsl(98_35%_55%/.16)]
                                             text-[hsl(98_40%_65%)]
@@ -496,8 +513,8 @@ return (
                       </div>
                     </div>
 
-                    {/* Hero Image */}
-                    <div className="flex-shrink-0 order-1 md:order-2">
+                    {/* Desktop: image to the right */}
+                    <div className="hidden md:block flex-shrink-0 order-1 md:order-2">
                       <img
                         src={
                           state.recommendation === 'landing'
@@ -507,7 +524,7 @@ return (
                         alt={`Ilustração do tipo recomendado: ${
                           state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'
                         }`}
-                        className="w-48 md:w-72 h-auto animate-float"
+                        className="w-72 h-auto animate-float"
                       />
                     </div>
                   </div>
@@ -603,7 +620,7 @@ return (
                                       ${
                                         isSelected
                                           ? 'bg-[linear-gradient(135deg,hsl(145_60%_45%),hsl(98_40%_50%))] text-white border-[hsl(98_35%_55%/0.35)] ring-2 ring-[hsl(98_35%_55%/0.45)] shadow-[0_10px_30px_hsla(98,35%,55%,0.25)] scale-[1.015]'
-                                          : 'border-[hsl(98_35%_55%/0.40)] text-white/90 hover:text-white hover:bg-[hsl(98_35%_55%/0.10)] hover:border-[hsl(98_35%_55%/0.65)]'
+                                          : 'border-white/25 text-white/90 hover:text-white hover:bg-white/5 hover:border-white/40 focus:outline-none focus:ring-0 active:bg-white/10'
                                       }`}
                           aria-checked={isSelected}
                         >
@@ -630,7 +647,7 @@ return (
                                 ${
                                   state.fallback?.q1 === option
                                     ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
-                                    : 'border-white/20 text-white hover:border-[hsl(98_35%_55%/0.55)] hover:bg-[hsl(98_35%_55%/0.12)]'
+                                    : 'border-white/20 text-white hover:border-white/40 hover:bg-white/5 focus:outline-none focus:ring-0 active:bg-white/10'
                                 }`}
                             >
                               {option}
@@ -651,7 +668,7 @@ return (
                                 ${
                                   state.fallback?.q2 === option
                                     ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
-                                    : 'border-white/20 text-white hover:border-[hsl(98_35%_55%/0.55)] hover:bg-[hsl(98_35%_55%/0.12)]'
+                                    : 'border-white/20 text-white hover:border-white/40 hover:bg-white/5 focus:outline-none focus:ring-0 active:bg-white/10'
                                 }`}
                             >
                               {option}
@@ -717,8 +734,6 @@ return (
     />
   </section>
 );
-
-
 
 
 };

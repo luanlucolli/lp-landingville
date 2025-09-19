@@ -23,7 +23,8 @@ const Diagnostico = () => {
       {/* Header translúcido */}
       <header className="sticky top-0 z-40 bg-background/60 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="relative flex items-center h-16">
+            {/* Botão Voltar (à esquerda) */}
             <Button
               variant="ghost"
               size="sm"
@@ -35,12 +36,26 @@ const Diagnostico = () => {
               <span className="hidden sm:inline">Voltar</span>
             </Button>
 
-            <h1 className="text-lg font-semibold">Diagnóstico</h1>
+            {/* Logo centralizada (clicável) */}
+            <a
+              href="/"
+              className="absolute left-1/2 -translate-x-1/2 inline-flex items-center justify-center"
+              aria-label="Ir para a página inicial"
+            >
+              <img
+                src="/lovable-uploads/landingvillelogo.svg"
+                alt="Landingville"
+                className="h-12 md:h-812 w-auto select-none cursor-pointer"
+              />
+            </a>
+
+            {/* Espaçador à direita (equilibra o layout visual) */}
+            <div className="ml-auto w-10 sm:w-[88px]" aria-hidden="true" />
           </div>
         </div>
       </header>
 
-      {/* Simple centered layout for the calculator */}
+      {/* Layout principal */}
       <main className="dark">
         <div className="pt-10 md:pt-12 pb-16 md:pb-20">
           <Calculator30s />
