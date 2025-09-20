@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Clock, Target, DollarSign } from 'lucide-react';
+import { Clock, Target, DollarSign, Lightbulb, Receipt, Zap } from 'lucide-react';
 
 const DiagnosisHook = () => {
   return (
@@ -37,7 +37,7 @@ const DiagnosisHook = () => {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                      <Clock className="w-6 h-6 text-primary-green" />
+                      <Zap className="w-6 h-6 text-primary-green" />
                     </div>
                     <div>
                       <h3 className="font-bold text-foreground text-base mb-1">
@@ -51,7 +51,7 @@ const DiagnosisHook = () => {
 
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                      <Target className="w-6 h-6 text-primary-green" />
+                      <Lightbulb className="w-6 h-6 text-primary-green" />
                     </div>
                     <div>
                       <h3 className="font-bold text-foreground text-base mb-1">
@@ -65,7 +65,7 @@ const DiagnosisHook = () => {
 
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                      <DollarSign className="w-6 h-6 text-primary-green" />
+                      <Receipt className="w-6 h-6 text-primary-green" />
                     </div>
                     <div>
                       <h3 className="font-bold text-foreground text-base mb-1">
