@@ -163,45 +163,47 @@ export const copy = {
 
 
   // DEMOS em tabs (Landing/Site). Reservar espaço para 1 imagem por tab (desktop+mobile combinados).
-  demos: {
-    id: "demos",
-    title: "Landing Page ou Site: qual é melhor para você?",
-    note: "Veja a diferença e escolha a melhor opção.",
-    tabs: [
-      {
-        key: "landing",
-        title: "Landing Page",
-        oneLiner: "Uma página, um objetivo.",
-        images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
-        // --- NOVA ESTRUTURA ---
-        highlightIllustration: "/path/to/your/landing-page-illustration.svg",
-        highlightTitle: "Foco Total em Conversão",
-        highlightDescription: "Ideal para campanhas de marketing, promoções ou para capturar contatos de forma rápida e eficiente, sem distrações.",
-        benefits: [
-          "Um único chamado para ação (CTA)",
-          "Mede resultados de forma clara",
-          "Lançamento rápido para testar ideias"
-        ]
-      },
-      {
-        key: "site",
-        title: "Site",
-        oneLiner: "Vitrine completa.",
-        images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
-        // --- NOVA ESTRUTURA ---
-        highlightIllustration: "/path/to/your/site-illustration.svg",
-        highlightTitle: "Sua Central de Credibilidade Online",
-        highlightDescription: "A base para construir confiança, apresentar toda a sua empresa e ser visto como autoridade no seu mercado.",
-        benefits: [
-          "Otimizado para ser encontrado no Google (SEO)",
-          "Flexível para adicionar blog e novos serviços",
-          "Navegação fácil para guiar seus clientes"
-        ]
-      }
-    ],
-    // Botão abre o modal de contato
-    cta: "Falar com a Landingville"
-  },
+  // Trecho do copy (substitua no objeto exportado de '@/content/landingville')
+demos: {
+  id: "demos",
+  title: "Landing Page ou Site: qual é melhor para você?",
+  note: "Veja a diferença e escolha a melhor opção.",
+  tabs: [
+    {
+      key: "landing",
+      title: "Landing Page",
+      oneLiner: "Uma página, um objetivo.",
+      images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
+      // Ícone Lucide no lugar do SVG
+      highlightIcon: "megaphone",
+      highlightTitle: "Foco Total em Conversão",
+      highlightDescription: "Ideal para campanhas de marketing, promoções ou para capturar contatos de forma rápida e eficiente, sem distrações.",
+      benefits: [
+        "Um único chamado para ação (CTA)",
+        "Mede resultados de forma clara",
+        "Lançamento rápido para testar ideias"
+      ]
+    },
+    {
+      key: "site",
+      title: "Site",
+      oneLiner: "Vitrine completa.",
+      images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
+      // Ícone Lucide no lugar do SVG
+      highlightIcon: "network",
+      highlightTitle: "Sua Central de Credibilidade Online",
+      highlightDescription: "A base para construir confiança, apresentar toda a sua empresa e ser visto como autoridade no seu mercado.",
+      benefits: [
+        "Otimizado para ser encontrado no Google (SEO)",
+        "Flexível para adicionar blog e novos serviços",
+        "Navegação fácil para guiar seus clientes"
+      ]
+    }
+  ],
+  // Botão abre o modal de contato
+  cta: "Falar com a Landingville"
+},
+
 
   faq: {
     id: "faq",

@@ -1,3 +1,4 @@
+// src/components/DemosTabs.tsx
 import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -129,6 +130,9 @@ const DemosTabs = () => {
     setIsPaused(false);
   };
 
+  // Mapa de ícones Lucide para o destaque principal
+  const HighlightIcon = currentTab.highlightIcon === 'megaphone' ? Megaphone : Network;
+
   return (
     <section className="py-20" style={{ background: 'hsl(var(--neutral-200))' }} id="demos">
       <div className="container mx-auto px-4">
@@ -240,9 +244,7 @@ const DemosTabs = () => {
                   <Badge variant="secondary" className="mb-2">
                     Exemplo de Demonstração
                   </Badge>
-                  <p className="text-sm text-muted-foreground">
-                    Proporção ideal para visualização em todos os dispositivos
-                  </p>
+
                 </div>
               </Card>
             </div>
@@ -262,15 +264,10 @@ const DemosTabs = () => {
                   )}
                 </div>
 
-                {/* Destaque Principal */}
+                {/* Destaque Principal - Ícone Lucide (sem container extra) */}
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <img 
-                      src={currentTab.highlightIllustration} 
-                      alt="" 
-                      aria-hidden="true"
-                      className="w-12 h-12 flex-shrink-0"
-                    />
+                    <HighlightIcon className="w-12 h-12 text-primary flex-shrink-0" aria-hidden="true" />
                     <div>
                       <h4 className="text-xl font-semibold text-foreground mb-2">
                         {currentTab.highlightTitle}
@@ -283,16 +280,19 @@ const DemosTabs = () => {
                 </div>
 
                 {/* Pontos de Apoio */}
+                {/* Pontos de Apoio */}
                 <ul className="space-y-3">
                   {currentTab.benefits?.map((benefit, index) => (
                     <li key={index} className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-secondary flex-shrink-0" />
+                      {/* azul, igual aos ícones de destaque */}
+                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-foreground">
                         {benefit}
                       </span>
                     </li>
                   ))}
                 </ul>
+
               </div>
             </div>
           </div>
