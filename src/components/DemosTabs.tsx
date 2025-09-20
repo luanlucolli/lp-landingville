@@ -262,59 +262,37 @@ const DemosTabs = () => {
                   )}
                 </div>
 
-                {/* ======================= ALTERAÇÃO AQUI ======================= */}
-                {/* Focus Section */}
-                {currentTab.focusTitle && (
-                  <div className="flex items-center gap-4">
-                    {currentTab.key === 'landing' ? (
-                      <Megaphone className="w-12 h-12 flex-shrink-0 text-primary" aria-hidden="true" />
-                    ) : (
-                      <Network className="w-12 h-12 flex-shrink-0 text-primary" aria-hidden="true" />
-                    )}
-                    <h4 className="text-xl font-semibold text-foreground">
-                      {currentTab.focusTitle}
-                    </h4>
-                  </div>
-                )}
-                {/* ============================================================= */}
-
-                {/* Chips - Features */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {currentTab.bullets?.map((bullet, index) => (
-                    <div key={index} className="flex items-center gap-2 bg-secondary/5 rounded-lg px-3 py-2 h-10">
-                      <Check className="w-4 h-4 text-secondary flex-shrink-0" />
-                      <span className="text-sm font-medium text-foreground truncate">
-                        {bullet}
-                      </span>
+                {/* Destaque Principal */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <img 
+                      src={currentTab.highlightIllustration} 
+                      alt="" 
+                      aria-hidden="true"
+                      className="w-12 h-12 flex-shrink-0"
+                    />
+                    <div>
+                      <h4 className="text-xl font-semibold text-foreground mb-2">
+                        {currentTab.highlightTitle}
+                      </h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {currentTab.highlightDescription}
+                      </p>
                     </div>
-                  ))}
+                  </div>
                 </div>
 
-                {/* Badges - Ideal for */}
-                {currentTab.helperTitle && currentTab.helperPoints && (
-                  <div className="space-y-3 mt-6">
-                    <h4 className="text-sm font-semibold text-foreground">
-                      {currentTab.helperTitle}
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {currentTab.helperPoints.map((point, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs px-2 py-1">
-                          {point}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Tip */}
-                {currentTab.tip && (
-                  <div className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
-                    <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      <span className="font-medium">Dica:</span> {currentTab.tip}
-                    </p>
-                  </div>
-                )}
+                {/* Pontos de Apoio */}
+                <ul className="space-y-3">
+                  {currentTab.benefits?.map((benefit, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <Check className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <span className="text-foreground">
+                        {benefit}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
