@@ -241,7 +241,7 @@ const DemosTabs = () => {
                 </div>
 
                 <div className="text-center">
-                  <Badge variant="secondary" className="mb-2">
+                  <Badge variant="default" className="mb-2">
                     Exemplo de Demonstração
                   </Badge>
 
@@ -269,7 +269,7 @@ const DemosTabs = () => {
                   <div className="flex items-start gap-4">
                     <HighlightIcon className="w-12 h-12 text-primary flex-shrink-0" aria-hidden="true" />
                     <div>
-                      <h4 className="text-xl font-semibold text-foreground mb-2">
+                      <h4 className="text-xl font-semibold text-foreground mb-0">
                         {currentTab.highlightTitle}
                       </h4>
                       <p className="text-muted-foreground leading-relaxed">
