@@ -435,13 +435,7 @@ const Calculator30s = () => {
         </h1>
 
         {/* Ilustração da Bússola */}
-        <img
-            src="/lovable-uploads/bussola.svg"
-            alt="Bússola que guia para a solução digital ideal"
-            // Espaçamento vertical generoso para destacar a ilustração
-            className="w-40 h-40 md:w-48 md:h-48 mx-auto my-8 md:my-12"
-            aria-hidden="true" // A imagem é decorativa, o texto já explica o contexto
-        />
+      
 
         {/* Subtítulo */}
         <p className="max-w-xl mx-auto text-lg text-slate-300 mb-12">
