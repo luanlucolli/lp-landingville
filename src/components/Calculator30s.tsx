@@ -425,23 +425,43 @@ const Calculator30s = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section header and button - only show on introduction screen */}
-          {state.step === 0 && (
-            <>
-              {renderSectionHeader()}
-              <div className="text-center mb-8">
-                <Button
-                  onClick={startCalculator}
-                  size="lg"
-                  className="h-14 px-12 text-lg font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-                           border border-white/10
-                           bg-[linear-gradient(135deg,hsl(215_85%_60%)_0%,hsl(145_60%_45%)_100%)]
-                           text-white hover:brightness-110"
-                >
-                  Começar Diagnóstico
-                </Button>
-              </div>
-            </>
-          )}
+    {state.step === 0 && (
+    // Animação sutil para a entrada dos elementos
+    <div className="text-center animate-fade-in-up">
+        
+        {/* Título Principal */}
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-50 mb-8">
+            Qual o caminho certo para o seu negócio?
+        </h1>
+
+        {/* Ilustração da Bússola */}
+        <img
+            src="/lovable-uploads/bussola.svg"
+            alt="Bússola que guia para a solução digital ideal"
+            // Espaçamento vertical generoso para destacar a ilustração
+            className="w-40 h-40 md:w-48 md:h-48 mx-auto my-8 md:my-12"
+            aria-hidden="true" // A imagem é decorativa, o texto já explica o contexto
+        />
+
+        {/* Subtítulo */}
+        <p className="max-w-xl mx-auto text-lg text-slate-300 mb-12">
+            Este diagnóstico de 2 minutos funciona como uma bússola, apontando a solução digital ideal para seus objetivos.
+        </p>
+
+        {/* Botão de Ação (CTA) */}
+        <Button
+            onClick={startCalculator}
+            size="lg"
+            className="h-14 px-12 text-lg font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+                       border border-white/10
+                       bg-[linear-gradient(135deg,hsl(215_85%_60%)_0%,hsl(145_60%_45%)_100%)]
+                       text-white hover:brightness-110"
+        >
+            Encontrar minha direção
+        </Button>
+
+    </div>
+)}
 
           {/* Quiz Card - only show for steps 1-5 and results */}
           {state.step > 0 && (
