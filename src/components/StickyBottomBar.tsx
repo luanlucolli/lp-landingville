@@ -1,8 +1,6 @@
-import { MessageCircle, Calculator } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { MessageCircle } from 'lucide-react';
 import { ChannelSheet } from './ChannelSheet';
 import { useState } from 'react';
-import copy from '@/content/landingville';
 
 const StickyBottomBar = () => {
   const [showChannelSheet, setShowChannelSheet] = useState(false);
@@ -11,35 +9,20 @@ const StickyBottomBar = () => {
     setShowChannelSheet(true);
   };
 
-  const handleCalculatorClick = () => {
-    const calculatorSection = document.getElementById('calculator');
-    calculatorSection?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border p-4 md:hidden max-w-full" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
-      <div className="flex gap-3 max-w-lg mx-auto">
-        <Button 
-          onClick={handleChannelsClick}
-          variant="accent-gradient"
-          className="flex-1 min-h-[52px] font-semibold"
-          size="lg"
-          aria-label="Falar com a Landingville"
-        >
-          <MessageCircle className="w-5 h-5 mr-2" />
-          {copy.faq.finalCTA.primary}
-        </Button>
-        <Button 
-          onClick={handleCalculatorClick}
-          variant="outline"
-          className="focus-ring min-h-[52px] px-6 font-semibold"
-          size="lg"
-          aria-label="Calcular orçamento"
-        >
-          <Calculator className="w-5 h-5 mr-2" />
-          {copy.faq.finalCTA.secondary}
-        </Button>
-      </div>
+    <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      <button
+        onClick={handleChannelsClick}
+        className="w-14 h-14 rounded-full border border-white/10 backdrop-blur-md shadow-lg
+                   bg-gradient-to-br from-[hsl(215,85%,60%)] to-[hsl(145,60%,45%)]
+                   hover:brightness-110 active:scale-95 
+                   focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:outline-none
+                   transition-all duration-200 ease-out
+                   flex items-center justify-center"
+        aria-label="Entrar em contato"
+      >
+        <MessageCircle className="w-6 h-6 text-white" />
+      </button>
 
       <ChannelSheet 
         open={showChannelSheet}
