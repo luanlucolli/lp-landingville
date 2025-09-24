@@ -46,7 +46,7 @@ const Index = () => {
       <StickyBottomBar />
 
       {/* Add padding bottom on mobile to prevent content being hidden by sticky bar */}
-      <div className="h-20 md:h-0" />
+      <div className="md:h-0" />
     </div>
   );
 };
