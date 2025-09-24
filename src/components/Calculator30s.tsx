@@ -431,7 +431,7 @@ const Calculator30s = () => {
         
         {/* Título Principal */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-50 mb-8">
-            Qual o caminho certo para o seu negócio?
+            {copy.calculator.intro.title}
         </h1>
 
         {/* Ilustração da Bússola */}
@@ -439,7 +439,7 @@ const Calculator30s = () => {
 
         {/* Subtítulo */}
         <p className="max-w-xl mx-auto text-lg text-slate-300 mb-12">
-            Este diagnóstico de 2 minutos funciona como uma bússola, apontando a solução digital ideal para seus objetivos.
+            {copy.calculator.intro.subtitle}
         </p>
 
         {/* Botão de Ação (CTA) */}

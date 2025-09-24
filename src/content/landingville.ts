@@ -28,7 +28,8 @@ export const copy = {
 
     // TELA 0 (INTRO) — NÃO começar no Passo 1
     intro: {
-      title: "Descubra seu investimento",
+      title: "Qual o caminho certo para o seu negócio?",
+      subtitle: "Este diagnóstico de 2 minutos funciona como uma bússola, apontando a solução digital ideal para seus objetivos.",
       bullets: ["Sem cadastro", "Recomendação automática", "Pode ajustar depois"],
       cta: "Descobrir agora",
       links: {
