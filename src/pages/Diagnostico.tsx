@@ -9,66 +9,66 @@ import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 // 2. APLICADO O TIPO ISourceOptions À CONSTANTE
+// substitua seu particlesOptions por este:
 const particlesOptions: ISourceOptions = {
-  background: {
-    color: {
-      value: "transparent",
-    },
-  },
+  background: { color: { value: "transparent" } },
   fpsLimit: 120,
+  detectRetina: true,
   interactivity: {
     events: {
-      onHover: {
-        enable: true,
-        mode: "repulse",
-      },
+      onHover: { enable: true, mode: "repulse" },
+      resize: true
     },
     modes: {
-      repulse: {
-        distance: 80,
-        duration: 0.4,
-      },
-    },
+      repulse: { distance: 80, duration: 0.4 }
+    }
   },
   particles: {
+    number: {
+      value: 180,                         // mesma densidade
+      density: { enable: true, area: 900 }
+    },
     color: {
-      value: "#ffffff",
+      // Paleta Landingville: azul, verde e branco
+      value: ["#2B6FA5", "#6D9F50", "#85BA62", "#93D277", "#FFFFFF"]
     },
     links: {
-      color: "#ffffff",
-      distance: 150,
-      enable: true,
-      opacity: 0.1,
-      width: 1,
+      enable: false
     },
-    move: {
-      direction: "none",
-      enable: true,
-      outModes: {
-        default: "bounce",
-      },
-      random: false,
-      speed: 0.5,
-      straight: false,
-    },
-    number: {
-      density: {
+    shape: { type: "circle" },
+    size: {
+      value: { min: 0.6, max: 2.2 },
+      animation: {
         enable: true,
-      },
-      value: 125,
+        speed: 2,
+        minimumValue: 0.4,
+        sync: false
+      }
     },
     opacity: {
-      value: 0.3,
+      value: { min: 0.18, max: 0.55 },
+      animation: {
+        enable: true,
+        speed: 0.6,
+        minimumValue: 0.18,
+        sync: false
+      }
     },
-    shape: {
-      type: "circle",
-    },
-    size: {
-      value: { min: 1, max: 2 },
-    },
-  },
-  detectRetina: true,
+    move: {
+      enable: true,
+      speed: 0.25,
+      direction: "none",
+      random: true,
+      straight: false,
+      outModes: { default: "out" },
+      attract: {
+        enable: true,
+        rotate: { x: 2000, y: 2000 }
+      }
+    }
+  }
 };
+
 
 const Diagnostico = () => {
   const handleBack = () => {
