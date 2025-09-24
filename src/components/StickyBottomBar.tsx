@@ -16,15 +16,19 @@ const StickyBottomBar = () => {
     >
       <button
         onClick={handleChannelsClick}
-        className="w-14 h-14 rounded-full border border-white/10 backdrop-blur-md shadow-lg
-                   bg-gradient-to-br from-[hsl(215,85%,60%)] to-[hsl(145,60%,45%)]
-                   hover:brightness-110 active:scale-95
-                   focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:outline-none
-                   transition-all duration-200 ease-out
+        className="w-16 h-16 md:w-[68px] md:h-[68px] lg:w-[72px] lg:h-[72px]
+                   rounded-full border border-white/20 backdrop-blur-xl shadow-lg
+                   bg-white/10 hover:bg-white/15 active:bg-white/20
+                   active:scale-95 transition-all duration-200 ease-out
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
                    flex items-center justify-center"
         aria-label="Entrar em contato"
       >
-        <MessageCircle className="w-6 h-6 text-white" />
+        <MessageCircle
+          className="w-7 h-7 lg:w-8 lg:h-8
+                     text-[hsl(var(--primary-green))]
+                     drop-shadow-[0_2px_10px_hsla(98,33%,47%,0.45)]"
+        />
       </button>
 
       <ChannelSheet
