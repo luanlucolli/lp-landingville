@@ -93,7 +93,7 @@ const Diagnostico = () => {
       }}
     >
       <SchemaMarkup />
-      
+
       <Particles
         id="tsparticles"
         init={particlesInit}

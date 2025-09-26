@@ -230,7 +230,7 @@ const Calculator30s = () => {
         });
       }
 
-      if (state.answers.s4?.[0] && ['Em 3 dias (noites)', 'Em 5 dias (úteis, à noite)'].includes(state.answers.s4[0])) {
+      if (state.answers.s4?.[0] && ['Em 3 dias úteis', 'Em 5 dias úteis'].includes(state.answers.s4[0])) {
         reasons.push({
           title: 'Vai ao ar rápido',
           text: 'Publicamos rapidinho para você começar a receber mensagens.',

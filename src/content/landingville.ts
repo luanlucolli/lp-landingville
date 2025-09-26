@@ -13,7 +13,7 @@ export const copy = {
     badge: "Publicado em dias, não semanas",
     ctas: {
       primary: "Calcular orçamento",   // scroll suave para #calculator
-      secondary: "Ver exemplos"               // scroll suave para #demos (tab dinâmica)
+      secondary: "Ver exemplos"        // scroll suave para #demos (tab dinâmica)
     },
     visual: {
       gradientNote: "Hero com gradiente animado top (Steel→Moss) e blobs flutuantes; prefers-reduced-motion desativa; contraste AA/AAA."
@@ -85,7 +85,7 @@ export const copy = {
       // Passo 4 — Urgência (não altera preço; vira etiqueta no resumo)
       s4: {
         title: "Qual a urgência?",
-        options: ["Em 3 dias (noites)", "Em 5 dias (úteis, à noite)", "Em 7 dias", "Sem pressa"]
+        options: ["Em 3 dias", "Em 5 dias úteis", "Em 7 dias", "Sem pressa"]
       },
 
       // Passo 5 — Extras leves (multi) com impacto pequeno
@@ -162,10 +162,7 @@ export const copy = {
     ]
   },
 
-
-  // DEMOS em tabs (Landing/Site). Reservar espaço para 1 imagem por tab (desktop+mobile combinados).
-  // Trecho do copy (substitua no objeto exportado de '@/content/landingville')
-  // Trecho do copy (substitua no objeto exportado de '@/content/landingville')
+  // DEMOS em tabs (Landing/Site).
   demos: {
     id: "demos",
     title: "Landing Page ou Site: qual é melhor para você?",
@@ -206,7 +203,6 @@ export const copy = {
     cta: "Falar com a Landingville"
   },
 
-
   faq: {
     id: "faq",
     title: "Perguntas rápidas",
@@ -221,7 +217,7 @@ export const copy = {
       },
       {
         q: "Em quanto tempo fica pronto?",
-        a: "Dias, não semanas. Confirmamos o prazo após o diagnóstico. Temos opções pensadas para quem só consegue aprovar à noite."
+        a: "Dias, não semanas. Confirmamos o prazo após o diagnóstico."
       },
       {
         q: "O que eu preciso enviar para começar?",
@@ -266,7 +262,6 @@ export const copy = {
       secondary: "Calcular orçamento"      // rola p/ #calculator
     }
   },
-
 
   // Configuração do Modal de Contato (usar em todos os botões de contato)
   contact: {

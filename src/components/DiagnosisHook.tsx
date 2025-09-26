@@ -21,10 +21,12 @@ const DiagnosisHook = () => {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
                   Qual a solução ideal para o seu negócio?
                 </h2>
-
-                {/* Mobile/Tablet: SVG imediatamente abaixo do título */}
-                <div className="block lg:hidden">
-                  <div className="w-full max-w-md mx-auto aspect-square flex items-center justify-center">
+                {/* Mobile/Tablet: SVG imediatamente abaixo do título (sem margem) */}
+                <div className="block lg:hidden [margin-top:0!important]" style={{ marginTop: 0 }}>
+                  <div
+                    className="w-full max-w-md mx-auto aspect-square flex items-center justify-center [margin-top:0!important]"
+                    style={{ marginTop: 0 }}
+                  >
                     <img
                       src="/lovable-uploads/quiz.svg"
                       alt="Diagnóstico — visual ilustrativo (SVG)"
@@ -34,7 +36,7 @@ const DiagnosisHook = () => {
                 </div>
 
                 {/* Lista de Benefícios */}
-                <div className="space-y-4">
+                <div className="[margin-top:0!important] lg:[margin-top:calc(1.5rem*calc(1-var(--tw-space-y-reverse)))!important] space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
                       <Zap className="w-6 h-6 text-primary-green" />
