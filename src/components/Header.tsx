@@ -24,8 +24,9 @@ const Header = () => {
       style={{ background: 'hsl(var(--neutral-900))' }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between md:justify-start md:gap-12">
-          {/* Logo à esquerda no desktop, centro no mobile */}
+        {/* Mobile: flex. Desktop: grid com 3 colunas (logo | nav central | espaço vazio) */}
+        <div className="flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:items-center">
+          {/* Logo à esquerda no desktop */}
           <Link to="/" className="md:flex-shrink-0">
             <img
               src="/lovable-uploads/landingvillelogo.svg"
@@ -34,28 +35,32 @@ const Header = () => {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-sm font-medium transition-colors hover:text-white ${
-                  isActive(item.path)
-                    ? 'text-white'
-                    : 'text-white/70'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          {/* Navegação desktop centralizada vertical e horizontal */}
+          <nav className="hidden md:flex justify-center items-center">
+            <ul className="flex gap-8">
+              {navItems.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    className={`text-sm font-medium transition-colors hover:text-white ${
+                      isActive(item.path) ? 'text-white' : 'text-white/70'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
+
+          {/* Espaço vazio à direita no desktop para manter a nav central */}
+          <div className="hidden md:block" aria-hidden="true" />
 
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
               <button
-                className="p-2 text-white hover:text-white/80 transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0"
                 aria-label="Menu"
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -63,19 +68,28 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-64"
+              className="w-64 focus:outline-none focus-visible:outline-none"
               style={{ background: '#20262d' }}
             >
-              <nav className="flex flex-col gap-6 mt-8">
+              {/* X da sidebar sem focus-visible */}
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Fechar menu"
+                  className="p-2 text-white/80 hover:text-white outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0"
+                >
+                  <X size={22} />
+                </button>
+              </div>
+
+              <nav className="flex flex-col gap-6 mt-6">
                 {navItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setIsOpen(false)}
                     className={`text-lg font-medium transition-colors hover:text-white ${
-                      isActive(item.path)
-                        ? 'text-white'
-                        : 'text-white/70'
+                      isActive(item.path) ? 'text-white' : 'text-white/70'
                     }`}
                   >
                     {item.label}

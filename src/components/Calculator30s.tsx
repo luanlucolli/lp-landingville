@@ -488,18 +488,7 @@ const Calculator30s = () => {
                           </h3>
 
                           {/* Mobile image between title and hint */}
-                          <div className="block md:hidden my-3">
-                            <img
-                              src={
-                                state.recommendation === 'landing'
-                                  ? '/lovable-uploads/landingpage.png'
-                                  : '/lovable-uploads/site.png'
-                              }
-                              alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'
-                                }`}
-                              className="w-48 h-auto mx-auto animate-float"
-                            />
-                          </div>
+                         
 
                           {/* Hint */}
                           <p className="text-white/70">
