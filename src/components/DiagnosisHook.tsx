@@ -6,21 +6,22 @@ const DiagnosisHook = () => {
   return (
     <section
       id="diagnosis"
-      className="pt-24 pb-24 md:pt-28 md:pb-28"
-      style={{ background: 'hsl(var(--neutral-200))' }} // mesmo fundo da Hero
+      className="pt-24 pb-24 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32"
+      style={{ background: 'hsl(var(--neutral-200))' }}
     >
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
             {/* Left Column - Content */}
-            <div className="space-y-8">
+            <div className="space-y-8 lg:space-y-12">
 
               {/* Upper Block - The Promise */}
-              <div className="space-y-6">
+              <div className="space-y-6 lg:space-y-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
                   Qual a solução ideal para o seu negócio?
                 </h2>
+
                 {/* Mobile/Tablet: SVG imediatamente abaixo do título (sem margem) */}
                 <div className="block lg:hidden [margin-top:0!important]" style={{ marginTop: 0 }}>
                   <div
@@ -36,13 +37,13 @@ const DiagnosisHook = () => {
                 </div>
 
                 {/* Lista de Benefícios */}
-                <div className="[margin-top:0!important] lg:[margin-top:calc(1.5rem*calc(1-var(--tw-space-y-reverse)))!important] space-y-4">
-                  <div className="flex items-start gap-3">
+                <div className="[margin-top:0!important] lg:[margin-top:calc(1.5rem*calc(1-var(--tw-space-y-reverse)))!important] space-y-4 lg:space-y-6">
+                  <div className="flex items-start gap-3 lg:gap-4">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
                       <Zap className="w-6 h-6 text-primary-green" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-foreground text-base mb-1">
+                      <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
                         Rápido e sem cadastro
                       </h3>
                       <p className="text-sm text-muted-foreground">
@@ -51,12 +52,12 @@ const DiagnosisHook = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3 lg:gap-4">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
                       <Lightbulb className="w-6 h-6 text-primary-green" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-foreground text-base mb-1">
+                      <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
                         Recomendação Instantânea
                       </h3>
                       <p className="text-sm text-muted-foreground">
@@ -65,12 +66,12 @@ const DiagnosisHook = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3 lg:gap-4">
                     <div className="flex-shrink-0 w-6 h-6 mt-0.5">
                       <Receipt className="w-6 h-6 text-primary-green" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-foreground text-base mb-1">
+                      <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
                         Estimativa de Valor Clara
                       </h3>
                       <p className="text-sm text-muted-foreground">
@@ -82,8 +83,7 @@ const DiagnosisHook = () => {
               </div>
 
               {/* CTA Block */}
-              <div className="space-y-4">
-                {/* CTA Button — Verde especial (gradiente + glow + intensificação) */}
+              <div className="space-y-4 lg:space-y-6">
                 <Button
                   asChild
                   className="
@@ -98,7 +98,6 @@ const DiagnosisHook = () => {
                     border border-white/15
                   "
                   style={{
-                    // Gradiente com foco no #6d9f50
                     background: 'linear-gradient(135deg, #6d9f50 0%, #7fbf63 40%, #93d277 100%)',
                     color: '#FFFFFF'
                   }}
@@ -108,7 +107,6 @@ const DiagnosisHook = () => {
                   </Link>
                 </Button>
 
-                {/* Depoimento Sutil */}
                 <p className="text-sm italic text-muted-foreground text-center">
                   "O diagnóstico foi muito decisivo para mim. Me deu a clareza que eu precisava." - Diana Anacleto, Contadora
                 </p>
@@ -116,7 +114,7 @@ const DiagnosisHook = () => {
             </div>
 
             {/* Desktop: coluna do SVG à direita (invariável) */}
-            <div className="hidden lg:flex items-center justify-center">
+            <div className="hidden lg:flex items-center justify-center lg:pl-4">
               <div className="w-full max-w-md aspect-square flex items-center justify-center">
                 <img
                   src="/lovable-uploads/quiz.svg"
