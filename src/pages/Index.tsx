@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import BenefitsStrip from '@/components/BenefitsStrip';
@@ -8,8 +8,11 @@ import DemosTabs from '@/components/DemosTabs';
 import FAQSection from '@/components/FAQSection';
 import StickyBottomBar from '@/components/StickyBottomBar';
 import SchemaMarkup from '@/components/SchemaMarkup';
+import { PromoDiscountModal } from '@/components/promo/PromoDiscountModal';
 
 const Index = () => {
+  const [showPromoModal, setShowPromoModal] = useState(false);
+
   useEffect(() => {
     // Add smooth scrolling for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
@@ -20,12 +23,22 @@ const Index = () => {
         target?.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // Verificar se deve mostrar popup promocional
+    const promoSeen = sessionStorage.getItem('lv_promo_seen');
+    if (promoSeen !== 'true') {
+      setShowPromoModal(true);
+      sessionStorage.setItem('lv_promo_seen', 'true');
+    }
   }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Schema.org structured data */}
       <SchemaMarkup />
+
+      {/* Promo Modal */}
+      <PromoDiscountModal open={showPromoModal} onOpenChange={setShowPromoModal} />
 
       {/* Header */}
       <Header />

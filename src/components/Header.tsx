@@ -6,6 +6,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { Badge } from '@/components/ui/badge';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,11 +43,18 @@ const Header = () => {
                 <li key={item.path}>
                   <Link
                     to={item.path}
-                    className={`text-sm font-medium transition-colors hover:text-white ${
+                    className={`text-sm font-medium transition-colors hover:text-white inline-flex items-center gap-2 ${
                       isActive(item.path) ? 'text-white' : 'text-white/70'
                     }`}
                   >
                     {item.label}
+                    {item.label === 'Diagnóstico' && (
+                      <Badge 
+                        className="px-2 py-0.5 text-[10px] font-bold bg-primary-green text-white border-0"
+                      >
+                        15% OFF
+                      </Badge>
+                    )}
                   </Link>
                 </li>
               ))}
@@ -71,8 +79,17 @@ const Header = () => {
               className="w-64 focus:outline-none focus-visible:outline-none"
               style={{ background: '#20262d' }}
             >
+              {/* Logo branca centralizada no topo */}
+              <div className="flex justify-center mb-8">
+                <img
+                  src="/lovable-uploads/landingvillelogo.svg"
+                  alt="Landingville"
+                  className="h-10 w-auto brightness-0 invert"
+                />
+              </div>
+
               {/* X da sidebar sem focus-visible */}
-              <div className="flex justify-end">
+              <div className="absolute top-4 right-4">
                 <button
                   onClick={() => setIsOpen(false)}
                   aria-label="Fechar menu"
@@ -82,17 +99,24 @@ const Header = () => {
                 </button>
               </div>
 
-              <nav className="flex flex-col gap-6 mt-6">
+              <nav className="flex flex-col gap-6">
                 {navItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-medium transition-colors hover:text-white ${
+                    className={`text-lg font-medium transition-colors hover:text-white inline-flex items-center gap-2 ${
                       isActive(item.path) ? 'text-white' : 'text-white/70'
                     }`}
                   >
                     {item.label}
+                    {item.label === 'Diagnóstico' && (
+                      <Badge 
+                        className="px-2 py-0.5 text-[10px] font-bold bg-primary-green text-white border-0"
+                      >
+                        15% OFF
+                      </Badge>
+                    )}
                   </Link>
                 ))}
               </nav>

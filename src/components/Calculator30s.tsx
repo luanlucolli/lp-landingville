@@ -277,7 +277,16 @@ const Calculator30s = () => {
       setShowFallback(false);
     } else {
       const recommendation = calculateRecommendation(state.answers);
-      const priceRange = calculatePrice(state.answers, recommendation);
+      let priceRange = calculatePrice(state.answers, recommendation);
+
+      // Aplicar 15% OFF se promoção foi ativada
+      const promoActive = sessionStorage.getItem('lv_promo_claimed') === 'true';
+      if (promoActive) {
+        const [min, max] = priceRange;
+        const discountedMin = Math.round((min * 0.85) / 50) * 50; // Aplicar 15% e arredondar
+        const discountedMax = Math.round((max * 0.85) / 50) * 50;
+        priceRange = [discountedMin, discountedMax] as [number, number];
+      }
 
       setState(prev => ({
         ...prev,
@@ -311,6 +320,18 @@ const Calculator30s = () => {
   const startCalculator = () => {
     setState(prev => ({ ...prev, step: 1 }));
   };
+
+  useEffect(() => {
+    // Escutar evento personalizado para iniciar calculadora
+    const handleStartCalculator = () => {
+      startCalculator();
+    };
+
+    window.addEventListener('startCalculator', handleStartCalculator);
+    return () => {
+      window.removeEventListener('startCalculator', handleStartCalculator);
+    };
+  }, []);
 
   const goToDemos = () => {
     const demosSection = document.getElementById('demos');
@@ -418,10 +439,31 @@ const Calculator30s = () => {
                       </div>
 
                       <div className="text-center md:text-left">
-                        <div className="text-3xl font-bold text-white mb-3">
-                          R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
-                        </div>
-                        <div className="flex justify-center md:justify-start">
+                        {sessionStorage.getItem('lv_promo_claimed') === 'true' ? (
+                          <div className="space-y-2 mb-3">
+                            <div className="text-lg text-white/60 line-through">
+                              R$ {Math.round((state.priceRange[0] / 0.85) / 50) * 50} - R$ {Math.round((state.priceRange[1] / 0.85) / 50) * 50}
+                            </div>
+                            <div className="text-3xl font-bold text-white">
+                              R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="text-3xl font-bold text-white mb-3">
+                            R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
+                          </div>
+                        )}
+                        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                          {sessionStorage.getItem('lv_promo_claimed') === 'true' && (
+                            <Badge className="px-3 py-1.5 rounded-full
+                                              bg-primary-green/20
+                                              text-primary-green
+                                              border border-primary-green/40
+                                              shadow-[0_0_0_1px_hsl(98_35%_55%/.12)_inset]
+                                              font-bold">
+                              15% OFF aplicado
+                            </Badge>
+                          )}
                           <Badge className="px-3 py-1.5 rounded-full
                                             bg-[hsl(98_35%_55%/.16)]
                                             text-[hsl(98_40%_65%)]

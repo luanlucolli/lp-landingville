@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { Clock, Target, DollarSign, Lightbulb, Receipt, Zap } from 'lucide-react';
 
@@ -102,8 +103,19 @@ const DiagnosisHook = () => {
                     color: '#FFFFFF'
                   }}
                 >
-                  <Link to="/diagnostico">
+                  <Link 
+                    to="/diagnostico"
+                    onClick={() => {
+                      sessionStorage.setItem('lv_promo_claimed', 'true');
+                    }}
+                    className="flex items-center justify-center gap-2"
+                  >
                     Iniciar Diagnóstico Gratuito
+                    <Badge 
+                      className="px-2 py-0.5 text-[10px] font-bold bg-white/20 text-white border-0"
+                    >
+                      15% OFF
+                    </Badge>
                   </Link>
                 </Button>
 
