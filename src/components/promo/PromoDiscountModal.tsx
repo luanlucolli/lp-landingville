@@ -26,7 +26,7 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="sm:max-w-md"
+        className="w-[calc(100%-2rem)] max-w-md mx-4 rounded-2xl p-6"
         aria-labelledby="promo-title"
         aria-describedby="promo-description"
       >
@@ -72,13 +72,14 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
         <div className="flex flex-col gap-3 pt-2">
           <Button
             onClick={handleActivatePromo}
-            className="w-full h-12 font-semibold text-base rounded-xl
+            className="w-full h-12 font-semibold text-sm sm:text-base rounded-xl
               transition-all duration-200
               hover:brightness-110 hover:saturate-125
               active:brightness-125 active:saturate-150 active:scale-[0.99]
               [box-shadow:0_8px_24px_rgba(109,159,80,0.28)]
               hover:[box-shadow:0_12px_36px_rgba(109,159,80,0.42)]
-              border border-white/15"
+              border border-white/15
+              break-words"
             style={{
               background: 'linear-gradient(135deg, #6d9f50 0%, #7fbf63 40%, #93d277 100%)',
               color: '#FFFFFF'
