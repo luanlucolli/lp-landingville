@@ -15,34 +15,27 @@ const Index = () => {
   const [showPromoModal, setShowPromoModal] = useState(false);
 
   useEffect(() => {
-    // smooth scroll para âncoras
     const links = document.querySelectorAll('a[href^="#"]');
-    const onClick = (e: Event, href: string | null) => {
-      if (!href) return;
-      e.preventDefault();
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    };
     links.forEach((link) => {
-      const handler = (e: Event) => onClick(e, link.getAttribute("href"));
-      link.addEventListener("click", handler);
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute("href") || "");
+        target?.scrollIntoView({ behavior: "smooth" });
+      });
     });
 
-    // popup promocional 1x por sessão
-    if (sessionStorage.getItem("lv_promo_seen") !== "true") {
+    const promoSeen = sessionStorage.getItem("lv_promo_seen");
+    if (promoSeen !== "true") {
       setShowPromoModal(true);
       sessionStorage.setItem("lv_promo_seen", "true");
     }
-
-    return () => {
-      links.forEach((link) => link.replaceWith(link.cloneNode(true))); // remove listeners
-    };
   }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <SchemaMarkup />
 
-      {/* Modal centralizado (o próprio componente já centraliza via fixed + translate) */}
+      {/* Modal centralizado na tela via shadcn Dialog */}
       <PromoDiscountModal open={showPromoModal} onOpenChange={setShowPromoModal} />
 
       <Header />
@@ -59,6 +52,7 @@ const Index = () => {
       </main>
 
       <StickyBottomBar />
+
       <div className="md:h-0" />
     </div>
   );
