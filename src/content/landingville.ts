@@ -3,21 +3,22 @@ export const copy = {
     name: "Landingville",
     city: "Joinville",
     primaryHex: "#2B6FA5", // Steel Blue
-    secondaryHex: "#85BA62" // Verde Musgo Claro
+    secondaryHex: "#85BA62", // Verde Musgo Claro
   },
 
   hero: {
-    h1: "Tenha um site bonito, rápido e que gera vendas.",
-    sub: "Landing pages e sites feitos para o celular, fáceis de achar no Google e conectados aos seus canais.",
-    bullets: ["Carrega rápido", "Encontra no Google", "Conecta a seus canais"],
-    badge: "Publicado em dias, não semanas",
+    h1: "Site claro, rápido e que gera contatos.",
+    sub: "Landing pages e sites pensados para o celular, fáceis de achar no Google e conectados aos seus canais.",
+    bullets: ["Carrega rápido", "Aparece no Google local", "Conecta aos seus canais"],
+    badge: "Publicação ágil, prazo confirmado no diagnóstico",
     ctas: {
-      primary: "Calcular orçamento",   // scroll suave para #calculator
-      secondary: "Ver exemplos"        // scroll suave para #demos (tab dinâmica)
+      primary: "Calcular orçamento", // scroll suave para #calculator
+      secondary: "Ver exemplos", // scroll suave para #demos (tab dinâmica)
     },
     visual: {
-      gradientNote: "Hero com gradiente animado top (Steel→Moss) e blobs flutuantes; prefers-reduced-motion desativa; contraste AA/AAA."
-    }
+      gradientNote:
+        "Hero com gradiente animado (Steel→Moss) e blobs flutuantes; prefers-reduced-motion desativa; contraste AA/AAA.",
+    },
   },
 
   // SUPERSEÇÃO: CALCULADORA (objetivo-first, ≤ R$ 500)
@@ -33,8 +34,8 @@ export const copy = {
       bullets: ["Sem cadastro", "Recomendação automática", "Pode ajustar depois"],
       cta: "Descobrir agora",
       links: {
-        seeExamples: "Ver exemplos primeiro" // rola para #demos
-      }
+        seeExamples: "Ver exemplos primeiro", // rola para #demos
+      },
     },
 
     steps: {
@@ -50,14 +51,14 @@ export const copy = {
           "Coletar orçamentos/agendamentos",
           "Direcionar para delivery (iFood/etc.)",
           "Reabertura/inauguração",
-          "Estou em dúvida"
+          "Estou em dúvida",
         ],
         fallback: {
           q1: "Você quer algo pontual (campanha) ou presença contínua (site da loja)?",
           q1Options: ["Pontual (campanha)", "Presença contínua (site)"],
           q2: "Qual canal seu cliente mais usa?",
-          q2Options: ["Instagram", "WhatsApp", "Google Maps", "Delivery", "Telefone", "E-mail"]
-        }
+          q2Options: ["Instagram", "WhatsApp", "Google Maps", "Delivery", "Telefone", "E-mail"],
+        },
       },
 
       // Passo 2 — Canais preferidos (multi). Não impacta preço; organiza CTAs.
@@ -72,27 +73,27 @@ export const copy = {
           "E-mail",
           "Google Maps",
           "Plataformas de Delivery (iFood/Rappi/99Food/Aiqfome…)",
-          "Outro"
-        ]
+          "Outro",
+        ],
       },
 
-      // Passo 3 — Itens que você já tem (ENXUTO) — incluir opção "Logo e Fotos"
+      // Passo 3 — Itens que você já tem — incluir opção "Logo e Fotos"
       s3: {
         title: "Você já tem algum destes itens?",
-        options: ["Logo", "Fotos", "Logo e Fotos", "Nenhum dos dois"]
+        options: ["Logo", "Fotos", "Logo e Fotos", "Nenhum dos dois"],
       },
 
       // Passo 4 — Urgência (não altera preço; vira etiqueta no resumo)
       s4: {
         title: "Qual a urgência?",
-        options: ["Em 3 dias", "Em 5 dias úteis", "Em 7 dias", "Sem pressa"]
+        options: ["Em 3 dias", "Em 5 dias úteis", "Em 7 dias", "Sem pressa"],
       },
 
-      // Passo 5 — Extras leves (multi) com impacto pequeno
+      // Passo 5 — Extras simples (multi) com impacto pequeno
       s5: {
-        title: "Quer adicionar algo leve?",
-        options: ["Promo do dia", "Depoimentos simples", "Galeria simples", "Formulário simples", "Não"]
-      }
+        title: "Quer incluir algo simples?",
+        options: ["Promo do dia", "Depoimentos simples", "Galeria simples", "Formulário simples", "Não"],
+      },
     },
 
     // Resultado com recomendação automática e DEEP-LINK para Demos
@@ -101,15 +102,15 @@ export const copy = {
       recommendation: {
         landingLabel: "Landing de captação",
         siteLabel: "Site simples (2–4 seções)",
-        hint: "Sugerimos com base no seu objetivo."
+        hint: "Sugerimos com base no seu objetivo.",
       },
       price: {
-        note: "Oferta de lançamento em Joinville: escopo enxuto e integrações leves (links/embeds). Ajustes leves em [Y] dias."
+        note: "Oferta de lançamento em Joinville: escopo definido e integrações simples (links/embeds). Ajustes leves previstos para [Y] dias úteis, confirmados após o diagnóstico.",
       },
       ctas: {
-        primary: "Falar com a Landingville",      // abre Contact Modal
-        secondary: "Ver exemplo do meu caso"      // rola p/ #demos com tab correta (landing/site)
-      }
+        primary: "Falar com a Landingville", // abre Contact Modal
+        secondary: "Ver exemplo do meu caso", // rola p/ #demos com tab correta (landing/site)
+      },
     },
 
     // Regras de preço (aplicadas no código)
@@ -122,11 +123,11 @@ export const copy = {
         "Cardápio/Catálogo": [30, 40],
         "Formulário simples": [20, 30],
         "Promo do dia": [10, 15],
-        "Depoimentos simples": [5, 10]
+        "Depoimentos simples": [5, 10],
       },
       cap: 500,
-      rounding: 10
-    }
+      rounding: 10,
+    },
   },
 
   // "Serviços" permanece como está no layout (3 cards). Caso necessário, consuma estes textos.
@@ -138,18 +139,18 @@ export const copy = {
       {
         key: "landing",
         name: "Landing Page",
-        desc: "Uma página única para um objetivo específico: divulgar promoção, reabertura ou captar pedidos. Ideal para ações rápidas.",
+        desc: "Uma página para um objetivo específico: promover, lançar ou captar pedidos. Ideal para ações rápidas com foco em contato.",
         cta: "Quero uma Landing Page",
         img: "/lovable-uploads/landing5.svg",
-        alt: "Ícone de Landing Page"
+        alt: "Ícone representando Landing Page",
       },
       {
         key: "site",
         name: "Site",
-        desc: "Presença completa e estável com seções principais (Início, Sobre, Serviços/Produtos e Contato). Bom para aparecer no Google e orientar quem pesquisa.",
+        desc: "Presença contínua com seções principais (Início, Sobre, Serviços/Produtos e Contato). Ajuda quem busca no Google e orienta a decisão.",
         cta: "Quero um Site",
         img: "/lovable-uploads/tabs.svg",
-        alt: "Ícone de Site"
+        alt: "Ícone representando Site com abas",
       },
       {
         key: "care",
@@ -157,9 +158,9 @@ export const copy = {
         desc: "Atualizações de textos, preços e fotos, pequenos ajustes visuais e suporte contínuo. Podemos combinar um plano mensal.",
         cta: null,
         img: "/lovable-uploads/maintenance2.svg",
-        alt: "Ícone de Manutenção"
-      }
-    ]
+        alt: "Ícone de ferramentas para Manutenção",
+      },
+    ],
   },
 
   // DEMOS em tabs (Landing/Site).
@@ -176,12 +177,12 @@ export const copy = {
         // Ícone Lucide no lugar do SVG
         highlightIcon: "megaphone",
         highlightTitle: "Feita para gerar pedidos",
-        highlightDescription: "Boa para campanhas e promoções. Leva a pessoa direto ao contato.",
+        highlightDescription: "Boa para campanhas e lançamentos. Leva a pessoa direto ao contato.",
         benefits: [
-          "Um botão principal bem visível",
-          "Você acompanha cliques e mensagens",
-          "Publicação rápida para testar ideias"
-        ]
+          "Um botão principal sempre visível",
+          "Mede cliques e mensagens",
+          "Publicação rápida para testar ofertas",
+        ],
       },
       {
         key: "site",
@@ -193,14 +194,14 @@ export const copy = {
         highlightTitle: "Tudo do seu negócio num só lugar",
         highlightDescription: "Mostra quem você é, o que faz e como falar com você.",
         benefits: [
-          "Várias páginas (Home, Sobre, Contato...)",
-          "Melhor para quem busca no Google",
-          "Cresce fácil com novas seções"
-        ]
-      }
+          "Estrutura com 2–4 seções",
+          "Melhor para busca no Google local",
+          "Cresce com novas páginas quando precisar",
+        ],
+      },
     ],
     // Botão abre o modal de contato
-    cta: "Falar com a Landingville"
+    cta: "Falar com a Landingville",
   },
 
   faq: {
@@ -209,58 +210,58 @@ export const copy = {
     items: [
       {
         q: "Landing Page ou Site: qual a diferença prática?",
-        a: "Landing é uma página única para uma ação imediata (promoção, reabertura, captação). Site é presença contínua com 2–4 seções. Se tiver dúvida, nosso diagnóstico sugere."
+        a: "Landing é uma página única para ação imediata. Site reúne as informações principais em 2–4 seções. Se tiver dúvida, o diagnóstico sugere.",
       },
       {
         q: "Quanto vou investir?",
-        a: "O valor depende do objetivo e dos extras. Nosso plano inicial tem teto de R$ 500. Use o diagnóstico para ver sua faixa estimada agora."
+        a: "Depende do objetivo e dos extras. O plano inicial tem teto de R$ 500. Use o diagnóstico para ver sua faixa agora.",
       },
       {
         q: "Em quanto tempo fica pronto?",
-        a: "Dias, não semanas. Confirmamos o prazo após o diagnóstico."
+        a: "Prazo curto. Confirmamos após o diagnóstico conforme escopo e materiais disponíveis.",
       },
       {
         q: "O que eu preciso enviar para começar?",
-        a: "Nome do negócio, endereço/horários, canais de contato e, se tiver, logo e fotos. Sem isso, usamos provisórios e ajustamos depois."
+        a: "Nome do negócio, endereço/horários, canais de contato e, se tiver, logo e fotos. Sem esses itens, usamos provisórios e ajustamos depois.",
       },
       {
         q: "Já tenho domínio. Posso usar?",
-        a: "Sim. Conectamos seu domínio atual ou ajudamos a registrar um novo."
+        a: "Sim. Conectamos seu domínio atual ou ajudamos a registrar um novo.",
       },
       {
         q: "Quem hospeda e mantém?",
-        a: "Publicamos e hospedamos no plano inicial. Manutenção contínua é opcional (plano Care) para ajustes e atualizações recorrentes."
+        a: "Publicamos e hospedamos no plano inicial. Manutenção contínua é opcional (plano Care) para atualizações recorrentes.",
       },
       {
         q: "Posso editar o conteúdo depois?",
-        a: "Sim. Incluímos ajustes leves por 30 dias. Para mudanças frequentes, indicamos o plano de manutenção."
+        a: "Sim. Incluímos ajustes leves por 30 dias. Para mudanças frequentes, indicamos o plano de manutenção.",
       },
       {
         q: "Vou aparecer no Google?",
-        a: "Aplicamos SEO local básico e boas práticas de performance. Conteúdo atualizado e Perfil da Empresa no Google ajudam a melhorar o resultado."
+        a: "Aplicamos SEO local básico, performance e acessibilidade. Conteúdo atualizado e Perfil da Empresa no Google ajudam a melhorar o resultado.",
       },
       {
         q: "Integra com meus canais de atendimento?",
-        a: "Sim. Botões e links para WhatsApp, Instagram, telefone, mapas, delivery e outros conforme sua preferência."
+        a: "Sim. Botões e links para seus canais preferidos, como telefone, WhatsApp, Instagram, e-mail, mapas e delivery.",
       },
       {
         q: "E se eu não curtir o primeiro rascunho?",
-        a: "Publicamos rápido e ajustamos no período incluído até ficar do seu jeito (escopo enxuto)."
+        a: "Publicamos a versão inicial e ajustamos no período incluído até chegar no que você precisa, dentro do escopo contratado.",
       },
       {
         q: "Segurança e privacidade (LGPD)?",
-        a: "Seguimos boas práticas de performance, acessibilidade e privacidade. O site é leve, estável e respeita a LGPD."
+        a: "Seguimos boas práticas de performance, acessibilidade e privacidade. Formulários com consentimento e política de privacidade. Remoção de dados a pedido.",
       },
       {
         q: "Como falo com a Landingville?",
-        a: "Pelos botões desta página: WhatsApp ou Instagram. Respondemos rápido."
-      }
+        a: "Use os botões desta página. Respondemos rápido.",
+      },
     ],
     finalCTA: {
       title: "Vamos publicar algo bonito e que converte?",
       primary: "Falar com a Landingville", // abre modal
-      secondary: "Calcular orçamento"      // rola p/ #calculator
-    }
+      secondary: "Calcular orçamento", // rola p/ #calculator
+    },
   },
 
   // Configuração do Modal de Contato (usar em todos os botões de contato)
@@ -271,16 +272,16 @@ export const copy = {
         key: "instagram",
         label: "Instagram",
         // Abrir DM direto de landing.ville
-        href: "https://ig.me/m/landing.ville"
+        href: "https://ig.me/m/landing.ville",
       },
       {
         key: "whatsapp",
         label: "WhatsApp",
         // Número: +55 47 98480-2779
-        href: "https://wa.me/5547984802779"
-      }
+        href: "https://wa.me/5547984802779",
+      },
     ],
-    note: "Abriremos seu app de mensagens padrão. Se preferir, copie o número ou procure por @landing.ville no Instagram."
-  }
+    note: "Abriremos seu app de mensagens padrão. Se preferir, copie o número ou procure por @landing.ville no Instagram.",
+  },
 };
 export default copy;
