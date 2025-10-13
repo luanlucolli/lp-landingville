@@ -1,50 +1,53 @@
-import { useEffect, useState } from 'react';
-import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import BenefitsStrip from '@/components/BenefitsStrip';
-import DiagnosisHook from '@/components/DiagnosisHook';
-import ServicesSection from '@/components/ServicesSection';
-import DemosTabs from '@/components/DemosTabs';
-import FAQSection from '@/components/FAQSection';
-import StickyBottomBar from '@/components/StickyBottomBar';
-import SchemaMarkup from '@/components/SchemaMarkup';
-import { PromoDiscountModal } from '@/components/promo/PromoDiscountModal';
+// src/pages/home/index.tsx
+import { useEffect, useState } from "react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import BenefitsStrip from "@/components/BenefitsStrip";
+import DiagnosisHook from "@/components/DiagnosisHook";
+import ServicesSection from "@/components/ServicesSection";
+import DemosTabs from "@/components/DemosTabs";
+import FAQSection from "@/components/FAQSection";
+import StickyBottomBar from "@/components/StickyBottomBar";
+import SchemaMarkup from "@/components/SchemaMarkup";
+import { PromoDiscountModal } from "@/components/promo/PromoDiscountModal";
 
 const Index = () => {
   const [showPromoModal, setShowPromoModal] = useState(false);
 
   useEffect(() => {
-    // Add smooth scrolling for anchor links
+    // smooth scroll para âncoras
     const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href') || '');
-        target?.scrollIntoView({ behavior: 'smooth' });
-      });
+    const onClick = (e: Event, href: string | null) => {
+      if (!href) return;
+      e.preventDefault();
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    };
+    links.forEach((link) => {
+      const handler = (e: Event) => onClick(e, link.getAttribute("href"));
+      link.addEventListener("click", handler);
     });
 
-    // Verificar se deve mostrar popup promocional
-    const promoSeen = sessionStorage.getItem('lv_promo_seen');
-    if (promoSeen !== 'true') {
+    // popup promocional 1x por sessão
+    if (sessionStorage.getItem("lv_promo_seen") !== "true") {
       setShowPromoModal(true);
-      sessionStorage.setItem('lv_promo_seen', 'true');
+      sessionStorage.setItem("lv_promo_seen", "true");
     }
+
+    return () => {
+      links.forEach((link) => link.replaceWith(link.cloneNode(true))); // remove listeners
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Schema.org structured data */}
       <SchemaMarkup />
 
-      {/* Promo Modal */}
+      {/* Modal centralizado (o próprio componente já centraliza via fixed + translate) */}
       <PromoDiscountModal open={showPromoModal} onOpenChange={setShowPromoModal} />
 
-      {/* Header */}
       <Header />
 
-      {/* Main content (fundo escuro) */}
-      <main style={{ background: 'hsl(var(--neutral-900))' }}>
+      <main style={{ background: "hsl(var(--neutral-900))" }}>
         <HeroSection />
         <BenefitsStrip />
         <DiagnosisHook />
@@ -55,10 +58,7 @@ const Index = () => {
         <FAQSection />
       </main>
 
-      {/* Sticky bottom navigation for mobile */}
       <StickyBottomBar />
-
-      {/* Add padding bottom on mobile to prevent content being hidden by sticky bar */}
       <div className="md:h-0" />
     </div>
   );

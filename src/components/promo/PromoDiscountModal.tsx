@@ -1,13 +1,8 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { CheckCircle2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+// src/components/promo/PromoDiscountModal.tsx
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { CheckCircle2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface PromoDiscountModalProps {
   open: boolean;
@@ -18,57 +13,54 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
   const navigate = useNavigate();
 
   const handleActivatePromo = () => {
-    sessionStorage.setItem('lv_promo_claimed', 'true');
+    sessionStorage.setItem("lv_promo_claimed", "true");
     onOpenChange(false);
-    navigate('/diagnostico');
+    navigate("/diagnostico");
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="w-[calc(100%-2rem)] max-w-md rounded-2xl p-6 left-1/2 -translate-x-1/2"
+        /* centralizado na tela e responsivo */
+        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-md rounded-2xl p-6 sm:p-7"
         aria-labelledby="promo-title"
         aria-describedby="promo-description"
       >
-        <DialogHeader className="space-y-4">
+        <DialogHeader className="space-y-4 text-center">
           <div className="flex justify-center">
-            <img
-              src="/lovable-uploads/landingvillelogo.svg"
-              alt="Landingville"
-              className="h-8 w-auto"
-            />
+            <img src="/lovable-uploads/landingvillelogo.svg" alt="Landingville" className="h-8 w-auto" />
           </div>
 
-          <DialogTitle id="promo-title" className="text-2xl font-bold text-center">
+          <DialogTitle id="promo-title" className="text-2xl font-bold">
             15% de desconto no valor do orçamento
           </DialogTitle>
 
-          <DialogDescription id="promo-description" className="text-center text-base">
+          <DialogDescription id="promo-description" className="text-base">
             Ative agora e veja sua estimativa já com o desconto aplicado no resultado do diagnóstico.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-3 py-4">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground">
+        {/* Benefícios centralizados */}
+        <ul className="space-y-3 py-4 text-center">
+          <li className="flex items-center justify-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-primary-green" />
+            <p className="text-sm sm:text-base text-muted-foreground">
               Diagnóstico gratuito e rápido (menos de 1 minuto)
             </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground">
-              Recomendação clara: Landing Page ou Site
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground">
+          </li>
+          <li className="flex items-center justify-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-primary-green" />
+            <p className="text-sm sm:text-base text-muted-foreground">Recomendação clara: Landing Page ou Site</p>
+          </li>
+          <li className="flex items-center justify-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-primary-green" />
+            <p className="text-sm sm:text-base text-muted-foreground">
               15% de desconto no valor do orçamento, aplicado automaticamente no resultado
             </p>
-          </div>
-        </div>
+          </li>
+        </ul>
 
+        {/* CTAs */}
         <div className="flex flex-col gap-3 pt-2">
           <Button
             onClick={handleActivatePromo}
@@ -78,11 +70,10 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
               active:brightness-125 active:saturate-150 active:scale-[0.99]
               [box-shadow:0_8px_24px_rgba(109,159,80,0.28)]
               hover:[box-shadow:0_12px_36px_rgba(109,159,80,0.42)]
-              border border-white/15
-              break-words"
+              border border-white/15"
             style={{
-              background: 'linear-gradient(135deg, #6d9f50 0%, #7fbf63 40%, #93d277 100%)',
-              color: '#FFFFFF'
+              background: "linear-gradient(135deg, #6d9f50 0%, #7fbf63 40%, #93d277 100%)",
+              color: "#FFFFFF",
             }}
           >
             Abrir diagnóstico com 15% de desconto
