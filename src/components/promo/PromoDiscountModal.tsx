@@ -21,12 +21,11 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        /* centralizado na tela e responsivo */
-        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-md rounded-2xl p-6 sm:p-7"
+        className="w-[calc(100%-2rem)] sm:max-w-md rounded-2xl p-6 text-center"
         aria-labelledby="promo-title"
         aria-describedby="promo-description"
       >
-        <DialogHeader className="space-y-4 text-center">
+        <DialogHeader className="space-y-4">
           <div className="flex justify-center">
             <img src="/lovable-uploads/landingvillelogo.svg" alt="Landingville" className="h-8 w-auto" />
           </div>
@@ -36,31 +35,25 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
           </DialogTitle>
 
           <DialogDescription id="promo-description" className="text-base">
-            Ative agora e veja sua estimativa já com o desconto aplicado no resultado do diagnóstico.
+            Ative agora e veja sua estimativa já com 15% OFF aplicado no resultado do diagnóstico.
           </DialogDescription>
         </DialogHeader>
 
-        {/* Benefícios centralizados */}
-        <ul className="space-y-3 py-4 text-center">
-          <li className="flex items-center justify-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green" />
-            <p className="text-sm sm:text-base text-muted-foreground">
-              Diagnóstico gratuito e rápido (menos de 1 minuto)
-            </p>
-          </li>
-          <li className="flex items-center justify-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green" />
-            <p className="text-sm sm:text-base text-muted-foreground">Recomendação clara: Landing Page ou Site</p>
-          </li>
-          <li className="flex items-center justify-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green" />
-            <p className="text-sm sm:text-base text-muted-foreground">
-              15% de desconto no valor do orçamento, aplicado automaticamente no resultado
-            </p>
-          </li>
-        </ul>
+        <div className="space-y-3 py-4">
+          <div className="flex items-center justify-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0" />
+            <p className="text-sm text-muted-foreground">Diagnóstico gratuito e rápido (menos de 1 minuto)</p>
+          </div>
+          <div className="flex items-center justify-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0" />
+            <p className="text-sm text-muted-foreground">Recomendação clara: Landing Page ou Site</p>
+          </div>
+          <div className="flex items-center justify-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0" />
+            <p className="text-sm text-muted-foreground">15% OFF aplicado automaticamente na faixa do orçamento</p>
+          </div>
+        </div>
 
-        {/* CTAs */}
         <div className="flex flex-col gap-3 pt-2">
           <Button
             onClick={handleActivatePromo}
