@@ -26,7 +26,7 @@ interface CalculatorState {
 
 const Calculator30s = () => {
   const [state, setState] = useState<CalculatorState>({
-    step: 0, // Start with introduction screen
+    step: 0,
     answers: { s1: [], s2: [], s3: [], s4: [], s5: [] }
   });
   const [showResult, setShowResult] = useState(false);
@@ -40,7 +40,6 @@ const Calculator30s = () => {
     let landingScore = 1;
     let siteScore = 1;
 
-    // S1 - Objetivos principais
     const objectives = answers.s1;
 
     if (objectives.includes("Ter um site oficial simples")) {
@@ -59,7 +58,6 @@ const Calculator30s = () => {
       }
     });
 
-    // Catálogo pode ser ambos, mas se sem site oficial → landing
     if (objectives.includes("Exibir cardápio/catálogo")) {
       if (objectives.includes("Ter um site oficial simples")) {
         siteScore += 1;
@@ -68,7 +66,6 @@ const Calculator30s = () => {
       }
     }
 
-    // Extras
     if (answers.s5.includes("Promo do dia")) {
       landingScore += 2;
     }
@@ -77,7 +74,6 @@ const Calculator30s = () => {
       siteScore += 1;
     }
 
-    // Fallback
     if (state.fallback?.q1 === "Presença contínua (site)") {
       siteScore += 3;
     } else if (state.fallback?.q1 === "Pontual (campanha)") {
@@ -91,7 +87,6 @@ const Calculator30s = () => {
     const pricing = copy.calculator.pricing;
     let [min, max] = recommendation === 'landing' ? pricing.landingBase : pricing.siteBase;
 
-    // Add increments based on selections
     const increments = pricing.increments;
 
     if (answers.s1.includes("Mostrar horário/endereço e rotas")) {
@@ -136,13 +131,11 @@ const Calculator30s = () => {
       max += maxInc;
     }
 
-    // Apply cap
     if (max > pricing.cap) {
       max = pricing.cap;
-      min = Math.max(min, max - 100); // Maintain reasonable range
+      min = Math.max(min, max - 100);
     }
 
-    // Round to tens
     min = Math.round(min / pricing.rounding) * pricing.rounding;
     max = Math.round(max / pricing.rounding) * pricing.rounding;
 
@@ -158,7 +151,6 @@ const Calculator30s = () => {
       if (isMultiSelect) {
         const current = newAnswers[stepKey] || [];
 
-        // Step 5: Handle "Não" exclusivity
         if (state.step === 5) {
           if (option === "Não") {
             newAnswers[stepKey] = current.includes("Não") ? [] : ["Não"];
@@ -190,13 +182,11 @@ const Calculator30s = () => {
       };
     });
 
-    // Special handling for "Estou em dúvida"
     if (option === "Estou em dúvida" && state.step === 1) {
       if (!state.answers.s1.includes("Estou em dúvida")) {
         setShowFallback(true);
       } else {
         setShowFallback(false);
-        // Clear fallback answers when unmarking
         setState(prev => ({
           ...prev,
           fallback: undefined
@@ -221,90 +211,47 @@ const Calculator30s = () => {
     const isLanding = state.recommendation === 'landing';
 
     if (isLanding) {
-      // Landing reasons
       if (state.answers.s1.some(obj => ['Divulgar promoção/campanha', 'Reabertura/inauguração', 'Receber mais pedidos/contatos'].includes(obj))) {
-        reasons.push({
-          title: 'Ação imediata',
-          text: 'Uma página direta com botão de contato facilita receber pedidos.',
-          icon: 'Target'
-        });
+        reasons.push({ title: 'Ação imediata', text: 'Uma página direta com botão de contato facilita receber pedidos.', icon: 'Target' });
       }
 
       if (state.answers.s4?.[0] && ['Em 3 dias úteis', 'Em 5 dias úteis'].includes(state.answers.s4[0])) {
-        reasons.push({
-          title: 'Vai ao ar rápido',
-          text: 'Publicamos rapidinho para você começar a receber mensagens.',
-          icon: 'Clock'
-        });
+        reasons.push({ title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.', icon: 'Clock' });
       }
 
       if (state.answers.s2.some(canal => ['WhatsApp', 'Instagram'].includes(canal))) {
-        reasons.push({
-          title: 'Foco nos canais',
-          text: 'Destaque para falar com você em 1 toque.',
-          icon: 'MessageCircle'
-        });
+        reasons.push({ title: 'Foco nos canais', text: 'Destaque para falar com você em 1 toque.', icon: 'MessageCircle' });
       }
 
       if (state.answers.s5.includes('Promo do dia')) {
-        reasons.push({
-          title: 'Promo do dia',
-          text: 'Dá para divulgar ofertas sem complicação.',
-          icon: 'Lightbulb'
-        });
+        reasons.push({ title: 'Promo do dia', text: 'Dá para divulgar ofertas sem complicação.', icon: 'Lightbulb' });
       }
 
       if (state.answers.s3.includes('Nenhum dos dois')) {
-        reasons.push({
-          title: 'Conteúdo enxuto',
-          text: 'Comece simples agora e troque as fotos depois.',
-          icon: 'Zap'
-        });
+        reasons.push({ title: 'Conteúdo enxuto', text: 'Comece simples agora e troque as fotos depois.', icon: 'Zap' });
       }
     } else {
-      // Site reasons
       if (state.answers.s1.includes('Ter um site oficial simples')) {
-        reasons.push({
-          title: 'Presença contínua',
-          text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.',
-          icon: 'Globe'
-        });
+        reasons.push({ title: 'Presença contínua', text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.', icon: 'Globe' });
       }
 
       if (state.answers.s1.some(obj => ['Exibir cardápio/catálogo'].includes(obj)) || state.answers.s5.some(extra => ['Galeria simples', 'Depoimentos simples'].includes(extra))) {
-        reasons.push({
-          title: 'Mais conteúdo',
-          text: 'Mostra melhor seus produtos e ajuda quem pesquisa.',
-          icon: 'Grid3x3'
-        });
+        reasons.push({ title: 'Mais conteúdo', text: 'Mostra melhor seus produtos e ajuda quem pesquisa.', icon: 'Grid3x3' });
       }
 
       if (state.answers.s1.includes('Mostrar horário/endereço e rotas')) {
-        reasons.push({
-          title: 'Fácil de achar',
-          text: 'Informações fixas que ajudam a aparecer no Google.',
-          icon: 'MapPin'
-        });
+        reasons.push({ title: 'Fácil de achar', text: 'Informações fixas que ajudam a aparecer no Google.', icon: 'MapPin' });
       }
 
       if (state.answers.s3.includes('Logo e Fotos') || state.answers.s3.includes('Logo') || state.answers.s3.includes('Fotos')) {
-        reasons.push({
-          title: 'Você já tem material',
-          text: 'Aproveitamos seus materiais para um site completo.',
-          icon: 'Image'
-        });
+        reasons.push({ title: 'Você já tem material', text: 'Aproveitamos seus materiais para um site completo.', icon: 'Image' });
       }
 
       if (state.answers.s2.length >= 3) {
-        reasons.push({
-          title: 'Vários canais',
-          text: 'Tudo num lugar só, com navegação simples.',
-          icon: 'Layers'
-        });
+        reasons.push({ title: 'Vários canais', text: 'Tudo num lugar só, com navegação simples.', icon: 'Layers' });
       }
     }
 
-    // Fill with general reasons if we have less than 3
     const generalReasons = isLanding ? [
       { title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.', icon: 'Clock' },
       { title: 'Foco nos canais', text: 'Destaque para falar com você em 1 toque.', icon: 'MessageCircle' },
@@ -329,7 +276,6 @@ const Calculator30s = () => {
       setState(prev => ({ ...prev, step: prev.step + 1 }));
       setShowFallback(false);
     } else {
-      // Calculate final result
       const recommendation = calculateRecommendation(state.answers);
       const priceRange = calculatePrice(state.answers, recommendation);
 
@@ -355,11 +301,8 @@ const Calculator30s = () => {
 
   const handleViewExample = () => {
     const tabKey = state.recommendation === 'landing' ? 'landing' : 'site';
-
-    // Scroll to demos with tab selection
     const demosSection = document.getElementById('demos');
     if (demosSection) {
-      // Trigger tab selection via event
       window.dispatchEvent(new CustomEvent('selectDemoTab', { detail: tabKey }));
       demosSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -378,7 +321,7 @@ const Calculator30s = () => {
 
   const resetCalculator = () => {
     setState({
-      step: 0, // Reset to introduction screen
+      step: 0,
       answers: { s1: [], s2: [], s3: [], s4: [], s5: [] }
     });
     setShowResult(false);
@@ -390,10 +333,8 @@ const Calculator30s = () => {
     return `Passo ${state.step} de ${maxSteps}`;
   };
 
-  // Section title and subtitle (always stable)
   const renderSectionHeader = () => (
     <div className="text-center mb-12">
-
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
         {copy.calculator.title}
       </h2>
@@ -403,14 +344,12 @@ const Calculator30s = () => {
     </div>
   );
 
-  // Stepper component
   const renderStepper = () => (
     <div className="flex items-center justify-center gap-2 mb-4">
       {Array.from({ length: maxSteps }, (_, i) => (
         <div
           key={i}
-          className={`h-2 rounded-full transition-all duration-300 ${i < state.step ? 'w-8' : 'bg-muted w-4'
-            }`}
+          className={`h-2 rounded-full transition-all duration-300 ${i < state.step ? 'w-8' : 'bg-muted w-4'}`}
           style={{
             background: i < state.step ? 'linear-gradient(135deg, #2B6FA5, #85BA62)' : undefined
           }}
@@ -424,296 +363,265 @@ const Calculator30s = () => {
     <section id="calculator" className="py-10 md:py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section header and button - only show on introduction screen */}
-    {state.step === 0 && (
-    // Animação sutil para a entrada dos elementos
-    <div className="text-center animate-fade-in-up">
-        
-        {/* Título Principal */}
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-50 mb-8">
-            {copy.calculator.intro.title}
-        </h1>
 
-        {/* Ilustração da Bússola */}
-      
+          {/* Card único para todas as etapas, incluindo a 0 */}
+          <Card className="overflow-hidden w-full border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <CardHeader className="pt-4 pb-0">
+              <div className="flex flex-col items-center text-center gap-2.5 md:gap-3">
+                {/* Stepper só nas etapas 1–5 */}
+                {state.step > 0 && !showResult && renderStepper()}
 
-        {/* Subtítulo */}
-        <p className="max-w-xl mx-auto text-lg text-slate-300 mb-12">
-            {copy.calculator.intro.subtitle}
-        </p>
+                {/* Overline */}
+                <p className="text-[11px] md:text-xs uppercase tracking-[0.14em] text-white/65 font-medium">
+                  {state.step === 0 ? 'Introdução' : getCurrentStepTitle()}
+                </p>
+              </div>
+            </CardHeader>
 
-        {/* Botão de Ação (CTA) */}
-        <Button
-            onClick={startCalculator}
-            size="lg"
-            className="h-14 px-12 text-lg font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-                       border border-white/10
-                       bg-[linear-gradient(135deg,hsl(215_85%_60%)_0%,hsl(145_60%_45%)_100%)]
-                       text-white hover:brightness-110"
-        >
-            Encontrar minha direção
-        </Button>
+            <CardContent className="px-5 pt-5 md:pt-6 pb-4">
+              {/* Etapa 0 dentro do card */}
+              {state.step === 0 && !showResult && (
+                <div className="text-center animate-fade-in-up space-y-6">
+                  <h1 className="text-3xl md:text-4xl font-bold text-white">
+                    {copy.calculator.intro.title}
+                  </h1>
 
-    </div>
-)}
-
-          {/* Quiz Card - only show for steps 1-5 and results */}
-          {state.step > 0 && (
-            <Card className="overflow-hidden w-full border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-              {/* Card Header with Stepper */}
-              <CardHeader className="pt-4 pb-0">
-                <div className="flex flex-col items-center text-center gap-2.5 md:gap-3">
-                  {renderStepper()}
-                  {/* Etapa (overline) */}
-                  <p className="text-[11px] md:text-xs uppercase tracking-[0.14em] text-white/65 font-medium">
-                    {getCurrentStepTitle()}
+                  {/* Subtítulo menor (exigido) */}
+                  <p className="max-w-xl mx-auto text-sm md:text-base text-white/70">
+                    {copy.calculator.intro.subtitle}
                   </p>
+
+                  {/* Bullets sutis opcionalmente (mantidos) */}
+                  {/* <div className="flex flex-wrap gap-2 justify-center text-xs text-white/70">
+                    {copy.calculator.intro.bullets.map(b => (
+                      <span key={b} className="px-2 py-1 rounded-full bg-white/5 border border-white/10">{b}</span>
+                    ))}
+                  </div> */}
                 </div>
-              </CardHeader>
+              )}
 
-              <CardContent className="px-5 pt-5 md:pt-6 pb-4">
-                {/* Result Screen */}
-                {showResult && state.recommendation && state.priceRange && (
-                  <div className="space-y-5" aria-live="polite">
-                    {/* Result layout */}
-                    <div className="flex flex-col md:flex-row items-center gap-6">
-                      <div className="flex-1 order-2 md:order-1 space-y-3">
-                        {/* Recommendation */}
-                        <div className="text-center md:text-left">
-                          <h3 className="text-2xl md:text-3xl font-bold text-white mb-1.5 leading-snug">
-                            Sugerimos:{' '}
-                            {state.recommendation === 'landing'
-                              ? copy.calculator.result.recommendation.landingLabel
-                              : copy.calculator.result.recommendation.siteLabel}
-                          </h3>
+              {/* Resultado */}
+              {state.step > 0 && showResult && state.recommendation && state.priceRange && (
+                <div className="space-y-5" aria-live="polite">
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-1 order-2 md:order-1 space-y-3">
+                      <div className="text-center md:text-left">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-1.5 leading-snug">
+                          Sugerimos:{' '}
+                          {state.recommendation === 'landing'
+                            ? copy.calculator.result.recommendation.landingLabel
+                            : copy.calculator.result.recommendation.siteLabel}
+                        </h3>
+                        <p className="text-white/70">
+                          {copy.calculator.result.recommendation.hint}
+                        </p>
+                      </div>
 
-                          {/* Mobile image between title and hint */}
-                         
-
-                          {/* Hint */}
-                          <p className="text-white/70">
-                            {copy.calculator.result.recommendation.hint}
-                          </p>
+                      <div className="text-center md:text-left">
+                        <div className="text-3xl font-bold text-white mb-3">
+                          R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
                         </div>
-
-                        {/* Price Range + Urgency */}
-                        <div className="text-center md:text-left">
-                          <div className="text-3xl font-bold text-white mb-3">
-                            R$ {state.priceRange[0]} - R$ {state.priceRange[1]}
-                          </div>
-
-                          {/* Pill — urgência (center on mobile, left on desktop) */}
-                          <div className="flex justify-center md:justify-start">
-                            <Badge className="px-3 py-1.5 rounded-full
+                        <div className="flex justify-center md:justify-start">
+                          <Badge className="px-3 py-1.5 rounded-full
                                             bg-[hsl(98_35%_55%/.16)]
                                             text-[hsl(98_40%_65%)]
                                             border border-[hsl(98_35%_55%/.38)]
                                             shadow-[0_0_0_1px_hsl(98_35%_55%/.12)_inset]">
-                              Urgência: {state.answers.s4?.[0] || 'Sem pressa'}
-                            </Badge>
-                          </div>
+                            Urgência: {state.answers.s4?.[0] || 'Sem pressa'}
+                          </Badge>
                         </div>
                       </div>
-
-                      {/* Desktop: image to the right */}
-                      <div className="hidden md:block flex-shrink-0 order-1 md:order-2">
-                        <img
-                          src={
-                            state.recommendation === 'landing'
-                              ? '/lovable-uploads/landingpage.png'
-                              : '/lovable-uploads/site.png'
-                          }
-                          alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'
-                            }`}
-                          className="w-72 h-auto animate-float"
-                        />
-                      </div>
                     </div>
 
-                    {/* Por que recomendamos */}
-                    <div className="rounded-xl p-5 bg-white/5 ring-1 ring-white/10">
-                      <h4 className="font-semibold text-white mb-3 text-center">
-                        Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
-                      </h4>
-                      <div className="space-y-3">
-                        {buildReasons(state).map((reason, index) => {
-                          const iconMap = {
-                            Target,
-                            Clock,
-                            MessageCircle,
-                            Lightbulb,
-                            Zap,
-                            Globe,
-                            Grid3x3,
-                            MapPin,
-                            Image,
-                            Layers,
-                          };
-                          const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
-
-                          return (
-                            <div key={index} className="flex items-start gap-3">
-                              <div className="flex-shrink-0 w-5 h-5 mt-0.5">
-                                <IconComponent className="w-5 h-5 text-[hsl(98_40%_60%)] drop-shadow-[0_0_8px_hsla(98,35%,55%,0.25)]" />
-                              </div>
-                              <div>
-                                <div className="font-medium text-white text-sm mb-0.5">{reason.title}</div>
-                                <div className="text-sm text-white/70 leading-relaxed">{reason.text}</div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* CTAs */}
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button
-                        onClick={resetCalculator}
-                        variant="outline"
-                        className="flex-1 font-semibold h-12 gap-2 border-white/30 text-white hover:bg-white/10"
-                      >
-                        Calcular novamente
-                      </Button>
-
-                      <Button
-                        onClick={() => setShowChannelSheet(true)}
-                        className="flex-1 font-semibold h-12
-                                 bg-[linear-gradient(135deg,hsl(215_85%_60%)_0%,hsl(145_60%_45%)_100%)]
-                                 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.12)_inset,0_10px_30px_rgba(0,0,0,0.35)]
-                                 hover:brightness-110"
-                      >
-                        {copy.calculator.result.ctas.primary}
-                      </Button>
+                    <div className="hidden md:block flex-shrink-0 order-1 md:order-2">
+                      <img
+                        src={state.recommendation === 'landing'
+                          ? '/lovable-uploads/landingpage.png'
+                          : '/lovable-uploads/site.png'}
+                        alt={`Ilustração do tipo recomendado: ${state.recommendation === 'landing' ? 'Landing de captação' : 'Site simples'}`}
+                        className="w-72 h-auto animate-float"
+                      />
                     </div>
                   </div>
-                )}
 
-                {/* Regular Steps */}
-                {state.step > 0 && !showResult && (
-                  <div className="space-y-5 md:space-y-6">
-                    {/* Pergunta */}
-                    <div className="mb-2 md:mb-3">
-                      <h4 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-                        {steps[`s${state.step}` as keyof typeof steps]?.title}
-                      </h4>
-                      {('hint' in steps[`s${state.step}` as keyof typeof steps]) && (
-                        <p className="text-sm md:text-base text-white/70 mt-2">
-                          {(steps[`s${state.step}` as keyof typeof steps] as any).hint}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Options */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {steps[`s${state.step}` as keyof typeof steps]?.options.map((option) => {
-                        const stepKey = `s${state.step}` as keyof typeof state.answers;
-                        const isSelected = state.answers[stepKey]?.includes(option);
-                        const isMultiSelect = state.step === 1 || state.step === 2 || state.step === 5;
+                  <div className="rounded-xl p-5 bg-white/5 ring-1 ring-white/10">
+                    <h4 className="font-semibold text-white mb-3 text-center">
+                      Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
+                    </h4>
+                    <div className="space-y-3">
+                      {buildReasons(state).map((reason, index) => {
+                        const iconMap = { Target, Clock, MessageCircle, Lightbulb, Zap, Globe, Grid3x3, MapPin, Image, Layers };
+                        const IconComponent = iconMap[reason.icon as keyof typeof iconMap] || Target;
 
                         return (
-                          <button
-                            key={option}
-                            onClick={() => handleStepAnswer(option, isMultiSelect)}
-                            className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border text-sm font-medium
-                                      transition-[background,border-color,box-shadow,transform,color] duration-300 ease-out will-change-transform
-                                      ${isSelected
-                                ? 'bg-[linear-gradient(135deg,hsl(145_60%_45%),hsl(98_40%_50%))] text-white border-[hsl(98_35%_55%/0.35)] ring-2 ring-[hsl(98_35%_55%/0.45)] shadow-[0_10px_30px_hsla(98,35%,55%,0.25)] scale-[1.015]'
-                                : 'border-white/25 text-white/90 hover:text-white hover:bg-white/5 hover:border-white/40 focus:outline-none focus:ring-0 active:bg-white/10'
-                              }`}
-                            aria-checked={isSelected}
-                          >
-                            {option}
-                          </button>
+                          <div key={index} className="flex items-start gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 mt-0.5">
+                              <IconComponent className="w-5 h-5 text-[hsl(98_40%_60%)] drop-shadow-[0_0_8px_hsla(98,35%,55%,0.25)]" />
+                            </div>
+                            <div>
+                              <div className="font-medium text-white text-sm mb-0.5">{reason.title}</div>
+                              <div className="text-sm text-white/70 leading-relaxed">{reason.text}</div>
+                            </div>
+                          </div>
                         );
                       })}
                     </div>
+                  </div>
 
-                    {/* Fallback Accordion */}
-                    {showFallback && state.step === 1 && (
-                      <div className="mt-2.5 p-4 rounded-lg border border-white/10 bg-white/5">
-                        <h5 className="font-medium text-white mb-3">Vamos te ajudar:</h5>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="flex-1 font-semibold h-12 gap-2 border-white/30 text-white hover:bg-white/10"
+                    >
+                      Calcular novamente
+                    </Button>
 
-                        {/* Q1 */}
-                        <div className="mb-4">
-                          <p className="text-sm font-medium text-white mb-2">{steps.s1.fallback.q1}</p>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            {steps.s1.fallback.q1Options.map((option) => (
-                              <button
-                                key={option}
-                                onClick={() => handleFallbackAnswer('q1', option)}
-                                className={`h-10 px-3 rounded-lg border text-xs transition-all duration-300 ease-out
-                                ${state.fallback?.q1 === option
-                                    ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
-                                    : 'border-white/20 text-white hover:border-white/40 hover:bg-white/5 focus:outline-none focus:ring-0 active:bg-white/10'
-                                  }`}
-                              >
-                                {option}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
+                    <Button
+                      onClick={() => setShowChannelSheet(true)}
+                      className="flex-1 font-semibold h-12
+                                 bg-[linear-gradient(135deg,hsl(215_85%_60%)_0%,hsl(145_60%_45%)_100%)]
+                                 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.12)_inset,0_10px_30px_rgba(0,0,0,0.35)]
+                                 hover:brightness-110"
+                    >
+                      {copy.calculator.result.ctas.primary}
+                    </Button>
+                  </div>
+                </div>
+              )}
 
-                        {/* Q2 */}
-                        <div>
-                          <p className="text-sm font-medium text-white mb-2">{steps.s1.fallback.q2}</p>
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                            {steps.s1.fallback.q2Options.map((option) => (
-                              <button
-                                key={option}
-                                onClick={() => handleFallbackAnswer('q2', option)}
-                                className={`h-10 px-2 rounded-lg border text-xs transition-all duration-300 ease-out
-                                ${state.fallback?.q2 === option
-                                    ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
-                                    : 'border-white/20 text-white hover:border-white/40 hover:bg-white/5 focus:outline-none focus:ring-0 active:bg-white/10'
-                                  }`}
-                              >
-                                {option}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
+              {/* Etapas regulares */}
+              {state.step > 0 && !showResult && (
+                <div className="space-y-5 md:space-y-6">
+                  <div className="mb-2 md:mb-3">
+                    <h4 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                      {steps[`s${state.step}` as keyof typeof steps]?.title}
+                    </h4>
+                    {('hint' in steps[`s${state.step}` as keyof typeof steps]) && (
+                      <p className="text-sm md:text-base text-white/70 mt-2">
+                        {(steps[`s${state.step}` as keyof typeof steps] as any).hint}
+                      </p>
                     )}
                   </div>
-                )}
-              </CardContent>
 
-              {/* Card Footer */}
-              {state.step > 0 && !showResult && (
-                <CardFooter
-                  className={`flex ${state.step > 1 ? 'justify-between' : 'justify-end'} bg-white/5 border-t border-white/10 py-3 backdrop-blur-md`}
-                  style={{ paddingBottom: `calc(12px + env(safe-area-inset-bottom))` }}
-                >
-                  {/* Botão Voltar - ocultar na etapa 1 */}
-                  {state.step > 1 && (
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setState((prev) => ({ ...prev, step: Math.max(1, prev.step - 1) }));
-                        setShowFallback(false);
-                      }}
-                      className="h-12 px-6 border-white/30 text-white hover:bg-white/10"
-                    >
-                      <ChevronLeft className="w-4 h-4 mr-2" />
-                      Voltar
-                    </Button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {steps[`s${state.step}` as keyof typeof steps]?.options.map((option) => {
+                      const stepKey = `s${state.step}` as keyof typeof state.answers;
+                      const isSelected = state.answers[stepKey]?.includes(option);
+                      const isMultiSelect = state.step === 1 || state.step === 2 || state.step === 5;
+
+                      return (
+                        <button
+                          key={option}
+                          onClick={() => handleStepAnswer(option, isMultiSelect)}
+                          className={`inline-flex items-center justify-center h-12 px-4 rounded-xl border text-sm font-medium
+                                      transition-[background,border-color,box-shadow,transform,color] duration-300 ease-out will-change-transform
+                                      ${isSelected
+                              ? 'bg-[linear-gradient(135deg,hsl(145_60%_45%),hsl(98_40%_50%))] text-white border-[hsl(98_35%_55%/0.35)] ring-2 ring-[hsl(98_35%_55%/0.45)] shadow-[0_10px_30px_hsla(98,35%,55%,0.25)] scale-[1.015]'
+                              : 'border-white/25 text-white/90 hover:text-white hover:bg-white/5 hover:border-white/40 focus:outline-none focus:ring-0 active:bg-white/10'
+                            }`}
+                          aria-checked={isSelected}
+                        >
+                          {option}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {showFallback && state.step === 1 && (
+                    <div className="mt-2.5 p-4 rounded-lg border border-white/10 bg-white/5">
+                      <h5 className="font-medium text-white mb-3">Vamos te ajudar:</h5>
+
+                      <div className="mb-4">
+                        <p className="text-sm font-medium text-white mb-2">{steps.s1.fallback.q1}</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {steps.s1.fallback.q1Options.map((option) => (
+                            <button
+                              key={option}
+                              onClick={() => handleFallbackAnswer('q1', option)}
+                              className={`h-10 px-3 rounded-lg border text-xs transition-all duration-300 ease-out
+                                ${state.fallback?.q1 === option
+                                  ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
+                                  : 'border-white/20 text-white hover:border-white/40 hover:bg-white/5 focus:outline-none focus:ring-0 active:bg-white/10'
+                                }`}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-sm font-medium text-white mb-2">{steps.s1.fallback.q2}</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                          {steps.s1.fallback.q2Options.map((option) => (
+                            <button
+                              key={option}
+                              onClick={() => handleFallbackAnswer('q2', option)}
+                              className={`h-10 px-2 rounded-lg border text-xs transition-all duration-300 ease-out
+                                ${state.fallback?.q2 === option
+                                  ? 'bg-[hsl(98_35%_55%/0.18)] border-[hsl(98_35%_55%/0.45)] text-white'
+                                  : 'border-white/20 text-white hover:border-white/40 hover:bg-white/5 focus:outline-none focus:ring-0 active:bg-white/10'
+                                }`}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   )}
+                </div>
+              )}
+            </CardContent>
 
+            {/* Card Footer — mesmo para etapa 0 e para as etapas 1–5 */}
+            {(!showResult) && (
+              <CardFooter
+                className={`flex ${state.step > 1 ? 'justify-between' : 'justify-end'} bg-white/5 border-t border-white/10 py-3 backdrop-blur-md`}
+                style={{ paddingBottom: `calc(12px + env(safe-area-inset-bottom))` }}
+              >
+                {/* Voltar nas etapas > 1 */}
+                {state.step > 1 && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setState((prev) => ({ ...prev, step: Math.max(1, prev.step - 1) }));
+                      setShowFallback(false);
+                    }}
+                    className="h-12 px-6 border-white/30 text-white hover:bg-white/10"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Voltar
+                  </Button>
+                )}
+
+                {/* CTA: etapa 0 inicia; demais avançam */}
+                {state.step === 0 ? (
+                  <Button
+                    onClick={startCalculator}
+                    className="h-12 px-6 font-semibold
+                               bg-[linear-gradient(135deg,hsl(208_58%_41%),hsl(98_35%_55%))]
+                               text-white border-0 hover:brightness-110"
+                  >
+                    {copy.calculator.intro.cta}
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </Button>
+                ) : (
                   <Button
                     onClick={nextStep}
                     disabled={!canProceed()}
                     className="h-12 px-6 font-semibold
-                             bg-[linear-gradient(135deg,hsl(208_58%_41%),hsl(98_35%_55%))]
-                             text-white border-0 hover:brightness-110"
+                               bg-[linear-gradient(135deg,hsl(208_58%_41%),hsl(98_35%_55%))]
+                               text-white border-0 hover:brightness-110"
                   >
                     {state.step === maxSteps ? 'Ver Estimativa' : 'Avançar'}
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
-                </CardFooter>
-              )}
-            </Card>
-          )}
+                )}
+              </CardFooter>
+            )}
+          </Card>
         </div>
       </div>
 
@@ -731,8 +639,6 @@ const Calculator30s = () => {
       />
     </section>
   );
-
-
 };
 
 export default Calculator30s;
