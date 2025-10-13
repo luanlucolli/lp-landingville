@@ -15,27 +15,36 @@ const Index = () => {
   const [showPromoModal, setShowPromoModal] = useState(false);
 
   useEffect(() => {
+    // Ancoragem suave apenas para links locais
     const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach((link) => {
-      link.addEventListener("click", (e) => {
+    const handleClick = (e: Event) => {
+      const target = e.currentTarget as HTMLAnchorElement;
+      const href = target.getAttribute("href") || "";
+      const el = document.querySelector(href);
+      if (el) {
         e.preventDefault();
-        const target = document.querySelector(link.getAttribute("href") || "");
-        target?.scrollIntoView({ behavior: "smooth" });
-      });
-    });
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    links.forEach((link) => link.addEventListener("click", handleClick));
 
+    // Mostrar popup só uma vez por sessão
     const promoSeen = sessionStorage.getItem("lv_promo_seen");
     if (promoSeen !== "true") {
       setShowPromoModal(true);
       sessionStorage.setItem("lv_promo_seen", "true");
     }
+
+    return () => {
+      links.forEach((link) => link.removeEventListener("click", handleClick));
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <SchemaMarkup />
 
-      {/* Modal centralizado na tela via shadcn Dialog */}
+      {/* Modal centralizado pelo próprio DialogContent */}
       <PromoDiscountModal open={showPromoModal} onOpenChange={setShowPromoModal} />
 
       <Header />
