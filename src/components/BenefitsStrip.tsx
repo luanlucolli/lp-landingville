@@ -1,23 +1,47 @@
 import {
-  Timer,
-  BookOpen,
+  Zap,
   MonitorSmartphone,
+  Search,
   MessageCircle,
+  Phone,
+  Mail,
   MapPin,
+  Clock,
+  FileText,
+  Image as ImageIcon,
+  Star,
   Pencil,
+  Wrench,
   ShieldCheck,
+  Lock,
+  BarChart2,
+  Rocket,
+  Layers,
+  Globe,
   UserCheck,
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const benefits = [
-  { icon: Timer, text: 'Rápido de abrir' },
-  { icon: BookOpen, text: 'Fácil de entender' },
-  { icon: MonitorSmartphone, text: 'Funciona no computador e no celular' },
-  { icon: MessageCircle, text: 'Botão para falar com você' },
+  { icon: Zap, text: 'Carrega rápido' },
+  { icon: MonitorSmartphone, text: 'Pronto para celular e computador' },
+  { icon: Search, text: 'Ajuda a aparecer no Google' },
+  { icon: MessageCircle, text: 'Botões para WhatsApp e Instagram' },
+  { icon: Phone, text: 'Clique para ligar' },
+  { icon: Mail, text: 'E-mail em 1 toque' },
   { icon: MapPin, text: 'Endereço e rotas fáceis' },
-  { icon: Pencil, text: 'Conteúdo que você consegue atualizar' },
-  { icon: ShieldCheck, text: 'Estável e seguro' },
+  { icon: Clock, text: 'Horários sempre atualizados' },
+  { icon: FileText, text: 'Formulário simples de contato' },
+  { icon: ImageIcon, text: 'Galeria de fotos' },
+  { icon: Star, text: 'Depoimentos do seu cliente' },
+  { icon: Pencil, text: 'Conteúdo que você edita' },
+  { icon: Wrench, text: 'Manutenção opcional' },
+  { icon: ShieldCheck, text: 'Seguro e com HTTPS' },
+  { icon: Lock, text: 'Privacidade e LGPD' },
+  { icon: BarChart2, text: 'Métricas básicas' },
+  { icon: Rocket, text: 'Publicação rápida' },
+  { icon: Layers, text: 'Cresce por seções' },
+  { icon: Globe, text: 'Domínio próprio ou atual' },
   { icon: UserCheck, text: 'Suporte humano' },
 ];
 
@@ -25,27 +49,21 @@ const BenefitsStrip = () => {
   const groupRef = useRef<HTMLUListElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [distance, setDistance] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(40); // fallback
+  const [duration, setDuration] = useState<number>(40);
 
   useEffect(() => {
     const measure = () => {
       if (!groupRef.current || !trackRef.current) return;
       const groupWidth = groupRef.current.scrollWidth;
-
-      // velocidade alvo ~80px/s → duração = largura / 80
       const targetSpeed = 80; // px/s
-      const newDuration = Math.max(20, Math.round((groupWidth / targetSpeed))); // clamp mínimo
-
+      const newDuration = Math.max(20, Math.round(groupWidth / targetSpeed));
       setDistance(groupWidth);
       setDuration(newDuration);
-
-      // injeta as CSS vars direto no track
       trackRef.current.style.setProperty('--marquee-distance', `${groupWidth}px`);
       trackRef.current.style.setProperty('--marquee-duration', `${newDuration}s`);
     };
 
     measure();
-    // re-medidas em resize para manter fluidez
     const ro = new ResizeObserver(measure);
     if (groupRef.current) ro.observe(groupRef.current);
     window.addEventListener('resize', measure);
@@ -62,25 +80,18 @@ const BenefitsStrip = () => {
       className="py-6 md:py-8 overflow-hidden relative"
       aria-hidden="true"
     >
-      {/* Fades laterais */}
       <div
         className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 z-10"
-        style={{
-          background: 'linear-gradient(to right, hsl(var(--neutral-900)), transparent)',
-        }}
+        style={{ background: 'linear-gradient(to right, hsl(var(--neutral-900)), transparent)' }}
       />
       <div
         className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10"
-        style={{
-          background: 'linear-gradient(to left, hsl(var(--neutral-900)), transparent)',
-        }}
+        style={{ background: 'linear-gradient(to left, hsl(var(--neutral-900)), transparent)' }}
       />
 
-      {/* Trilho rolante (sempre animado) */}
       <div
         ref={trackRef}
         className="flex items-center animate-marquee"
-        // backup se o estilo inline sumir por algum motivo
         style={
           {
             '--marquee-distance': `${distance || 0}px`,
@@ -89,11 +100,7 @@ const BenefitsStrip = () => {
         }
       >
         {/* Grupo 1 */}
-        <ul
-          ref={groupRef}
-          className="flex items-center gap-12 pr-12 flex-none"
-        // pr-12 garante o mesmo espaçamento na “junção” com o próximo grupo
-        >
+        <ul ref={groupRef} className="flex items-center gap-12 pr-12 flex-none">
           {benefits.map(({ icon: Icon, text }, i) => (
             <li
               key={`g1-${i}`}
