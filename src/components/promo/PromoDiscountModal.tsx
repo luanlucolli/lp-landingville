@@ -26,7 +26,7 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="w-[calc(100%-2rem)] max-w-md mx-4 rounded-2xl p-6"
+        className="w-[calc(100%-2rem)] max-w-md rounded-2xl p-6 left-1/2 -translate-x-1/2"
         aria-labelledby="promo-title"
         aria-describedby="promo-description"
       >
