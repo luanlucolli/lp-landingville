@@ -1,50 +1,44 @@
-import { useEffect, useState } from 'react';
-import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import BenefitsStrip from '@/components/BenefitsStrip';
-import DiagnosisHook from '@/components/DiagnosisHook';
-import ServicesSection from '@/components/ServicesSection';
-import DemosTabs from '@/components/DemosTabs';
-import FAQSection from '@/components/FAQSection';
-import StickyBottomBar from '@/components/StickyBottomBar';
-import SchemaMarkup from '@/components/SchemaMarkup';
-import { PromoDiscountModal } from '@/components/promo/PromoDiscountModal';
+// src/pages/home/index.tsx
+import { useEffect, useState } from "react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import BenefitsStrip from "@/components/BenefitsStrip";
+import DiagnosisHook from "@/components/DiagnosisHook";
+import ServicesSection from "@/components/ServicesSection";
+import DemosTabs from "@/components/DemosTabs";
+import FAQSection from "@/components/FAQSection";
+import StickyBottomBar from "@/components/StickyBottomBar";
+import SchemaMarkup from "@/components/SchemaMarkup";
+import { PromoDiscountModal } from "@/components/promo/PromoDiscountModal";
 
 const Index = () => {
-  const [showPromoModal, setShowPromoModal] = useState(false);
+  const [showPromoModal, setShowPromoModal] = useState(false); // inicia fechado
 
   useEffect(() => {
-    // Add smooth scrolling for anchor links
+    // Smooth scroll para âncoras internas
     const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
+    const onClick = (e: Event) => {
+      const link = e.currentTarget as HTMLAnchorElement;
+      const href = link.getAttribute("href") || "";
+      if (href.length > 1) {
         e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href') || '');
-        target?.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    // Verificar se deve mostrar popup promocional
-    const promoSeen = sessionStorage.getItem('lv_promo_seen');
-    if (promoSeen !== 'true') {
-      setShowPromoModal(true);
-      sessionStorage.setItem('lv_promo_seen', 'true');
-    }
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    links.forEach((link) => link.addEventListener("click", onClick));
+    return () => links.forEach((link) => link.removeEventListener("click", onClick));
   }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Schema.org structured data */}
       <SchemaMarkup />
 
-      {/* Promo Modal */}
+      {/* Mantido, mas fechado por padrão; pode ser aberto por alguma ação futura */}
       <PromoDiscountModal open={showPromoModal} onOpenChange={setShowPromoModal} />
 
-      {/* Header */}
       <Header />
 
-      {/* Main content (fundo escuro) */}
-      <main style={{ background: 'hsl(var(--neutral-900))' }}>
+      <main style={{ background: "hsl(var(--neutral-900))" }}>
         <HeroSection />
         <BenefitsStrip />
         <DiagnosisHook />
@@ -55,10 +49,7 @@ const Index = () => {
         <FAQSection />
       </main>
 
-      {/* Sticky bottom navigation for mobile */}
       <StickyBottomBar />
-
-      {/* Add padding bottom on mobile to prevent content being hidden by sticky bar */}
       <div className="md:h-0" />
     </div>
   );
