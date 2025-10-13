@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -8,6 +7,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface PromoDiscountModalProps {
   open: boolean;
@@ -15,14 +15,12 @@ interface PromoDiscountModalProps {
 }
 
 export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalProps) => {
+  const navigate = useNavigate();
+
   const handleActivatePromo = () => {
     sessionStorage.setItem('lv_promo_claimed', 'true');
     onOpenChange(false);
-    setTimeout(() => {
-      const calculator = document.getElementById('calculator');
-      calculator?.scrollIntoView({ behavior: 'smooth' });
-      window.dispatchEvent(new CustomEvent('startCalculator'));
-    }, 100);
+    navigate('/diagnostico');
   };
 
   return (

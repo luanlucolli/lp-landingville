@@ -105,18 +105,11 @@ const Header = () => {
                     key={item.path}
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-medium transition-colors hover:text-white inline-flex items-center gap-2 ${
+                    className={`text-lg font-medium transition-colors hover:text-white ${
                       isActive(item.path) ? 'text-white' : 'text-white/70'
                     }`}
                   >
                     {item.label}
-                    {item.label === 'Diagnóstico' && (
-                      <Badge 
-                        className="px-2 py-0.5 text-[10px] font-bold bg-primary-green text-white border-0"
-                      >
-                        15% OFF
-                      </Badge>
-                    )}
                   </Link>
                 ))}
               </nav>
