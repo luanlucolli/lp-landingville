@@ -189,7 +189,7 @@ const DemosTabs = () => {
                     <img
                       key={`${src}-${index}`}
                       src={src}
-                      alt={`Exemplo de ${currentTab.title} — visual desktop e mobile`}
+                      alt={copy.demos.imageAlt(currentTab.title)}
                       className={`absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 max-w-full ${index === activeIndex ? 'opacity-100' : 'opacity-0'
                         }`}
                       loading="lazy"
@@ -202,7 +202,7 @@ const DemosTabs = () => {
                     <>
                       <button
                         onClick={goToPrev}
-                        aria-label="Slide anterior"
+                        aria-label={copy.demos.ariaLabels.prevSlide}
                         data-carousel-control
                         className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors z-10"
                       >
@@ -210,7 +210,7 @@ const DemosTabs = () => {
                       </button>
                       <button
                         onClick={goToNext}
-                        aria-label="Próximo slide"
+                        aria-label={copy.demos.ariaLabels.nextSlide}
                         data-carousel-control
                         className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 items-center justify-center w-9 h-9 rounded-full bg-black/20 hover:bg-black/30 text-white backdrop-blur-sm transition-colors z-10"
                       >
@@ -226,7 +226,7 @@ const DemosTabs = () => {
                           <button
                             key={index}
                             onClick={() => goToSlide(index)}
-                            aria-label={`Ir para slide ${index + 1}`}
+                            aria-label={copy.demos.ariaLabels.goToSlide(index + 1)}
                             aria-current={index === activeIndex ? 'true' : 'false'}
                             data-carousel-control
                             className={`w-[6px] h-[6px] rounded-full p-0 leading-none !min-w-0 !min-h-0 transition-colors ${index === activeIndex
@@ -242,7 +242,7 @@ const DemosTabs = () => {
 
                 <div className="text-center">
                   <Badge variant="default" className="mb-2">
-                    Exemplo de Demonstração
+                    {copy.demos.badgeDemo}
                   </Badge>
 
                 </div>
@@ -300,7 +300,7 @@ const DemosTabs = () => {
           {/* CTA */}
           <div className="text-center mt-12">
             <p className="text-muted-foreground mb-6">
-              Gostou do que viu? Vamos criar algo assim para você.
+              {copy.demos.intro}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

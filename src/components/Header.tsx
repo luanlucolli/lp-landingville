@@ -7,15 +7,13 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
+import copy from '@/content/landingville';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const navItems = [
-    { label: 'Início', path: '/' },
-    { label: 'Diagnóstico', path: '/diagnostico' },
-  ];
+  const navItems = copy.header.nav;
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -31,7 +29,7 @@ const Header = () => {
           <Link to="/" className="md:flex-shrink-0">
             <img
               src="/lovable-uploads/landingvillelogo.svg"
-              alt="Landingville"
+              alt={copy.brand.logoAlt}
               className="h-10 md:h-12 w-auto brightness-0 invert"
             />
           </Link>
@@ -48,11 +46,11 @@ const Header = () => {
                     }`}
                   >
                     {item.label}
-                    {item.label === 'Diagnóstico' && (
+                    {item.badge && (
                       <Badge 
                         className="px-2 py-0.5 text-[10px] font-bold bg-primary-green text-white border-0"
                       >
-                        15% OFF
+                        {item.badge}
                       </Badge>
                     )}
                   </Link>
@@ -69,7 +67,7 @@ const Header = () => {
             <SheetTrigger asChild className="md:hidden">
               <button
                 className="p-2 text-white hover:text-white/80 transition-colors outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0"
-                aria-label="Menu"
+                aria-label={copy.header.ariaLabels.menu}
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -83,7 +81,7 @@ const Header = () => {
               <div className="flex justify-center mb-8">
                 <img
                   src="/lovable-uploads/landingvillelogo.svg"
-                  alt="Landingville"
+                  alt={copy.brand.logoAlt}
                   className="h-10 w-auto brightness-0 invert"
                 />
               </div>
@@ -92,7 +90,7 @@ const Header = () => {
               <div className="absolute top-4 right-4">
                 <button
                   onClick={() => setIsOpen(false)}
-                  aria-label="Fechar menu"
+                  aria-label={copy.header.ariaLabels.closeMenu}
                   className="p-2 text-white/80 hover:text-white outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0"
                 >
                   <X size={22} />

@@ -1,6 +1,7 @@
 import { MessageCircle } from 'lucide-react';
 import { ChannelSheet } from './ChannelSheet';
 import { useState } from 'react';
+import copy from '@/content/landingville';
 
 const StickyBottomBar = () => {
   const [showChannelSheet, setShowChannelSheet] = useState(false);
@@ -22,7 +23,7 @@ const StickyBottomBar = () => {
                    active:scale-95 transition-all duration-200 ease-out
                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
                    flex items-center justify-center"
-        aria-label="Entrar em contato"
+        aria-label={copy.stickyBar.ariaLabel}
       >
         <MessageCircle
           className="w-7 h-7 lg:w-8 lg:h-8

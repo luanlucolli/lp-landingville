@@ -4,7 +4,44 @@ export const copy = {
     city: "Joinville",
     primaryHex: "#2B6FA5", // Steel Blue
     secondaryHex: "#85BA62", // Verde Musgo Claro
+    logoAlt: "Landingville",
   },
+
+  // HEADER
+  header: {
+    nav: [
+      { label: 'Início', path: '/' },
+      { label: 'Diagnóstico', path: '/diagnostico', badge: '15% OFF' },
+    ],
+    ariaLabels: {
+      menu: 'Menu',
+      closeMenu: 'Fechar menu',
+    },
+  },
+
+  // BENEFITS STRIP
+  benefits: [
+    { icon: 'Zap', text: 'Carrega rápido' },
+    { icon: 'MonitorSmartphone', text: 'Pronto para celular e computador' },
+    { icon: 'Search', text: 'Ajuda a aparecer no Google' },
+    { icon: 'MessageCircle', text: 'Botões para WhatsApp e Instagram' },
+    { icon: 'Phone', text: 'Clique para ligar' },
+    { icon: 'Mail', text: 'E-mail em 1 toque' },
+    { icon: 'MapPin', text: 'Endereço e rotas fáceis' },
+    { icon: 'Clock', text: 'Horários sempre atualizados' },
+    { icon: 'FileText', text: 'Formulário simples de contato' },
+    { icon: 'ImageIcon', text: 'Galeria de fotos' },
+    { icon: 'Star', text: 'Depoimentos do seu cliente' },
+    { icon: 'Pencil', text: 'Conteúdo que você edita' },
+    { icon: 'Wrench', text: 'Manutenção opcional' },
+    { icon: 'ShieldCheck', text: 'Seguro e com HTTPS' },
+    { icon: 'Lock', text: 'Privacidade e LGPD' },
+    { icon: 'BarChart2', text: 'Métricas básicas' },
+    { icon: 'Rocket', text: 'Publicação rápida' },
+    { icon: 'Layers', text: 'Cresce por seções' },
+    { icon: 'Globe', text: 'Domínio próprio ou atual' },
+    { icon: 'UserCheck', text: 'Suporte humano' },
+  ],
 
   hero: {
     h1: "Site claro, rápido e que gera contatos.",
@@ -19,6 +56,33 @@ export const copy = {
       gradientNote:
         "Hero com gradiente animado (Steel→Moss) e blobs flutuantes; prefers-reduced-motion desativa; contraste AA/AAA.",
     },
+  },
+
+  // DIAGNOSIS HOOK
+  diagnosis: {
+    id: 'diagnosis',
+    title: 'Qual a solução ideal para o seu negócio?',
+    benefits: [
+      {
+        icon: 'Zap',
+        title: 'Rápido e sem cadastro',
+        description: 'Leve menos de 1 minuto para ter sua resposta, sem pedir seus dados.',
+      },
+      {
+        icon: 'Lightbulb',
+        title: 'Recomendação Instantânea',
+        description: 'Descubra na hora se uma Landing Page ou um Site é o ideal para seu objetivo.',
+      },
+      {
+        icon: 'Receipt',
+        title: 'Estimativa de Valor Clara',
+        description: 'Tenha uma faixa de preço transparente para planejar seu investimento.',
+      },
+    ],
+    cta: 'Iniciar Diagnóstico Gratuito',
+    ctaBadge: '15% OFF',
+    testimonial: '"O diagnóstico foi muito decisivo para mim. Me deu a clareza que eu precisava." - Diana Anacleto, Contadora',
+    visualAlt: 'Diagnóstico — visual ilustrativo (SVG)',
   },
 
   // SUPERSEÇÃO: CALCULADORA (objetivo-first, ≤ R$ 500)
@@ -96,6 +160,22 @@ export const copy = {
       },
     },
 
+    // UI do Calculador
+    ui: {
+      intro: 'Introdução',
+      stepOf: (current: number, total: number) => `Passo ${current} de ${total}`,
+      result: 'Resultado · Estimativa inicial',
+      back: 'Voltar',
+      advance: 'Avançar',
+      seeEstimate: 'Ver Estimativa',
+      resetCalculator: 'Calcular novamente',
+      helpTitle: 'Vamos te ajudar:',
+      whyRecommend: (type: string) => `Por que recomendamos ${type}`,
+      weSuggest: 'Sugerimos:',
+      urgencyLabel: 'Urgência:',
+      promoApplied: '15% OFF aplicado',
+    },
+
     // Resultado com recomendação automática e DEEP-LINK para Demos
     result: {
       title: "Sua estimativa inicial",
@@ -110,6 +190,22 @@ export const copy = {
       ctas: {
         primary: "Falar com a Landingville", // abre Contact Modal
         secondary: "Ver exemplo do meu caso", // rola p/ #demos com tab correta (landing/site)
+      },
+      reasons: {
+        landing: {
+          immediateAction: { title: 'Ação imediata', text: 'Uma página direta com botão de contato facilita receber pedidos.' },
+          goLiveFast: { title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.' },
+          channelFocus: { title: 'Foco nos canais', text: 'Destaque para falar com você em 1 toque.' },
+          promoOfTheDay: { title: 'Promo do dia', text: 'Dá para divulgar ofertas sem complicação.' },
+          leanContent: { title: 'Conteúdo enxuto', text: 'Comece simples agora e troque as fotos depois.' },
+        },
+        site: {
+          ongoingPresence: { title: 'Presença contínua', text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.' },
+          moreContent: { title: 'Mais conteúdo', text: 'Mostra melhor seus produtos e ajuda quem pesquisa.' },
+          easyToFind: { title: 'Fácil de achar', text: 'Informações fixas que ajudam a aparecer no Google.' },
+          youHaveMaterial: { title: 'Você já tem material', text: 'Aproveitamos seus materiais para um site completo.' },
+          multipleChannels: { title: 'Vários canais', text: 'Tudo num lugar só, com navegação simples.' },
+        },
       },
     },
 
@@ -168,6 +264,7 @@ export const copy = {
     id: "demos",
     title: "Landing Page ou Site: qual é melhor para você?",
     note: "Compare rápido e escolha o que combina com seu momento.",
+    intro: "Gostou do que viu? Vamos criar algo assim para você.",
     tabs: [
       {
         key: "landing",
@@ -202,6 +299,13 @@ export const copy = {
     ],
     // Botão abre o modal de contato
     cta: "Falar com a Landingville",
+    badgeDemo: "Exemplo de Demonstração",
+    imageAlt: (type: string) => `Exemplo de ${type} — visual desktop e mobile`,
+    ariaLabels: {
+      prevSlide: 'Slide anterior',
+      nextSlide: 'Próximo slide',
+      goToSlide: (n: number) => `Ir para slide ${n}`,
+    },
   },
 
   faq: {
@@ -282,6 +386,65 @@ export const copy = {
       },
     ],
     note: "Abriremos seu app de mensagens padrão. Se preferir, copie o número ou procure por @landing.ville no Instagram.",
+    estimate: {
+      title: 'Sua estimativa:',
+      note: 'Escopo enxuto • Integrações leves • Ajustes inclusos',
+    },
+    channelPrefix: 'Conversar pelo ',
+  },
+
+  // PROMO MODAL
+  promo: {
+    title: '15% de desconto no valor do orçamento',
+    description: 'Ative agora e veja sua estimativa já com o desconto aplicado no resultado do diagnóstico.',
+    benefits: [
+      'Diagnóstico gratuito e rápido (menos de 1 minuto)',
+      'Recomendação clara: Landing Page ou Site',
+      '15% de desconto no valor do orçamento, aplicado automaticamente no resultado',
+    ],
+    cta: 'Abrir diagnóstico com 15% de desconto',
+    dismissCta: 'Agora não',
+  },
+
+  // DIAGNOSTICO PAGE
+  diagnosticoPage: {
+    backButton: 'Voltar',
+    backButtonAriaLabel: 'Voltar',
+    logoLinkAriaLabel: 'Ir para a página inicial',
+  },
+
+  // 404 PAGE
+  notFound: {
+    title: '404',
+    message: 'Oops! Page not found',
+    cta: 'Return to Home',
+  },
+
+  // STICKY BOTTOM BAR
+  stickyBar: {
+    ariaLabel: 'Entrar em contato',
+  },
+
+  // SCHEMA MARKUP
+  schema: {
+    name: "Landingville",
+    description: "Estúdio de Joinville focado em landing pages, sites e micro-sistemas para comércios locais",
+    url: "https://landingville.com.br",
+    telephone: "+55 47 99999-9999",
+    city: "Joinville",
+    region: "SC",
+    country: "BR",
+    serviceTypes: [
+      "Landing Pages",
+      "Sites Mobile-First",
+      "Integração WhatsApp",
+      "SEO Local"
+    ],
+    priceRange: "$$",
+    socialLinks: [
+      "https://instagram.com/landingville",
+      "https://wa.me/5547999999999"
+    ]
   },
 };
 export default copy;

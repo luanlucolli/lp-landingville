@@ -19,31 +19,38 @@ import {
   Layers,
   Globe,
   UserCheck,
+  LucideIcon,
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import copy from '@/content/landingville';
 
-const benefits = [
-  { icon: Zap, text: 'Carrega rápido' },
-  { icon: MonitorSmartphone, text: 'Pronto para celular e computador' },
-  { icon: Search, text: 'Ajuda a aparecer no Google' },
-  { icon: MessageCircle, text: 'Botões para WhatsApp e Instagram' },
-  { icon: Phone, text: 'Clique para ligar' },
-  { icon: Mail, text: 'E-mail em 1 toque' },
-  { icon: MapPin, text: 'Endereço e rotas fáceis' },
-  { icon: Clock, text: 'Horários sempre atualizados' },
-  { icon: FileText, text: 'Formulário simples de contato' },
-  { icon: ImageIcon, text: 'Galeria de fotos' },
-  { icon: Star, text: 'Depoimentos do seu cliente' },
-  { icon: Pencil, text: 'Conteúdo que você edita' },
-  { icon: Wrench, text: 'Manutenção opcional' },
-  { icon: ShieldCheck, text: 'Seguro e com HTTPS' },
-  { icon: Lock, text: 'Privacidade e LGPD' },
-  { icon: BarChart2, text: 'Métricas básicas' },
-  { icon: Rocket, text: 'Publicação rápida' },
-  { icon: Layers, text: 'Cresce por seções' },
-  { icon: Globe, text: 'Domínio próprio ou atual' },
-  { icon: UserCheck, text: 'Suporte humano' },
-];
+const iconMap: Record<string, LucideIcon> = {
+  Zap,
+  MonitorSmartphone,
+  Search,
+  MessageCircle,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  FileText,
+  ImageIcon,
+  Star,
+  Pencil,
+  Wrench,
+  ShieldCheck,
+  Lock,
+  BarChart2,
+  Rocket,
+  Layers,
+  Globe,
+  UserCheck,
+};
+
+const benefits = copy.benefits.map(b => ({
+  icon: iconMap[b.icon] || Zap,
+  text: b.text
+}));
 
 const BenefitsStrip = () => {
   const groupRef = useRef<HTMLUListElement | null>(null);

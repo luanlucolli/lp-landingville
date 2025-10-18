@@ -1,12 +1,19 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { Clock, Target, DollarSign, Lightbulb, Receipt, Zap } from 'lucide-react';
+import { Clock, Target, DollarSign, Lightbulb, Receipt, Zap, LucideIcon } from 'lucide-react';
+import copy from '@/content/landingville';
+
+const iconMap: Record<string, LucideIcon> = {
+  Zap,
+  Lightbulb,
+  Receipt,
+};
 
 const DiagnosisHook = () => {
   return (
     <section
-      id="diagnosis"
+      id={copy.diagnosis.id}
       className="pt-24 pb-24 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32"
       style={{ background: 'hsl(var(--neutral-200))' }}
     >
@@ -20,7 +27,7 @@ const DiagnosisHook = () => {
               {/* Upper Block - The Promise */}
               <div className="space-y-6 lg:space-y-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                  Qual a solução ideal para o seu negócio?
+                  {copy.diagnosis.title}
                 </h2>
 
                 {/* Mobile/Tablet: SVG imediatamente abaixo do título (sem margem) */}
@@ -31,7 +38,7 @@ const DiagnosisHook = () => {
                   >
                     <img
                       src="/lovable-uploads/quiz.svg"
-                      alt="Diagnóstico — visual ilustrativo (SVG)"
+                      alt={copy.diagnosis.visualAlt}
                       className="block w-full h-full object-contain"
                     />
                   </div>
@@ -39,47 +46,24 @@ const DiagnosisHook = () => {
 
                 {/* Lista de Benefícios */}
                 <div className="[margin-top:0!important] lg:[margin-top:calc(1.5rem*calc(1-var(--tw-space-y-reverse)))!important] space-y-4 lg:space-y-6">
-                  <div className="flex items-start gap-3 lg:gap-4">
-                    <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                      <Zap className="w-6 h-6 text-primary-green" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
-                        Rápido e sem cadastro
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        Leve menos de 1 minuto para ter sua resposta, sem pedir seus dados.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 lg:gap-4">
-                    <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                      <Lightbulb className="w-6 h-6 text-primary-green" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
-                        Recomendação Instantânea
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        Descubra na hora se uma Landing Page ou um Site é o ideal para seu objetivo.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 lg:gap-4">
-                    <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                      <Receipt className="w-6 h-6 text-primary-green" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
-                        Estimativa de Valor Clara
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        Tenha uma faixa de preço transparente para planejar seu investimento.
-                      </p>
-                    </div>
-                  </div>
+                  {copy.diagnosis.benefits.map((benefit, index) => {
+                    const Icon = iconMap[benefit.icon] || Zap;
+                    return (
+                      <div key={index} className="flex items-start gap-3 lg:gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 mt-0.5">
+                          <Icon className="w-6 h-6 text-primary-green" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
+                            {benefit.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {benefit.description}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -110,17 +94,17 @@ const DiagnosisHook = () => {
                     }}
                     className="flex items-center justify-center gap-2"
                   >
-                    Iniciar Diagnóstico Gratuito
+                    {copy.diagnosis.cta}
                     <Badge 
                       className="px-2 py-0.5 text-[10px] font-bold bg-white/20 text-white border-0"
                     >
-                      15% OFF
+                      {copy.diagnosis.ctaBadge}
                     </Badge>
                   </Link>
                 </Button>
 
                 <p className="text-sm italic text-muted-foreground text-center">
-                  "O diagnóstico foi muito decisivo para mim. Me deu a clareza que eu precisava." - Diana Anacleto, Contadora
+                  {copy.diagnosis.testimonial}
                 </p>
               </div>
             </div>
@@ -130,7 +114,7 @@ const DiagnosisHook = () => {
               <div className="w-full max-w-md aspect-square flex items-center justify-center">
                 <img
                   src="/lovable-uploads/quiz.svg"
-                  alt="Diagnóstico — visual ilustrativo (SVG)"
+                  alt={copy.diagnosis.visualAlt}
                   className="block w-full h-full object-contain"
                 />
               </div>

@@ -8,6 +8,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import copy from '@/content/landingville';
 
 interface PromoDiscountModalProps {
   open: boolean;
@@ -40,33 +41,23 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
           </div>
 
           <DialogTitle id="promo-title" className="text-2xl font-bold text-center">
-            15% de desconto no valor do orçamento
+            {copy.promo.title}
           </DialogTitle>
 
           <DialogDescription id="promo-description" className="text-center text-base">
-            Ative agora e veja sua estimativa já com o desconto aplicado no resultado do diagnóstico.
+            {copy.promo.description}
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-3 py-4">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground">
-              Diagnóstico gratuito e rápido (menos de 1 minuto)
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground">
-              Recomendação clara: Landing Page ou Site
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground">
-              15% de desconto no valor do orçamento, aplicado automaticamente no resultado
-            </p>
-          </div>
+          {copy.promo.benefits.map((benefit, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-primary-green flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-muted-foreground">
+                {benefit}
+              </p>
+            </div>
+          ))}
         </div>
 
         <div className="flex flex-col gap-3 pt-2">
@@ -84,7 +75,7 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
               color: '#FFFFFF'
             }}
           >
-            Abrir diagnóstico com 15% de desconto
+            {copy.promo.cta}
           </Button>
 
           <Button
@@ -92,7 +83,7 @@ export const PromoDiscountModal = ({ open, onOpenChange }: PromoDiscountModalPro
             onClick={() => onOpenChange(false)}
             className="w-full text-muted-foreground hover:text-foreground"
           >
-            Agora não
+            {copy.promo.dismissCta}
           </Button>
         </div>
       </DialogContent>
