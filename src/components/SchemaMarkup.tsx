@@ -1,35 +1,29 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import copy from '@/content/landingville';
 
 const SchemaMarkup = () => {
   useEffect(() => {
     const schema = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "Landingville",
-      "description": "Estúdio de Joinville focado em landing pages, sites e micro-sistemas para comércios locais",
-      "url": "https://landingville.com.br",
+      "name": copy.schema.name,
+      "description": copy.schema.description,
+      "url": copy.schema.url,
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Joinville",
-        "addressRegion": "SC",
-        "addressCountry": "BR"
+        "addressLocality": copy.schema.city,
+        "addressRegion": copy.schema.region,
+        "addressCountry": copy.schema.country
       },
-      "telephone": "+55 47 99999-9999",
+      "telephone": copy.schema.telephone,
       "areaServed": {
         "@type": "City",
-        "name": "Joinville"
+        "name": copy.schema.city
       },
-      "serviceType": [
-        "Landing Pages",
-        "Sites Mobile-First",
-        "Integração WhatsApp",
-        "SEO Local"
-      ],
-      "priceRange": "$$",
-      "sameAs": [
-        "https://instagram.com/landingville",
-        "https://wa.me/5547999999999"
-      ]
+      "serviceType": copy.schema.serviceTypes,
+      "priceRange": copy.schema.priceRange,
+      "sameAs": copy.schema.socialLinks
     };
 
     const script = document.createElement('script');

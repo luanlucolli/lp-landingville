@@ -65,7 +65,7 @@ const buildWhatsAppHref = (
   fallback?: ChannelSheetProps['fallback'],
   recommendation?: 'landing' | 'site'
 ) => {
-  const base = 'https://wa.me/5547984802779';
+  const base = copy.contact.channels[1].href;
   let texto = '';
 
   if (context.source === 'calculator_final') {
@@ -144,7 +144,7 @@ export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange, a
                 variant="default"
               >
                 <channel.icon className="w-6 h-6" />
-                <span>Conversar pelo {channel.name}</span>
+                <span>{copy.contact.channelPrefix}{channel.name}</span>
               </Button>
             ))}
           </div>
@@ -152,14 +152,14 @@ export const ChannelSheet = ({ open, onOpenChange, recommendation, priceRange, a
           {recommendation && priceRange && (
             <div className="mt-6 p-4 bg-muted/30 rounded-xl">
               <h4 className="font-semibold text-foreground text-center mb-2">
-                Sua estimativa:
+                {copy.contact.estimate.title}
               </h4>
               <div className="text-center">
                 <p className="text-lg font-bold text-foreground">
                   {recommendation === 'landing' ? 'Landing Page' : 'Site'} - R$ {priceRange[0]} - R$ {priceRange[1]}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Escopo enxuto • Integrações leves • Ajustes inclusos
+                  {copy.contact.estimate.note}
                 </p>
               </div>
             </div>

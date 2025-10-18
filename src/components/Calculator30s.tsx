@@ -211,62 +211,116 @@ const Calculator30s = () => {
     const isLanding = state.recommendation === 'landing';
 
     if (isLanding) {
+      const landingReasons = copy.calculator.result.reasons.landing;
+      
       if (state.answers.s1.some(obj => ['Divulgar promoção/campanha', 'Reabertura/inauguração', 'Receber mais pedidos/contatos'].includes(obj))) {
-        reasons.push({ title: 'Ação imediata', text: 'Uma página direta com botão de contato facilita receber pedidos.', icon: 'Target' });
+        reasons.push({ 
+          title: landingReasons.immediateAction.title, 
+          text: landingReasons.immediateAction.text, 
+          icon: 'Target' 
+        });
       }
 
       if (state.answers.s4?.[0] && ['Em 3 dias úteis', 'Em 5 dias úteis'].includes(state.answers.s4[0])) {
-        reasons.push({ title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.', icon: 'Clock' });
+        reasons.push({ 
+          title: landingReasons.goLiveFast.title, 
+          text: landingReasons.goLiveFast.text, 
+          icon: 'Clock' 
+        });
       }
 
       if (state.answers.s2.some(canal => ['WhatsApp', 'Instagram'].includes(canal))) {
-        reasons.push({ title: 'Foco nos canais', text: 'Destaque para falar com você em 1 toque.', icon: 'MessageCircle' });
+        reasons.push({ 
+          title: landingReasons.channelFocus.title, 
+          text: landingReasons.channelFocus.text, 
+          icon: 'MessageCircle' 
+        });
       }
 
       if (state.answers.s5.includes('Promo do dia')) {
-        reasons.push({ title: 'Promo do dia', text: 'Dá para divulgar ofertas sem complicação.', icon: 'Lightbulb' });
+        reasons.push({ 
+          title: landingReasons.promoOfTheDay.title, 
+          text: landingReasons.promoOfTheDay.text, 
+          icon: 'Lightbulb' 
+        });
       }
 
       if (state.answers.s3.includes('Nenhum dos dois')) {
-        reasons.push({ title: 'Conteúdo enxuto', text: 'Comece simples agora e troque as fotos depois.', icon: 'Zap' });
+        reasons.push({ 
+          title: landingReasons.leanContent.title, 
+          text: landingReasons.leanContent.text, 
+          icon: 'Zap' 
+        });
       }
+
+      // General reasons for landing
+      const generalReasons = [
+        { title: landingReasons.goLiveFast.title, text: landingReasons.goLiveFast.text, icon: 'Clock' },
+        { title: landingReasons.channelFocus.title, text: landingReasons.channelFocus.text, icon: 'MessageCircle' },
+        { title: landingReasons.immediateAction.title, text: landingReasons.immediateAction.text, icon: 'Target' }
+      ];
+
+      generalReasons.forEach(reason => {
+        if (reasons.length < 3 && !reasons.some(r => r.title === reason.title)) {
+          reasons.push(reason);
+        }
+      });
     } else {
+      const siteReasons = copy.calculator.result.reasons.site;
+      
       if (state.answers.s1.includes('Ter um site oficial simples')) {
-        reasons.push({ title: 'Presença contínua', text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.', icon: 'Globe' });
+        reasons.push({ 
+          title: siteReasons.ongoingPresence.title, 
+          text: siteReasons.ongoingPresence.text, 
+          icon: 'Globe' 
+        });
       }
 
       if (state.answers.s1.some(obj => ['Exibir cardápio/catálogo'].includes(obj)) || state.answers.s5.some(extra => ['Galeria simples', 'Depoimentos simples'].includes(extra))) {
-        reasons.push({ title: 'Mais conteúdo', text: 'Mostra melhor seus produtos e ajuda quem pesquisa.', icon: 'Grid3x3' });
+        reasons.push({ 
+          title: siteReasons.moreContent.title, 
+          text: siteReasons.moreContent.text, 
+          icon: 'Grid3x3' 
+        });
       }
 
       if (state.answers.s1.includes('Mostrar horário/endereço e rotas')) {
-        reasons.push({ title: 'Fácil de achar', text: 'Informações fixas que ajudam a aparecer no Google.', icon: 'MapPin' });
+        reasons.push({ 
+          title: siteReasons.easyToFind.title, 
+          text: siteReasons.easyToFind.text, 
+          icon: 'MapPin' 
+        });
       }
 
       if (state.answers.s3.includes('Logo e Fotos') || state.answers.s3.includes('Logo') || state.answers.s3.includes('Fotos')) {
-        reasons.push({ title: 'Você já tem material', text: 'Aproveitamos seus materiais para um site completo.', icon: 'Image' });
+        reasons.push({ 
+          title: siteReasons.youHaveMaterial.title, 
+          text: siteReasons.youHaveMaterial.text, 
+          icon: 'Image' 
+        });
       }
 
       if (state.answers.s2.length >= 3) {
-        reasons.push({ title: 'Vários canais', text: 'Tudo num lugar só, com navegação simples.', icon: 'Layers' });
+        reasons.push({ 
+          title: siteReasons.multipleChannels.title, 
+          text: siteReasons.multipleChannels.text, 
+          icon: 'Layers' 
+        });
       }
+
+      // General reasons for site
+      const generalReasons = [
+        { title: siteReasons.ongoingPresence.title, text: siteReasons.ongoingPresence.text, icon: 'Globe' },
+        { title: siteReasons.easyToFind.title, text: siteReasons.easyToFind.text, icon: 'MapPin' },
+        { title: siteReasons.multipleChannels.title, text: siteReasons.multipleChannels.text, icon: 'Layers' }
+      ];
+
+      generalReasons.forEach(reason => {
+        if (reasons.length < 3 && !reasons.some(r => r.title === reason.title)) {
+          reasons.push(reason);
+        }
+      });
     }
-
-    const generalReasons = isLanding ? [
-      { title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.', icon: 'Clock' },
-      { title: 'Foco nos canais', text: 'Destaque para falar com você em 1 toque.', icon: 'MessageCircle' },
-      { title: 'Ação imediata', text: 'Uma página direta com botão de contato facilita receber pedidos.', icon: 'Target' }
-    ] : [
-      { title: 'Presença contínua', text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.', icon: 'Globe' },
-      { title: 'Fácil de achar', text: 'Informações fixas que ajudam a aparecer no Google.', icon: 'MapPin' },
-      { title: 'Vários canais', text: 'Tudo num lugar só, com navegação simples.', icon: 'Layers' }
-    ];
-
-    generalReasons.forEach(reason => {
-      if (reasons.length < 3 && !reasons.some(r => r.title === reason.title)) {
-        reasons.push(reason);
-      }
-    });
 
     return reasons.slice(0, 3);
   };
@@ -350,8 +404,8 @@ const Calculator30s = () => {
   };
 
   const getCurrentStepTitle = () => {
-    if (showResult) return "Resultado · Estimativa inicial";
-    return `Passo ${state.step} de ${maxSteps}`;
+    if (showResult) return copy.calculator.ui.result;
+    return copy.calculator.ui.stepOf(state.step, maxSteps);
   };
 
   const renderSectionHeader = () => (
@@ -394,7 +448,7 @@ const Calculator30s = () => {
 
                 {/* Overline */}
                 <p className="text-[11px] md:text-xs uppercase tracking-[0.14em] text-white/65 font-medium">
-                  {state.step === 0 ? 'Introdução' : getCurrentStepTitle()}
+                  {state.step === 0 ? copy.calculator.ui.intro : getCurrentStepTitle()}
                 </p>
               </div>
             </CardHeader>
@@ -428,7 +482,7 @@ const Calculator30s = () => {
                     <div className="flex-1 order-2 md:order-1 space-y-3">
                       <div className="text-center md:text-left">
                         <h3 className="text-2xl md:text-3xl font-bold text-white mb-1.5 leading-snug">
-                          Sugerimos:{' '}
+                          {copy.calculator.ui.weSuggest}{' '}
                           {state.recommendation === 'landing'
                             ? copy.calculator.result.recommendation.landingLabel
                             : copy.calculator.result.recommendation.siteLabel}
@@ -461,7 +515,7 @@ const Calculator30s = () => {
                                               border border-primary-green/40
                                               shadow-[0_0_0_1px_hsl(98_35%_55%/.12)_inset]
                                               font-bold">
-                              15% OFF aplicado
+                              {copy.calculator.ui.promoApplied}
                             </Badge>
                           )}
                           <Badge className="px-3 py-1.5 rounded-full
@@ -469,7 +523,7 @@ const Calculator30s = () => {
                                             text-[hsl(98_40%_65%)]
                                             border border-[hsl(98_35%_55%/.38)]
                                             shadow-[0_0_0_1px_hsl(98_35%_55%/.12)_inset]">
-                            Urgência: {state.answers.s4?.[0] || 'Sem pressa'}
+                            {copy.calculator.ui.urgencyLabel} {state.answers.s4?.[0] || 'Sem pressa'}
                           </Badge>
                         </div>
                       </div>
@@ -488,7 +542,7 @@ const Calculator30s = () => {
 
                   <div className="rounded-xl p-5 bg-white/5 ring-1 ring-white/10">
                     <h4 className="font-semibold text-white mb-3 text-center">
-                      Por que recomendamos {state.recommendation === 'landing' ? 'Landing Page' : 'Site'}
+                      {copy.calculator.ui.whyRecommend(state.recommendation === 'landing' ? 'Landing Page' : 'Site')}
                     </h4>
                     <div className="space-y-3">
                       {buildReasons(state).map((reason, index) => {
@@ -516,7 +570,7 @@ const Calculator30s = () => {
                       variant="outline"
                       className="flex-1 font-semibold h-12 gap-2 border-white/30 text-white hover:bg-white/10"
                     >
-                      Calcular novamente
+                      {copy.calculator.ui.resetCalculator}
                     </Button>
 
                     <Button
@@ -572,7 +626,7 @@ const Calculator30s = () => {
 
                   {showFallback && state.step === 1 && (
                     <div className="mt-2.5 p-4 rounded-lg border border-white/10 bg-white/5">
-                      <h5 className="font-medium text-white mb-3">Vamos te ajudar:</h5>
+                      <h5 className="font-medium text-white mb-3">{copy.calculator.ui.helpTitle}</h5>
 
                       <div className="mb-4">
                         <p className="text-sm font-medium text-white mb-2">{steps.s1.fallback.q1}</p>
@@ -634,7 +688,7 @@ const Calculator30s = () => {
                     className="h-12 px-6 border-white/30 text-white hover:bg-white/10"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
-                    Voltar
+                    {copy.calculator.ui.back}
                   </Button>
                 )}
 
@@ -657,7 +711,7 @@ const Calculator30s = () => {
                                bg-[linear-gradient(135deg,hsl(208_58%_41%),hsl(98_35%_55%))]
                                text-white border-0 hover:brightness-110"
                   >
-                    {state.step === maxSteps ? 'Ver Estimativa' : 'Avançar'}
+                    {state.step === maxSteps ? copy.calculator.ui.seeEstimate : copy.calculator.ui.advance}
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 )}

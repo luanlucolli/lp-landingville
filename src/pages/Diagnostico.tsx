@@ -7,6 +7,7 @@ import Calculator30s from '@/components/Calculator30s';
 import SchemaMarkup from '@/components/SchemaMarkup';
 import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import copy from '@/content/landingville';
 
 // 2. APLICADO O TIPO ISourceOptions À CONSTANTE
 // substitua seu particlesOptions por este:
@@ -111,20 +112,20 @@ const Diagnostico = () => {
                 size="sm"
                 onClick={handleBack}
                 className="flex items-center gap-2"
-                aria-label="Voltar"
+                aria-label={copy.diagnosticoPage.backButtonAriaLabel}
               >
                 <ChevronLeft className="w-4 h-4" />
-                <span className="hidden sm:inline">Voltar</span>
+                <span className="hidden sm:inline">{copy.diagnosticoPage.backButton}</span>
               </Button>
 
               <a
                 href="/"
                 className="absolute left-1/2 -translate-x-1/2 inline-flex items-center justify-center"
-                aria-label="Ir para a página inicial"
+                aria-label={copy.diagnosticoPage.logoLinkAriaLabel}
               >
                 <img
                   src="/lovable-uploads/landingvillelogo.svg"
-                  alt="Landingville"
+                  alt={copy.brand.logoAlt}
                   className="h-12 md:h-812 w-auto select-none cursor-pointer"
                 />
               </a>

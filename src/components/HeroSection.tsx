@@ -29,7 +29,13 @@ const HeroSection = () => {
             {/* Left - Text Content */}
             <div className="space-y-6 text-center md:text-left order-2 md:order-1">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Tenha um site bonito, rápido e que gera <span className="hi-grad">vendas</span>.
+                {copy.hero.h1.split('gera contatos').map((part, i, arr) => 
+                  i < arr.length - 1 ? (
+                    <span key={i}>
+                      {part}gera <span className="hi-grad">contatos</span>
+                    </span>
+                  ) : part
+                )}
               </h1>
 
               <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'hsl(var(--neutral-800))' }}>
@@ -60,7 +66,7 @@ const HeroSection = () => {
                 {/* Placeholder/visual em SVG com fundo transparente, ocupando todo o espaço */}
                 <img
                   src="/lovable-uploads/hero.svg"
-                  alt="Visual da hero (SVG)"
+                  alt={copy.hero.visual.gradientNote}
                   className="block w-full h-full"
                   style={{ width: '100%', height: '100%' }}
                 />
