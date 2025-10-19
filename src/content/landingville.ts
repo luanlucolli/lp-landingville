@@ -21,36 +21,36 @@ export const copy = {
 
   // BENEFITS STRIP
   benefits: [
-    { icon: 'Zap', text: 'Carrega rápido' },
-    { icon: 'MonitorSmartphone', text: 'Pronto para celular e computador' },
-    { icon: 'Search', text: 'Ajuda a aparecer no Google' },
-    { icon: 'MessageCircle', text: 'Botões para WhatsApp e Instagram' },
-    { icon: 'Phone', text: 'Clique para ligar' },
-    { icon: 'Mail', text: 'E-mail em 1 toque' },
-    { icon: 'MapPin', text: 'Endereço e rotas fáceis' },
-    { icon: 'Clock', text: 'Horários sempre atualizados' },
-    { icon: 'FileText', text: 'Formulário simples de contato' },
-    { icon: 'ImageIcon', text: 'Galeria de fotos' },
-    { icon: 'Star', text: 'Depoimentos do seu cliente' },
-    { icon: 'Pencil', text: 'Conteúdo que você edita' },
-    { icon: 'Wrench', text: 'Manutenção opcional' },
-    { icon: 'ShieldCheck', text: 'Seguro e com HTTPS' },
-    { icon: 'Lock', text: 'Privacidade e LGPD' },
-    { icon: 'BarChart2', text: 'Métricas básicas' },
-    { icon: 'Rocket', text: 'Publicação rápida' },
-    { icon: 'Layers', text: 'Cresce por seções' },
-    { icon: 'Globe', text: 'Domínio próprio ou atual' },
-    { icon: 'UserCheck', text: 'Suporte humano' },
+    { icon: 'Zap', text: 'Seu cliente não espera' },
+    { icon: 'MonitorSmartphone', text: 'Perfeito no celular e computador' },
+    { icon: 'Search', text: 'Seja encontrado no Google' },
+    { icon: 'MessageCircle', text: 'Receba contatos por onde preferir' },
+    { icon: 'Phone', text: 'Contato por telefone em 1 toque' },
+    { icon: 'Mail', text: 'Receba e-mails com facilidade' },
+    { icon: 'MapPin', text: 'Como chegar integrado ao mapa' },
+    { icon: 'Clock', text: 'Seus horários sempre visíveis' },
+    { icon: 'FileText', text: 'Formulário para orçamentos' },
+    { icon: 'ImageIcon', text: 'Galeria para seus produtos' },
+    { icon: 'Star', text: 'Prove com depoimentos reais' },
+    { icon: 'Pencil', text: 'Autonomia para editar conteúdo' },
+    { icon: 'Wrench', text: 'Suporte contínuo opcional' },
+    { icon: 'ShieldCheck', text: 'Seguro com certificado HTTPS' },
+    { icon: 'Lock', text: 'Privacidade e respeito à LGPD' },
+    { icon: 'BarChart2', text: 'Mede as oportunidades geradas' },
+    { icon: 'Rocket', text: 'Solução no ar, gerando resultado' },
+    { icon: 'Layers', text: 'Evolui junto com seu negócio' },
+    { icon: 'Globe', text: 'Use seu domínio próprio ou novo' },
+    { icon: 'UserCheck', text: 'Suporte direto com pessoas' },
   ],
 
   hero: {
-    h1: "Site claro, rápido e que gera contatos.",
-    sub: "Landing pages e sites pensados para o celular, fáceis de achar no Google e conectados aos seus canais.",
-    bullets: ["Carrega rápido", "Aparece no Google local", "Conecta aos seus canais"],
-    badge: "Publicação ágil, prazo confirmado no diagnóstico",
+    h1: "Receba mais contatos de clientes na sua região.",
+    sub: "Criamos a solução digital ideal para seu negócio em Joinville ser encontrado, receber pedidos e agendamentos pelos canais que você já usa.",
+    bullets: ["Clientes encontram você no Google", "Facilita o contato em um toque", "Mede o que importa: oportunidades"],
+    badge: "Prazo de publicação confirmado após diagnóstico",
     ctas: {
-      primary: "Calcular orçamento", // scroll suave para #calculator
-      secondary: "Ver exemplos", // scroll suave para #demos (tab dinâmica)
+      primary: "Iniciar diagnóstico gratuito",
+      secondary: "Ver exemplos",
     },
     visual: {
       gradientNote:
@@ -61,102 +61,101 @@ export const copy = {
   // DIAGNOSIS HOOK
   diagnosis: {
     id: 'diagnosis',
-    title: 'Qual a solução ideal para o seu negócio?',
+    title: 'Qual a melhor forma de atrair clientes para o seu negócio?',
     benefits: [
       {
         icon: 'Zap',
         title: 'Rápido e sem cadastro',
-        description: 'Leve menos de 1 minuto para ter sua resposta, sem pedir seus dados.',
+        description: 'Em menos de 1 minuto, sem pedir seus dados, você tem um caminho claro.',
       },
       {
         icon: 'Lightbulb',
-        title: 'Recomendação Instantânea',
-        description: 'Descubra na hora se uma Landing Page ou um Site é o ideal para seu objetivo.',
+        title: 'Recomendação Sob Medida',
+        description: 'Descubra a solução ideal para seu objetivo atual: gerar mais contatos ou fortalecer sua marca.',
       },
       {
         icon: 'Receipt',
-        title: 'Estimativa de Valor Clara',
-        description: 'Tenha uma faixa de preço transparente para planejar seu investimento.',
+        title: 'Estimativa de Valor Transparente',
+        description: 'Receba uma faixa de investimento clara para poder se planejar sem surpresas.',
       },
     ],
     cta: 'Iniciar Diagnóstico Gratuito',
-    ctaBadge: '15% OFF',
-    testimonial: '"O diagnóstico foi muito decisivo para mim. Me deu a clareza que eu precisava." - Diana Anacleto, Contadora',
-    visualAlt: 'Diagnóstico — visual ilustrativo (SVG)',
+    ctaBadge: 'Ganhe 15% OFF',
+    testimonial: '"O diagnóstico me mostrou o que eu realmente precisava para começar a ter resultado. Foi direto ao ponto." - Diana Anacleto, Contadora',
+    visualAlt: 'Ilustração do processo de diagnóstico digital',
   },
 
   // SUPERSEÇÃO: CALCULADORA (objetivo-first, ≤ R$ 500)
   calculator: {
     id: "calculator",
-    title: "Descubra seu investimento",
-    subtitle: "5 perguntas simples e mostramos o melhor caminho para o seu negócio.",
+    title: "Descubra a solução e o investimento ideal",
+    subtitle: "Com algumas perguntas, mostramos o melhor caminho para o seu negócio gerar mais oportunidades.",
 
     // TELA 0 (INTRO) — NÃO começar no Passo 1
     intro: {
       title: "Qual o caminho certo para o seu negócio?",
       subtitle: "Este diagnóstico aponta a solução digital ideal para seus objetivos.",
-      bullets: ["Sem cadastro", "Recomendação automática", "Pode ajustar depois"],
+      bullets: ["Sem pedir seus dados", "Recomendação automática", "Você pode ajustar depois"],
       cta: "Descobrir agora",
       links: {
-        seeExamples: "Ver exemplos primeiro", // rola para #demos
+        seeExamples: "Ver exemplos primeiro",
       },
     },
 
     steps: {
       // Passo 1 — Objetivo (multi). NÃO exigir saber 'landing' vs 'site'.
       s1: {
-        title: "Qual seu objetivo agora?",
+        title: "Qual seu principal objetivo agora?",
         options: [
-          "Receber mais pedidos/contatos",
-          "Divulgar promoção/campanha",
-          "Mostrar horário/endereço e rotas",
-          "Ter um site oficial simples",
-          "Exibir cardápio/catálogo",
-          "Coletar orçamentos/agendamentos",
-          "Direcionar para delivery (iFood/etc.)",
-          "Reabertura/inauguração",
-          "Estou em dúvida",
+          "Receber mais pedidos e contatos",
+          "Divulgar uma promoção ou evento",
+          "Ter uma presença online profissional",
+          "Facilitar que achem meu endereço e horário",
+          "Mostrar meu cardápio ou catálogo de serviços",
+          "Receber pedidos de orçamento ou agendamento",
+          "Direcionar clientes para meu delivery",
+          "Estou apenas começando e preciso de um norte",
         ],
         fallback: {
-          q1: "Você quer algo pontual (campanha) ou presença contínua (site da loja)?",
-          q1Options: ["Pontual (campanha)", "Presença contínua (site)"],
-          q2: "Qual canal seu cliente mais usa?",
-          q2Options: ["Instagram", "WhatsApp", "Google Maps", "Delivery", "Telefone", "E-mail"],
+          q1: "Sua necessidade é para uma ação pontual (campanha) ou para ter uma presença contínua (referência da marca)?",
+          q1Options: ["Ação pontual (campanha)", "Presença contínua (referência)"],
+          q2: "Qual canal seu cliente mais usa para te encontrar?",
+          q2Options: ["Instagram", "WhatsApp", "Busca no Google", "Mapas", "Telefone", "Outro"],
         },
       },
 
       // Passo 2 — Canais preferidos (multi). Não impacta preço; organiza CTAs.
       s2: {
-        title: "Por onde prefere atender?",
-        hint: "Posicionaremos seus botões principais nesses canais.",
+        title: "Por onde prefere receber o contato dos clientes?",
+        hint: "Vamos destacar os botões para os canais que você mais usa.",
         options: [
-          "Instagram",
           "WhatsApp",
-          "Facebook",
           "Telefone",
+          "Instagram",
           "E-mail",
-          "Google Maps",
-          "Plataformas de Delivery (iFood/Rappi/99Food/Aiqfome…)",
+          "Formulário no site",
+          "Mapa (como chegar)",
+          "App de Delivery",
           "Outro",
         ],
       },
 
       // Passo 3 — Itens que você já tem — incluir opção "Logo e Fotos"
       s3: {
-        title: "Você já tem algum destes itens?",
-        options: ["Logo", "Fotos", "Logo e Fotos", "Nenhum dos dois"],
+        title: "Você já tem algum destes itens prontos?",
+        options: ["Logo", "Fotos dos produtos/serviços", "Logo e Fotos", "Ainda não tenho"],
       },
 
       // Passo 4 — Urgência (não altera preço; vira etiqueta no resumo)
       s4: {
-        title: "Qual a urgência?",
-        options: ["Em 3 dias", "Em 5 dias úteis", "Em 7 dias", "Sem pressa"],
+        title: "Qual o seu momento?",
+        options: ["Preciso para uma campanha com data marcada", "O mais breve possível, estou perdendo clientes", "Estou planejando para os próximos meses", "Sem pressa, apenas pesquisando"],
       },
 
       // Passo 5 — Extras simples (multi) com impacto pequeno
       s5: {
-        title: "Quer incluir algo simples?",
-        options: ["Promo do dia", "Depoimentos simples", "Galeria simples", "Formulário simples", "Não"],
+        title: "Quer incluir algum destes recursos?",
+        options: ["Galeria de fotos", "Depoimentos de clientes", "Formulário de contato", "Seção de promoção", "Nenhum extra por enquanto"],
       },
     },
 
@@ -164,47 +163,47 @@ export const copy = {
     ui: {
       intro: 'Introdução',
       stepOf: (current: number, total: number) => `Passo ${current} de ${total}`,
-      result: 'Resultado · Estimativa inicial',
+      result: 'Resultado · Sua recomendação',
       back: 'Voltar',
       advance: 'Avançar',
-      seeEstimate: 'Ver Estimativa',
-      resetCalculator: 'Calcular novamente',
-      helpTitle: 'Vamos te ajudar:',
+      seeEstimate: 'Ver Recomendação',
+      resetCalculator: 'Refazer diagnóstico',
+      helpTitle: 'Nossa sugestão para você:',
       whyRecommend: (type: string) => `Por que recomendamos ${type}`,
       weSuggest: 'Sugerimos:',
-      urgencyLabel: 'Urgência:',
-      promoApplied: '15% OFF aplicado',
+      urgencyLabel: 'Seu momento:',
+      promoApplied: 'Desconto de 15% aplicado',
     },
 
     // Resultado com recomendação automática e DEEP-LINK para Demos
     result: {
-      title: "Sua estimativa inicial",
+      title: "Sua recomendação está pronta",
       recommendation: {
-        landingLabel: "Landing de captação",
-        siteLabel: "Site simples (2–4 seções)",
-        hint: "Sugerimos com base no seu objetivo.",
+        landingLabel: "Página de Aquisição Rápida",
+        siteLabel: "Central de Presença Digital",
+        hint: "Esta é a nossa sugestão com base nos seus objetivos.",
       },
       price: {
-        note: "Oferta de lançamento em Joinville: escopo definido e integrações simples (links/embeds). Ajustes leves previstos para [Y] dias úteis, confirmados após o diagnóstico.",
+        note: "Estimativa de investimento único. O escopo e o prazo de publicação são confirmados após o diagnóstico, garantindo que a solução atenda exatamente ao seu objetivo.",
       },
       ctas: {
-        primary: "Falar com a Landingville", // abre Contact Modal
-        secondary: "Ver exemplo do meu caso", // rola p/ #demos com tab correta (landing/site)
+        primary: "Falar com a Landingville",
+        secondary: "Ver um exemplo similar",
       },
       reasons: {
         landing: {
-          immediateAction: { title: 'Ação imediata', text: 'Uma página direta com botão de contato facilita receber pedidos.' },
-          goLiveFast: { title: 'Vai ao ar rápido', text: 'Publicamos rapidinho para você começar a receber mensagens.' },
-          channelFocus: { title: 'Foco nos canais', text: 'Destaque para falar com você em 1 toque.' },
-          promoOfTheDay: { title: 'Promo do dia', text: 'Dá para divulgar ofertas sem complicação.' },
-          leanContent: { title: 'Conteúdo enxuto', text: 'Comece simples agora e troque as fotos depois.' },
+          immediateAction: { title: 'Foco em Ação Imediata', text: 'Uma página direta para o cliente entrar em contato, sem distrações.' },
+          goLiveFast: { title: 'Publicação Ágil', text: 'Ideal para campanhas e ofertas com tempo limitado, para começar a gerar resultados.' },
+          channelFocus: { title: 'Conversão Direta', text: 'Leva o cliente direto para o seu WhatsApp, telefone ou formulário.' },
+          promoOfTheDay: { title: 'Ofertas em Destaque', text: 'Perfeita para divulgar uma promoção específica e medir o interesse.' },
+          leanContent: { title: 'Simples e Direto', text: 'Comunicação clara e objetiva para quem já sabe o que quer.' },
         },
         site: {
-          ongoingPresence: { title: 'Presença contínua', text: 'Seu negócio com páginas Home, Sobre e Contato bem organizadas.' },
-          moreContent: { title: 'Mais conteúdo', text: 'Mostra melhor seus produtos e ajuda quem pesquisa.' },
-          easyToFind: { title: 'Fácil de achar', text: 'Informações fixas que ajudam a aparecer no Google.' },
-          youHaveMaterial: { title: 'Você já tem material', text: 'Aproveitamos seus materiais para um site completo.' },
-          multipleChannels: { title: 'Vários canais', text: 'Tudo num lugar só, com navegação simples.' },
+          ongoingPresence: { title: 'Constrói Confiança', text: 'Apresenta seu negócio de forma completa, com sua história e serviços.' },
+          moreContent: { title: 'Melhor para o Google', text: 'Mais conteúdo relevante ajuda clientes a encontrarem você ao pesquisar.' },
+          easyToFind: { title: 'Informação Organizada', text: 'Endereço, horários e contatos sempre fáceis de achar, construindo autoridade.' },
+          youHaveMaterial: { title: 'Valoriza seu Material', text: 'Aproveita suas fotos e informações para criar uma vitrine digital completa.' },
+          multipleChannels: { title: 'Centraliza a Comunicação', text: 'Organiza todos os seus canais de contato e serviços em um único lugar.' },
         },
       },
     },
@@ -229,32 +228,32 @@ export const copy = {
   // "Serviços" permanece como está no layout (3 cards). Caso necessário, consuma estes textos.
   services: {
     id: "services",
-    title: "Nossos serviços",
-    subtitle: "Escolha o que combina com a sua necessidade agora.",
+    title: "Soluções que geram resultado",
+    subtitle: "Entregamos o que seu negócio precisa para crescer agora.",
     items: [
       {
         key: "landing",
-        name: "Landing Page",
-        desc: "Uma página para um objetivo específico: promover, lançar ou captar pedidos. Ideal para ações rápidas com foco em contato.",
-        cta: "Quero uma Landing Page",
+        name: "Página de Ação Rápida",
+        desc: "Ideal para campanhas, promoções ou quando você precisa que o cliente tome uma única ação: ligar, enviar mensagem ou agendar.",
+        cta: "Ver exemplos de Ação Rápida",
         img: "/lovable-uploads/landing5.svg",
-        alt: "Ícone representando Landing Page",
+        alt: "Ícone representando uma página focada em um objetivo",
       },
       {
         key: "site",
-        name: "Site",
-        desc: "Presença contínua com seções principais (Início, Sobre, Serviços/Produtos e Contato). Ajuda quem busca no Google e orienta a decisão.",
-        cta: "Quero um Site",
+        name: "Central de Presença Digital",
+        desc: "Organiza tudo sobre seu negócio: quem você é, o que faz e como te encontrar. Perfeito para construir confiança e ser achado no Google.",
+        cta: "Ver exemplos de Presença Digital",
         img: "/lovable-uploads/tabs.svg",
-        alt: "Ícone representando Site com abas",
+        alt: "Ícone representando um site com várias seções",
       },
       {
         key: "care",
-        name: "Manutenção",
-        desc: "Atualizações de textos, preços e fotos, pequenos ajustes visuais e suporte contínuo. Podemos combinar um plano mensal.",
+        name: "Suporte e Evolução",
+        desc: "Para você focar no seu negócio. Cuidamos das atualizações de conteúdo, fotos, preços e garantimos que tudo funcione perfeitamente.",
         cta: null,
         img: "/lovable-uploads/maintenance2.svg",
-        alt: "Ícone de ferramentas para Manutenção",
+        alt: "Ícone de ferramentas para manutenção e suporte",
       },
     ],
   },
@@ -262,45 +261,43 @@ export const copy = {
   // DEMOS em tabs (Landing/Site).
   demos: {
     id: "demos",
-    title: "Landing Page ou Site: qual é melhor para você?",
-    note: "Compare rápido e escolha o que combina com seu momento.",
-    intro: "Gostou do que viu? Vamos criar algo assim para você.",
+    title: "Ação Rápida ou Presença Digital: o que seu negócio precisa?",
+    note: "Compare os dois modelos e veja qual se encaixa melhor no seu objetivo atual.",
+    intro: "Gostou do que viu? Podemos criar uma solução assim para você.",
     tabs: [
       {
         key: "landing",
-        title: "Landing Page",
-        oneLiner: "Uma página, um objetivo.",
+        title: "Página de Ação Rápida",
+        oneLiner: "Uma página, um objetivo, um resultado.",
         images: ["/lovable-uploads/landingcabelo.webp", "/lovable-uploads/landinglanche.webp"],
-        // Ícone Lucide no lugar do SVG
         highlightIcon: "megaphone",
-        highlightTitle: "Feita para gerar pedidos",
-        highlightDescription: "Boa para campanhas e lançamentos. Leva a pessoa direto ao contato.",
+        highlightTitle: "Feita para gerar oportunidades",
+        highlightDescription: "Perfeita para campanhas e ofertas. Leva a pessoa direto ao ponto: o contato.",
         benefits: [
-          "Um botão principal sempre visível",
-          "Mede cliques e mensagens",
-          "Publicação rápida para testar ofertas",
+          "Botão de contato sempre visível",
+          "Mede quantos cliques e mensagens você recebe",
+          "Publicação ágil para validar ofertas rapidamente",
         ],
       },
       {
         key: "site",
-        title: "Site",
-        oneLiner: "Tudo sobre seu negócio na web.",
+        title: "Central de Presença Digital",
+        oneLiner: "A referência do seu negócio na internet.",
         images: ["/lovable-uploads/sitecarbo.webp", "/lovable-uploads/sitecafe.webp"],
-        // Ícone Lucide no lugar do SVG
         highlightIcon: "network",
-        highlightTitle: "Tudo do seu negócio num só lugar",
-        highlightDescription: "Mostra quem você é, o que faz e como falar com você.",
+        highlightTitle: "Feita para construir autoridade",
+        highlightDescription: "Mostra quem você é, o que faz e porque seu negócio é a melhor escolha.",
         benefits: [
-          "Estrutura com 2–4 seções",
-          "Melhor para busca no Google local",
-          "Cresce com novas páginas quando precisar",
+          "Estrutura organizada (Início, Sobre, Contato)",
+          "Otimizada para ser encontrada no Google",
+          "Pode crescer com novas seções no futuro",
         ],
       },
     ],
     // Botão abre o modal de contato
     cta: "Falar com a Landingville",
     badgeDemo: "Exemplo de Demonstração",
-    imageAlt: (type: string) => `Exemplo de ${type} — visual desktop e mobile`,
+    imageAlt: (type: string) => `Exemplo de ${type} em versão desktop e mobile`,
     ariaLabels: {
       prevSlide: 'Slide anterior',
       nextSlide: 'Próximo slide',
@@ -310,61 +307,61 @@ export const copy = {
 
   faq: {
     id: "faq",
-    title: "Perguntas rápidas",
+    title: "Dúvidas comuns, respostas diretas",
     items: [
       {
-        q: "Landing Page ou Site: qual a diferença prática?",
-        a: "Landing é uma página única para ação imediata. Site reúne as informações principais em 2–4 seções. Se tiver dúvida, o diagnóstico sugere.",
+        q: "Só o Instagram não é suficiente?",
+        a: "O Instagram é ótimo para relacionamento. Uma página própria centraliza seus contatos, aparece no Google para quem ainda não te segue e transmite mais profissionalismo. Eles se complementam.",
       },
       {
-        q: "Quanto vou investir?",
-        a: "Depende do objetivo e dos extras. O plano inicial tem teto de R$ 500. Use o diagnóstico para ver sua faixa agora.",
+        q: "Não tenho tempo para gerenciar isso.",
+        a: "Nós entendemos. Por isso, cuidamos de todo o processo técnico. Você só precisa nos dizer seu objetivo. E com o plano de suporte, nem com as atualizações você se preocupa.",
+      },
+      {
+        q: "Quanto vou investir? É muito caro?",
+        a: "É um investimento único, sem mensalidade obrigatória, com valor teto de R$ 500 para o plano inicial. O diagnóstico gratuito te dá uma estimativa transparente e sem compromisso.",
       },
       {
         q: "Em quanto tempo fica pronto?",
-        a: "Prazo curto. Confirmamos após o diagnóstico conforme escopo e materiais disponíveis.",
+        a: "O prazo exato é confirmado após o diagnóstico, dependendo do que você precisa. Nosso processo é ágil para que você comece a ter retorno o mais breve possível.",
+      },
+      {
+        q: "Um site/página realmente traz retorno para o meu nicho?",
+        a: "Sim. Se as pessoas buscam pelo seu tipo de serviço em Joinville, uma presença digital bem-feita te coloca na frente delas. Ela funciona como um vendedor que apresenta seu negócio 24h por dia.",
       },
       {
         q: "O que eu preciso enviar para começar?",
-        a: "Nome do negócio, endereço/horários, canais de contato e, se tiver, logo e fotos. Sem esses itens, usamos provisórios e ajustamos depois.",
+        a: "O básico: nome do negócio, canais de contato, endereço e horários. Se tiver logo e fotos, ótimo. Se não, podemos começar com material provisório e ajustar depois.",
       },
       {
-        q: "Já tenho domínio. Posso usar?",
-        a: "Sim. Conectamos seu domínio atual ou ajudamos a registrar um novo.",
+        q: "Já tenho um domínio. Posso usar?",
+        a: "Com certeza. Conectamos seu domínio atual. Se não tiver, ajudamos você a registrar um novo.",
       },
       {
-        q: "Quem hospeda e mantém?",
-        a: "Publicamos e hospedamos no plano inicial. Manutenção contínua é opcional (plano Care) para atualizações recorrentes.",
+        q: "Vou aparecer na primeira página do Google?",
+        a: "Aplicamos as melhores práticas de SEO local para que clientes em Joinville encontrem você. Resultados dependem da concorrência, mas a estrutura já nasce pronta para isso.",
       },
       {
         q: "Posso editar o conteúdo depois?",
-        a: "Sim. Incluímos ajustes leves por 30 dias. Para mudanças frequentes, indicamos o plano de manutenção.",
+        a: "Sim. Pequenos ajustes estão inclusos nos primeiros 30 dias. Para mudanças frequentes, como promoções ou fotos, o plano de suporte é a melhor opção.",
       },
       {
-        q: "Vou aparecer no Google?",
-        a: "Aplicamos SEO local básico, performance e acessibilidade. Conteúdo atualizado e Perfil da Empresa no Google ajudam a melhorar o resultado.",
+        q: "Como sei se está funcionando?",
+        a: "Configuramos uma medição simples e focada no que importa: quantos contatos (cliques no WhatsApp, ligações, e-mails) a página gerou para você.",
       },
       {
-        q: "Integra com meus canais de atendimento?",
-        a: "Sim. Botões e links para seus canais preferidos, como telefone, WhatsApp, Instagram, e-mail, mapas e delivery.",
-      },
-      {
-        q: "E se eu não curtir o primeiro rascunho?",
-        a: "Publicamos a versão inicial e ajustamos no período incluído até chegar no que você precisa, dentro do escopo contratado.",
-      },
-      {
-        q: "Segurança e privacidade (LGPD)?",
-        a: "Seguimos boas práticas de performance, acessibilidade e privacidade. Formulários com consentimento e política de privacidade. Remoção de dados a pedido.",
+        q: "E a segurança e a LGPD?",
+        a: "Levamos isso a sério. Usamos certificado de segurança (HTTPS) e seguimos as boas práticas de privacidade, com aviso de cookies e consentimento nos formulários.",
       },
       {
         q: "Como falo com a Landingville?",
-        a: "Use os botões desta página. Respondemos rápido.",
+        a: "Clique em qualquer botão de contato desta página. Respondemos rápido para entender seu desafio.",
       },
     ],
     finalCTA: {
-      title: "Vamos publicar algo bonito e que converte?",
-      primary: "Falar com a Landingville", // abre modal
-      secondary: "Calcular orçamento", // rola p/ #calculator
+      title: "Vamos transformar seus cliques em clientes?",
+      primary: "Falar com a Landingville",
+      secondary: "Iniciar diagnóstico gratuito",
     },
   },
 
@@ -375,75 +372,73 @@ export const copy = {
       {
         key: "instagram",
         label: "Instagram",
-        // Abrir DM direto de landing.ville
         href: "https://ig.me/m/landing.ville",
       },
       {
         key: "whatsapp",
         label: "WhatsApp",
-        // Número: +55 47 98480-2779
         href: "https://wa.me/5547984802779",
       },
     ],
-    note: "Abriremos seu app de mensagens padrão. Se preferir, copie o número ou procure por @landing.ville no Instagram.",
+    note: "Vamos abrir seu aplicativo de mensagens. Se preferir, copie o número ou busque por @landing.ville.",
     estimate: {
       title: 'Sua estimativa:',
-      note: 'Escopo enxuto • Integrações leves • Ajustes inclusos',
+      note: 'Escopo focado • Integrações leves • Ajustes inclusos',
     },
     channelPrefix: 'Conversar pelo ',
   },
 
   // PROMO MODAL
   promo: {
-    title: '15% de desconto no valor do orçamento',
-    description: 'Ative agora e veja sua estimativa já com o desconto aplicado no resultado do diagnóstico.',
+    title: 'Ganhe 15% de desconto em sua solução digital',
+    description: 'Comece o diagnóstico gratuito e sua estimativa de investimento já virá com o desconto aplicado.',
     benefits: [
-      'Diagnóstico gratuito e rápido (menos de 1 minuto)',
-      'Recomendação clara: Landing Page ou Site',
-      '15% de desconto no valor do orçamento, aplicado automaticamente no resultado',
+      'Diagnóstico rápido e sem compromisso (menos de 1 minuto)',
+      'Recomendação clara para o seu objetivo',
+      'Desconto de 15% aplicado automaticamente no resultado',
     ],
-    cta: 'Abrir diagnóstico com 15% de desconto',
-    dismissCta: 'Agora não',
+    cta: 'Ativar desconto e iniciar diagnóstico',
+    dismissCta: 'Agora não, obrigado',
   },
 
   // DIAGNOSTICO PAGE
   diagnosticoPage: {
     backButton: 'Voltar',
-    backButtonAriaLabel: 'Voltar',
-    logoLinkAriaLabel: 'Ir para a página inicial',
+    backButtonAriaLabel: 'Voltar para a página inicial',
+    logoLinkAriaLabel: 'Ir para a página inicial da Landingville',
   },
 
   // 404 PAGE
   notFound: {
     title: '404',
-    message: 'Oops! Page not found',
-    cta: 'Return to Home',
+    message: 'Página não encontrada',
+    cta: 'Voltar para o início',
   },
 
   // STICKY BOTTOM BAR
   stickyBar: {
-    ariaLabel: 'Entrar em contato',
+    ariaLabel: 'Ações rápidas de contato',
   },
 
   // SCHEMA MARKUP
   schema: {
     name: "Landingville",
-    description: "Estúdio de Joinville focado em landing pages, sites e micro-sistemas para comércios locais",
+    description: "Ajudamos pequenos negócios de Joinville a gerar mais oportunidades (pedidos, orçamentos, agendamentos) com soluções digitais focadas em resultado.",
     url: "https://landingville.com.br",
-    telephone: "+55 47 99999-9999",
+    telephone: "+5547984802779",
     city: "Joinville",
     region: "SC",
     country: "BR",
     serviceTypes: [
-      "Landing Pages",
-      "Sites Mobile-First",
-      "Integração WhatsApp",
-      "SEO Local"
+      "Páginas de Aquisição Rápida (Landing Pages)",
+      "Sites Institucionais",
+      "Otimização para Google Local",
+      "Integração de Canais de Atendimento"
     ],
     priceRange: "$$",
     socialLinks: [
-      "https://instagram.com/landingville",
-      "https://wa.me/5547999999999"
+      "https://instagram.com/landing.ville",
+      "https://wa.me/5547984802779"
     ]
   },
 };

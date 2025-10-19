@@ -19,13 +19,13 @@ const DiagnosisHook = () => {
     >
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
             {/* Left Column - Content */}
-            <div className="space-y-8 lg:space-y-12">
+            <div className="space-y-8 lg:space-y-14">
 
               {/* Upper Block - The Promise */}
-              <div className="space-y-6 lg:space-y-8">
+              <div className="space-y-6 lg:space-y-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
                   {copy.diagnosis.title}
                 </h2>
@@ -45,19 +45,20 @@ const DiagnosisHook = () => {
                 </div>
 
                 {/* Lista de Benefícios */}
-                <div className="[margin-top:0!important] lg:[margin-top:calc(1.5rem*calc(1-var(--tw-space-y-reverse)))!important] space-y-4 lg:space-y-6">
+                <div className="space-y-4 lg:space-y-8">
                   {copy.diagnosis.benefits.map((benefit, index) => {
                     const Icon = iconMap[benefit.icon] || Zap;
                     return (
-                      <div key={index} className="flex items-start gap-3 lg:gap-4">
+                      <div key={index} className="flex items-start gap-2 lg:gap-3">
                         <div className="flex-shrink-0 w-6 h-6 mt-0.5">
                           <Icon className="w-6 h-6 text-primary-green" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-foreground text-base mb-1 lg:mb-2">
+                          {/* Mais espaçamento do título apenas no desktop */}
+                          <h3 className="font-bold text-foreground text-base mb-1 lg:mb-3">
                             {benefit.title}
                           </h3>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
                             {benefit.description}
                           </p>
                         </div>
@@ -103,14 +104,14 @@ const DiagnosisHook = () => {
                   </Link>
                 </Button>
 
-                <p className="text-sm italic text-muted-foreground text-center">
+                <p className="text-sm italic text-muted-foreground text-center leading-relaxed">
                   {copy.diagnosis.testimonial}
                 </p>
               </div>
             </div>
 
             {/* Desktop: coluna do SVG à direita (invariável) */}
-            <div className="hidden lg:flex items-center justify-center lg:pl-4">
+            <div className="hidden lg:flex items-center justify-center lg:pl-6">
               <div className="w-full max-w-md aspect-square flex items-center justify-center">
                 <img
                   src="/lovable-uploads/quiz.svg"
