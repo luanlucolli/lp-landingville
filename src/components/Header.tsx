@@ -48,7 +48,7 @@ const Header = () => {
                     {item.label}
                     {item.badge && (
                       <Badge 
-                        className="px-2 py-0.5 text-[10px] font-bold bg-primary-green text-white border-0"
+                        className="px-2 py-0.5 text-[10px] font-bold bg-primary-green text-white border-0 pointer-events-none"
                       >
                         {item.badge}
                       </Badge>

@@ -358,11 +358,6 @@ export const copy = {
         a: "Clique em qualquer botão de contato desta página. Respondemos rápido para entender seu desafio.",
       },
     ],
-    finalCTA: {
-      title: "Vamos transformar seus cliques em clientes?",
-      primary: "Falar com a Landingville",
-      secondary: "Iniciar diagnóstico gratuito",
-    },
   },
 
   // Configuração do Modal de Contato (usar em todos os botões de contato)
