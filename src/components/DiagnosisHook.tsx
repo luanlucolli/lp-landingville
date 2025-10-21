@@ -54,7 +54,7 @@ const DiagnosisHook = () => {
                         </div>
                         <div>
                           {/* Mais espaçamento do título apenas no desktop */}
-                          <h3 className="font-bold text-foreground text-base mb-1 lg:mb-3">
+                          <h3 className="font-bold text-foreground text-base mb-1 lg:mb-1">
                             {benefit.title}
                           </h3>
                           <p className="text-sm text-muted-foreground leading-relaxed">

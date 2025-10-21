@@ -29,10 +29,11 @@ const HeroSection = () => {
             {/* Left - Text Content */}
             <div className="space-y-6 text-center md:text-left order-2 md:order-1">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                {copy.hero.h1.split('gera contatos').map((part, i, arr) => 
+                {/* ATUALIZADO: Lógica de highlight alterada para "próprio investimento" */}
+                {copy.hero.h1.split('próprio investimento').map((part, i, arr) => 
                   i < arr.length - 1 ? (
                     <span key={i}>
-                      {part}gera <span className="hi-grad">contatos</span>
+                      {part}<span className="hi-grad">próprio investimento</span>
                     </span>
                   ) : part
                 )}
@@ -48,6 +49,7 @@ const HeroSection = () => {
                   onClick={handleCalculatorClick}
                   className="btn-accent-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl"
                 >
+                  {/* Este texto é puxado do novo copy: "Iniciar Diagnóstico Gratuito" */}
                   {copy.hero.ctas.primary}
                 </Button>
 
@@ -55,6 +57,7 @@ const HeroSection = () => {
                   onClick={handleExamplesClick}
                   className="btn-accent-gradient h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl"
                 >
+                  {/* Este texto é puxado do novo copy: "Entenda a diferença" */}
                   {copy.hero.ctas.secondary}
                 </Button>
               </div>
