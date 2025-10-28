@@ -98,13 +98,17 @@ export const copy = {
     subtitle: "5 perguntas simples e mostramos o melhor caminho para o seu negócio.",
 
     intro: {
-      title: "Chega de 'depende'. Quanto custa?",
-      subtitle: "Este diagnóstico de 1 minuto mostra o caminho e o valor.",
-      bullets: ["Sem cadastro", "Recomendação automática", "Pode ajustar depois"],
-      cta: "Descobrir agora",
+      title: "Quanto investir para crescer?",
+      subtitle: "Em 1 minuto, receba um plano claro e sob medida.",
+      bullets: [
+        "Sem cadastro nem compromisso",
+        "Recomendação imediata",
+        "Ajuste de acordo com seu orçamento"
+      ],
+      cta: "Iniciar diagnóstico",
       links: {
-        seeExamples: "Ver exemplos primeiro",
-      },
+        seeExamples: "Ver planos reais"
+      }
     },
 
     steps: {
