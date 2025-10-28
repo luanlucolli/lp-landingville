@@ -67,33 +67,30 @@ export const copy = {
   // DIAGNOSIS HOOK
   diagnosis: {
     id: 'diagnosis',
-    title: 'DESCUBRA SEU PROJETO',
-    titleHighlight: 'IDEAL',
+    title: 'Descubra seu Projeto Ideal',
     subtitle: 'Responda algumas perguntas rápidas e receba uma recomendação personalizada.',
     steps: [
       {
         number: 1,
-        title: 'SUAS NECESSIDADES',
-        icon: 'HelpCircle',
-        borderColor: '#2b6fa5',
-        iconColor: '#609f50',
+        title: 'Suas Necessidades',
+        icon: 'Settings',
+        color: 'blue'
       },
       {
         number: 2,
-        title: 'ANÁLISE EXPRESSA',
+        title: 'Análise Expressa',
         icon: 'Search',
-        borderColor: '#609f50',
-        iconColor: '#2b6fa5',
+        color: 'green'
       },
       {
         number: 3,
-        title: 'RECOMENDAÇÃO PERSONALIZADA',
+        title: 'Recomendação Personalizada',
         icon: 'Gift',
-        borderColor: '#2b6fa5',
-        iconColor: '#609f50',
-      },
+        color: 'blue'
+      }
     ],
-    cta: 'INICIAR DIAGNÓSTICO AGORA',
+    cta: 'Iniciar Diagnóstico Agora',
+    ctaIcon: 'ArrowUpRight',
   },
 
   // CALCULADORA
