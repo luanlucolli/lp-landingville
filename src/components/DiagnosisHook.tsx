@@ -1,120 +1,133 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Clock, Target, DollarSign, Lightbulb, Receipt, Zap, LucideIcon } from 'lucide-react';
+import { Settings, Search, Gift, ArrowRight, ArrowUpRight, HelpCircle } from 'lucide-react';
 import copy from '@/content/landingville';
 
-const iconMap: Record<string, LucideIcon> = {
-  Zap,
-  Lightbulb,
-  Receipt,
-};
-
 const DiagnosisHook = () => {
+  const stepIcons = {
+    Settings: Settings,
+    Search: Search,
+    Gift: Gift,
+  };
+
+  const stepBorderColors = {
+    blue: 'border-[#2b6fa5]',
+    green: 'border-[#609f50]',
+  };
+
+  const stepTextColors = {
+    blue: 'text-[#2b6fa5]',
+    green: 'text-[#609f50]',
+  };
+
+  const stepIconColors = {
+    blue: 'text-[#2b6fa5]',
+    green: 'text-[#609f50]',
+  };
+
   return (
     <section
       id={copy.diagnosis.id}
-      className="pt-24 pb-24 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32"
-      style={{ background: 'hsl(var(--neutral-200))' }}
+      className="py-16 md:py-20 lg:py-24 bg-white"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-
-            {/* Left Column - Content */}
-            <div className="space-y-8 lg:space-y-14">
-
-              {/* Upper Block - The Promise */}
-              <div className="space-y-6 lg:space-y-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                  {copy.diagnosis.title}
-                </h2>
-
-                {/* Mobile/Tablet: SVG imediatamente abaixo do título (sem margem) */}
-                <div className="block lg:hidden [margin-top:0!important]" style={{ marginTop: 0 }}>
-                  <div
-                    className="w-full max-w-md mx-auto aspect-square flex items-center justify-center [margin-top:0!important]"
-                    style={{ marginTop: 0 }}
-                  >
-                    <img
-                      src="/lovable-uploads/quiz.svg"
-                      alt={copy.diagnosis.visualAlt}
-                      className="block w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/* Lista de Benefícios */}
-                <div className="space-y-4 lg:space-y-8">
-                  {copy.diagnosis.benefits.map((benefit, index) => {
-                    const Icon = iconMap[benefit.icon] || Zap;
-                    return (
-                      <div key={index} className="flex items-start gap-2 lg:gap-3">
-                        <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                          <Icon className="w-6 h-6 text-primary-green" />
-                        </div>
-                        <div>
-                          {/* Mais espaçamento do título apenas no desktop */}
-                          <h3 className="font-bold text-foreground text-base mb-1 lg:mb-1">
-                            {benefit.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            {benefit.description}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* CTA Block */}
-              <div className="space-y-4 lg:space-y-6">
-                <Button
-                  asChild
-                  className="
-                    w-full h-12 font-semibold text-lg rounded-xl
-                    transition-all duration-200
-                    hover:brightness-110 hover:saturate-125 hover:contrast-105
-                    active:brightness-125 active:saturate-150 active:contrast-110 active:scale-[0.99]
-                    focus:outline-none
-                    [box-shadow:0_8px_24px_rgba(109,159,80,0.28)]
-                    hover:[box-shadow:0_12px_36px_rgba(109,159,80,0.42)]
-                    active:[box-shadow:0_6px_18px_rgba(109,159,80,0.36)]
-                    border border-white/15
-                  "
-                  style={{
-                    background: 'linear-gradient(135deg, #6d9f50 0%, #7fbf63 40%, #93d277 100%)',
-                    color: '#FFFFFF'
-                  }}
-                >
-                  <Link 
-                    to="/diagnostico"
-                    onClick={() => {
-                      sessionStorage.setItem('lv_promo_claimed', 'true');
-                    }}
-                  >
-                    {copy.diagnosis.cta}
-                  </Link>
-                </Button>
-
-                <p className="text-sm italic text-muted-foreground text-center leading-relaxed">
-                  {copy.diagnosis.testimonial}
-                </p>
-              </div>
-            </div>
-
-            {/* Desktop: coluna do SVG à direita (invariável) */}
-            <div className="hidden lg:flex items-center justify-center lg:pl-6">
-              <div className="w-full max-w-md aspect-square flex items-center justify-center">
-                <img
-                  src="/lovable-uploads/quiz.svg"
-                  alt={copy.diagnosis.visualAlt}
-                  className="block w-full h-full object-contain"
-                />
-              </div>
-            </div>
-
+          
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2b6fa5] mb-4 uppercase">
+              {copy.diagnosis.title}
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+              {copy.diagnosis.subtitle}
+            </p>
           </div>
+
+          {/* Steps Flow - Desktop: Row, Mobile: Column */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 lg:gap-8 mb-12 md:mb-16">
+            
+            {copy.diagnosis.steps.map((step, index) => {
+              const Icon = stepIcons[step.icon as keyof typeof stepIcons];
+              const borderColor = stepBorderColors[step.color as keyof typeof stepBorderColors];
+              const textColor = stepTextColors[step.color as keyof typeof stepTextColors];
+              const iconColor = step.color === 'blue' ? 'text-[#609f50]' : 'text-[#2b6fa5]';
+              const arrowColor = index === 1 ? 'text-[#609f50]' : 'text-[#2b6fa5]';
+              
+              return (
+                <div key={index} className="flex flex-col md:flex-row items-center gap-6 md:gap-4 lg:gap-8">
+                  {/* Card */}
+                  <div 
+                    className={`
+                      ${borderColor} border-[3px] rounded-2xl p-6 md:p-8
+                      w-full max-w-[280px] md:w-[240px] lg:w-[280px]
+                      text-center transition-all duration-300
+                      ${index === 1 ? 'md:scale-105 shadow-lg' : 'shadow-md'}
+                      hover:shadow-xl
+                    `}
+                  >
+                    {/* Icon */}
+                    <div className="flex justify-center mb-4">
+                      <Icon className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 ${iconColor}`} strokeWidth={2} />
+                    </div>
+                    
+                    {/* Step Label */}
+                    <div className={`${textColor} font-semibold text-sm md:text-base mb-2 uppercase tracking-wide`}>
+                      Passo {step.number}:
+                    </div>
+                    
+                    {/* Step Title */}
+                    <div className={`${textColor} font-bold text-base md:text-lg uppercase leading-tight`}>
+                      {step.title}
+                    </div>
+                  </div>
+
+                  {/* Arrow - Show between steps, hide after last step */}
+                  {index < copy.diagnosis.steps.length - 1 && (
+                    <>
+                      {/* Desktop Arrow (Right) */}
+                      <ArrowRight 
+                        className={`hidden md:block w-8 h-8 lg:w-10 lg:h-10 ${arrowColor} flex-shrink-0`} 
+                        strokeWidth={3}
+                      />
+                      
+                      {/* Mobile Arrow (Down) */}
+                      <ArrowRight 
+                        className={`md:hidden w-8 h-8 ${arrowColor} flex-shrink-0 rotate-90`} 
+                        strokeWidth={3}
+                      />
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex justify-center">
+            <Button
+              asChild
+              className="
+                bg-[#2b6fa5] hover:bg-[#235a8a] text-white
+                font-bold text-base md:text-lg uppercase tracking-wide
+                rounded-full px-8 md:px-10 py-6 md:py-7
+                flex items-center gap-3
+                transition-all duration-300
+                shadow-lg hover:shadow-xl
+                hover:scale-105 active:scale-100
+              "
+            >
+              <Link 
+                to="/diagnostico"
+                onClick={() => {
+                  sessionStorage.setItem('lv_promo_claimed', 'true');
+                }}
+              >
+                {copy.diagnosis.cta}
+                <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
+              </Link>
+            </Button>
+          </div>
+
         </div>
       </div>
     </section>

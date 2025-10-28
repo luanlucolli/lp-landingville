@@ -67,28 +67,30 @@ export const copy = {
   // DIAGNOSIS HOOK
   diagnosis: {
     id: 'diagnosis',
-    title: 'Qual a solução ideal para o seu negócio?',
-    benefits: [
+    title: 'Descubra seu Projeto Ideal',
+    subtitle: 'Responda algumas perguntas rápidas e receba uma recomendação personalizada.',
+    steps: [
       {
-        icon: 'Zap',
-        title: 'Rápido e sem cadastro',
-        description: 'Leve menos de 1 minuto para ter sua resposta, sem pedir seus dados.',
+        number: 1,
+        title: 'Suas Necessidades',
+        icon: 'Settings',
+        color: 'blue'
       },
       {
-        icon: 'Lightbulb',
-        title: 'Recomendação Instantânea',
-        description: 'Descubra na hora se uma Landing Page ou um Site é o ideal para seu objetivo.',
+        number: 2,
+        title: 'Análise Expressa',
+        icon: 'Search',
+        color: 'green'
       },
       {
-        icon: 'Receipt',
-        title: 'Estimativa de Valor Clara',
-        description: 'Tenha uma faixa de preço transparente para planejar seu investimento.',
-      },
+        number: 3,
+        title: 'Recomendação Personalizada',
+        icon: 'Gift',
+        color: 'blue'
+      }
     ],
-    cta: 'Iniciar Diagnóstico Gratuito',
-    ctaBadge: '15% OFF',
-    testimonial: '"O diagnóstico foi muito decisivo para mim. Me deu a clareza que eu precisava." - Diana Anacleto, Contadora',
-    visualAlt: 'Ilustração do processo de diagnóstico da Landingville',
+    cta: 'Iniciar Diagnóstico Agora',
+    ctaIcon: 'ArrowUpRight',
   },
 
   // CALCULADORA
