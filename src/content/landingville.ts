@@ -178,8 +178,8 @@ export const copy = {
     result: {
       title: "Sua estimativa inicial",
       recommendation: {
-        landingLabel: "Landing Page (Ação Rápida)",
-        siteLabel: "Site Simples (Presença Oficial)",
+        landingLabel: "Landing Page",
+        siteLabel: "Site Completo",
         hint: "Sugerimos com base no seu objetivo.",
       },
       price: {
@@ -232,16 +232,16 @@ export const copy = {
     items: [
       {
         key: "landing",
-        name: "Landing Page (Ação Rápida)",
-        desc: "Uma única página, 100% focada em fazer o visitante tomar uma ação: pedir orçamento, agendar ou comprar. É um 'vendedor' digital focado.",
+        name: "Landing Page",
+        desc: "Uma página única, 100% focada em fazer o visitante agir: pedir orçamento, agendar ou comprar. É seu vendedor digital que nunca para.",
         cta: "Quero uma Landing Page",
         img: "/lovable-uploads/landing5.svg",
         alt: "Ícone representando Landing Page",
       },
       {
         key: "site",
-        name: "Site (Confiança e Autoridade)",
-        desc: "A 'casa' do seu negócio na internet. Apresenta quem você é e o que faz. Ideal para quem quer ser encontrado e transmitir profissionalismo.",
+        name: "Site Completo",
+        desc: "A vitrine do seu negócio na internet. Mostra quem você é, o que faz e como te encontrar. Ideal para quem quer ser encontrado e passar profissionalismo.",
         cta: "Quero um Site",
         img: "/lovable-uploads/tabs.svg",
         alt: "Ícone representando Site com abas",
