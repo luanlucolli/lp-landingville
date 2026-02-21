@@ -260,8 +260,8 @@ export const copy = {
   // DEMOS
   demos: {
     id: "demos",
-    title: "Veja na prática: Ação Rápida vs Confiança",
-    note: "Compare rápido e escolha o que combina com seu momento.",
+    title: "Landing Page ou Site: qual combina com você?",
+    note: "Veja exemplos reais e entenda a diferença em segundos.",
     intro: "Gostou do que viu? Vamos criar algo assim para você.",
     tabs: [
       {
